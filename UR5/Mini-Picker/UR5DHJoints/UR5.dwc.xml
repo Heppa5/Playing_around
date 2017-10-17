@@ -1,0 +1,64 @@
+<IncludeData>
+ <RigidDevice device="UR5">
+ 	<ForceLimit joint="Joint0">1000</ForceLimit>	
+	<ForceLimit joint="Joint1">1000</ForceLimit>	
+	<ForceLimit joint="Joint2">1000</ForceLimit>
+	<ForceLimit joint="Joint3">1000</ForceLimit>	
+	<ForceLimit joint="Joint4">1000</ForceLimit>	
+	<ForceLimit joint="Joint5">1000</ForceLimit>	
+	
+	<FixedBase frame="Base">
+		<MaterialID>Plastic</MaterialID> 
+	</FixedBase> 
+	<Link object="Joint0">
+		<Mass>1</Mass> 
+		<EstimateCOG/>
+		<EstimateInertia/>
+		<MaterialID>Plastic</MaterialID> 
+	</Link> 
+	<Link object="Joint1">
+		<Mass>1</Mass> 
+		<EstimateCOG/>
+		<EstimateInertia/>
+		<MaterialID>Plastic</MaterialID> 
+	</Link> 
+	<Link object="Joint2">
+		<Mass>1</Mass> 
+		<EstimateCOG/>
+		<EstimateInertia/>
+		<MaterialID>Plastic</MaterialID> 
+	</Link> 
+	<Link object="Joint3">
+		<Mass>1</Mass> 
+		<EstimateCOG/>
+		<EstimateInertia/>
+		<MaterialID>Plastic</MaterialID> 
+	</Link> 
+	<Link object="Joint4">
+		<Mass>1</Mass> 
+		<EstimateCOG/>
+		<EstimateInertia/>
+		<MaterialID>Plastic</MaterialID> 
+	</Link> 
+	<Link object="Joint5">
+		<Mass>1</Mass> 
+		<EstimateCOG/>
+		<EstimateInertia/>
+		<MaterialID>Plastic</MaterialID>
+		<Associate object="SDH.Base"></Associate>
+	</Link> 
+ </RigidDevice>
+ 
+  <PDDeviceController name="UR5Controller" device="UR5" type="Position">
+  <Sync>False</Sync>
+  <PDParams> 
+	10 0.003  
+	10 0.003  
+	10 0.003  
+	10 0.003  
+	10 0.003  
+	10 0.003
+  </PDParam>
+  <TimeStep> 0.01 </TimeStep>
+ </PDDeviceController>
+</IncludeData>

@@ -1,0 +1,55 @@
+//     namedWindow("Display Image_red", WINDOW_AUTOSIZE );
+//     imshow("Display Image_red", image1_red);
+//     
+//     namedWindow("Display Image_blue", WINDOW_AUTOSIZE );
+//     imshow("Display Image_blue", image1_blue);
+//     
+//     namedWindow("Display Image_yellow", WINDOW_AUTOSIZE );
+//     imshow("Display Image_yellow", image1_yellow);
+//     
+//     namedWindow("Display Image_green", WINDOW_AUTOSIZE );
+//     imshow("Display Image_green", image1_green);
+// 
+//     waitKey(0);
+//     
+//     namedWindow("Display Image_red", WINDOW_AUTOSIZE );
+//     imshow("Display Image_red", image2_red);
+//     
+//     namedWindow("Display Image_blue", WINDOW_AUTOSIZE );
+//     imshow("Display Image_blue", image2_blue);
+//     
+//     namedWindow("Display Image_yellow", WINDOW_AUTOSIZE );
+//     imshow("Display Image_yellow", image2_yellow);
+//     
+//     namedWindow("Display Image_green", WINDOW_AUTOSIZE );
+//     imshow("Display Image_green", image2_green);
+//     
+//     waitKey(0);
+
+
+int factor=4;
+    // first image
+    Mat image1_red, image1_blue, image1_yellow, image1_green;
+    inRange(image1,Scalar(49-factor*3,49-factor*3,159-factor*6), Scalar(49+factor*3,49+factor*3,159+factor*6),image1_red);
+    inRange(image1,Scalar(97-factor*4,55-factor*2,21-factor*5), Scalar(97+factor*4,55+factor*2,21+factor*5),image1_blue);
+    inRange(image1,Scalar(103-factor*6,207-factor*6,215-factor*7), Scalar(103+factor*6,255,255),image1_yellow);
+    inRange(image1,Scalar(77-factor*4,89-factor*3,40-factor*5), Scalar(77+factor*4,89+factor*3,40+factor*5),image1_green);    
+    
+    
+    Mat image2_red, image2_blue, image2_yellow, image2_green;
+    inRange(image2,Scalar(49-factor*3,49-factor*3,159-factor*6), Scalar(49+factor*3,49+factor*3,159+factor*6),image2_red);
+    inRange(image2,Scalar(97-factor*4,55-factor*2,21-factor*5), Scalar(97+factor*4,55+factor*2,21+factor*5),image2_blue);
+    inRange(image2,Scalar(103-factor*6,207-factor*6,215-factor*7), Scalar(103+factor*6,255,255),image2_yellow);
+    inRange(image2,Scalar(77-factor*4,89-factor*3,40-factor*5), Scalar(77+factor*4,89+factor*3,40+factor*5),image2_green); 
+
+
+    find_circle(image1,image1_red);
+    find_circle(image1,image1_blue);
+    find_circle(image1,image1_yellow);
+    find_circle(image1,image1_green);
+    
+    find_circle(image2,image2_red);
+    find_circle(image2,image2_blue);
+    find_circle(image2,image2_yellow);
+    find_circle(image2,image2_green);
+

@@ -1,0 +1,10 @@
+<CollisionSetup>
+    <Exclude>
+	<FramePair first="tool" second="UR5.Joint5" />
+	<FramePair first="tool" second="UR5.Joint4" />
+	<FramePair first="tool" second="UR5.Joint3" />
+	<FramePair first="tool" second="UR5.Joint2" />
+	<FramePair first="tool" second="SuctionCup" />
+	<FramePair first="PickBox" second="KDEMap" />
+   </Exclude>
+</CollisionSetup>

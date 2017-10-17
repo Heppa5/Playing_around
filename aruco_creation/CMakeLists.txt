@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 2.8)
+project( aruco )
+find_package( OpenCV REQUIRED )
+add_executable( aruco ./src/main.cpp )
+target_link_libraries( aruco ${OpenCV_LIBS} )
