@@ -68,6 +68,8 @@
 <!--    <node pkg="mp_mini_picker" type="mp_mini_picker_node" name="mp_mini_picker" required="true" output="screen" > </node> -->
    <node name = "camera_handling" pkg = "aruco_3D" type = "aruco_3D_node" respawn = "true" output = "screen" args = ""/>
    
+   <node name = "matching_points" pkg = "match_points" type = "match_points_node" respawn = "true" output = "screen" args = ""/>
    
+   <node name = "testing_transformation_matrix_woop" pkg = "testing_transformation_matrix" type = "testing_transformation_matrix_node" respawn = "true" output = "screen" args = ""/>
 
 </launch>
