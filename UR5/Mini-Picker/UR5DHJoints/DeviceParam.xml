@@ -103,12 +103,20 @@
  <PosLimit refjoint="Joint5" min="-180" max="180" />
 -->
 
-	<PosLimit refjoint="Joint0" min="-107" max="80" />
+	<!--<PosLimit refjoint="Joint0" min="-107" max="80" />
 	<PosLimit refjoint="Joint1" min="-180.239" max="-41" /> 
-	<PosLimit refjoint="Joint2" min="-155" max="0" /> 
-	<PosLimit refjoint="Joint3" min="-180.831" max="50" /> 
+	<PosLimit refjoint="Joint2" min="-155" max="0" /> -->
+        
+	<!--<PosLimit refjoint="Joint3" min="-180.831" max="50" /> 
 	<PosLimit refjoint="Joint4" min="-64.183" max="132" /> 
-	<PosLimit refjoint="Joint5" min="-116.239" max="139.239" /> 
+	<PosLimit refjoint="Joint5" min="-116.239" max="139.239" /> -->
+        <!--<PosLimit refjoint="Joint3" min="-67" max="16" /> 
+	<PosLimit refjoint="Joint4" min="87.5" max="143" /> 
+	<PosLimit refjoint="Joint5" min="-4" max="27" /> -->
+        
+        <!--<PosLimit refjoint="Joint3" min="-270" max="90" /> 
+        <PosLimit refjoint="Joint4" min="-180" max="180" />
+        <PosLimit refjoint="Joint5" min="-180" max="180" />-->
 
 
 
@@ -116,14 +124,24 @@
 
 
 
-<!--
  <PosLimit refjoint="Joint0" min="-120" max="80" />
- <PosLimit refjoint="Joint1" min="-180" max="45" />
- <PosLimit refjoint="Joint2" min="-45" max="180" />
- <PosLimit refjoint="Joint3" min="-300" max="-20" /> 
- <PosLimit refjoint="Joint4" min="-180" max="0" />
- <PosLimit refjoint="Joint5" min="-180" max="180" />
--->
+<!--  <PosLimit refjoint="Joint1" min="-180" max="45" /> -->
+ <PosLimit refjoint="Joint1" min="-180" max="180" />
+<!--  <PosLimit refjoint="Joint2" min="-120" max="0" /> -->
+ <PosLimit refjoint="Joint2" min="-260" max="0" />
+<!--  <PosLimit refjoint="Joint3" min="-300" max="-20" />  -->
+<!--  <PosLimit refjoint="Joint3" min="-170" max="60" /> -->
+ <PosLimit refjoint="Joint3" min="-360" max="60" /> 
+<!--  <PosLimit refjoint="Joint4" min="-180" max="0" /> -->
+ 
+ 
+<!--  <PosLimit refjoint="Joint4" min="0" max="179" />  -->
+ <PosLimit refjoint="Joint4" min="0" max="270" /> 
+
+ 
+ <!--  <PosLimit refjoint="Joint5" min="-180" max="180" /> -->
+ <PosLimit refjoint="Joint5" min="-80" max="90" /> 
+
 <!--
 	<PosLimit refjoint="Joint0" min="34.3775" max="229.183" />
 	<PosLimit refjoint="Joint1" min="-143.239" max="85.9437" /> 

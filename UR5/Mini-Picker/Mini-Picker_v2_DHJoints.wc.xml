@@ -15,12 +15,12 @@
 
 </Frame>
 
-<Frame name="PickBox" refframe="WORLD" type="Movable">
+<!--<Frame name="PickBox" refframe="WORLD" type="Movable">
      <RPY> 0 0 0 </RPY> <Pos> -0.290 0.215 0.145 </Pos>
      <Drawable name="PickBox" refframe="PickBox">
          <Polytope file="Geometry/Boxes.obj" />
      </Drawable>
-</Frame>
+</Frame>-->
 
 <Frame name="HandlingStation" refframe="WORLD" type="Movable">
      <RPY> 0 0 0 </RPY> <Pos> 0.450 -0.175 0.005 </Pos>
@@ -38,19 +38,46 @@
 
 <Include file="UR5DHJoints/UR5.wc.xml" /> 
 
-<Frame name="SCAPE_TCP" refframe="UR5.TCP">
+<!--<Frame name="SCAPE_TCP" refframe="UR5.TCP">
 	<Pos>-0.018 0.0425 0.290</Pos>
 	<RPY>-90 0 180</RPY>
+</Frame>-->
+
+<Frame name="SCAPE_TCP" refframe="UR5.TCP">
+	<Pos>0.075 -0.0625 0.01</Pos>
+	<RPY>0 180 0</RPY>
 </Frame>
 
-<Frame name="tool" refframe="SCAPE_TCP" type="Movable">
+<!--<Frame name="tool" refframe="SCAPE_TCP" type="Movable">
      <RPY> 0 0 0 </RPY> <Pos> 0 0 0.03 </Pos>
 
      <Drawable name="tool" refframe="tool">
-         <Polytope file="ScapeTool/tool" />
+         <Polytope file="ScapeTool/tool_box" />
      </Drawable>
      <CollisionModel name="tool" refframe="tool">
-         <Polytope file="ScapeTool/tool" />
+         <Polytope file="ScapeTool/tool_box" />
+     </CollisionModel> 
+</Frame>-->
+
+<Frame name="big_box_f" refframe="WORLD" type="Movable">
+     <RPY> 90 0 0 </RPY> <Pos> 0.7 -0.3 0 </Pos>
+     <Drawable name="big_box" refframe="big_box_f">
+         <Polytope file="big_box" />
+     </Drawable>
+     <!--<CollisionModel name="big_box" refframe="big_box_f">
+         <Polytope file="big_box" />
+     </CollisionModel> -->
+</Frame>
+
+
+<Frame name="tool" refframe="SCAPE_TCP" type="Movable">
+     <RPY> 0 90 0 </RPY> <Pos> 0 0 0 </Pos>
+
+     <Drawable name="tool" refframe="tool">
+         <Polytope file="ScapeTool/tool_box" />
+     </Drawable>
+     <CollisionModel name="tool" refframe="tool">
+         <Polytope file="ScapeTool/tool_box" />
      </CollisionModel> 
 </Frame>
 

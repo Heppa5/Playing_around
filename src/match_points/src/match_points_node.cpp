@@ -156,10 +156,30 @@ public:
 
                 }
                 else
+                {
+//                     float x=chosenMatchedPoints[0].robot.pose.position.x;
+//                     float y=chosenMatchedPoints[0].robot.pose.position.y;
+//                     float z=chosenMatchedPoints[0].robot.pose.position.z;
+//                     
+//                     float x2=matchedPoints[0].robot.pose.position.x;
+//                     float y2=matchedPoints[0].robot.pose.position.y;
+//                     float z2=matchedPoints[0].robot.pose.position.z;
+//                     
+//                     ROS_INFO("Rej. Dist:  %f and chosen point is: ( %f, %f, %f) \n While compared point is: ( %f, %f, %f) ",dist_between_points(matchedPoints[0].robot.pose,chosenMatchedPoints[0].robot.pose),x,y,z,x2,y2,z2);
+                    
                     matchedPoints.erase(matchedPoints.end());
+                }
             }
         if(chosenMatchedPoints.size() > old_array_size && chosenMatchedPoints.size() > 3)
         {
+//             for(int i = 0 ; i < chosenMatchedPoints.size() ; i++)
+//             {
+//                 cout << "Chosen point " << i << ": ";
+//                 cout << chosenMatchedPoints[i].robot.pose.position.x << " , ";
+//                 cout << chosenMatchedPoints[i].robot.pose.position.y << " , ";
+//                 cout << chosenMatchedPoints[i].robot.pose.position.z << endl;
+//                 
+//             }
 //             cout << chosenMatchedPoints.size() << endl;
 //             
 //             for(int i = 0; i<chosenMatchedPoints.size() ; i++)
@@ -259,19 +279,33 @@ private:
     
     bool compare_3D_points(geometry_msgs::Pose new_position, geometry_msgs::Pose old_position, double expected_distance)
     {
-        double old_dist=sqrt(pow(old_position.position.x,2)+pow(old_position.position.y,2)+pow(old_position.position.z,2));
-        double new_dist=sqrt(pow(new_position.position.x,2)+pow(new_position.position.y,2)+pow(new_position.position.z,2));
+        float x=old_position.position.x;
+        float y=old_position.position.y;
+        float z=old_position.position.z;
         
-        if(abs(new_dist-old_dist)>=expected_distance)
+        float x2=new_position.position.x;
+        float y2=new_position.position.y;
+        float z2=new_position.position.z;
+        
+        double dist=sqrt(pow((x-x2),2)+pow((y-y2),2)+pow((z-z2),2));
+        
+        if(dist>=expected_distance)
             return true;
         else 
             return false;
     }
     double dist_between_points(geometry_msgs::Pose new_position, geometry_msgs::Pose old_position)
     {
-        double old_dist=sqrt(pow(old_position.position.x,2)+pow(old_position.position.y,2)+pow(old_position.position.z,2));
-        double new_dist=sqrt(pow(new_position.position.x,2)+pow(new_position.position.y,2)+pow(new_position.position.z,2));
-        return abs(new_dist-old_dist);
+        float x=old_position.position.x;
+        float y=old_position.position.y;
+        float z=old_position.position.z;
+        
+        float x2=new_position.position.x;
+        float y2=new_position.position.y;
+        float z2=new_position.position.z;
+        
+        double dist=sqrt(pow((x-x2),2)+pow((y-y2),2)+pow((z-z2),2));
+        return dist;
     }
 
     vector<geometry_msgs::PoseStamped> camera_points;

@@ -16,6 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
     cv_bridge
   image_transport
   match_points
+#   mp_mini_picker
 )
 
 ## System dependencies are found with CMake's conventions

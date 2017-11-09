@@ -46,25 +46,39 @@ class ImageConverter
   ros::Publisher aruco_point_pub_;
 
 public:
-    ImageConverter()
+    ImageConverter(string ID)
         : it_(nh_)
     {
+        Marker_ID=atoi(ID.c_str());
+        
         // Subscrive to input video feed and publish output video feed
         image_sub_ = it_.subscribe("/camera/image_raw", 1,&ImageConverter::imageCb, this);
         image_pub_ = it_.advertise("/image_converter/output_video", 1);
-        aruco_point_pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/aruco/marker1", 1);
+        
         
         // For using solvePNP on aruco Marker
 //         marker_3D.push_back(Point3f(0,0,0));
 //         marker_3D.push_back(Point3f(0.169,0,0));
 //         marker_3D.push_back(Point3f(0.169,-0.169,0));
 //         marker_3D.push_back(Point3f(0,-0.169,0));
-        marker_3D.push_back(Point3f(0,0,0));
-        marker_3D.push_back(Point3f(0.044,0,0));
-        marker_3D.push_back(Point3f(0.044,-0.044,0));
-        marker_3D.push_back(Point3f(0,-0.044,0));
-        
-        
+        if (Marker_ID == 2)
+        {
+            ROS_INFO("USING marker 2");
+            marker_3D.push_back(Point3f(0,0,0));
+            marker_3D.push_back(Point3f(0.044,0,0));
+            marker_3D.push_back(Point3f(0.044,-0.044,0));
+            marker_3D.push_back(Point3f(0,-0.044,0));
+            aruco_point_pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/aruco/marker1", 1);
+        }
+        else if(Marker_ID == 3)
+        {
+            ROS_INFO("USING marker 3");
+            marker_3D.push_back(Point3f(0,0,0));
+            marker_3D.push_back(Point3f(0.066,0,0));
+            marker_3D.push_back(Point3f(0.066,-0.066,0));
+            marker_3D.push_back(Point3f(0,-0.066,0));
+            aruco_point_pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/aruco/marker2", 1);
+        }
         distortion.push_back(-0.228385);
         distortion.push_back(0.266082);
         distortion.push_back(-0.001812);
@@ -102,15 +116,20 @@ public:
 
         aruco::detectMarkers(cv_ptr->image, mark_dict, markerCorners, markerIds);
 
-        if(!markerCorners.empty())
+        if(markerCorners.size()==2) // ugly as fuck
         {
             Mat rvec, tvec;
-
-            solvePnP(marker_3D,markerCorners[0],camera_matrix,distortion,rvec,tvec);
+            if(Marker_ID==markerIds[0])
+            {
+                solvePnP(marker_3D,markerCorners[0],camera_matrix,distortion,rvec,tvec);
+                
+            }
+            else if(Marker_ID==markerIds[1])
+            {
+                solvePnP(marker_3D,markerCorners[1],camera_matrix,distortion,rvec,tvec);
+            }
             geometry_msgs::PoseStamped aruco3D_msg;
-            
             aruco3D_msg.header.stamp=msg->header.stamp;
-            
             aruco3D_msg.pose.position.x=tvec.at<double>(0,0);
             aruco3D_msg.pose.position.y=tvec.at<double>(1,0);
             aruco3D_msg.pose.position.z=tvec.at<double>(2,0);
@@ -122,6 +141,7 @@ public:
         }
         else
         {
+//             ROS_INFO("COULD NOT FIND BOTH MARKERS");
             std::string str = patch::to_string(count);
             imwrite("/home/rovi2/fun/lort"+str+".jpg", cv_ptr->image);
             count++;
@@ -140,13 +160,17 @@ private:
     vector<int> markerIds;
 
     int count=0;
+    int Marker_ID;
     
 };
 
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "image_converter");
-  ImageConverter ic;
+    if (argv[1] == "2" ) 
+        ros::init(argc, argv, "image_converter");
+    else 
+        ros::init(argc, argv, "image_converter2");
+    ImageConverter ic(argv[1]);
   ROS_INFO("Starting camera node up");
   ros::spin();
   return 0;

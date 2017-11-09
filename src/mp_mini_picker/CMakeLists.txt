@@ -62,6 +62,7 @@ add_service_files(
   FILES
   currentQ.srv
   moveToQ.srv
+  moveToPoint.srv
 
 )
 
