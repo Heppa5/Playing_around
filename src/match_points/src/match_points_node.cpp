@@ -63,7 +63,7 @@ public:
         matched_points_pub_ = nh_.advertise<match_points::matched_points>("/matched_points/all_matched_points", 1);
         
         robot_sub_ = nh_.subscribe("/robot/moved", 1, &MatchPoints::robot_has_moved,this);
-        camera_point_sub_ = nh_.subscribe("/aruco/marker1", 1, &MatchPoints::camera_3D_points,this);
+        camera_point_sub_ = nh_.subscribe("/kalman_filter/marker1", 1, &MatchPoints::camera_3D_points,this);
         
     }
 
@@ -141,18 +141,39 @@ public:
             chosenMatchedPoints.insert(chosenMatchedPoints.begin(),matchedPoints[0]);
             matchedPoints.erase(matchedPoints.begin());
         }
-        int old_array_size=chosenMatchedPoints.size();
+//         int old_array_size=chosenMatchedPoints.size();
+        bool added_points=false;
         // choosing points based on, whether the robot has moved position 
             while(matchedPoints.size()>0)
             {
 //                 ROS_INFO("Hej %f",dist_between_points(matchedPoints[0].robot.pose,chosenMatchedPoints[0].robot.pose));
                 int i = matchedPoints.size()-1;
-                if(compare_3D_points(matchedPoints[i].robot.pose,chosenMatchedPoints[0].robot.pose,0.05))
+                if(compare_3D_points(matchedPoints[i].robot.pose,chosenMatchedPoints[0].robot.pose,0.02))
                 {
-                    ROS_INFO("Distance between chosen poinsts:  %f",dist_between_points(matchedPoints[0].robot.pose,chosenMatchedPoints[0].robot.pose));
                     
-                    chosenMatchedPoints.insert(chosenMatchedPoints.begin(),matchedPoints[i]);
-                    matchedPoints.erase(matchedPoints.end());
+                    
+                    float rob_dist=dist_between_points(matchedPoints[i].robot.pose,chosenMatchedPoints[0].robot.pose);
+                    float cam_dist= 
+                    dist_between_points(matchedPoints[i].camera.pose,chosenMatchedPoints[0].camera.pose);
+                    if(abs(cam_dist-rob_dist)/rob_dist < 0.15)
+                    {
+                        added_points = true;
+                        ROS_INFO("Distance between chosen poinsts:  %f",dist_between_points(matchedPoints[0].robot.pose,chosenMatchedPoints[0].robot.pose));
+                        
+                        chosenMatchedPoints.insert(chosenMatchedPoints.begin(),matchedPoints[i]);
+                        matchedPoints.erase(matchedPoints.end());
+                    }
+                    else
+                    {
+                        matchedPoints.erase(matchedPoints.end());
+                    }
+                    
+                    
+                    
+//                     if(chosenMatchedPoints.size() > 15)
+//                     {
+//                         chosenMatchedPoints.erase(chosenMatchedPoints.end());
+//                     }
 
                 }
                 else
@@ -170,26 +191,53 @@ public:
                     matchedPoints.erase(matchedPoints.end());
                 }
             }
-        if(chosenMatchedPoints.size() > old_array_size && chosenMatchedPoints.size() > 3)
+        if(added_points && chosenMatchedPoints.size() > 3)
         {
-//             for(int i = 0 ; i < chosenMatchedPoints.size() ; i++)
-//             {
-//                 cout << "Chosen point " << i << ": ";
-//                 cout << chosenMatchedPoints[i].robot.pose.position.x << " , ";
-//                 cout << chosenMatchedPoints[i].robot.pose.position.y << " , ";
-//                 cout << chosenMatchedPoints[i].robot.pose.position.z << endl;
-//                 
-//             }
-//             cout << chosenMatchedPoints.size() << endl;
-//             
+            
+//             cout << " --------------------  Points used for estimating transformation -------------------" << endl;
 //             for(int i = 0; i<chosenMatchedPoints.size() ; i++)
 //             {
-//                 cout << "########################################" << endl;
-//                 cout << chosenMatchedPoints[i].robot.pose.position.x << " , " << chosenMatchedPoints[i].robot.pose.position.y << " , " << chosenMatchedPoints[i].robot.pose.position.z << endl;
-//                 cout << chosenMatchedPoints[i].camera.pose.position.x << " , " << chosenMatchedPoints[i].camera.pose.position.y << " , " << chosenMatchedPoints[i].camera.pose.position.z << endl;
+//                 cout << "PAIR :" << i << endl;
+//                 cout << "Robot: " <<  chosenMatchedPoints[i].robot.pose.position.x << " , " << chosenMatchedPoints[i].robot.pose.position.y << " , " << chosenMatchedPoints[i].robot.pose.position.z << endl;
+//                 cout << "Camera: " <<  chosenMatchedPoints[i].camera.pose.position.x << " , " << chosenMatchedPoints[i].camera.pose.position.y << " , " << chosenMatchedPoints[i].camera.pose.position.z << endl;
+//                 if (i>0) 
+//                 {
+//                     cout << "Dist between last to points - robot: " <<  
+//                     dist_between_points(chosenMatchedPoints[i].robot.pose, chosenMatchedPoints[i-1].robot.pose) << endl;
+//                     cout << "Dist between last to points - camera: " <<  
+//                     dist_between_points(chosenMatchedPoints[i].camera.pose, chosenMatchedPoints[i-1].camera.pose) << endl;
+//                 }
+//                 
+//             }
+//             
+//             
+//             cout << " --------------------  END: Points used for estimating transformation -------------------" << endl;
+            
+            
+            
+            
+//             cout << "########################################" << endl;
+            
+//             for(int i = 0 ; i<chosenMatchedPoints.size() ; i++)
+//             {
+//                 if (i>0) 
+//                 {
+//                     float rob_dist=dist_between_points(chosenMatchedPoints[i].robot.pose, chosenMatchedPoints[i-1].robot.pose);
+//                     float cam_dist= 
+//                     dist_between_points(chosenMatchedPoints[i].camera.pose, chosenMatchedPoints[i-1].camera.pose);
+//                     if(abs(cam_dist-rob_dist)/rob_dist > 0.15)
+//                     {
+//                         chosenMatchedPoints.erase(chosenMatchedPoints.begin()+1);
+//                         cout << "Sorted out " << i << endl;
+//                     }
+//                 }
 //             }
             
-            find_transformation();
+            if( chosenMatchedPoints.size() > 3)
+            {
+                find_transformation();
+            }
+            
         }
     }
     
@@ -212,22 +260,17 @@ public:
         for(int i=0 ; i<chosenMatchedPoints.size(); i++)
         {
             Mat cam_point=convert_geomsg_to_mat(chosenMatchedPoints[i].camera);
-//             cout <<"Camera: " << cam_point << endl;
             Mat rob_point=convert_geomsg_to_mat(chosenMatchedPoints[i].robot);
-//             cout << "Robot: " << rob_point << endl;
             
             frame1_sum=frame1_sum+cam_point;
             frame2_sum=frame2_sum+rob_point;
         }
         
-//         cout << "Total for frame 1: " << frame1_sum << endl;
-//         cout << "Total for frame 2: " << frame2_sum << endl;
+
         
         frame1_sum=frame1_sum/((float)chosenMatchedPoints.size());
         frame2_sum=frame2_sum/((float)chosenMatchedPoints.size());
 
-//         cout << "Centroids: " << endl << frame1_sum << endl << frame2_sum << endl;
-//         cout << "Centroids: " << endl << frame1_sum-frame2_sum << endl;
 
 
         // Using SVD - create H matrix
@@ -245,30 +288,60 @@ public:
         transpose(u,ut);
 
         Mat R_computed=v*ut;
-
-//         cout << R_computed << endl;
+        
+        if(cv::determinant(R_computed) < 0)
+        {
+            cout << "----------------------------"  << " Reflection special case " << " ----------------------------" << endl;
+            cout << "Before "  << R_computed << endl;
+            for(int i=0; i<R_computed.rows ; i++)
+            {
+                R_computed.at<float>(i,2)=R_computed.at<float>(i,2)*(-1);
+            }
+            cout << "After "  << R_computed << endl;
+            
+            cout << "----------------------------"  << " END: Reflection special case " << " ----------------------------" << endl;
+        }
 
         // getting the translation
 
         Mat t_computed= -R_computed*frame1_sum+frame2_sum;
         
-//         cout << "########### tranformation: ###############" << endl;
-//         cout << R_computed << t_computed << endl;
         
+        float euc_translation_dif=norm(t_computed-t_computed_old);
         
-        Mat R_vector;
-        Rodrigues(R_computed,R_vector);
-        
-        geometry_msgs::Transform msg;
-        msg.translation.x=t_computed.at<float>(0,0);
-        msg.translation.y=t_computed.at<float>(1,0);
-        msg.translation.z=t_computed.at<float>(2,0);
-                
-        msg.rotation.x=R_vector.at<float>(0,0);
-        msg.rotation.y=R_vector.at<float>(1,0);
-        msg.rotation.z=R_vector.at<float>(2,0);
-        
-        transformation_pub_.publish(msg);
+        //if(euc_dist/norm(t_computed_old) > 0.5 && posted_tranformation==true)
+        if(euc_translation_dif>=euc_translation_dif_old && posted_tranformation==true && false)
+        {
+            cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
+            //cout << euc_dist/norm(t_computed_old) << endl;
+            cout << euc_translation_dif << " , " << euc_translation_dif_old << endl;
+            cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
+            // We normally insert in the front of the vector  -  bad point and it should be deleted. 
+            chosenMatchedPoints.erase(chosenMatchedPoints.begin());
+        }
+        else
+        {
+            euc_translation_dif_old=euc_translation_dif;
+            
+            posted_tranformation = true;
+            t_computed_old=t_computed;
+
+            
+            
+            Mat R_vector;
+            Rodrigues(R_computed,R_vector);
+            
+            geometry_msgs::Transform msg;
+            msg.translation.x=t_computed.at<float>(0,0);
+            msg.translation.y=t_computed.at<float>(1,0);
+            msg.translation.z=t_computed.at<float>(2,0);
+                    
+            msg.rotation.x=R_vector.at<float>(0,0);
+            msg.rotation.y=R_vector.at<float>(1,0);
+            msg.rotation.z=R_vector.at<float>(2,0);
+            
+            transformation_pub_.publish(msg);
+        }
 //         cout << t_computed << endl;
 
 //         cout << "Difference: " << endl << (R_computed-R) << endl;
@@ -307,7 +380,13 @@ private:
         double dist=sqrt(pow((x-x2),2)+pow((y-y2),2)+pow((z-z2),2));
         return dist;
     }
-
+    
+    Mat t_computed_old; 
+    
+    bool posted_tranformation =false;
+    float euc_translation_dif_old;
+    
+    
     vector<geometry_msgs::PoseStamped> camera_points;
     vector<geometry_msgs::PoseStamped> robot_positions;
     vector<matchedPoint> matchedPoints;

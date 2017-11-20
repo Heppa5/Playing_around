@@ -49,7 +49,9 @@ public:
     ImageConverter(string ID)
         : it_(nh_)
     {
-        Marker_ID=atoi(ID.c_str());
+         Marker_ID=atoi(ID.c_str());
+        
+        cout << "JEg hader mit liv" << endl;
         
         // Subscrive to input video feed and publish output video feed
         image_sub_ = it_.subscribe("/camera/image_raw", 1,&ImageConverter::imageCb, this);
@@ -61,24 +63,14 @@ public:
 //         marker_3D.push_back(Point3f(0.169,0,0));
 //         marker_3D.push_back(Point3f(0.169,-0.169,0));
 //         marker_3D.push_back(Point3f(0,-0.169,0));
-        if (Marker_ID == 2)
-        {
-            ROS_INFO("USING marker 2");
-            marker_3D.push_back(Point3f(0,0,0));
-            marker_3D.push_back(Point3f(0.044,0,0));
-            marker_3D.push_back(Point3f(0.044,-0.044,0));
-            marker_3D.push_back(Point3f(0,-0.044,0));
-            aruco_point_pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/aruco/marker1", 1);
-        }
-        else if(Marker_ID == 3)
-        {
-            ROS_INFO("USING marker 3");
-            marker_3D.push_back(Point3f(0,0,0));
-            marker_3D.push_back(Point3f(0.066,0,0));
-            marker_3D.push_back(Point3f(0.066,-0.066,0));
-            marker_3D.push_back(Point3f(0,-0.066,0));
-            aruco_point_pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/aruco/marker2", 1);
-        }
+
+        ROS_INFO("USING marker 2");
+        marker_3D.push_back(Point3f(0,0,0));
+        marker_3D.push_back(Point3f(0.044,0,0));
+        marker_3D.push_back(Point3f(0.044,-0.044,0));
+        marker_3D.push_back(Point3f(0,-0.044,0));
+        aruco_point_pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/aruco/marker1", 1);
+        
         distortion.push_back(-0.228385);
         distortion.push_back(0.266082);
         distortion.push_back(-0.001812);
@@ -113,6 +105,7 @@ public:
         }
         
         
+        //cout << "Got image" << endl;
 
         aruco::detectMarkers(cv_ptr->image, mark_dict, markerCorners, markerIds);
 
@@ -125,52 +118,74 @@ public:
             if(Marker_ID == markerIds[i])
             {
                 solvePnP(marker_3D,markerCorners[i],camera_matrix,distortion,rvec,tvec);
-                geometry_msgs::PoseStamped aruco3D_msg;
-                aruco3D_msg.header.stamp=msg->header.stamp;
-                aruco3D_msg.pose.position.x=tvec.at<double>(0,0);
-                aruco3D_msg.pose.position.y=tvec.at<double>(1,0);
-                aruco3D_msg.pose.position.z=tvec.at<double>(2,0);
-                aruco3D_msg.pose.orientation.x=rvec.at<double>(0,0);
-                aruco3D_msg.pose.orientation.y=rvec.at<double>(1,0);
-                aruco3D_msg.pose.orientation.z=rvec.at<double>(2,0);
                 
-                aruco_point_pub_.publish(aruco3D_msg);
+                Point3f estPoint(tvec.at<double>(0,0),tvec.at<double>(1,0),tvec.at<double>(2,0));
+                marker_3D_tvec.push_back(estPoint);
+//                 geometry_msgs::PoseStamped aruco3D_msg;
+//                 aruco3D_msg.header.stamp=msg->header.stamp;
+//                 aruco3D_msg.pose.position.x=tvec.at<double>(0,0);
+//                 aruco3D_msg.pose.position.y=tvec.at<double>(1,0);
+//                 aruco3D_msg.pose.position.z=tvec.at<double>(2,0);
+//                 aruco3D_msg.pose.orientation.x=rvec.at<double>(0,0);
+//                 aruco3D_msg.pose.orientation.y=rvec.at<double>(1,0);
+//                 aruco3D_msg.pose.orientation.z=rvec.at<double>(2,0);
+                
+//                 aruco_point_pub_.publish(aruco3D_msg);
+                if( marker_3D_tvec.size() < 100 )
+                {
+                    cout << "Got measurement" << endl;
+                }
             }
         }
+        
+        if(marker_3D_tvec.size() == 100)
+        {
+            calc();
+        }
+        
             
-//             if(Marker_ID==markerIds[0])
-//             {
-//                 solvePnP(marker_3D,markerCorners[0],camera_matrix,distortion,rvec,tvec);
-//                 
-//             }
-//             else if(Marker_ID==markerIds[1])
-//             {
-//                 solvePnP(marker_3D,markerCorners[1],camera_matrix,distortion,rvec,tvec);
-//             }
-//             geometry_msgs::PoseStamped aruco3D_msg;
-//             aruco3D_msg.header.stamp=msg->header.stamp;
-//             aruco3D_msg.pose.position.x=tvec.at<double>(0,0);
-//             aruco3D_msg.pose.position.y=tvec.at<double>(1,0);
-//             aruco3D_msg.pose.position.z=tvec.at<double>(2,0);
-//             aruco3D_msg.pose.orientation.x=rvec.at<double>(0,0);
-//             aruco3D_msg.pose.orientation.y=rvec.at<double>(1,0);
-//             aruco3D_msg.pose.orientation.z=rvec.at<double>(2,0);
-//             
-//             aruco_point_pub_.publish(aruco3D_msg);
-//         }
-//         else
-//         {
-// //             ROS_INFO("COULD NOT FIND BOTH MARKERS");
-// //             std::string str = patch::to_string(count);
-// //             imwrite("/home/rovi2/fun/lort"+str+".jpg", cv_ptr->image);
-// //             count++;
-//         }
+
+    }
+    
+    void calc()
+    {
+        // find mean
+        
+        Mat mean=Mat::zeros(3, 1, CV_32F);
+        
+        for(int i=0 ; i<marker_3D_tvec.size() ;i++)
+        {
+            mean.at<float>(0,0)=mean.at<float>(0,0)+marker_3D_tvec[i].x;
+            mean.at<float>(1,0)=mean.at<float>(1,0)+marker_3D_tvec[i].y;
+            mean.at<float>(2,0)=mean.at<float>(2,0)+marker_3D_tvec[i].z;
+        }
+        mean=mean/marker_3D_tvec.size();
+        
+        
+        // find error and then covariance
+        Mat error;
+        
+        error=Mat::zeros(marker_3D_tvec.size(), 3, CV_32F);
+        for(int i=0 ; i<marker_3D_tvec.size() ;i++)
+        {
+            error.at<float>(i,0)=marker_3D_tvec[i].x-mean.at<float>(0,0);
+            error.at<float>(i,1)=marker_3D_tvec[i].y-mean.at<float>(1,0);
+            error.at<float>(i,2)=marker_3D_tvec[i].z-mean.at<float>(2,0);
+        }
+        cout << "Errors demeaned:" << endl << error << endl;
+        Mat Sigma=Mat::zeros(marker_3D_tvec.size(), 2, CV_64F);
+        Sigma=(1.0/((float)(marker_3D_tvec.size())-1.0))*error.t()*error;
+        
+        cout << "covariance: " <<Sigma << endl;
+        
+        cout << "Mean: " << mean << endl;
+        
     }
 
     
 private:
     cv::Mat current_image;
-    vector<Point3f> marker_3D;
+    vector<Point3f> marker_3D,marker_3D_tvec;
     vector<double> distortion;
     Ptr<aruco::Dictionary> mark_dict;
     Mat_<float> camera_matrix;
@@ -179,19 +194,16 @@ private:
     vector<int> markerIds;
 
     int count=0;
-    int Marker_ID;
+    int Marker_ID=2;
     
 };
 
 int main(int argc, char** argv)
 {
-    if (argv[1] == "2" ) 
-        ros::init(argc, argv, "image_converter");
-    else 
-        ros::init(argc, argv, "image_converter2");
-    ImageConverter ic(argv[1]);
-  ROS_INFO("Starting camera node up");
-  ros::spin();
-  return 0;
+    ros::init(argc, argv, "image_converter");
+    ImageConverter ic("2");
+    ROS_INFO("Starting camera node up");
+    ros::spin();
+    return 0;
 }
 

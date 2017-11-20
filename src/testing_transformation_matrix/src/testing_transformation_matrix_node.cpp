@@ -56,10 +56,13 @@ class TestClass
   ros::Subscriber transformation_sub_;
   
   ros::Subscriber marker2_sub_;
+  ros::Subscriber marker1_sub_;
   
   ros::Subscriber robot_position_sub_;
   
   ros::Publisher difference_pub_;
+  
+  ros::Publisher marker_dist_pub_;
   
   ros::ServiceClient serv_move_robot_;
   
@@ -72,12 +75,17 @@ public:
         transformation_sub_ = nh_.subscribe("/matched_points/transformation_matrix", 1,&TestClass::update_tranformation,this);
         matched_points_sub_ = nh_.subscribe("/matched_points/all_matched_points", 1, &TestClass::newest_point, this);
         robot_position_sub_ = nh_.subscribe("/robot/moved", 1, &TestClass::update_robot_position, this);
-        marker2_sub_ =nh_.subscribe("/aruco/marker2",1,&TestClass::update_marker2_position, this);
+        marker2_sub_ = nh_.subscribe("/kalman_filter/marker2",1,&TestClass::update_marker2_position, this);
+        marker1_sub_ = nh_.subscribe("/kalman_filter/marker1",1,&TestClass::update_marker1_position, this);
+        
         
         serv_move_robot_ = nh_.serviceClient<mp_mini_picker::moveToPoint>("/robot/MoveToPoint");
         serv_move_robotQ_ = nh_.serviceClient<mp_mini_picker::moveToQ>("/robot/MoveToQ");
         
         difference_pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/matched_points/difference", 1);
+        
+        marker_dist_pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/test/euclidian_distance_markers", 1);
+        
         trans_mat = Mat::zeros(4,4,CV_32F);
         trans_mat.at<float>(3,3)=1;
         
@@ -102,9 +110,10 @@ public:
     
        
         ros::Time last_publish=ros::Time::now();
-        ros::Duration time_between_publishing(5); // camera has framerate of 7 hz
+        ros::Duration time_between_publishing(10); // Start up time
         ros::Duration time_difference;
         bool command_send=false;
+        ROS_INFO("Test node moving robot in 10 seconds");
         while(command_send == false)
         {
             ros::Time current_time=ros::Time::now();
@@ -137,6 +146,20 @@ public:
         marker2_position=*msg;
     }
     
+    void update_marker1_position(const geometry_msgs::PoseStamped::ConstPtr msg)
+    {
+        marker1_position=*msg;
+        
+        Mat cam_marker1 = convert_geomsg_to_mat(marker1_position);
+        Mat cam_marker2 = convert_geomsg_to_mat(marker2_position);
+        
+        geometry_msgs::PoseStamped dist_msg;
+        dist_msg.header.stamp=ros::Time::now();
+        dist_msg.pose.position.x=norm(cam_marker2-cam_marker1);
+        marker_dist_pub_.publish(dist_msg);
+        
+    }
+    
     void update_robot_position(const geometry_msgs::PoseStamped::ConstPtr msg)
     {
         current_robot_position=*msg;
@@ -165,6 +188,8 @@ public:
     
     void update_tranformation(const geometry_msgs::Transform::ConstPtr msg)
     {
+        cout << "###############Test node updating its transformation matrix #################### " << endl;
+        
         trans_mat_copy=trans_mat.clone();
         
         Mat R;
@@ -184,16 +209,37 @@ public:
         //cout << "Transformation_matrix at test node:" << endl << trans_mat << endl;
         got_trans_mat=true;
         
+        
+        Mat correct_estimate = (Mat_<float>(4,1) <<    0.229208,0.368607,0.84233, 1);
+        Mat cam_marker2 = convert_geomsg_to_hommat(marker2_position);
+        Mat rob_marker2 = trans_mat*cam_marker2;
+        
+        if( norm(correct_estimate-rob_marker2) < 0.1 )
+        {
+            cout << "Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result" << endl;
+        }
+        
+        Mat cam_marker1 = convert_geomsg_to_hommat(marker1_position);
+        Mat rob_marker1 = trans_mat*cam_marker1;
+        
+        cout << "World coordinate of marker 1" << endl << rob_marker1 << endl;
+        cout << "World coordinate of marker 2" << endl << rob_marker2 << endl;
+        cout << "Euclidian distance between the two markers: " << norm(rob_marker2-rob_marker1) << endl;
+        
+
+        
+        cout << "Change in translation compared to last iteration: " << norm(trans_mat.col(3)-trans_mat_copy.col(3)) << " - current transformation matrix is: " << endl << trans_mat << endl;
+        
         if(trans_mat_copy.cols == 4 && trans_mat_copy.rows == 4 && trans_mat.cols == 4 && trans_mat.rows == 4 && move_robot_randomly == true)
         {
-            ROS_INFO("Have a transformation_matrix");
+            //ROS_INFO("Have a transformation_matrix");
             bool significant_difference=false;
             for(int i = 0 ; i<4 ; i++)
             {
                 for(int j=0 ; j<4 ; j++)
                 {
                     double comparison=abs((trans_mat.at<float>(i,j)-trans_mat_copy.at<float>(i,j))/trans_mat_copy.at<float>(i,j));
-                    if(comparison>0.15)
+                    if(comparison>0.10)
                     {
 //                         cout << i << "," << j << " : " << trans_mat.at<float>(i,j) << " , " << trans_mat_copy.at<float>(i,j) << endl;
                         significant_difference = true;
@@ -202,12 +248,12 @@ public:
             }
             if(significant_difference==true)
             {
-                ROS_INFO("Not yet settled on transformation");
+                ROS_INFO("Got rejected due to too large change compared to last iteration");
             }
             else
             {
-                ROS_INFO("WE HAVE STOPPED MOVING");
-                move_robot_randomly=false;
+                ROS_INFO("Less than 10 percent change for each element compared to last iteration \n ");
+                //move_robot_randomly=false;
                 
                 mp_mini_picker::moveToPoint srv;
                 
@@ -217,17 +263,20 @@ public:
                 srv.request.point[0]=(double)(rob_cam.at<float>(0,0));
                 srv.request.point[1]=(double)(rob_cam.at<float>(1,0));
                 srv.request.point[2]=(double)(rob_cam.at<float>(2,0));
-                cout << "Requested position: "  <<srv.request.point[0]  << " , " << srv.request.point[1]  << " , " << srv.request.point[2]  << endl;
+                cout << "Calculated position of Marker 2 in world frame: "  <<srv.request.point[0]  << " , " << srv.request.point[1]  << " , " << srv.request.point[2]  << endl;
                 
-                if (serv_move_robot_.call(srv))
-                {
-                    ROS_INFO ("We should have succeeded");
-                }
-                else
-                {
-                    ROS_INFO("Houston we got a problem");
-                }
+//                 if (serv_move_robot_.call(srv))
+//                 {
+//                     ROS_INFO ("Succesful call to robot");
+//                 }
+//                 else
+//                 {
+//                     ROS_INFO("Houston we got a problem");
+//                 }
             }
+            
+            cout << "############### Test node finished updating #################### " << endl;
+            
         }
         
         
@@ -295,7 +344,7 @@ public:
 //             cout << "Requested position: "  <<srv.request.point[0]  << " , " << srv.request.point[1]  << " , " << srv.request.point[2]  << endl;
             
             
-            if (serv_move_robot_.call(srv));
+//             if (serv_move_robot_.call(srv));
             
 //                 cout << "Succesful call" << endl;
             
@@ -327,7 +376,7 @@ private:
     
     bool move_robot_randomly=true;
     
-    geometry_msgs::PoseStamped current_robot_position,marker2_position;
+    geometry_msgs::PoseStamped current_robot_position,marker2_position,marker1_position;
     
     
 };
