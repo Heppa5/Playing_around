@@ -34,11 +34,12 @@ namespace patch
 #include <match_points/matched_points.h>
 #include "mp_mini_picker/moveToPoint.h"
 #include "mp_mini_picker/moveToQ.h"
+#include "mp_mini_picker/currentQ.h"
+
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-
 
 using namespace std;
 using namespace cv;
@@ -51,27 +52,31 @@ using namespace cv;
 
 class TestClass
 {
-  ros::NodeHandle nh_;
-  ros::Subscriber matched_points_sub_;
-  ros::Subscriber transformation_sub_;
-  
-  ros::Subscriber marker2_sub_;
-  ros::Subscriber marker1_sub_;
-  
-  ros::Subscriber robot_position_sub_;
-  
-  ros::Publisher difference_pub_;
-  
-  ros::Publisher marker_dist_pub_;
-  
-  ros::ServiceClient serv_move_robot_;
-  
-  ros::ServiceClient serv_move_robotQ_;
+    ros::NodeHandle nh_;
+    ros::Subscriber matched_points_sub_;
+    ros::Subscriber transformation_sub_;
 
+    ros::Subscriber marker2_sub_;
+    ros::Subscriber marker1_sub_;
+
+    ros::Subscriber robot_position_sub_;
+
+    ros::Publisher difference_pub_;
+
+    ros::Publisher marker_dist_pub_;
+
+    ros::ServiceClient serv_move_robot_;
+
+    ros::ServiceClient serv_move_robotQ_;
+
+    ros::ServiceClient serv_get_robotQ_;
+
+    bool debug=false;
 public:
     TestClass()
     {
-        // Subscrive to input video feed and publish output video feed
+        
+        // Subscribe to different topics
         transformation_sub_ = nh_.subscribe("/matched_points/transformation_matrix", 1,&TestClass::update_tranformation,this);
         matched_points_sub_ = nh_.subscribe("/matched_points/all_matched_points", 1, &TestClass::newest_point, this);
         robot_position_sub_ = nh_.subscribe("/robot/moved", 1, &TestClass::update_robot_position, this);
@@ -79,59 +84,80 @@ public:
         marker1_sub_ = nh_.subscribe("/kalman_filter/marker1",1,&TestClass::update_marker1_position, this);
         
         
-        serv_move_robot_ = nh_.serviceClient<mp_mini_picker::moveToPoint>("/robot/MoveToPoint");
-        serv_move_robotQ_ = nh_.serviceClient<mp_mini_picker::moveToQ>("/robot/MoveToQ");
         
+        // Publishers
         difference_pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/matched_points/difference", 1);
-        
         marker_dist_pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/test/euclidian_distance_markers", 1);
         
+        // services
+        serv_move_robot_ = nh_.serviceClient<mp_mini_picker::moveToPoint>("/robot/MoveToPoint");
+        serv_move_robotQ_ = nh_.serviceClient<mp_mini_picker::moveToQ>("/robot/MoveToQ");
+        serv_get_robotQ_ = nh_.serviceClient<mp_mini_picker::currentQ>("/robot/GetCurrentQ");
+        
+        
+        // create our transformation matrix as homogenous 
         trans_mat = Mat::zeros(4,4,CV_32F);
         trans_mat.at<float>(3,3)=1;
         
+        // Set our seed 
         srand(time(NULL));
         
         
-        // Set robot to starting position
-        mp_mini_picker::moveToQ srv;
-//         srv.request.Q[0]=-0.11449700990785772;
-//         srv.request.Q[1]=-1.161553208027975;
-//         srv.request.Q[2]=-1.9493358770953577;
-//         srv.request.Q[3]=-0.8611777464496058;
-//         srv.request.Q[4]=2.149153470993042;
-//         srv.request.Q[5]=-0.33657676378359014;
-        srv.request.Q[0]=-0.227210823689596;
-        srv.request.Q[1]=-1.2569144407855433;
-        srv.request.Q[2]=-1.6682723204242151;
-        srv.request.Q[3]=-1.3121197859393519;
-        srv.request.Q[4]=2.0358359813690186;
-        srv.request.Q[5]=-0.44079381624330694;
+// //         Set robot to starting position - old
+//         srv_home.request.Q[0]=-0.227210823689596;
+//         srv_home.request.Q[1]=-1.2569144407855433;
+//         srv_home.request.Q[2]=-1.6682723204242151;
+//         srv_home.request.Q[3]=-1.3121197859393519;
+//         srv_home.request.Q[4]=2.0358359813690186;
+//         srv_home.request.Q[5]=-0.44079381624330694;
         
-    
-       
+        //New home position
+        srv_home.request.Q[0]=0.24927037954330444;
+        srv_home.request.Q[1]=-1.231044117604391;
+        srv_home.request.Q[2]=-1.6545808951007288;
+        srv_home.request.Q[3]=-1.5376036802874964;
+        srv_home.request.Q[4]=1.641017198562622;
+        srv_home.request.Q[5]=-0.16525537172426397;
+  
+        
         ros::Time last_publish=ros::Time::now();
-        ros::Duration time_between_publishing(10); // Start up time
+        ros::Duration time_between_publishing(5); // Start up time
         ros::Duration time_difference;
         bool command_send=false;
-        ROS_INFO("Test node moving robot in 10 seconds");
-        while(command_send == false)
+        bool continue_program=false;
+        ROS_INFO("Test node moving robot in 5 seconds");
+        while(continue_program == false)
         {
             ros::Time current_time=ros::Time::now();
             time_difference=current_time-last_publish;
             if(time_difference>=time_between_publishing)
             {
-                if (serv_move_robotQ_.call(srv))
+                last_publish=ros::Time::now();
+                if(command_send==false)
                 {
-                    ROS_INFO("Moving to start position");
-                    command_send=true;
+                    serv_move_robotQ_.call(srv_home);
+                    if (srv_home.response.ok==1)
+                    {
+                        ROS_INFO("Moving to start position");
+                        command_send=true;
+                    }
+                    else
+                    {
+                        ROS_INFO("Did not succeed in moving robot to start position");
+                    }
+                    ROS_INFO("Waiting another 5 seconds");
                 }
                 else
                 {
-                    ROS_INFO("Did not succeed in moving robot to start position");
+                    continue_program=true;
                 }
             }
             ros::spinOnce();
         }
+        
+        
+        
+        
         
         
     }
@@ -188,7 +214,8 @@ public:
     
     void update_tranformation(const geometry_msgs::Transform::ConstPtr msg)
     {
-        cout << "###############Test node updating its transformation matrix #################### " << endl;
+        if(debug)
+            cout << "#######robot_position_sub_########Test node updating its transformation matrix #################### " << endl;
         
         trans_mat_copy=trans_mat.clone();
         
@@ -213,24 +240,31 @@ public:
         Mat correct_estimate = (Mat_<float>(4,1) <<    0.229208,0.368607,0.84233, 1);
         Mat cam_marker2 = convert_geomsg_to_hommat(marker2_position);
         Mat rob_marker2 = trans_mat*cam_marker2;
-        
-        if( norm(correct_estimate-rob_marker2) < 0.1 )
+        if(debug)
         {
-            cout << "Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result" << endl;
+            if( norm(correct_estimate-rob_marker2) < 0.1 )
+            {
+                cout << "Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result" << endl;
+            }
         }
         
         Mat cam_marker1 = convert_geomsg_to_hommat(marker1_position);
         Mat rob_marker1 = trans_mat*cam_marker1;
         
-        cout << "World coordinate of marker 1" << endl << rob_marker1 << endl;
-        cout << "World coordinate of marker 2" << endl << rob_marker2 << endl;
-        cout << "Euclidian distance between the two markers: " << norm(rob_marker2-rob_marker1) << endl;
+        if(debug)
+        {
+            cout << "World coordinate of marker 1" << endl << rob_marker1 << endl;
+            cout << "World coordinate of marker 2" << endl << rob_marker2 << endl;
+            cout << "Euclidian distance between the two markers: " << norm(rob_marker2-rob_marker1) << endl;
+        }
         
 
+        if(debug)
+        {
+            cout << "Change in translation compared to last iteration: " << norm(trans_mat.col(3)-trans_mat_copy.col(3)) << " - current transformation matrix is: " << endl << trans_mat << endl;
+        }
         
-        cout << "Change in translation compared to last iteration: " << norm(trans_mat.col(3)-trans_mat_copy.col(3)) << " - current transformation matrix is: " << endl << trans_mat << endl;
-        
-        if(trans_mat_copy.cols == 4 && trans_mat_copy.rows == 4 && trans_mat.cols == 4 && trans_mat.rows == 4 && move_robot_randomly == true)
+        if(trans_mat_copy.cols == 4 && trans_mat_copy.rows == 4 && trans_mat.cols == 4 && trans_mat.rows == 4 && move_robot_randomly == true && robot_initialized==true)
         {
             //ROS_INFO("Have a transformation_matrix");
             bool significant_difference=false;
@@ -241,7 +275,7 @@ public:
                     double comparison=abs((trans_mat.at<float>(i,j)-trans_mat_copy.at<float>(i,j))/trans_mat_copy.at<float>(i,j));
                     if(comparison>0.10)
                     {
-//                         cout << i << "," << j << " : " << trans_mat.at<float>(i,j) << " , " << trans_mat_copy.at<float>(i,j) << endl;
+//                         cout << i << "," << j << " : " << trans_mat.at<float>(i,j) << " , " << trans_mat_c)opy.at<float>(i,j) << endl;
                         significant_difference = true;
                     }
                 }
@@ -253,7 +287,15 @@ public:
             else
             {
                 ROS_INFO("Less than 10 percent change for each element compared to last iteration \n ");
-                //move_robot_randomly=false;
+                move_robot_randomly=false;
+                
+                if (serv_move_robotQ_.call(srv_home))
+                {
+                    ROS_INFO("Moving to start 1position");
+                }
+                
+                
+                
                 
                 mp_mini_picker::moveToPoint srv;
                 
@@ -264,22 +306,54 @@ public:
                 srv.request.point[1]=(double)(rob_cam.at<float>(1,0));
                 srv.request.point[2]=(double)(rob_cam.at<float>(2,0));
                 cout << "Calculated position of Marker 2 in world frame: "  <<srv.request.point[0]  << " , " << srv.request.point[1]  << " , " << srv.request.point[2]  << endl;
-                
-//                 if (serv_move_robot_.call(srv))
-//                 {
-//                     ROS_INFO ("Succesful call to robot");
-//                 }
-//                 else
-//                 {
-//                     ROS_INFO("Houston we got a problem");
-//                 }
+                ROS_INFO("Now moving to marker 2");
+                if (serv_move_robot_.call(srv))
+                {
+                    ROS_INFO ("Succesful call to robot");
+                }
+                else
+                {
+                    ROS_INFO("Houston we got a problem");
+                }
             }
             
-            cout << "############### Test node finished updating #################### " << endl;
-            
+            if(debug)
+            {
+                cout << "############### Test node finished updating #################### " << endl;
+            }
         }
         
         
+    }
+    
+    bool robot_at_home_position()
+    {
+        mp_mini_picker::currentQ srv;
+        srv.request.getQ=1;
+        if(serv_get_robotQ_.call(srv))
+        {
+            bool robot_at_position=true;
+            for(int i=0; i<6 ; i++)
+            {
+                if(srv.response.Q[i] >= (srv_home.request.Q[i]-0.009) && srv.response.Q[i] <= (srv_home.request.Q[i]+0.009))
+                {
+                    // nothing
+                }
+                else
+                {
+                    robot_at_position=false;
+                }
+            }
+            if(robot_at_position==true)
+            {
+                robot_initialized=true;
+                return true;
+            }
+            else
+                return false;
+        }
+        else 
+            return false;
     }
     
     
@@ -304,51 +378,92 @@ public:
         return point;
     }
     
+    bool robot_at_asked_position()
+    {
+        // compare_3D_points checks if the distance is greater than expected_distance. If yes then return true. Since we want these two variables to be close to eachother, then we invert the result. 
+        if(compare_3D_points(desired_robot_position.pose,current_robot_position.pose,0.005) == true)
+            return false;
+        else
+            return true;
+    }
+    long int counter=0;
     void move_robot()
     {
+        
+             
+        srand(time(&counter));
+        counter++;
         if(move_robot_randomly==true)
         {
              
-            int x_dir=rand()%100+1;
-            int y_dir=rand()%100+1;
-            int z_dir=rand()%100+1;
-            
-            double reduc_fac=sqrt(pow(x_dir,2)+pow(y_dir,2)+pow(z_dir,2));
-//             cout << x_dir << " , " << y_dir << " , "<< z_dir  << endl; 
-//             cout << "Factor is: " << reduc_fac << endl;
-            
-            double cor_x_dir = 5.1*((double)x_dir)/reduc_fac/100;
-            double cor_y_dir = 5.1*((double)y_dir)/reduc_fac/100;
-            double cor_z_dir = 5.1*((double)z_dir)/reduc_fac/100;
-            
-            double cor_reduc_fac=sqrt(pow(cor_x_dir,2)+pow(cor_y_dir,2)+pow(cor_z_dir,2));
-//             cout << cor_x_dir << " , " << cor_y_dir << " , "<< cor_z_dir  << endl; 
-//             cout << "Factor is: " << cor_reduc_fac << endl;
-            
-            mp_mini_picker::moveToPoint srv;
-            if (rand()%2==1)
-                srv.request.point[0]=current_robot_position.pose.position.x+cor_x_dir;
-            else
-                srv.request.point[0]=current_robot_position.pose.position.x-cor_x_dir;
-            if (rand()%2==1)
-                srv.request.point[1]=current_robot_position.pose.position.y+cor_y_dir;
-            else
-                srv.request.point[1]=current_robot_position.pose.position.y-cor_y_dir;
-            if (rand()%2==1)
-                srv.request.point[2]=current_robot_position.pose.position.z+cor_z_dir;
-            else
-                srv.request.point[2]=current_robot_position.pose.position.z-cor_z_dir;
+            mp_mini_picker::moveToPoint srv=generate_random_point(6.5);
             
             
-//             cout << "Current robot position: " << current_robot_position.pose.position.x << " , " << current_robot_position.pose.position.y << " , " << current_robot_position.pose.position.z  << endl;
-//             cout << "Requested position: "  <<srv.request.point[0]  << " , " << srv.request.point[1]  << " , " << srv.request.point[2]  << endl;
-            
-            
+        
 //             if (serv_move_robot_.call(srv));
+            bool got_valid_point=false;
+            while(got_valid_point==false)
+            {
+//                 cout <<"Jeg laver nyt kald (y)";
+                srv=generate_random_point(6.5);
+                if (serv_move_robot_.call(srv))
+                {
+//                     cout << "Jeg blev accepteret" << endl;
+                    got_valid_point=true;
+                }
+            }
             
+//             cout <<" requested point: " << srv.request.point[0] << " , " << srv.request.point[1] << " , " << srv.request.point[2] << " , " << endl;
+//             
+//             cout <<" current position: " << current_robot_position.pose.position.x << " , " << current_robot_position.pose.position.y << " , " << current_robot_position.pose.position.z << " , " << endl;
+            
+            
+            desired_robot_position.pose.position.x=srv.request.point[0];
+            desired_robot_position.pose.position.y=srv.request.point[1];
+            desired_robot_position.pose.position.z=srv.request.point[2];
 //                 cout << "Succesful call" << endl;
             
         }
+    }
+    
+    mp_mini_picker::moveToPoint generate_random_point(double distance)
+    {
+        int x_dir=rand()%100+1;
+        int y_dir=rand()%100+1;
+        int z_dir=rand()%100+1;
+        
+        double reduc_fac=sqrt(pow(x_dir,2)+pow(y_dir,2)+pow(z_dir,2));
+//             cout << x_dir << " , " << y_dir << " , "<< z_dir  << endl; 
+//             cout << "Factor is: " << reduc_fac << endl;
+        
+        double cor_x_dir = distance*((double)x_dir)/reduc_fac/100;
+        double cor_y_dir = distance*((double)y_dir)/reduc_fac/100;
+        double cor_z_dir = distance*((double)z_dir)/reduc_fac/100;
+        
+        double cor_reduc_fac=sqrt(pow(cor_x_dir,2)+pow(cor_y_dir,2)+pow(cor_z_dir,2));
+//             cout << cor_x_dir << " , " << cor_y_dir << " , "<< cor_z_dir  << endl; 
+//             cout << "Factor is: " << cor_reduc_fac << endl;
+        
+        mp_mini_picker::moveToPoint srv;
+        if (rand()%2==1)
+            srv.request.point[0]=current_robot_position.pose.position.x+cor_x_dir;
+        else
+            srv.request.point[0]=current_robot_position.pose.position.x-cor_x_dir;
+        if (rand()%2==1)
+            srv.request.point[1]=current_robot_position.pose.position.y+cor_y_dir;
+        else
+            srv.request.point[1]=current_robot_position.pose.position.y-cor_y_dir;
+        if (rand()%2==1)
+            srv.request.point[2]=current_robot_position.pose.position.z+cor_z_dir;
+        else
+            srv.request.point[2]=current_robot_position.pose.position.z-cor_z_dir;
+        
+        return srv;
+    }
+    
+    bool program_finished()
+    {
+        return !(move_robot_randomly);
     }
     
     
@@ -370,14 +485,16 @@ private:
         double new_dist=sqrt(pow(new_position.position.x,2)+pow(new_position.position.y,2)+pow(new_position.position.z,2));
         return abs(new_dist-old_dist);
     }
-    bool got_trans_mat=false;
+    bool got_trans_mat=false,robot_initialized=false;
 
     Mat trans_mat,trans_mat_copy;
     
     bool move_robot_randomly=true;
     
-    geometry_msgs::PoseStamped current_robot_position,marker2_position,marker1_position;
+    geometry_msgs::PoseStamped current_robot_position,desired_robot_position,marker2_position,marker1_position;
     
+
+    mp_mini_picker::moveToQ srv_home;
     
 };
 
@@ -387,21 +504,63 @@ int main(int argc, char** argv)
     TestClass ic;
     ROS_INFO("Starting test node up");
     
+//     ros::Time last_publish=ros::Time::now();
+//     ros::Duration time_between_publishing(3); // camera has framerate of 7 hz
+//     ros::Duration time_difference;
+//     while(true)
+//     {
+//         ros::Time current_time=ros::Time::now();
+//         time_difference=current_time-last_publish;
+//         if(time_difference>=time_between_publishing)
+//         {
+//     //             ROS_INFO("I'm inside");
+//             last_publish=ros::Time::now();
+//              ic.move_robot();
+//         }
+//         
+//         ros::spinOnce();
+//     }
+    
+    bool first_iteration=true;
+    bool program_done=false;
     ros::Time last_publish=ros::Time::now();
-    ros::Duration time_between_publishing(6); // camera has framerate of 7 hz
+    ros::Duration time_between_publishing(3); 
     ros::Duration time_difference;
+    
     while(true)
     {
-        ros::Time current_time=ros::Time::now();
-        time_difference=current_time-last_publish;
-        if(time_difference>=time_between_publishing)
+        if(ic.program_finished())
         {
-    //             ROS_INFO("I'm inside");
-            last_publish=ros::Time::now();
-             ic.move_robot();
+            program_done=true;
+        }
+        if(first_iteration==true)
+        {
+            while(ic.robot_at_home_position()==false)
+            {
+                // wait
+                usleep(100000);
+                ros::spinOnce();
+                cout << "Waiting in main loop" << endl;
+            }
+//             cout << "Sleeping" << endl;
+            usleep(1000000); // half a seconds
+//             cout << "Done Sleeping" << endl;
+            ic.move_robot();
+            first_iteration=false;
         }
         
+        ros::Time current_time=ros::Time::now();
+        time_difference=current_time-last_publish;
+        if(time_difference>=time_between_publishing && program_done != true)
+        {
+            if(ic.robot_at_asked_position())
+            {
+                ic.move_robot();
+                last_publish=ros::Time::now();
+            }
+        }
         ros::spinOnce();
+        
     }
 
     return 0;

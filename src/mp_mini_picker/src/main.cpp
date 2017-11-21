@@ -97,11 +97,6 @@ class UrTest
             }
             else
                 res.ok=1;
-//             cout << path.size() << endl;
-            
-//             bool stop_succeeded = sdsip_.stop();
-//             if(!stop_succeeded)
-//                 ROS_WARN("Did not succeed in sending stop command");
             
             for (int i = 0; i<path.size() ; i++)
             {   

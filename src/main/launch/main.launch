@@ -74,8 +74,8 @@
    
    <node name = "testing_transformation_matrix_woop" pkg = "testing_transformation_matrix" type = "testing_transformation_matrix_node" respawn = "true" output = "screen" args = ""/>
    
-   <node name = "woow" pkg = "kalman_filter" type = "kalman_filter_node1" respawn = "true" output = "screen" args = "1"/>
+   <node name = "woow" pkg = "kalman_filter" type = "kalman_filter_node1" respawn = "true" output = "screen" args = "0"/>
    
-   <node name = "woow2" pkg = "kalman_filter" type = "kalman_filter_node2" respawn = "true" output = "screen" args = "1"/>
+   <node name = "woow2" pkg = "kalman_filter" type = "kalman_filter_node2" respawn = "true" output = "screen" args = "0"/>
 
 </launch>

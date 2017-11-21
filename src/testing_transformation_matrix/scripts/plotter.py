@@ -74,7 +74,7 @@ if __name__ == '__main__':
             #print distance_array
             points[0].set_data(time_array, distance_array)
             plt.xlim([time_array[size-1],time_array[0]])
-            plt.ylim([0,1.5])
+            plt.ylim([0,1.0])
             fig.canvas.draw()
           
         if sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
