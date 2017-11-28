@@ -168,6 +168,7 @@ public:
             // Make sure that data is still correctly timestamp for later use
             geometry_msgs::PoseStamped msg;
             msg.header=marker1.header;
+            msg.pose.orientation=marker1.pose.orientation;
             
             // inspired from http://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/
             // matrix dimensions are easily given by: www.swarthmore.edu/NatSci/echeeve1/Ref/Kalman/MatrixKalman.html

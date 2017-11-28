@@ -111,14 +111,14 @@ public:
 //         srv_home.request.Q[4]=2.0358359813690186;
 //         srv_home.request.Q[5]=-0.44079381624330694;
         
-        //New home position
-        srv_home.request.Q[0]=0.24927037954330444;
-        srv_home.request.Q[1]=-1.231044117604391;
-        srv_home.request.Q[2]=-1.6545808951007288;
-        srv_home.request.Q[3]=-1.5376036802874964;
-        srv_home.request.Q[4]=1.641017198562622;
-        srv_home.request.Q[5]=-0.16525537172426397;
-  
+//         //New home position
+        srv_home.request.Q[0]=0.24905504286289215;
+        srv_home.request.Q[1]=-1.2299278418170374;
+        srv_home.request.Q[2]=-1.6500452200519007;
+        srv_home.request.Q[3]=-1.8819416205035608;
+        srv_home.request.Q[4]=1.6246130466461182;
+        srv_home.request.Q[5]=-0.15994674364198858;
+        
         
         ros::Time last_publish=ros::Time::now();
         ros::Duration time_between_publishing(5); // Start up time
@@ -237,26 +237,13 @@ public:
         got_trans_mat=true;
         
         
-        Mat correct_estimate = (Mat_<float>(4,1) <<    0.229208,0.368607,0.84233, 1);
-        Mat cam_marker2 = convert_geomsg_to_hommat(marker2_position);
-        Mat rob_marker2 = trans_mat*cam_marker2;
-        if(debug)
-        {
-            if( norm(correct_estimate-rob_marker2) < 0.1 )
-            {
-                cout << "Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result" << endl;
-            }
-        }
-        
-        Mat cam_marker1 = convert_geomsg_to_hommat(marker1_position);
-        Mat rob_marker1 = trans_mat*cam_marker1;
-        
-        if(debug)
-        {
-            cout << "World coordinate of marker 1" << endl << rob_marker1 << endl;
-            cout << "World coordinate of marker 2" << endl << rob_marker2 << endl;
-            cout << "Euclidian distance between the two markers: " << norm(rob_marker2-rob_marker1) << endl;
-        }
+//         Mat correct_estimate = (Mat_<float>(4,1) <<    0.229208,0.368607,0.84233, 1);
+//         Mat cam_marker2 = convert_geomsg_to_hommat(marker2_position);
+//         Mat rob_marker2 = trans_mat*cam_marker2;
+//         
+//         
+//         Mat cam_marker1 = convert_geomsg_to_hommat(marker1_position);
+//         Mat rob_marker1 = trans_mat*cam_marker1;
         
 
         if(debug)
@@ -288,33 +275,22 @@ public:
             {
                 ROS_INFO("Less than 10 percent change for each element compared to last iteration \n ");
                 move_robot_randomly=false;
-                
+                system_initialized=true;
+                                
                 if (serv_move_robotQ_.call(srv_home))
                 {
-                    ROS_INFO("Moving to start 1position");
+                    ROS_INFO("Moving to start position");
                 }
                 
-                
-                
-                
-                mp_mini_picker::moveToPoint srv;
-                
-                Mat marker2_cam = convert_geomsg_to_hommat(marker2_position);
-                Mat rob_cam = trans_mat*marker2_cam;
-                
-                srv.request.point[0]=(double)(rob_cam.at<float>(0,0));
-                srv.request.point[1]=(double)(rob_cam.at<float>(1,0));
-                srv.request.point[2]=(double)(rob_cam.at<float>(2,0));
-                cout << "Calculated position of Marker 2 in world frame: "  <<srv.request.point[0]  << " , " << srv.request.point[1]  << " , " << srv.request.point[2]  << endl;
-                ROS_INFO("Now moving to marker 2");
-                if (serv_move_robot_.call(srv))
+                ROS_INFO("Waiting for it to move to start position");
+                while(robot_at_home_position()==false)
                 {
-                    ROS_INFO ("Succesful call to robot");
+                    // wait
+                    usleep(100000);
+                    ros::spinOnce();
                 }
-                else
-                {
-                    ROS_INFO("Houston we got a problem");
-                }
+                move_robot_to_marker2();
+                
             }
             
             if(debug)
@@ -325,6 +301,33 @@ public:
         
         
     }
+    
+    void move_robot_to_marker2()
+    {
+        mp_mini_picker::moveToPoint srv;
+                
+        Mat marker2_cam = convert_geomsg_to_hommat(marker2_position);
+        Mat rob_marker2_cam = trans_mat*marker2_cam;
+        
+        srv.request.point[0]=(double)(rob_marker2_cam.at<float>(0,0)-0.05);
+        srv.request.point[1]=(double)(rob_marker2_cam.at<float>(1,0)-0.05);
+        srv.request.point[2]=(double)(rob_marker2_cam.at<float>(2,0)+0.1);
+        cout << "Calculated position of Marker 2 in world frame: "  <<srv.request.point[0]  << " , " << srv.request.point[1]  << " , " << srv.request.point[2]  << endl;
+        ROS_INFO("Now moving to marker 2");
+        if (serv_move_robot_.call(srv))
+        {
+            ROS_INFO ("Succesful call to robot");
+        }
+        else
+        {
+            ROS_INFO("Houston we got a problem");
+        }
+        
+        desired_robot_position.pose.position.x=srv.request.point[0];
+        desired_robot_position.pose.position.y=srv.request.point[1];
+        desired_robot_position.pose.position.z=srv.request.point[2];
+    }
+    
     
     bool robot_at_home_position()
     {
@@ -387,7 +390,7 @@ public:
             return true;
     }
     long int counter=0;
-    void move_robot()
+    void move_robot_random_direction()
     {
         
              
@@ -432,17 +435,12 @@ public:
         int y_dir=rand()%100+1;
         int z_dir=rand()%100+1;
         
-        double reduc_fac=sqrt(pow(x_dir,2)+pow(y_dir,2)+pow(z_dir,2));
-//             cout << x_dir << " , " << y_dir << " , "<< z_dir  << endl; 
-//             cout << "Factor is: " << reduc_fac << endl;
-        
+        double reduc_fac=sqrt(pow(x_dir,2)+pow(y_dir,2)+pow(z_dir,2));        
         double cor_x_dir = distance*((double)x_dir)/reduc_fac/100;
         double cor_y_dir = distance*((double)y_dir)/reduc_fac/100;
         double cor_z_dir = distance*((double)z_dir)/reduc_fac/100;
         
         double cor_reduc_fac=sqrt(pow(cor_x_dir,2)+pow(cor_y_dir,2)+pow(cor_z_dir,2));
-//             cout << cor_x_dir << " , " << cor_y_dir << " , "<< cor_z_dir  << endl; 
-//             cout << "Factor is: " << cor_reduc_fac << endl;
         
         mp_mini_picker::moveToPoint srv;
         if (rand()%2==1)
@@ -466,6 +464,10 @@ public:
         return !(move_robot_randomly);
     }
     
+    bool is_system_initialized()
+    {
+        return system_initialized;
+    }
     
 private:
     
@@ -485,7 +487,7 @@ private:
         double new_dist=sqrt(pow(new_position.position.x,2)+pow(new_position.position.y,2)+pow(new_position.position.z,2));
         return abs(new_dist-old_dist);
     }
-    bool got_trans_mat=false,robot_initialized=false;
+    bool got_trans_mat=false,robot_initialized=false, system_initialized=false;
 
     Mat trans_mat,trans_mat_copy;
     
@@ -515,7 +517,7 @@ int main(int argc, char** argv)
 //         {
 //     //             ROS_INFO("I'm inside");
 //             last_publish=ros::Time::now();
-//              ic.move_robot();
+//              ic.move_robot_random_direction();
 //         }
 //         
 //         ros::spinOnce();
@@ -524,7 +526,9 @@ int main(int argc, char** argv)
     bool first_iteration=true;
     bool program_done=false;
     ros::Time last_publish=ros::Time::now();
-    ros::Duration time_between_publishing(3); 
+    ros::Duration start_sequence(3);
+    ros::Duration finished_program(1);
+    
     ros::Duration time_difference;
     
     while(true)
@@ -545,20 +549,30 @@ int main(int argc, char** argv)
 //             cout << "Sleeping" << endl;
             usleep(1000000); // half a seconds
 //             cout << "Done Sleeping" << endl;
-            ic.move_robot();
+            ic.move_robot_random_direction();
             first_iteration=false;
         }
         
         ros::Time current_time=ros::Time::now();
         time_difference=current_time-last_publish;
-        if(time_difference>=time_between_publishing && program_done != true)
+        if(time_difference>=start_sequence && program_done != true)
         {
             if(ic.robot_at_asked_position())
             {
-                ic.move_robot();
+                ic.move_robot_random_direction();
                 last_publish=ros::Time::now();
             }
         }
+        
+        if(time_difference>=finished_program && program_done == true)
+        {
+            if(ic.robot_at_asked_position())
+            {
+                ic.move_robot_to_marker2();
+                last_publish=ros::Time::now();
+            }
+        }
+        
         ros::spinOnce();
         
     }

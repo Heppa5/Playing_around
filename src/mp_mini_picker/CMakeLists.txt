@@ -63,7 +63,7 @@ add_service_files(
   currentQ.srv
   moveToQ.srv
   moveToPoint.srv
-
+  moveToPose.srv
 )
 
 ## Generate actions in the 'action' folder
