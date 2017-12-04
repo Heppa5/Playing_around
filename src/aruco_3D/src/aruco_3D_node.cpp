@@ -24,6 +24,7 @@ namespace patch
 #include <image_transport/image_transport.h>
 #include <cv_bridge/cv_bridge.h>
 #include <opencv2/opencv.hpp>
+
 #include <opencv2/aruco.hpp>
 #include <sensor_msgs/image_encodings.h>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -42,6 +43,7 @@ class ImageConverter
   image_transport::ImageTransport it_;
   image_transport::Subscriber image_sub_;
   image_transport::Publisher image_pub_;
+  image_transport::Publisher image_pub2_;
   
   ros::Publisher aruco_point_pub2_;
   ros::Publisher aruco_point_pub3_;
@@ -55,7 +57,7 @@ public:
         // Subscrive to input video feed and publish output video feed
         image_sub_ = it_.subscribe("/camera/image_raw", 1,&ImageConverter::imageCb, this);
         image_pub_ = it_.advertise("/image_converter/output_video", 1);
-        
+        image_pub2_ = it_.advertise("/image_converter/output_video2", 1);
         
         // For using solvePNP on aruco Marker
 //         marker_3D.push_back(Point3f(0,0,0));
@@ -108,7 +110,8 @@ public:
                                                 0.000000, 1347.386029, 495.012476,
                                                 0.000000, 0.000000, 1.000000);
         
-        filtering_constant=3.14/6.0;
+//         filtering_constant=3.14/6.0;
+        filtering_constant=3.14/4.0;
         
         Mat rvec_marker2,rvec_marker3;
         
@@ -133,6 +136,9 @@ public:
     
     void imageCb(const sensor_msgs::ImageConstPtr& msg)
     {
+        vector<double> empty_array;
+        Mat empty_mat;
+        Mat image;
         cv_bridge::CvImagePtr cv_ptr;
         try
         {
@@ -144,28 +150,34 @@ public:
             return;
         }
         
-        
-
-        aruco::detectMarkers(cv_ptr->image, mark_dict, markerCorners, markerIds);
-        aruco::drawDetectedMarkers(cv_ptr->image, markerCorners, markerIds);
+//         cout << "undistort" << endl;
+//         image = cv_ptr->image;
+        cv::undistort(cv_ptr->image,image, camera_matrix,distortion_mat,camera_matrix_updated);
+//         cout << "wow" << endl;
+//         cout << camera_matrix << "\t" << camera_matrix_updated << endl;
+        aruco::detectMarkers(image, mark_dict, markerCorners, markerIds);
+        aruco::drawDetectedMarkers(image, markerCorners, markerIds);
         
         Mat rvec, tvec;
         vector<Mat> rvecs,tvecs;
+        
         
         
         for(int i = 0 ; i < markerCorners.size() ; i++)
         {
             if(2 == markerIds[i])
             {
-                solvePnP(marker3_3D,markerCorners[i],camera_matrix,distortion,rvec,tvec);
+                solvePnP(marker3_3D,markerCorners[i],camera_matrix,empty_array,rvec,tvec);
+                
+//                 solvePnP(marker3_3D,markerCorners[i],camera_matrix,empty_array,rvec,tvec);
                 if(initialized_marker2==true)
                 {
                     if(rvec_marker2.rows==3) // initialized or not
                     {
                         if(norm(rvec_marker2-rvec)<filtering_constant)
                         {
-                            aruco::drawAxis(cv_ptr->image, camera_matrix, distortion_mat, rvec, tvec,
-            marker2_size * 0.5f);
+//                             aruco::drawAxis(image, camera_matrix, distortion_mat, rvec, tvec,marker2_size * 0.5f);               
+                            aruco::drawAxis(image, camera_matrix, empty_mat, rvec, tvec,marker2_size * 0.5f);
                             geometry_msgs::PoseStamped aruco3D_msg;
                             aruco3D_msg.header.stamp=msg->header.stamp;
                             aruco3D_msg.pose.position.x=tvec.at<double>(0,0);
@@ -178,8 +190,8 @@ public:
                         }
                         else
                         {
-                            aruco::drawAxis(cv_ptr->image, camera_matrix, distortion_mat, rvec, tvec,
-                marker2_size * 1.0f);
+//                             aruco::drawAxis(image, camera_matrix, distortion_mat, rvec, tvec,marker2_size * 1.0f);
+                            aruco::drawAxis(image, camera_matrix, empty_mat, rvec, tvec,marker2_size * 1.0f);
                         
                         }
                     }
@@ -205,15 +217,16 @@ public:
             }
             else if(3 == markerIds[i])
             {
-                solvePnP(marker3_3D,markerCorners[i],camera_matrix,distortion,rvec,tvec);
+                solvePnP(marker3_3D,markerCorners[i],camera_matrix,empty_array,rvec,tvec);
+//                 solvePnP(marker3_3D,markerCorners[i],camera_matrix,empty_array,rvec,tvec);
                 if(initialized_marker3==true)
                 {
                     if(rvec_marker3.rows==3) // initialized or not
                     {
                         if(norm(rvec_marker3-rvec)<filtering_constant)
                         {
-                            aruco::drawAxis(cv_ptr->image, camera_matrix, distortion_mat, rvec, tvec,
-            marker3_size * 0.5f);
+//                             aruco::drawAxis(image, camera_matrix, distortion_mat, rvec, tvec,marker3_size * 0.5f);
+                            aruco::drawAxis(image, camera_matrix, empty_mat, rvec, tvec,marker3_size * 0.5f);
                             geometry_msgs::PoseStamped aruco3D_msg;
                             aruco3D_msg.header.stamp=msg->header.stamp;
                             aruco3D_msg.pose.position.x=tvec.at<double>(0,0);
@@ -226,8 +239,8 @@ public:
                         }
                         else
                         {
-                            aruco::drawAxis(cv_ptr->image, camera_matrix, distortion_mat, rvec, tvec,
-                marker3_size * 1.0f);
+//                             aruco::drawAxis(image, camera_matrix, distortion_mat, rvec, tvec,marker3_size * 1.0f);
+                             aruco::drawAxis(image, camera_matrix, empty_mat, rvec, tvec,marker3_size * 1.0f);
                         }
                     }
                     else
@@ -252,8 +265,10 @@ public:
         
         if(print_pixel_values)
         {
-            sensor_msgs::ImagePtr msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", cv_ptr->image).toImageMsg();
+            sensor_msgs::ImagePtr msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", image).toImageMsg();
             image_pub_.publish(msg);
+//             msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", cv_ptr->image).toImageMsg();
+//             image_pub2_.publish(msg);
         }
         
 
@@ -282,89 +297,7 @@ public:
         return data->at(index);
     }
     
-//     void sort_vector(vector<Mat>* data, Mat element)
-//     {
-//         //cans->at(i).x
-//         bool placed_element=false;
-//         int i=0;
-// //         cout << "Går ind" << endl;
-//         while(placed_element==false)
-//         {
-//             if(i==(data->size()-1) || data->size() == 0)
-//             {
-//                 data->push_back(element);
-//                 if(i!=0)
-//                 {
-//                     cout << "Placing element at end of list: " << norm(element) << " And before that: " << data->at(i-1) << endl;
-//                 }
-//                 else
-//                 {
-//                     cout << "First element: " << norm(element) << endl;
-//                 }
-//                 placed_element=true;
-//             }
-//             else
-//             {
-//                 if(norm(data->at(i+1))>norm(element))
-//                 {
-// //                     cout << data->at(i-1) << " - " << element << " - " << data->at(i+1) << endl;
-//                     data->insert(data->begin()+i,element);
-//                     placed_element=true;
-//                 }
-//                 else
-//                 {
-//                     i++;
-//                 }
-//             }
-//         }
-//     }
-    
-//     Mat cluster_search(vector<Mat>* data)
-//     {
-//         vector<Mat*> cluster1, cluster2;
-//         
-//         for(int i=0 ; i<data->size() ; i++)
-//         {
-//             if(i%2==0)
-//             {
-//                 cluster1.push_back(&data->at(i));
-//             }
-//             else
-//             {
-//                 cluster2.push_back(&data->at(i));
-//             }
-//         }
-//         bool done=false;
-//         Mat centroid_cluster1=mean_updated(&cluster1);
-//         Mat centroid_cluster2=mean_updated(&cluster2);
-//         while(done==false)
-//         {
-//             for(int i=0 ; i<cluster1.size() ; i++)
-//             {
-//             
-//             }
-//         }
-//         
-//     }
-//     
-//     Mat mean_updated(vector<Mat*>* data)
-//     {
-//         Mat mean=Mat::zeros(3,1,CV_64F);
-//         for (int i = 0; i<data->size() ; i++)
-//         {
-//             mean=mean+*data->at(i);
-//         }
-//         mean=mean/data->size();
-//         return mean;
-//     }
-//     void subtract_element(Mat* centroid,int n, Mat* element)
-//     {
-//         *centroid=(*centroid*n-*element)/(n-1);
-//     }
-//     void add_element(Mat* centroid,int n, Mat* element)
-//     {
-//         *centroid=(*centroid*n+*element)/(n+1);
-//     }
+
 
     
 private:
@@ -372,7 +305,7 @@ private:
     vector<Point3f> marker3_3D, marker2_3D;
     vector<double> distortion;
     Ptr<aruco::Dictionary> mark_dict;
-    Mat_<float> camera_matrix;
+    Mat_<float> camera_matrix, camera_matrix_updated;
 
     vector< vector<Point2f> > markerCorners; // So, the first corner is the top left corner, followed by the top right, bottom right and bottom left.
     vector<int> markerIds;

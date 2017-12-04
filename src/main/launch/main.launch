@@ -77,5 +77,8 @@
    <node name = "woow" pkg = "kalman_filter" type = "kalman_filter_node1" respawn = "true" output = "screen" args = "1"/>
    
    <node name = "woow2" pkg = "kalman_filter" type = "kalman_filter_node2" respawn = "true" output = "screen" args = "1"/>
-
+    
+    <node name = "fixed_frame" pkg = "tf" type = "static_transform_publisher" respawn = "true" output = "screen" args = "0 0 0 0 0 0 1 map world 10"/>
+    
+    <node name = "visualisering" pkg = "rviz" type = "rviz" respawn = "false" output = "screen" args = ""/>
 </launch>

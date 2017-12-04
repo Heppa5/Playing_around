@@ -62,7 +62,7 @@ class UrTest
         bool get_current_Q(mp_mini_picker::currentQ::Request  &req,
                    mp_mini_picker::currentQ::Response &res)
         {
-            ROS_INFO("Got service call for current Q");
+//             ROS_INFO("Got service call for current Q");
             if ( req.getQ == 1) 
             {
                 auto current_Q=getCurrentJointConfiguration();
@@ -133,7 +133,7 @@ class UrTest
             
             auto wTb=device_->worldTbase(currentState);
             auto bTw = inverse(wTb);
-            auto tool_frame=workcell_->findFrame("tool");
+            auto tool_frame=workcell_->findFrame("marker_f");
             rw::invkin::JacobianIKSolver findQ(device_,tool_frame,currentState);
 
             auto bTtool=(device_->baseTframe(tool_frame,currentState));
@@ -208,7 +208,7 @@ class UrTest
             
             auto wTb=device_->worldTbase(currentState);
             auto bTw = inverse(wTb);
-            auto tool_frame=workcell_->findFrame("tool");
+            auto tool_frame=workcell_->findFrame("marker_f");
             rw::invkin::JacobianIKSolver findQ(device_,tool_frame,currentState);
 
             auto bTtool=(device_->baseTframe(tool_frame,currentState));
@@ -274,7 +274,7 @@ class UrTest
             
 //             auto bTe=device_->baseTend(currentState);
 //             auto tcp_frame=workcell_->findFrame("UR5.Joint5");
-            auto tcp_frame=workcell_->findFrame("tool");
+            auto tcp_frame=workcell_->findFrame("marker_f");
             auto bTe=device_->baseTframe(tcp_frame,currentState);
             auto bMarker= wTb*bTe*rw::math::Vector3D<double>(0,0,0);
             
@@ -282,6 +282,7 @@ class UrTest
             auto R_WtoE=(wTb.R())*(bTe.R());
 
             auto Rvec_WtoE=rw::math::EAA<double>(R_WtoE);
+//             auto Rvec_WtoE=rw::math::EAA<double>(R_WtoE);
             
             
             geometry_msgs::PoseStamped msg;

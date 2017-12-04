@@ -4,6 +4,8 @@
 #include <string>
 #include <sstream>
 
+#include <tf/transform_broadcaster.h>
+
 namespace patch
 {
     template < typename T > std::string to_string( const T& n )
@@ -22,6 +24,7 @@ namespace patch
 #include "geometry_msgs/PoseStamped.h"
 #include "geometry_msgs/Transform.h"
 #include "geometry_msgs/Pose.h"
+// #include <tf/transform_broadcaster.h>
 #include <image_transport/image_transport.h>
 #include <cv_bridge/cv_bridge.h>
 #include <opencv2/opencv.hpp>
@@ -33,6 +36,7 @@ namespace patch
 
 #include <match_points/matched_points.h>
 #include "mp_mini_picker/moveToPoint.h"
+#include "mp_mini_picker/moveToPose.h"
 #include "mp_mini_picker/moveToQ.h"
 #include "mp_mini_picker/currentQ.h"
 
@@ -65,8 +69,10 @@ class TestClass
 
     ros::Publisher marker_dist_pub_;
 
-    ros::ServiceClient serv_move_robot_;
+    ros::ServiceClient serv_move_robot_point_;
 
+    ros::ServiceClient serv_move_robot_pose_;
+    
     ros::ServiceClient serv_move_robotQ_;
 
     ros::ServiceClient serv_get_robotQ_;
@@ -90,7 +96,8 @@ public:
         marker_dist_pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/test/euclidian_distance_markers", 1);
         
         // services
-        serv_move_robot_ = nh_.serviceClient<mp_mini_picker::moveToPoint>("/robot/MoveToPoint");
+        serv_move_robot_point_ = nh_.serviceClient<mp_mini_picker::moveToPoint>("/robot/MoveToPoint");
+        serv_move_robot_pose_ = nh_.serviceClient<mp_mini_picker::moveToPose>("/robot/MoveToPose");
         serv_move_robotQ_ = nh_.serviceClient<mp_mini_picker::moveToQ>("/robot/MoveToQ");
         serv_get_robotQ_ = nh_.serviceClient<mp_mini_picker::currentQ>("/robot/GetCurrentQ");
         
@@ -170,12 +177,24 @@ public:
     void update_marker2_position(const geometry_msgs::PoseStamped::ConstPtr msg)
     {
         marker2_position=*msg;
+        if(got_trans_mat==true)
+        {
+//             cout << trans_mat << endl;
+            Mat cP2 = convert_geomsg_to_hommat(marker2_position);
+            Mat wP2=trans_mat*cP2;
+            Mat cR2_vec=(Mat_<float>(3,1) <<    marker2_position.pose.orientation.x, marker2_position.pose.orientation.y, marker2_position.pose.orientation.z);
+            Mat cR2;
+            Rodrigues(cR2_vec,cR2);
+            Mat wR2=R_cam_to_world*cR2;
+//             cout << wP2 << endl;
+//             cout << wR2 << endl;
+            sendTransformTf(wP2,wR2,"world","marker2_camera");
+        }
     }
     
     void update_marker1_position(const geometry_msgs::PoseStamped::ConstPtr msg)
     {
         marker1_position=*msg;
-        
         Mat cam_marker1 = convert_geomsg_to_mat(marker1_position);
         Mat cam_marker2 = convert_geomsg_to_mat(marker2_position);
         
@@ -184,11 +203,26 @@ public:
         dist_msg.pose.position.x=norm(cam_marker2-cam_marker1);
         marker_dist_pub_.publish(dist_msg);
         
+        if(got_trans_mat==true)
+        {
+//             cout << trans_mat << endl;
+            Mat cP1 = convert_geomsg_to_hommat(marker1_position);
+            Mat wP1=trans_mat*cP1;
+            Mat cR1_vec=(Mat_<float>(3,1) <<    marker1_position.pose.orientation.x, marker1_position.pose.orientation.y, marker1_position.pose.orientation.z);
+            Mat cR1;
+            Rodrigues(cR1_vec,cR1);
+            Mat wR1=R_cam_to_world*cR1;
+//             cout << wP1 << endl;
+//             cout << wR1 << endl;
+            sendTransformTf(wP1,wR1,"world","marker1_camera");
+        }
+        
     }
     
     void update_robot_position(const geometry_msgs::PoseStamped::ConstPtr msg)
     {
         current_robot_position=*msg;
+        sendTransformTf_PoseStamped(current_robot_position,"world","marker1_robot");
     }
     
     void newest_point(const match_points::matched_points::ConstPtr msg)
@@ -198,6 +232,7 @@ public:
         
         if(got_trans_mat==true)
         {
+            
             Mat rob_cam = trans_mat*cam;
             Mat result = robot-rob_cam;
             
@@ -227,6 +262,8 @@ public:
         R_vector.at<float>(2,0)=msg->rotation.z;
         
         Rodrigues(R_vector,R);
+        
+        R_cam_to_world=R;
         
         R.copyTo(trans_mat(Rect(0,0,R.cols,R.rows)));
         trans_mat.at<float>(0,3)=msg->translation.x;
@@ -301,31 +338,122 @@ public:
         
         
     }
+
     
     void move_robot_to_marker2()
     {
-        mp_mini_picker::moveToPoint srv;
-                
-        Mat marker2_cam = convert_geomsg_to_hommat(marker2_position);
-        Mat rob_marker2_cam = trans_mat*marker2_cam;
-        
-        srv.request.point[0]=(double)(rob_marker2_cam.at<float>(0,0)-0.05);
-        srv.request.point[1]=(double)(rob_marker2_cam.at<float>(1,0)-0.05);
-        srv.request.point[2]=(double)(rob_marker2_cam.at<float>(2,0)+0.1);
-        cout << "Calculated position of Marker 2 in world frame: "  <<srv.request.point[0]  << " , " << srv.request.point[1]  << " , " << srv.request.point[2]  << endl;
-        ROS_INFO("Now moving to marker 2");
-        if (serv_move_robot_.call(srv))
+        bool use_pose=true;
+        if(use_pose==false)
         {
-            ROS_INFO ("Succesful call to robot");
+            mp_mini_picker::moveToPoint srv;
+                    
+            Mat marker2_cam = convert_geomsg_to_hommat(marker2_position);
+            Mat rob_marker2_cam = trans_mat*marker2_cam;
+            
+            srv.request.point[0]=(double)(rob_marker2_cam.at<float>(0,0)-0.05);
+            srv.request.point[1]=(double)(rob_marker2_cam.at<float>(1,0)-0.05);
+            srv.request.point[2]=(double)(rob_marker2_cam.at<float>(2,0)+0.1);
+            cout << "Calculated position of Marker 2 in world frame: "  <<srv.request.point[0]  << " , " << srv.request.point[1]  << " , " << srv.request.point[2]  << endl;
+            ROS_INFO("Now moving to marker 2");
+            if (serv_move_robot_point_.call(srv))
+            {
+                ROS_INFO ("Succesful call to robot");
+            }
+            else
+            {
+                ROS_INFO("Houston we got a problem");
+            }
+            
+            desired_robot_position.pose.position.x=srv.request.point[0];
+            desired_robot_position.pose.position.y=srv.request.point[1];
+            desired_robot_position.pose.position.z=srv.request.point[2];
         }
         else
         {
-            ROS_INFO("Houston we got a problem");
+            mp_mini_picker::moveToPose srv;
+            Mat wTc=trans_mat;
+            Mat wRc=R_cam_to_world;
+            
+            Mat cP2 = convert_geomsg_to_hommat(marker2_position);
+            Mat wP2 = wTc*cP2;
+            
+            wP2.at<float>(0,0)=wP2.at<float>(0,0)-0.05;
+            wP2.at<float>(1,0)=wP2.at<float>(1,0)-0.05;
+            wP2.at<float>(2,0)=wP2.at<float>(2,0)+0.1;
+            
+            srv.request.pose[0]=(double)(wP2.at<float>(0,0));
+            srv.request.pose[1]=(double)(wP2.at<float>(1,0));
+            srv.request.pose[2]=(double)(wP2.at<float>(2,0));
+            
+            Mat cR1_vec=(Mat_<float>(3,1) <<    marker1_position.pose.orientation.x, marker1_position.pose.orientation.y, marker1_position.pose.orientation.z);
+            Mat cR2_vec= (Mat_<float>(3,1) <<    marker2_position.pose.orientation.x, marker2_position.pose.orientation.y, marker2_position.pose.orientation.z);
+            
+            Mat cR1,cR2;
+            Rodrigues(cR1_vec,cR1);
+            Rodrigues(cR2_vec,cR2);
+            
+            Mat wR1=wRc*cR1;
+            Mat wR2=wRc*cR2;
+            
+
+            
+            Mat _1Rw;
+            transpose(wR1,_1Rw);
+            
+            Mat _1R2=_1Rw*wR2;
+            Mat _1R2_vec;
+            Rodrigues(_1R2,_1R2_vec);
+            
+            
+            Mat wRt_vec= (Mat_<float>(3,1) <<    current_robot_position.pose.orientation.x, current_robot_position.pose.orientation.y, current_robot_position.pose.orientation.z);
+            Mat wRt;
+            Rodrigues(wRt_vec,wRt);
+            
+            // tool(t) is the as marker1
+//             Mat _2R1;
+//             transpose(_1R2,_2R1);
+            Mat wR2_tool=wRt*_1R2;
+//             Mat wR2_tool=wRc*cR1*_1R2;
+//             Mat wR2_tool=wRt*_2R1;
+            Mat wR2_vec;
+            Rodrigues(wR2_tool,wR2_vec);
+            
+            srv.request.pose[3]=(double)(wR2_vec.at<float>(0,0));
+            srv.request.pose[4]=(double)(wR2_vec.at<float>(1,0));
+            srv.request.pose[5]=(double)(wR2_vec.at<float>(2,0));
+
+            
+            cout << "1R2: " << _1R2_vec.at<float>(0,0) << " , " << _1R2_vec.at<float>(1,0) << " , " << _1R2_vec.at<float>(2,0) << " \t" << norm(_1R2_vec)*180/M_PI << endl;
+            
+            cout << "Current rotation of robot: " << current_robot_position.pose.orientation.x << " , " << current_robot_position.pose.orientation.y << " , " << current_robot_position.pose.orientation.z << endl;
+            cout << "Current rotation of marker1: " << wR1.at<float>(0,0)<< " , " <<  wR1.at<float>(1,0) << " , " <<  wR1.at<float>(2,0) << endl;
+            
+            
+            cout << "Calculated position of Marker 2 in world frame: "  <<srv.request.pose[0]  << " , " << srv.request.pose[1]  << " , " << srv.request.pose[2]  << endl;
+            cout << "Calculated rotation of tool in world frame: " << srv.request.pose[3]  << " , " << srv.request.pose[4]  << " , " << srv.request.pose[5]  << endl;
+            
+            
+            
+            ROS_INFO("Now moving to marker 2");
+            if (serv_move_robot_pose_.call(srv))
+            {
+                ROS_INFO ("Succesful call to robot");
+            }
+            else
+            {
+                ROS_INFO("Houston we got a problem");
+            }
+            
+            sendTransformTf(wP2,wR2_tool,"world","desired_location");
+//             cout << "WORKED" << endl;
+            
+            desired_robot_position.pose.position.x=srv.request.pose[0];
+            desired_robot_position.pose.position.y=srv.request.pose[1];
+            desired_robot_position.pose.position.z=srv.request.pose[2];
+            desired_robot_position.pose.orientation.x=srv.request.pose[3];
+            desired_robot_position.pose.orientation.y=srv.request.pose[4];
+            desired_robot_position.pose.orientation.z=srv.request.pose[5];
         }
-        
-        desired_robot_position.pose.position.x=srv.request.point[0];
-        desired_robot_position.pose.position.y=srv.request.point[1];
-        desired_robot_position.pose.position.z=srv.request.point[2];
     }
     
     
@@ -403,13 +531,13 @@ public:
             
             
         
-//             if (serv_move_robot_.call(srv));
+//             if (serv_move_robot_point_.call(srv));
             bool got_valid_point=false;
             while(got_valid_point==false)
             {
 //                 cout <<"Jeg laver nyt kald (y)";
                 srv=generate_random_point(6.5);
-                if (serv_move_robot_.call(srv))
+                if (serv_move_robot_point_.call(srv))
                 {
 //                     cout << "Jeg blev accepteret" << endl;
                     got_valid_point=true;
@@ -469,6 +597,41 @@ public:
         return system_initialized;
     }
     
+    void sendTransformTf_PoseStamped(geometry_msgs::PoseStamped pose, string to_frame, string from_frame)
+    {
+        Mat Rvec=(Mat_<float>(3,1) << pose.pose.orientation.x,pose.pose.orientation.y,pose.pose.orientation.z);
+        Mat R;
+        Rodrigues(Rvec,R);
+        
+        
+        tf::Matrix3x3 rot;
+        rot.setValue(R.at<float>(0,0),R.at<float>(0,1),R.at<float>(0,2),
+                     R.at<float>(1,0),R.at<float>(1,1),R.at<float>(1,2),
+                     R.at<float>(2,0),R.at<float>(2,1),R.at<float>(2,2));
+        tf::Vector3 t;
+        t.setValue(pose.pose.position.x,pose.pose.position.y,pose.pose.position.z);
+        tf::Transform wTc(rot,t);
+        
+        tf::StampedTransform msg(wTc,ros::Time::now(),to_frame,from_frame);
+        static tf::TransformBroadcaster br;
+        br.sendTransform(msg);
+    }
+    
+    void sendTransformTf(Mat translation, Mat rotation, string to_frame, string from_frame)
+    {
+        tf::Matrix3x3 rot;
+        rot.setValue(rotation.at<float>(0,0),rotation.at<float>(0,1),rotation.at<float>(0,2),
+                     rotation.at<float>(1,0),rotation.at<float>(1,1),rotation.at<float>(1,2),
+                     rotation.at<float>(2,0),rotation.at<float>(2,1),rotation.at<float>(2,2));
+        tf::Vector3 t;
+        t.setValue(translation.at<float>(0,0),translation.at<float>(1,0),translation.at<float>(2,0));
+        tf::Transform wTc(rot,t);
+        
+        tf::StampedTransform msg(wTc,ros::Time::now(),to_frame,from_frame);
+        static tf::TransformBroadcaster br;
+        br.sendTransform(msg);
+    }
+    
 private:
     
     bool compare_3D_points(geometry_msgs::Pose new_position, geometry_msgs::Pose old_position, double expected_distance)
@@ -489,7 +652,7 @@ private:
     }
     bool got_trans_mat=false,robot_initialized=false, system_initialized=false;
 
-    Mat trans_mat,trans_mat_copy;
+    Mat trans_mat,trans_mat_copy,R_cam_to_world;
     
     bool move_robot_randomly=true;
     
@@ -544,7 +707,7 @@ int main(int argc, char** argv)
                 // wait
                 usleep(100000);
                 ros::spinOnce();
-                cout << "Waiting in main loop" << endl;
+//                 cout << "Waiting in main loop" << endl;
             }
 //             cout << "Sleeping" << endl;
             usleep(1000000); // half a seconds

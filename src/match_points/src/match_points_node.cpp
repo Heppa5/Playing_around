@@ -14,6 +14,8 @@ namespace patch
     }
 }
 
+#include <tf/transform_broadcaster.h>
+// #include <Matrix3x3.h>
 
 #include <ros/ros.h>
 #include <ros/time.h>
@@ -34,6 +36,9 @@ namespace patch
 #include <match_points/matched_points.h>
 
 
+#include <iostream>
+#include <fstream>
+#include <string> 
 
 using namespace std;
 using namespace cv;
@@ -58,6 +63,108 @@ class MatchPoints
 public:
     MatchPoints()
     {
+        use_cheat=false;
+        if(use_cheat==true)
+        {
+            string chosenPoint;
+            ifstream infile;
+            infile.open("/home/rovi2/Jesper/data_for_wTc.txt");
+            string::size_type sz;
+            int current_case=0;
+            int last_delimiter=0;
+            int count=0;
+            while(getline(infile,chosenPoint)) // To get you all the lines.
+            {
+
+                cout << chosenPoint << endl;
+                matchedPoint hej;
+                for(int i=0; i<chosenPoint.length(); i++)
+                {
+                    
+                    double number;
+                    if(chosenPoint.at(i)==',')
+                    {
+                        string hep=chosenPoint.substr(last_delimiter,(i-last_delimiter));
+//                         cout << hep << endl;
+                        number = stod(hep,&sz);
+                        last_delimiter=i+1;
+                        
+//                             cout << last_delimiter << " " << number << " " << current_case << endl;
+                        switch(current_case)
+                        {
+                            case 0:
+                                hej.camera.pose.position.x=number;
+                                break;
+                            case 1:
+                                hej.camera.pose.position.y=number;
+                                break;
+                            case 2:
+                                hej.camera.pose.position.z=number;
+                                break;
+                            case 3:
+                                hej.robot.pose.position.x=number;
+                                break;
+                            case 4:
+                                hej.robot.pose.position.y=number;
+                                break;
+                            case 5:
+                                hej.robot.pose.position.z=number;
+                                break;
+                        }
+                        current_case++;
+                        
+                    }
+                    else if(i==chosenPoint.length()-1)
+                    {
+                        string hep=chosenPoint.substr(last_delimiter,(i-last_delimiter));
+//                         cout << hep << endl;
+                        number = stod(hep,&sz);
+//                             cout << last_delimiter << " " << number << " " << current_case << endl;
+                        switch(current_case)
+                        {
+                            case 0:
+                                hej.camera.pose.position.x=number;
+                                break;
+                            case 1:
+                                hej.camera.pose.position.y=number;
+                                break;
+                            case 2:
+                                hej.camera.pose.position.z=number;
+                                break;
+                            case 3:
+                                hej.robot.pose.position.x=number;
+                                break;
+                            case 4:
+                                hej.robot.pose.position.y=number;
+                                break;
+                            case 5:
+                                hej.robot.pose.position.z=number;
+                                break;
+                        }
+                        current_case++;
+                    }
+                }
+                chosenMatchedPoints.push_back(hej);
+                last_delimiter=0;
+                current_case=0;
+                count++;
+            }
+            infile.close();
+            gain_first_element=true;
+            for(int i=0 ; i<chosenMatchedPoints.size() ; i++)
+            {
+                cout << chosenMatchedPoints[i].camera.pose.position.x << ",";
+                cout << chosenMatchedPoints[i].camera.pose.position.y << ",";
+                cout << chosenMatchedPoints[i].camera.pose.position.z << ",";
+                cout << chosenMatchedPoints[i].robot.pose.position.x << ",";
+                cout << chosenMatchedPoints[i].robot.pose.position.y << ",";
+                cout << chosenMatchedPoints[i].robot.pose.position.z << "\n";
+                
+            }
+            
+        }
+        
+        
         // Subscrive to input video feed and publish output video feed
         transformation_pub_ = nh_.advertise<geometry_msgs::Transform>("/matched_points/transformation_matrix", 1);
         matched_points_pub_ = nh_.advertise<match_points::matched_points>("/matched_points/all_matched_points", 1);
@@ -136,10 +243,11 @@ public:
     void choosePoints()
     {
         // if no points has been choosen, then just take the first matched point
-        if(chosenMatchedPoints.size() == 0)
+        if(chosenMatchedPoints.size() == 0 || gain_first_element==true)
         {
             chosenMatchedPoints.insert(chosenMatchedPoints.begin(),matchedPoints[0]);
             matchedPoints.erase(matchedPoints.begin());
+            gain_first_element=false;
         }
 //         int old_array_size=chosenMatchedPoints.size();
         bool added_points=false;
@@ -159,6 +267,12 @@ public:
                     {
                         added_points = true;
                         ROS_INFO("Distance between chosen poinsts:  %f",dist_between_points(matchedPoints[0].robot.pose,chosenMatchedPoints[0].robot.pose));
+//                         cout << chosenMatchedPoints[0].camera.pose.position.x << ",";
+//                         cout << chosenMatchedPoints[0].camera.pose.position.y << ",";
+//                         cout << chosenMatchedPoints[0].camera.pose.position.z << ",";
+//                         cout << chosenMatchedPoints[0].robot.pose.position.x << ",";
+//                         cout << chosenMatchedPoints[0].robot.pose.position.y << ",";
+//                         cout << chosenMatchedPoints[0].robot.pose.position.z << "\n";
                         
                         chosenMatchedPoints.insert(chosenMatchedPoints.begin(),matchedPoints[i]);
                         matchedPoints.erase(matchedPoints.end());
@@ -291,15 +405,15 @@ public:
         
         if(cv::determinant(R_computed) < 0)
         {
-            cout << "----------------------------"  << " Reflection special case " << " ----------------------------" << endl;
-            cout << "Before "  << R_computed << endl;
+//             cout << "----------------------------"  << " Reflection special case " << " ----------------------------" << endl;
+//             cout << "Before "  << R_computed << endl;
             for(int i=0; i<R_computed.rows ; i++)
             {
                 R_computed.at<float>(i,2)=R_computed.at<float>(i,2)*(-1);
             }
-            cout << "After "  << R_computed << endl;
-            
-            cout << "----------------------------"  << " END: Reflection special case " << " ----------------------------" << endl;
+//             cout << "After "  << R_computed << endl;
+//             
+//             cout << "----------------------------"  << " END: Reflection special case " << " ----------------------------" << endl;
         }
 
         // getting the translation
@@ -342,9 +456,32 @@ public:
             
             transformation_pub_.publish(msg);
         }
-//         cout << t_computed << endl;
+//         cout <<R_computed <<t_computed << endl;
+        
 
 //         cout << "Difference: " << endl << (R_computed-R) << endl;
+        sendTransformTf(t_computed,R_computed,"world","camera");
+    }
+    
+    void sendTransformTf(Mat translation, Mat rotation, string to_frame, string from_frame)
+    {
+        tf::Matrix3x3 rot;
+        rot.setValue(rotation.at<float>(0,0),rotation.at<float>(0,1),rotation.at<float>(0,2),
+                     rotation.at<float>(1,0),rotation.at<float>(1,1),rotation.at<float>(1,2),
+                     rotation.at<float>(2,0),rotation.at<float>(2,1),rotation.at<float>(2,2));
+//         cout << rotation << endl;
+//         cout << rot.determinant() << endl;
+//         cout << rot.getColumn(0).getX() << "," << rot.getColumn(0).getY() << "," << rot.getColumn(0).getZ() << endl;
+        tf::Vector3 t;
+        t.setValue(translation.at<float>(0,0),translation.at<float>(1,0),translation.at<float>(2,0));
+        tf::Transform wTc(rot,t);
+//         wTc.setOrigin( tf::Vector3(0, 0, 0) );
+        
+        tf::StampedTransform msg(wTc,ros::Time::now(),to_frame,from_frame);
+        static tf::TransformBroadcaster br;
+        br.sendTransform(msg);
+        
+        
     }
     
     
@@ -385,7 +522,7 @@ private:
     
     bool posted_tranformation =false;
     float euc_translation_dif_old;
-    
+    bool use_cheat,gain_first_element=false;
     
     vector<geometry_msgs::PoseStamped> camera_points;
     vector<geometry_msgs::PoseStamped> robot_positions;

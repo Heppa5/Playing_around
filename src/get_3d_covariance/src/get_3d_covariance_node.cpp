@@ -66,9 +66,9 @@ public:
 
         ROS_INFO("USING marker 2");
         marker_3D.push_back(Point3f(0,0,0));
-        marker_3D.push_back(Point3f(0.044,0,0));
-        marker_3D.push_back(Point3f(0.044,-0.044,0));
-        marker_3D.push_back(Point3f(0,-0.044,0));
+        marker_3D.push_back(Point3f(0.066,0,0));
+        marker_3D.push_back(Point3f(0.066,-0.066,0));
+        marker_3D.push_back(Point3f(0,-0.066,0));
         aruco_point_pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/aruco/marker1", 1);
         
         distortion.push_back(-0.228385);
@@ -115,11 +115,13 @@ public:
         
         for(int i = 0 ; i < markerCorners.size() ; i++)
         {
-            if(Marker_ID == markerIds[i])
+            if(Marker_ID == markerIds[i] && marker_3D_tvec.size() < 100)
             {
                 solvePnP(marker_3D,markerCorners[i],camera_matrix,distortion,rvec,tvec);
                 
-                Point3f estPoint(tvec.at<double>(0,0),tvec.at<double>(1,0),tvec.at<double>(2,0));
+//                 Point3f estPoint(tvec.at<double>(0,0),tvec.at<double>(1,0),tvec.at<double>(2,0));
+                Point3f estPoint(rvec.at<double>(0,0),rvec.at<double>(1,0),rvec.at<double>(2,0));
+                cout << rvec.at<double>(0,0) << " , " << rvec.at<double>(1,0) << " , " << rvec.at<double>(2,0) <<endl;
                 marker_3D_tvec.push_back(estPoint);
 //                 geometry_msgs::PoseStamped aruco3D_msg;
 //                 aruco3D_msg.header.stamp=msg->header.stamp;

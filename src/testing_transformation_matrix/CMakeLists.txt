@@ -16,6 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
     cv_bridge
   image_transport
   match_points
+  tf
 #   mp_mini_picker
 )
 
