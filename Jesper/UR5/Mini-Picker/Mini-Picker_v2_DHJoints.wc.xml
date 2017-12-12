@@ -1,0 +1,112 @@
+<WorkCell name="MiniPickerPlanner">
+
+<Frame name="cell" refframe="WORLD">
+     <RPY> 0 0 0 </RPY> <Pos> 0.0 0 0 </Pos>
+     <Drawable name="cell" refframe="cell">
+         <Polytope file="Geometry/cell_nowalls.obj" />
+     </Drawable>
+</Frame>
+
+<Frame name="rod" refframe="WORLD">
+     <RPY> 0 0 0 </RPY> <Pos> -0.326 -0.303 0.316 </Pos>
+     <Drawable name="rod" refframe="rod">
+         <Polytope file="Geometry/rod.obj" />
+     </Drawable>
+
+</Frame>
+
+<!--<Frame name="PickBox" refframe="WORLD" type="Movable">
+     <RPY> 0 0 0 </RPY> <Pos> -0.290 0.215 0.145 </Pos>
+     <Drawable name="PickBox" refframe="PickBox">
+         <Polytope file="Geometry/Boxes.obj" />
+     </Drawable>
+</Frame>-->
+
+<Frame name="HandlingStation" refframe="WORLD" type="Movable">
+     <RPY> 0 0 0 </RPY> <Pos> 0.450 -0.175 0.005 </Pos>
+     <Drawable name="HandlingStation" refframe="HandlingStation">
+	 <RPY> 0 0 0 </RPY> <Pos> 0 0 0 </Pos>
+         <Polytope file="Geometry/handlingstation.obj" />
+     </Drawable>
+</Frame>
+
+
+<Frame name="Robot" refframe="rod" type="Movable">
+   <RPY> 270 0 0 </RPY> <Pos> 0 0 0.326 </Pos>
+
+</Frame>
+
+<Include file="UR5DHJoints/UR5.wc.xml" /> 
+
+<!--<Frame name="SCAPE_TCP" refframe="UR5.TCP">
+	<Pos>-0.018 0.0425 0.290</Pos>
+	<RPY>-90 0 180</RPY>
+</Frame>-->
+
+<!--<Frame name="SCAPE_TCP" refframe="UR5.TCP">
+	<Pos>0.075 -0.0625 0.01</Pos>
+	<RPY>0 180 0</RPY>
+</Frame>-->
+
+<!--<Frame name="tool" refframe="SCAPE_TCP" type="Movable">
+     <RPY> 0 0 0 </RPY> <Pos> 0 0 0.03 </Pos>
+
+     <Drawable name="tool" refframe="tool">
+         <Polytope file="ScapeTool/tool_box" />
+     </Drawable>
+     <CollisionModel name="tool" refframe="tool">
+         <Polytope file="ScapeTool/tool_box" />
+     </CollisionModel> 
+</Frame>-->
+
+<Frame name="tool" refframe="UR5.TCP" type="Movable">
+     <RPY> 0 0 0 </RPY> <Pos> -0.0625 -0.122 0.01 </Pos>
+     <Drawable name="tool" refframe="tool">
+         <Polytope file="ScapeTool/tool_box" />
+     </Drawable>
+     <CollisionModel name="tool" refframe="tool">
+         <Polytope file="ScapeTool/tool_box" />
+     </CollisionModel> 
+</Frame>
+
+<Frame name="big_box_f" refframe="WORLD" type="Movable">
+     <RPY> 90 0 0 </RPY> <Pos> 0.7 -0.3 0 </Pos>
+     <Drawable name="big_box" refframe="big_box_f">
+         <Polytope file="big_box" />
+     </Drawable>
+     <!--<CollisionModel name="big_box" refframe="big_box_f">
+         <Polytope file="big_box" />
+     </CollisionModel> -->
+</Frame>
+
+<Frame name="marker_f" refframe="UR5.TCP" type="Movable">
+     <RPY> 180 -90 0 </RPY> <Pos> 0.032 -0.112 0.067 </Pos>
+     <Drawable name="marker" refframe="marker_f">
+         <Polytope file="marker" />
+     </Drawable>
+</Frame>
+
+
+<!--<Frame name="tool" refframe="SCAPE_TCP" type="Movable">
+     <RPY> 0 90 0 </RPY> <Pos> 0 0 0 </Pos>
+
+     <Drawable name="tool" refframe="tool">
+         <Polytope file="ScapeTool/tool_box" />
+     </Drawable>
+     <CollisionModel name="tool" refframe="tool">
+         <Polytope file="ScapeTool/tool_box" />
+     </CollisionModel> 
+</Frame>-->
+
+<!--<Frame name="SuctionCup" refframe="SCAPE_TCP" type="Movable">
+     <RPY> 0 0 0</RPY> <Pos> 0.026 0.054 0.073 </Pos>
+     <Drawable name="SuctionCup" refframe="UR5.TCP">
+         <Polytope file="ScapeTool/suction18mm" />
+     </Drawable>
+</Frame>-->
+
+<CollisionSetup file="SceneCollisionSetup.prox.xml" /> 
+<ProximitySetup file="SceneProximitySetup.prox.xml" />
+
+</WorkCell>
+

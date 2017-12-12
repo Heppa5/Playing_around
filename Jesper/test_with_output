@@ -1,0 +1,986 @@
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-1.0546286;
+ 0.15507823;
+ 3.5846596;
+ 1]
+World coordinate of marker 2
+[-0.79727286;
+ -0.0022562146;
+ 3.3421612;
+ 1]
+Euclidian distance between the two markers: 0.387029
+Change in translation compared to last iteration: 2.36631 - current transformation matrix is: 
+[-0.84065151, -0.070605099, -0.53695428, -0.20518;
+ -0.070605047, -0.96871591, 0.23791695, 0.012180686;
+ -0.53695428, 0.23791693, 0.80936742, 2.3573709;
+ 0, 0, 0, 1]
+[ INFO] [1510328523.562562093]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328523.992261038]: Distance between chosen poinsts:  0.027258
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-1.310351;
+ 2.1943736;
+ 0.66878527;
+ 1]
+World coordinate of marker 2
+[-0.86219126;
+ 2.1588655;
+ 0.56391239;
+ 1]
+Euclidian distance between the two markers: 0.461634
+Change in translation compared to last iteration: 2.64287 - current transformation matrix is: 
+[-0.039988328, 0.38044855, -0.92393714, 0.050104722;
+ -0.56944615, 0.75114149, 0.3339425, 1.554185;
+ 0.82105541, 0.53948623, 0.18660806, 0.22621411;
+ 0, 0, 0, 1]
+[ INFO] [1510328523.992564184]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328524.283032709]: Distance between chosen poinsts:  0.022662
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-0.96095133;
+ 2.353349;
+ 1.8170918;
+ 1]
+World coordinate of marker 2
+[-1.184021;
+ 2.0144601;
+ 1.7935233;
+ 1]
+Euclidian distance between the two markers: 0.4064
+Change in translation compared to last iteration: 1.81604 - current transformation matrix is: 
+[-0.17547503, -0.91775751, 0.35627192, -1.3185737;
+ 0.43683407, 0.25172657, 0.86360276, 0.99825233;
+ -0.88226104, 0.30717245, 0.35673603, 1.2824656;
+ 0, 0, 0, 1]
+[ INFO] [1510328524.283280324]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328524.860074668]: Distance between chosen poinsts:  0.046474
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-1.3619213;
+ 2.0719948;
+ 1.9278202;
+ 1]
+World coordinate of marker 2
+[-1.5308261;
+ 1.6873101;
+ 1.9532746;
+ 1]
+Euclidian distance between the two markers: 0.420903
+Change in translation compared to last iteration: 0.43196 - current transformation matrix is: 
+[-0.30764109, -0.94207758, 0.13359208, -1.4153866;
+ 0.32321107, 0.028586904, 0.94589502, 0.63885152;
+ -0.89492548, 0.33417463, 0.29569539, 1.5016633;
+ 0, 0, 0, 1]
+[ INFO] [1510328524.860358761]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328525.127545216]: Distance between chosen poinsts:  0.022373
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[0.013193011;
+ 2.6382709;
+ 1.5641401;
+ 1]
+World coordinate of marker 2
+[-0.36918646;
+ 2.4022741;
+ 1.5307624;
+ 1]
+Euclidian distance between the two markers: 0.45058
+Change in translation compared to last iteration: 1.21632 - current transformation matrix is: 
+[0.0013344494, -0.8016417, 0.59780335, -0.79988891;
+ 0.53621882, 0.50516713, 0.67622149, 1.5224911;
+ -0.84407794, 0.31965101, 0.43052948, 0.9361707;
+ 0, 0, 0, 1]
+[ INFO] [1510328525.127820709]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328525.697816306]: Distance between chosen poinsts:  0.052276
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-2.0635035;
+ -0.14045459;
+ 1.8918921;
+ 1]
+World coordinate of marker 2
+[-1.8965094;
+ -0.40292493;
+ 2.0866535;
+ 1]
+Euclidian distance between the two markers: 0.367028
+Change in translation compared to last iteration: 2.36731 - current transformation matrix is: 
+[-0.059801109, -0.36627167, -0.92858434, -0.75589776;
+ -0.36627173, -0.85731214, 0.36174703, -0.56804097;
+ -0.92858434, 0.36174706, -0.082886741, 2.0460896;
+ 0, 0, 0, 1]
+[ INFO] [1510328525.698163324]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328527.411341786]: Distance between chosen poinsts:  0.140767
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-1.3995807;
+ 1.8254399;
+ 2.1853993;
+ 1]
+World coordinate of marker 2
+[-1.6084476;
+ 1.4952859;
+ 2.2254446;
+ 1]
+Euclidian distance between the two markers: 0.392722
+Change in translation compared to last iteration: 1.29307 - current transformation matrix is: 
+[-0.31525642, -0.94888461, 0.015213471, -1.3580353;
+ 0.38148579, -0.11203318, 0.91756046, 0.51247507;
+ -0.86895454, 0.29507053, 0.39730516, 1.6693362;
+ 0, 0, 0, 1]
+[ INFO] [1510328527.411625684]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328527.990628598]: Distance between chosen poinsts:  0.031817
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-0.38601416;
+ 2.2482667;
+ 2.2497098;
+ 1]
+World coordinate of marker 2
+[-0.88538027;
+ 2.0488882;
+ 2.2401199;
+ 1]
+Euclidian distance between the two markers: 0.537783
+Change in translation compared to last iteration: 0.758564 - current transformation matrix is: 
+[-0.098594882, -0.92024386, 0.37872189, -1.0423961;
+ 0.63448477, 0.23505355, 0.73632801, 1.1818968;
+ -0.76662123, 0.31289142, 0.5607056, 1.5030048;
+ 0, 0, 0, 1]
+[ INFO] [1510328527.990941768]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328528.558956576]: Distance between chosen poinsts:  0.022035
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-0.0033534765;
+ 2.3313689;
+ 2.2195499;
+ 1]
+World coordinate of marker 2
+[-0.55475485;
+ 2.1845682;
+ 2.2004414;
+ 1]
+Euclidian distance between the two markers: 0.570928
+Change in translation compared to last iteration: 0.301491 - current transformation matrix is: 
+[-0.044126254, -0.88049334, 0.47200042, -0.82433844;
+ 0.67753744, 0.32082582, 0.66182607, 1.3780888;
+ -0.73416334, 0.34900185, 0.5824104, 1.4333175;
+ 0, 0, 0, 1]
+[ INFO] [1510328528.559231587]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328606.843117188]: Distance between chosen poinsts:  0.024954
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-0.10358745;
+ 2.2882295;
+ 2.2137787;
+ 1]
+World coordinate of marker 2
+[-0.60256332;
+ 2.1635275;
+ 2.2272067;
+ 1]
+Euclidian distance between the two markers: 0.514498
+Change in translation compared to last iteration: 0.0468089 - current transformation matrix is: 
+[-0.050944738, -0.88819969, 0.45662448, -0.85521603;
+ 0.67601168, 0.30588228, 0.67040598, 1.3492323;
+ -0.73512775, 0.34283715, 0.58485031, 1.4534408;
+ 0, 0, 0, 1]
+[ INFO] [1510328606.843448413]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328607.284142923]: Distance between chosen poinsts:  0.024627
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-0.11411685;
+ 2.3063431;
+ 2.2235157;
+ 1]
+World coordinate of marker 2
+[-0.60268259;
+ 2.1618371;
+ 2.2250321;
+ 1]
+Euclidian distance between the two markers: 0.509491
+Change in translation compared to last iteration: 0.000767561 - current transformation matrix is: 
+[-0.051545046, -0.88799739, 0.45695052, -0.85453832;
+ 0.67642301, 0.30557567, 0.67013091, 1.3492324;
+ -0.73470742, 0.34363377, 0.58491093, 1.4530804;
+ 0, 0, 0, 1]
+[ INFO] [1510328607.284507460]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: -0.602683 , 2.16184 , 2.22503
+[ INFO] [1510328607.286085138]: No solution to JacobianIKSolver
+[ INFO] [1510328607.286177358]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328609.127401256]: Distance between chosen poinsts:  0.150902
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-0.24180681;
+ 2.3801665;
+ 2.262543;
+ 1]
+World coordinate of marker 2
+[-0.60397059;
+ 2.1619706;
+ 2.2194149;
+ 1]
+Euclidian distance between the two markers: 0.425008
+Change in translation compared to last iteration: 0.00282429 - current transformation matrix is: 
+[-0.052050784, -0.88774222, 0.45738876, -0.85583639;
+ 0.67571247, 0.30593529, 0.67068344, 1.349283;
+ -0.73532534, 0.34397289, 0.58393431, 1.4505726;
+ 0, 0, 0, 1]
+[ INFO] [1510328609.127834971]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: -0.603971 , 2.16197 , 2.21941
+[ INFO] [1510328609.129502816]: No solution to JacobianIKSolver
+[ INFO] [1510328609.129962490]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328609.700444939]: Distance between chosen poinsts:  0.052010
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-0.63173628;
+ 2.3941479;
+ 2.2578382;
+ 1]
+World coordinate of marker 2
+[-0.94880056;
+ 2.0564179;
+ 2.1645708;
+ 1]
+Euclidian distance between the two markers: 0.472536
+Change in translation compared to last iteration: 0.303701 - current transformation matrix is: 
+[-0.096841328, -0.92366821, 0.37075439, -1.0959169;
+ 0.60683179, 0.24046586, 0.7575826, 1.1633973;
+ -0.78890872, 0.29835084, 0.53722417, 1.4570839;
+ 0, 0, 0, 1]
+[ INFO] [1510328609.700878418]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328609.983451547]: Distance between chosen poinsts:  0.022264
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-0.71273762;
+ 2.3502717;
+ 2.2319698;
+ 1]
+World coordinate of marker 2
+[-0.98989582;
+ 2.0398412;
+ 2.1567578;
+ 1]
+Euclidian distance between the two markers: 0.422896
+Change in translation compared to last iteration: 0.0369923 - current transformation matrix is: 
+[-0.10271791, -0.92785144, 0.35852572, -1.1220515;
+ 0.59738898, 0.23065031, 0.76806694, 1.137254;
+ -0.79534614, 0.29307356, 0.53059632, 1.4584775;
+ 0, 0, 0, 1]
+[ INFO] [1510328609.983783496]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: -0.989896 , 2.03984 , 2.15676
+[ INFO] [1510328609.985223969]: No solution to JacobianIKSolver
+[ INFO] [1510328609.985382839]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328610.267623701]: Distance between chosen poinsts:  0.025030
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-0.70928943;
+ 2.3546715;
+ 2.2388759;
+ 1]
+World coordinate of marker 2
+[-0.96399301;
+ 2.0516109;
+ 2.1607718;
+ 1]
+Euclidian distance between the two markers: 0.403509
+Change in translation compared to last iteration: 0.0224568 - current transformation matrix is: 
+[-0.099046871, -0.92523158, 0.3662461, -1.106643;
+ 0.60263962, 0.23710883, 0.76197439, 1.1533818;
+ -0.79184294, 0.29618558, 0.5340963, 1.4558737;
+ 0, 0, 0, 1]
+[ INFO] [1510328610.268095779]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: -0.963993 , 2.05161 , 2.16077
+[ INFO] [1510328610.269714679]: No solution to JacobianIKSolver
+[ INFO] [1510328610.269873545]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328610.555420191]: Distance between chosen poinsts:  0.021155
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-0.66886121;
+ 2.3599987;
+ 2.2345886;
+ 1]
+World coordinate of marker 2
+[-0.90420926;
+ 2.0847299;
+ 2.1601791;
+ 1]
+Euclidian distance between the two markers: 0.369727
+Change in translation compared to last iteration: 0.0533922 - current transformation matrix is: 
+[-0.089441702, -0.91847348, 0.38523588, -1.070923;
+ 0.61204457, 0.25445497, 0.74876839, 1.1909189;
+ -0.78574908, 0.30275264, 0.53938782, 1.4429982;
+ 0, 0, 0, 1]
+[ INFO] [1510328610.555929103]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: -0.904209 , 2.08473 , 2.16018
+[ INFO] [1510328610.557406413]: No solution to JacobianIKSolver
+[ INFO] [1510328610.557725256]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328610.838692180]: Distance between chosen poinsts:  0.021437
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-0.66802388;
+ 2.4266567;
+ 2.3226776;
+ 1]
+World coordinate of marker 2
+[-0.91265661;
+ 2.0700159;
+ 2.178822;
+ 1]
+Euclidian distance between the two markers: 0.455777
+Change in translation compared to last iteration: 0.0190724 - current transformation matrix is: 
+[-0.092578396, -0.92031151, 0.38007361, -1.0709939;
+ 0.61707884, 0.24654068, 0.74728268, 1.1857111;
+ -0.78143644, 0.30371761, 0.54508042, 1.4613457;
+ 0, 0, 0, 1]
+[ INFO] [1510328610.839041240]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: -0.912657 , 2.07002 , 2.17882
+[ INFO] [1510328610.840536796]: No solution to JacobianIKSolver
+[ INFO] [1510328610.840785842]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328611.413959870]: Distance between chosen poinsts:  0.033935
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-0.77574944;
+ 2.3677819;
+ 2.2599237;
+ 1]
+World coordinate of marker 2
+[-0.97529179;
+ 2.0552063;
+ 2.1442013;
+ 1]
+Euclidian distance between the two markers: 0.388474
+Change in translation compared to last iteration: 0.0623116 - current transformation matrix is: 
+[-0.10024003, -0.92538846, 0.36552444, -1.1166523;
+ 0.59575385, 0.23841466, 0.76696533, 1.1464823;
+ -0.79688728, 0.29464319, 0.52740502, 1.4452474;
+ 0, 0, 0, 1]
+[ INFO] [1510328611.414417383]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: -0.975292 , 2.05521 , 2.1442
+[ INFO] [1510328611.415958611]: No solution to JacobianIKSolver
+[ INFO] [1510328611.416120046]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328611.847382342]: Distance between chosen poinsts:  0.020259
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-0.9209584;
+ 2.3328004;
+ 2.1972842;
+ 1]
+World coordinate of marker 2
+[-1.0948958;
+ 2.0021095;
+ 2.0807085;
+ 1]
+Euclidian distance between the two markers: 0.391408
+Change in translation compared to last iteration: 0.116881 - current transformation matrix is: 
+[-0.11573581, -0.93589222, 0.33273253, -1.1973158;
+ 0.55579418, 0.21661341, 0.80260295, 1.0642053;
+ -0.82322419, 0.27782068, 0.49509349, 1.4256237;
+ 0, 0, 0, 1]
+[ INFO] [1510328611.847793828]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328612.549951923]: Distance between chosen poinsts:  0.022131
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-0.85675216;
+ 2.3949862;
+ 2.2604179;
+ 1]
+World coordinate of marker 2
+[-1.0360807;
+ 2.0262382;
+ 2.0985398;
+ 1]
+Euclidian distance between the two markers: 0.440838
+Change in translation compared to last iteration: 0.0553373 - current transformation matrix is: 
+[-0.11024361, -0.92944449, 0.35210699, -1.1606433;
+ 0.57271963, 0.23013112, 0.78678578, 1.1055355;
+ -0.8123045, 0.28839669, 0.5069406, 1.4286494;
+ 0, 0, 0, 1]
+[ INFO] [1510328612.550421526]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: -1.03608 , 2.02624 , 2.09854
+[ INFO] [1510328612.551978332]: No solution to JacobianIKSolver
+[ INFO] [1510328612.552103120]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328647.271077934]: Distance between chosen poinsts:  0.024356
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-0.071385145;
+ 0.15241909;
+ 0.81473792;
+ 1]
+World coordinate of marker 2
+[0.29892284;
+ 0.18776208;
+ 0.86919266;
+ 1]
+Euclidian distance between the two markers: 0.375955
+Change in translation compared to last iteration: 2.51061 - current transformation matrix is: 
+[-0.25753137, 0.22855751, -0.93884987, 1.2690451;
+ 0.96624899, 0.067310408, -0.24866079, 0.47339553;
+ 0.0063610733, -0.9712007, -0.238178, 1.4161059;
+ 0, 0, 0, 1]
+[ INFO] [1510328647.271437231]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328647.852409236]: Distance between chosen poinsts:  0.029105
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-0.067879558;
+ 0.16397852;
+ 0.81041873;
+ 1]
+World coordinate of marker 2
+[0.29451227;
+ 0.20608965;
+ 0.86580533;
+ 1]
+Euclidian distance between the two markers: 0.369011
+Change in translation compared to last iteration: 0.0614067 - current transformation matrix is: 
+[-0.29947355, 0.21857509, -0.92873061, 1.2563959;
+ 0.95404881, 0.079131104, -0.28901416, 0.53280765;
+ 0.010320185, -0.97260642, -0.23222896, 1.4071069;
+ 0, 0, 0, 1]
+[ INFO] [1510328647.852837833]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328648.266541939]: Distance between chosen poinsts:  0.028310
+###############Test node updating its transformation matrix #################### 
+World coordinate of marker 1
+[-0.031751275;
+ 0.19359922;
+ 0.82360733;
+ 1]
+World coordinate of marker 2
+[0.28414142;
+ 0.25992459;
+ 0.86156523;
+ 1]
+Euclidian distance between the two markers: 0.325005
+Change in translation compared to last iteration: 0.190851 - current transformation matrix is: 
+[-0.42446733, 0.19363348, -0.88449621, 1.1982775;
+ 0.90534312, 0.1052913, -0.41142139, 0.71365094;
+ 0.013464803, -0.97540754, -0.21999745, 1.3886122;
+ 0, 0, 0, 1]
+[ INFO] [1510328648.266894651]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328648.698382186]: Distance between chosen poinsts:  0.030830
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[-0.023787856;
+ 0.21410656;
+ 0.8246994;
+ 1]
+World coordinate of marker 2
+[0.27085191;
+ 0.30330372;
+ 0.85892498;
+ 1]
+Euclidian distance between the two markers: 0.309742
+Change in translation compared to last iteration: 0.156412 - current transformation matrix is: 
+[-0.52123761, 0.17509477, -0.83525634, 1.1314263;
+ 0.85328043, 0.12408693, -0.50647306, 0.8547765;
+ 0.014963606, -0.97670072, -0.21408372, 1.3797197;
+ 0, 0, 0, 1]
+[ INFO] [1510328648.698803751]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328648.990122886]: Distance between chosen poinsts:  0.025457
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[-0.029053688;
+ 0.2230159;
+ 0.81589621;
+ 1]
+World coordinate of marker 2
+[0.25951326;
+ 0.32477528;
+ 0.85810959;
+ 1]
+Euclidian distance between the two markers: 0.308882
+Change in translation compared to last iteration: 0.0861146 - current transformation matrix is: 
+[-0.5720194, 0.16739023, -0.8029784, 1.086942;
+ 0.82008761, 0.13558777, -0.55594271, 0.92850375;
+ 0.015814673, -0.97652262, -0.21483348, 1.3807929;
+ 0, 0, 0, 1]
+[ INFO] [1510328648.990587373]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: 0.259513 , 0.324775 , 0.85811
+[ INFO] [1510328649.032895405]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328649.265465936]: Distance between chosen poinsts:  0.027061
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[0.010462165;
+ 0.26170963;
+ 0.83071685;
+ 1]
+World coordinate of marker 2
+[0.25274295;
+ 0.34783739;
+ 0.85730243;
+ 1]
+Euclidian distance between the two markers: 0.258505
+Change in translation compared to last iteration: 0.0785175 - current transformation matrix is: 
+[-0.61543536, 0.15457428, -0.77288169, 1.0454391;
+ 0.78805578, 0.13859272, -0.59980011, 0.99415475;
+ 0.014402111, -0.97821206, -0.20710801, 1.3692837;
+ 0, 0, 0, 1]
+[ INFO] [1510328649.266067427]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: 0.252743 , 0.347837 , 0.857302
+[ INFO] [1510328649.332486347]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328649.554593643]: Distance between chosen poinsts:  0.023261
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[0.034502327;
+ 0.28723633;
+ 0.83680087;
+ 1]
+World coordinate of marker 2
+[0.24368125;
+ 0.35485035;
+ 0.85123926;
+ 1]
+Euclidian distance between the two markers: 0.220309
+Change in translation compared to last iteration: 0.047413 - current transformation matrix is: 
+[-0.63935095, 0.14296132, -0.75550807, 1.0215526;
+ 0.76880479, 0.13549437, -0.62496436, 1.0319815;
+ 0.013021353, -0.9804098, -0.19653781, 1.3535812;
+ 0, 0, 0, 1]
+[ INFO] [1510328649.555046456]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: 0.243681 , 0.35485 , 0.851239
+[ INFO] [1510328649.599296406]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328649.838981603]: Distance between chosen poinsts:  0.026415
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[0.024945736;
+ 0.28142476;
+ 0.82563674;
+ 1]
+World coordinate of marker 2
+[0.23268557;
+ 0.34993154;
+ 0.84508812;
+ 1]
+Euclidian distance between the two markers: 0.219607
+Change in translation compared to last iteration: 0.0158112 - current transformation matrix is: 
+[-0.64777029, 0.1415379, -0.74857247, 1.0119169;
+ 0.76172924, 0.13675918, -0.63329732, 1.0445154;
+ 0.012738577, -0.98044068, -0.19640209, 1.3533597;
+ 0, 0, 0, 1]
+[ INFO] [1510328649.839445410]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: 0.232686 , 0.349932 , 0.845088
+[ INFO] [1510328649.899193629]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328650.126309109]: Distance between chosen poinsts:  0.022781
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[0.04853642;
+ 0.29936624;
+ 0.83020616;
+ 1]
+World coordinate of marker 2
+[0.24167699;
+ 0.36369526;
+ 0.851583;
+ 1]
+Euclidian distance between the two markers: 0.204691
+Change in translation compared to last iteration: 0.0131167 - current transformation matrix is: 
+[-0.65448105, 0.13917613, -0.74315846, 1.0044423;
+ 0.75597787, 0.13648748, -0.64020985, 1.0549357;
+ 0.012329905, -0.9808166, -0.19454256, 1.3506036;
+ 0, 0, 0, 1]
+[ INFO] [1510328650.126759913]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: 0.241677 , 0.363695 , 0.851583
+[ INFO] [1510328650.165843927]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328650.404957959]: Distance between chosen poinsts:  0.025828
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[0.057529449;
+ 0.30335367;
+ 0.82659513;
+ 1]
+World coordinate of marker 2
+[0.24090147;
+ 0.36595666;
+ 0.85249722;
+ 1]
+Euclidian distance between the two markers: 0.195487
+Change in translation compared to last iteration: 0.00888006 - current transformation matrix is: 
+[-0.65882832, 0.14023463, -0.73910725, 0.99875015;
+ 0.75219834, 0.1384066, -0.64423692, 1.060987;
+ 0.011952986, -0.98039681, -0.19667046, 1.3537399;
+ 0, 0, 0, 1]
+[ INFO] [1510328650.405420418]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: 0.240901 , 0.365957 , 0.852497
+[ INFO] [1510328650.465810838]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328650.694380717]: Distance between chosen poinsts:  0.022127
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[0.079485893;
+ 0.31776565;
+ 0.8305245;
+ 1]
+World coordinate of marker 2
+[0.23421949;
+ 0.36151093;
+ 0.84916508;
+ 1]
+Euclidian distance between the two markers: 0.161875
+Change in translation compared to last iteration: 0.00579679 - current transformation matrix is: 
+[-0.66176009, 0.1405724, -0.73641902, 0.9950105;
+ 0.74962586, 0.13926911, -0.64704347, 1.0652297;
+ 0.011603977, -0.98022628, -0.19753945, 1.3550117;
+ 0, 0, 0, 1]
+[ INFO] [1510328650.694809209]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: 0.234219 , 0.361511 , 0.849165
+[ INFO] [1510328650.732550098]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328650.985400403]: Distance between chosen poinsts:  0.025121
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[0.10458809;
+ 0.3351717;
+ 0.83967006;
+ 1]
+World coordinate of marker 2
+[0.23731714;
+ 0.36440641;
+ 0.85076708;
+ 1]
+Euclidian distance between the two markers: 0.136363
+Change in translation compared to last iteration: 0.00273428 - current transformation matrix is: 
+[-0.6631245, 0.14009693, -0.73528141, 0.99350411;
+ 0.74842137, 0.13914156, -0.64846361, 1.0674205;
+ 0.011460438, -0.98031247, -0.19711971, 1.3543735;
+ 0, 0, 0, 1]
+[ INFO] [1510328650.985865041]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: 0.237317 , 0.364406 , 0.850767
+[ INFO] [1510328651.032552983]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328651.268266214]: Distance between chosen poinsts:  0.023613
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[0.12835574;
+ 0.34372985;
+ 0.83890724;
+ 1]
+World coordinate of marker 2
+[0.23758495;
+ 0.36628091;
+ 0.85088861;
+ 1]
+Euclidian distance between the two markers: 0.112175
+Change in translation compared to last iteration: 0.00287085 - current transformation matrix is: 
+[-0.66418505, 0.13892542, -0.73454607, 0.99262565;
+ 0.74748033, 0.1384799, -0.6496895, 1.0693474;
+ 0.011461485, -0.98057282, -0.19582029, 1.3524351;
+ 0, 0, 0, 1]
+[ INFO] [1510328651.268719945]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: 0.237585 , 0.366281 , 0.850889
+[ INFO] [1510328651.332518736]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328651.693881261]: Distance between chosen poinsts:  0.027982
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[0.16422474;
+ 0.35990357;
+ 0.84526789;
+ 1]
+World coordinate of marker 2
+[0.22992402;
+ 0.36003923;
+ 0.84532934;
+ 1]
+Euclidian distance between the two markers: 0.0656994
+Change in translation compared to last iteration: 0.00541194 - current transformation matrix is: 
+[-0.6648131, 0.13584866, -0.7345534, 0.99285817;
+ 0.74691361, 0.13666074, -0.65072572, 1.0709814;
+ 0.011984405, -0.98125887, -0.19232106, 1.347281;
+ 0, 0, 0, 1]
+[ INFO] [1510328651.694281771]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: 0.229924 , 0.360039 , 0.845329
+[ INFO] [1510328651.732465834]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328652.124330068]: Distance between chosen poinsts:  0.025133
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[0.18993801;
+ 0.36704713;
+ 0.84731722;
+ 1]
+World coordinate of marker 2
+[0.23618138;
+ 0.36548847;
+ 0.84772754;
+ 1]
+Euclidian distance between the two markers: 0.0462714
+Change in translation compared to last iteration: 0.00521421 - current transformation matrix is: 
+[-0.66532338, 0.13273789, -0.73466009, 0.99320871;
+ 0.74644738, 0.135006, -0.65160543, 1.0723486;
+ 0.01269079, -0.98191345, -0.18890449, 1.3422614;
+ 0, 0, 0, 1]
+[ INFO] [1510328652.124781910]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: 0.236181 , 0.365488 , 0.847728
+[ INFO] [1510328652.165852061]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328652.553272528]: Distance between chosen poinsts:  0.020181
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[0.19799721;
+ 0.36182076;
+ 0.8431114;
+ 1]
+World coordinate of marker 2
+[0.22556531;
+ 0.35580635;
+ 0.84024811;
+ 1]
+Euclidian distance between the two markers: 0.0283614
+Change in translation compared to last iteration: 0.00272256 - current transformation matrix is: 
+[-0.6665979, 0.13197589, -0.73364133, 0.99190897;
+ 0.74531054, 0.13467756, -0.65297335, 1.0744569;
+ 0.012628291, -0.98206127, -0.1881388, 1.341131;
+ 0, 0, 0, 1]
+[ INFO] [1510328652.553659783]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: 0.225565 , 0.355806 , 0.840248
+[ INFO] [1510328652.598990320]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328654.703675945]: Distance between chosen poinsts:  0.036134
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[0.22620708;
+ 0.35326213;
+ 0.84310365;
+ 1]
+World coordinate of marker 2
+[0.23345697;
+ 0.35964781;
+ 0.83748078;
+ 1]
+Euclidian distance between the two markers: 0.0111783
+Change in translation compared to last iteration: 0.00655041 - current transformation matrix is: 
+[-0.66981488, 0.13272229, -0.7305702, 0.98773414;
+ 0.74243975, 0.13488966, -0.65619206, 1.0793811;
+ 0.011455055, -0.98193157, -0.18888941, 1.3422406;
+ 0, 0, 0, 1]
+[ INFO] [1510328654.704088610]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: 0.233457 , 0.359648 , 0.837481
+[ INFO] [1510328654.765827602]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328655.265369897]: Distance between chosen poinsts:  0.023466
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[0.27202803;
+ 0.37075496;
+ 0.86661708;
+ 1]
+World coordinate of marker 2
+[0.24627399;
+ 0.36686909;
+ 0.84010905;
+ 1]
+Euclidian distance between the two markers: 0.0371624
+Change in translation compared to last iteration: 0.0131586 - current transformation matrix is: 
+[-0.66484159, 0.1269573, -0.73611653, 0.99569511;
+ 0.74681449, 0.13398482, -0.65139556, 1.0720096;
+ 0.015929023, -0.98281735, -0.18389224, 1.3347954;
+ 0, 0, 0, 1]
+[ INFO] [1510328655.265868528]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328655.838799680]: Distance between chosen poinsts:  0.021474
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[0.26402903;
+ 0.32993942;
+ 0.85724521;
+ 1]
+World coordinate of marker 2
+[0.24318731;
+ 0.36268634;
+ 0.83737791;
+ 1]
+Euclidian distance between the two markers: 0.0436056
+Change in translation compared to last iteration: 0.00115005 - current transformation matrix is: 
+[-0.6653859, 0.12658818, -0.73568815, 0.99500859;
+ 0.74632835, 0.13391443, -0.65196699, 1.0728204;
+ 0.015987933, -0.98287451, -0.18358111, 1.3343551;
+ 0, 0, 0, 1]
+[ INFO] [1510328655.839358211]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: 0.243187 , 0.362686 , 0.837378
+[ INFO] [1510328655.899166013]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328658.130699457]: Distance between chosen poinsts:  0.020219
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[0.29118985;
+ 0.37607956;
+ 0.87584329;
+ 1]
+World coordinate of marker 2
+[0.23952675;
+ 0.37380171;
+ 0.83145308;
+ 1]
+Euclidian distance between the two markers: 0.0681524
+Change in translation compared to last iteration: 0.0099598 - current transformation matrix is: 
+[-0.66238731, 0.12091246, -0.73933971, 1.0000861;
+ 0.74890006, 0.13294332, -0.64921087, 1.0684212;
+ 0.01979259, -0.9837206, -0.17861131, 1.3270023;
+ 0, 0, 0, 1]
+[ INFO] [1510328658.131278071]: Got rejected due to too large change compared to last iteration
+############### Test node finished updating #################### 
+[ INFO] [1510328660.255613425]: Distance between chosen poinsts:  0.021026
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[0.23724139;
+ 0.34329087;
+ 0.84465522;
+ 1]
+World coordinate of marker 2
+[0.24519408;
+ 0.37332422;
+ 0.84010029;
+ 1]
+Euclidian distance between the two markers: 0.0314006
+Change in translation compared to last iteration: 0.00362397 - current transformation matrix is: 
+[-0.66421467, 0.12104208, -0.73767722, 0.99774468;
+ 0.7472924, 0.13300459, -0.65104824, 1.0711715;
+ 0.019310219, -0.9836964, -0.17879744, 1.3272973;
+ 0, 0, 0, 1]
+[ INFO] [1510328660.256043489]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: 0.245194 , 0.373324 , 0.8401
+[ INFO] [1510328660.299301070]: Succesful call to robot
+############### Test node finished updating #################### 
+[ INFO] [1510328674.429669790]: Distance between chosen poinsts:  0.020853
+###############Test node updating its transformation matrix #################### 
+Estimate of marker 2 position in world frame using current transformation matrix is within 10 cm of correct result
+World coordinate of marker 1
+[0.2479856;
+ 0.3626073;
+ 0.8392396;
+ 1]
+World coordinate of marker 2
+[0.24747509;
+ 0.36383909;
+ 0.83122969;
+ 1]
+Euclidian distance between the two markers: 0.00812014
+Change in translation compared to last iteration: 0.00241187 - current transformation matrix is: 
+[-0.66545379, 0.12081711, -0.73659652, 0.99625057;
+ 0.74619353, 0.13298185, -0.6523121, 1.0730531;
+ 0.019143514, -0.9837271, -0.17864622, 1.3270868;
+ 0, 0, 0, 1]
+[ INFO] [1510328674.430082589]: 
+ 
+ 
+ Less than 15 percent change for each element compared to last iteration
+Calculated position of Marker 2 in world frame: 0.247475 , 0.363839 , 0.83123
+[ INFO] [1510328674.499049249]: Succesful call to robot
+############### Test node finished updating #################### 
