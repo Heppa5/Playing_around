@@ -1,0 +1,8 @@
+prefix=/home/rovi2/catkin_ws/src/match_points/cmake-build-debug/devel
+
+Name: match_points
+Description: Description of match_points
+Version: 0.0.0
+Cflags: -I/home/rovi2/catkin_ws/src/match_points/cmake-build-debug/devel/include -I/home/rovi2/catkin_ws/src/match_points/include
+Libs: -L/home/rovi2/catkin_ws/src/match_points/cmake-build-debug/devel/lib -lmatch_points
+Requires: cv_bridge image_transport roscpp rospy std_msgs message_runtime

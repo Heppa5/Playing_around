@@ -1,0 +1,8 @@
+prefix=/home/rovi2/catkin_ws/src/aruco_3D/cmake-build-debug/devel
+
+Name: aruco_3D
+Description: Description of aruco_3D
+Version: 0.0.0
+Cflags: -I/home/rovi2/catkin_ws/src/aruco_3D/include
+Libs: -L/home/rovi2/catkin_ws/src/aruco_3D/cmake-build-debug/devel/lib -laruco_3D
+Requires: cv_bridge image_transport roscpp rospy std_msgs

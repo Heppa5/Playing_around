@@ -6,16 +6,6 @@
 
 #include <tf/transform_broadcaster.h>
 
-namespace patch
-{
-    template < typename T > std::string to_string( const T& n )
-    {
-        std::ostringstream stm ;
-        stm << n ;
-        return stm.str() ;
-    }
-}
-
 
 #include <ros/ros.h>
 #include <ros/time.h>
@@ -78,10 +68,11 @@ class TestClass
     ros::ServiceClient serv_get_robotQ_;
 
     bool debug=false;
+    bool use_incremental_correction;
 public:
-    TestClass()
+    TestClass(bool incremental_correction)
     {
-        
+        use_incremental_correction=incremental_correction;
         // Subscribe to different topics
         transformation_sub_ = nh_.subscribe("/matched_points/transformation_matrix", 1,&TestClass::update_tranformation,this);
         matched_points_sub_ = nh_.subscribe("/matched_points/all_matched_points", 1, &TestClass::newest_point, this);
@@ -326,7 +317,15 @@ public:
                     usleep(100000);
                     ros::spinOnce();
                 }
-                move_robot_to_marker2();
+                if(!use_incremental_correction)
+                {
+                    move_robot_to_marker2();
+                }
+                else
+                {
+                    move_robot_reduce_error(0.05);
+                }
+
                 
             }
             
@@ -455,6 +454,94 @@ public:
             desired_robot_position.pose.orientation.z=srv.request.pose[5];
         }
     }
+
+
+    void move_robot_reduce_error(double correction)
+    {
+        // First transl
+        mp_mini_picker::moveToPose srv;
+        Mat wTc=trans_mat;
+        Mat wRc=R_cam_to_world;
+
+        Mat cP2 = convert_geomsg_to_hommat(marker2_position);
+        Mat wP2 = wTc*cP2;
+
+        wP2.at<float>(0,0)=wP2.at<float>(0,0)-0.05;
+        wP2.at<float>(1,0)=wP2.at<float>(1,0)-0.05;
+        wP2.at<float>(2,0)=wP2.at<float>(2,0)+0.1;
+
+        Mat cP1 = convert_geomsg_to_hommat(marker1_position);
+        Mat wP1 = wTc*cP1;
+
+        cout << "wP1: " << wP1 << endl;
+        cout << "wP2: " << wP2 << endl;
+
+        Mat T_error=wP2-wP1;
+
+        cout << "T_error: "<< T_error << endl;
+
+        srv.request.pose[0]=(double)(current_robot_position.pose.position.x+T_error.at<float>(0,0)*correction);
+        srv.request.pose[1]=(double)(current_robot_position.pose.position.y+T_error.at<float>(1,0)*correction);
+        srv.request.pose[2]=(double)(current_robot_position.pose.position.z+T_error.at<float>(2,0)*correction);
+        cout << "T_error with correction: " << (T_error.at<float>(0,0)*correction) << " , " << (T_error.at<float>(1,0)*correction) << " , " << (T_error.at<float>(2,0)*correction) << endl;
+        cout << "Requested new position: " << srv.request.pose[0] << " , " << srv.request.pose[1] << " , " << srv.request.pose[2] << endl;
+
+        // Rotation
+        Mat cR1_vec=(Mat_<float>(3,1) <<    marker1_position.pose.orientation.x, marker1_position.pose.orientation.y, marker1_position.pose.orientation.z);
+        Mat cR2_vec= (Mat_<float>(3,1) <<    marker2_position.pose.orientation.x, marker2_position.pose.orientation.y, marker2_position.pose.orientation.z);
+        // Creation rotation matrices from vectors
+        Mat cR1,cR2;
+        Rodrigues(cR1_vec,cR1);
+        Rodrigues(cR2_vec,cR2);
+        cout << "Marker 1 rotation " << cR1_vec << endl;
+        cout << "Marker 2 rotation " << cR2_vec << endl;
+        // Changing to world rotation
+        Mat wR1=wRc*cR1;
+        Mat wR2=wRc*cR2;
+        Mat _1Rw;
+        transpose(wR1,_1Rw);
+        Mat _1R2=_1Rw*wR2;
+        Mat _1R2_vec;
+        Rodrigues(_1R2,_1R2_vec);
+
+        cout << "Total rotational error: " << _1R2_vec << endl;
+        _1R2_vec=_1R2_vec*correction;
+        cout << "Updated rotational error: " << _1R2_vec << endl;
+        Rodrigues(_1R2_vec,_1R2);
+
+
+        // Updating these values based current robot orientaiton
+        Mat wRt_vec= (Mat_<float>(3,1) <<    current_robot_position.pose.orientation.x, current_robot_position.pose.orientation.y, current_robot_position.pose.orientation.z);
+        Mat wRt;
+        Rodrigues(wRt_vec,wRt);
+        Mat wR2_tool=wRt*_1R2;
+        Mat wR2_vec;
+        Rodrigues(wR2_tool,wR2_vec);
+
+        srv.request.pose[3]=(double)(wR2_vec.at<float>(0,0));
+        srv.request.pose[4]=(double)(wR2_vec.at<float>(1,0));
+        srv.request.pose[5]=(double)(wR2_vec.at<float>(2,0));
+
+        ROS_INFO("Now moving to marker 2");
+        if (serv_move_robot_pose_.call(srv))
+        {
+            ROS_INFO ("Succesful call to robot");
+        }
+        else
+        {
+            ROS_INFO("Houston we got a problem");
+        }
+
+        sendTransformTf(wP1+(T_error*correction),wR2_tool,"world","desired_location");
+
+        desired_robot_position.pose.position.x=srv.request.pose[0];
+        desired_robot_position.pose.position.y=srv.request.pose[1];
+        desired_robot_position.pose.position.z=srv.request.pose[2];
+        desired_robot_position.pose.orientation.x=srv.request.pose[3];
+        desired_robot_position.pose.orientation.y=srv.request.pose[4];
+        desired_robot_position.pose.orientation.z=srv.request.pose[5];
+
+    }
     
     
     bool robot_at_home_position()
@@ -517,6 +604,15 @@ public:
         else
             return true;
     }
+    bool robot_at_asked_pose(double ok_trans_error, double ok_rot_error)
+    {
+        // poses is inverted compared point-call above.
+        if(compare_3D_poses(desired_robot_position.pose,current_robot_position.pose,ok_trans_error,ok_rot_error))
+            return true;
+        else
+            return false;
+    }
+
     long int counter=0;
     void move_robot_random_direction()
     {
@@ -597,40 +693,7 @@ public:
         return system_initialized;
     }
     
-    void sendTransformTf_PoseStamped(geometry_msgs::PoseStamped pose, string to_frame, string from_frame)
-    {
-        Mat Rvec=(Mat_<float>(3,1) << pose.pose.orientation.x,pose.pose.orientation.y,pose.pose.orientation.z);
-        Mat R;
-        Rodrigues(Rvec,R);
-        
-        
-        tf::Matrix3x3 rot;
-        rot.setValue(R.at<float>(0,0),R.at<float>(0,1),R.at<float>(0,2),
-                     R.at<float>(1,0),R.at<float>(1,1),R.at<float>(1,2),
-                     R.at<float>(2,0),R.at<float>(2,1),R.at<float>(2,2));
-        tf::Vector3 t;
-        t.setValue(pose.pose.position.x,pose.pose.position.y,pose.pose.position.z);
-        tf::Transform wTc(rot,t);
-        
-        tf::StampedTransform msg(wTc,ros::Time::now(),to_frame,from_frame);
-        static tf::TransformBroadcaster br;
-        br.sendTransform(msg);
-    }
-    
-    void sendTransformTf(Mat translation, Mat rotation, string to_frame, string from_frame)
-    {
-        tf::Matrix3x3 rot;
-        rot.setValue(rotation.at<float>(0,0),rotation.at<float>(0,1),rotation.at<float>(0,2),
-                     rotation.at<float>(1,0),rotation.at<float>(1,1),rotation.at<float>(1,2),
-                     rotation.at<float>(2,0),rotation.at<float>(2,1),rotation.at<float>(2,2));
-        tf::Vector3 t;
-        t.setValue(translation.at<float>(0,0),translation.at<float>(1,0),translation.at<float>(2,0));
-        tf::Transform wTc(rot,t);
-        
-        tf::StampedTransform msg(wTc,ros::Time::now(),to_frame,from_frame);
-        static tf::TransformBroadcaster br;
-        br.sendTransform(msg);
-    }
+
     
 private:
     
@@ -644,6 +707,34 @@ private:
         else 
             return false;
     }
+    bool compare_3D_poses(geometry_msgs::Pose new_position, geometry_msgs::Pose old_position, double accepted_distance, double accepted_rotational_error)
+    {
+        // translation error
+        double old_dist=sqrt(pow(old_position.position.x,2)+pow(old_position.position.y,2)+pow(old_position.position.z,2));
+        double new_dist=sqrt(pow(new_position.position.x,2)+pow(new_position.position.y,2)+pow(new_position.position.z,2));
+//        desired_robot_position.pose,current_robot_position.pose
+        // rotational error
+        Mat wRt_vec= (Mat_<float>(3,1) <<    old_position.orientation.x, old_position.orientation.y, old_position.orientation.z);
+        Mat wRd_vec= (Mat_<float>(3,1) <<    new_position.orientation.x, new_position.orientation.y, new_position.orientation.z);
+        Mat wRt, wRd,tRw;
+        Rodrigues(wRd_vec,wRd);
+        Rodrigues(wRt_vec,wRt);
+        transpose(wRt,tRw);
+        Mat tRd=tRw*wRd;
+        Mat tRd_vec;
+        Rodrigues(tRd,tRd_vec);
+        if(abs(new_dist-old_dist)<accepted_distance && norm(tRd_vec)<accepted_rotational_error) {
+            cout << "#################################################" << endl;
+            cout << "Accepted distance error: "<< abs(new_dist-old_dist) << endl;
+            cout << "Accepted rotation error: " << norm(tRd_vec) << endl;
+            cout << "#################################################" << endl;
+
+            return true;
+        }
+        else
+            return false;
+    }
+
     double dist_between_points(geometry_msgs::Pose new_position, geometry_msgs::Pose old_position)
     {
         double old_dist=sqrt(pow(old_position.position.x,2)+pow(old_position.position.y,2)+pow(old_position.position.z,2));
@@ -660,49 +751,69 @@ private:
     
 
     mp_mini_picker::moveToQ srv_home;
-    
+
+    void sendTransformTf_PoseStamped(geometry_msgs::PoseStamped pose, string to_frame, string from_frame)
+    {
+        Mat Rvec=(Mat_<float>(3,1) << pose.pose.orientation.x,pose.pose.orientation.y,pose.pose.orientation.z);
+        Mat R;
+        Rodrigues(Rvec,R);
+
+
+        tf::Matrix3x3 rot;
+        rot.setValue(R.at<float>(0,0),R.at<float>(0,1),R.at<float>(0,2),
+                     R.at<float>(1,0),R.at<float>(1,1),R.at<float>(1,2),
+                     R.at<float>(2,0),R.at<float>(2,1),R.at<float>(2,2));
+        tf::Vector3 t;
+        t.setValue(pose.pose.position.x,pose.pose.position.y,pose.pose.position.z);
+        tf::Transform wTc(rot,t);
+
+        tf::StampedTransform msg(wTc,ros::Time::now(),to_frame,from_frame);
+        static tf::TransformBroadcaster br;
+        br.sendTransform(msg);
+    }
+
+    void sendTransformTf(Mat translation, Mat rotation, string to_frame, string from_frame) {
+        tf::Matrix3x3 rot;
+        rot.setValue(rotation.at<float>(0, 0), rotation.at<float>(0, 1), rotation.at<float>(0, 2),
+                     rotation.at<float>(1, 0), rotation.at<float>(1, 1), rotation.at<float>(1, 2),
+                     rotation.at<float>(2, 0), rotation.at<float>(2, 1), rotation.at<float>(2, 2));
+        tf::Vector3 t;
+        t.setValue(translation.at<float>(0, 0), translation.at<float>(1, 0), translation.at<float>(2, 0));
+        tf::Transform wTc(rot, t);
+
+        tf::StampedTransform msg(wTc, ros::Time::now(), to_frame, from_frame);
+        static tf::TransformBroadcaster br;
+        br.sendTransform(msg);
+    }
 };
 
 int main(int argc, char** argv)
 {
+    bool use_incremental_correction=true;
     ros::init(argc, argv, "test matched points");
-    TestClass ic;
+    TestClass ic(use_incremental_correction);
     ROS_INFO("Starting test node up");
     
-//     ros::Time last_publish=ros::Time::now();
-//     ros::Duration time_between_publishing(3); // camera has framerate of 7 hz
-//     ros::Duration time_difference;
-//     while(true)
-//     {
-//         ros::Time current_time=ros::Time::now();
-//         time_difference=current_time-last_publish;
-//         if(time_difference>=time_between_publishing)
-//         {
-//     //             ROS_INFO("I'm inside");
-//             last_publish=ros::Time::now();
-//              ic.move_robot_random_direction();
-//         }
-//         
-//         ros::spinOnce();
-//     }
+
     
     bool first_iteration=true;
-    bool program_done=false;
+    bool transformation_settled=false;
+
     ros::Time last_publish=ros::Time::now();
     ros::Duration start_sequence(3);
-    ros::Duration finished_program(1);
+    ros::Duration time_inverval_after_transformation_is_settled(0.5);
     
     ros::Duration time_difference;
     
     while(true)
     {
-        if(ic.program_finished())
+        if(ic.is_system_initialized())
         {
-            program_done=true;
+            transformation_settled=true;
         }
-        if(first_iteration==true)
+        if(first_iteration)
         {
-            while(ic.robot_at_home_position()==false)
+            while(!ic.robot_at_home_position())
             {
                 // wait
                 usleep(100000);
@@ -718,7 +829,7 @@ int main(int argc, char** argv)
         
         ros::Time current_time=ros::Time::now();
         time_difference=current_time-last_publish;
-        if(time_difference>=start_sequence && program_done != true)
+        if(time_difference>=start_sequence && !transformation_settled)
         {
             if(ic.robot_at_asked_position())
             {
@@ -727,13 +838,25 @@ int main(int argc, char** argv)
             }
         }
         
-        if(time_difference>=finished_program && program_done == true)
+        if(/*time_difference>=time_inverval_after_transformation_is_settled &&*/ transformation_settled)
         {
-            if(ic.robot_at_asked_position())
+            if(use_incremental_correction)
             {
-                ic.move_robot_to_marker2();
-                last_publish=ros::Time::now();
+                if(ic.robot_at_asked_pose(0.005, M_PI / 180))
+                {
+                    ic.move_robot_reduce_error(0.1);
+                    last_publish=ros::Time::now();
+                }
             }
+            else
+            {
+                if(ic.robot_at_asked_position())
+                {
+                    ic.move_robot_to_marker2();
+                    last_publish=ros::Time::now();
+                }
+            }
+
         }
         
         ros::spinOnce();

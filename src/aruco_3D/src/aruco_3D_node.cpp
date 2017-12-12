@@ -59,42 +59,14 @@ public:
         image_pub_ = it_.advertise("/image_converter/output_video", 1);
         image_pub2_ = it_.advertise("/image_converter/output_video2", 1);
         
-        // For using solvePNP on aruco Marker
-//         marker_3D.push_back(Point3f(0,0,0));
-//         marker_3D.push_back(Point3f(0.169,0,0));
-//         marker_3D.push_back(Point3f(0.169,-0.169,0));
-//         marker_3D.push_back(Point3f(0,-0.169,0));
-        
-//         marker2_3D.push_back(Point3f(0,0,0));
-//         marker2_3D.push_back(Point3f(0.044,0,0));
-//         marker2_3D.push_back(Point3f(0.044,-0.044,0));
-//         marker2_3D.push_back(Point3f(0,-0.044,0));
+
         marker3_3D.push_back(Point3f(0,0,0));
         marker3_3D.push_back(Point3f(0.066,0,0));
         marker3_3D.push_back(Point3f(0.066,-0.066,0));
         marker3_3D.push_back(Point3f(0,-0.066,0));
         aruco_point_pub2_ = nh_.advertise<geometry_msgs::PoseStamped>("/aruco/marker1", 1);
         aruco_point_pub3_ = nh_.advertise<geometry_msgs::PoseStamped>("/aruco/marker2", 1);
-//         if (Marker_ID == 2)
-//         {
-//             ROS_INFO("USING marker 2");
-// //             marker2_3D.push_back(Point3f(0,0,0));
-// //             marker2_3D.push_back(Point3f(0.044,0,0));
-// //             marker2_3D.push_back(Point3f(0.044,-0.044,0));
-// //             marker2_3D.push_back(Point3f(0,-0.044,0));
-//             aruco_point_pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/aruco/marker1", 1);
-//             print_pixel_values=true;;
-//         }
-//         else if(Marker_ID == 3)
-//         {
-//             ROS_INFO("USING marker 3");
-// //             marker3_3D.push_back(Point3f(0,0,0));
-// //             marker3_3D.push_back(Point3f(0.066,0,0));
-// //             marker3_3D.push_back(Point3f(0.066,-0.066,0));
-// //             marker3_3D.push_back(Point3f(0,-0.066,0));
-//             aruco_point_pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/aruco/marker2", 1);
-//             print_pixel_values=false;
-//         }
+
         distortion.push_back(-0.228385);
         distortion.push_back(0.266082);
         distortion.push_back(-0.001812);

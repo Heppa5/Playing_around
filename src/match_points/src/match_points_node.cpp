@@ -63,7 +63,7 @@ class MatchPoints
 public:
     MatchPoints()
     {
-        use_cheat=false;
+        use_cheat=true;
         if(use_cheat==true)
         {
             string chosenPoint;

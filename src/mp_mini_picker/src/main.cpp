@@ -180,7 +180,7 @@ class UrTest
                 {
                     rw::math::Q p = path[i];
                     bool ret = false;
-                    ret = sdsip_.movePtp(p);
+                    ret = sdsip_.moveServoQ(p);
                     
                     if (!ret)
                     {
