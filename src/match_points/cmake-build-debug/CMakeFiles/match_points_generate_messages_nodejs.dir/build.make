@@ -34,40 +34,54 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/rovi2/clion-2017.3/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/jepod13/clion-2017.3.1/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /home/rovi2/clion-2017.3/bin/cmake/bin/cmake -E remove -f
+RM = /home/jepod13/clion-2017.3.1/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/rovi2/catkin_ws/src/match_points
+CMAKE_SOURCE_DIR = /home/jepod13/catkin_ws/src/match_points
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/rovi2/catkin_ws/src/match_points/cmake-build-debug
+CMAKE_BINARY_DIR = /home/jepod13/catkin_ws/src/match_points/cmake-build-debug
 
 # Utility rule file for match_points_generate_messages_nodejs.
 
 # Include the progress variables for this target.
 include CMakeFiles/match_points_generate_messages_nodejs.dir/progress.make
 
-CMakeFiles/match_points_generate_messages_nodejs: devel/share/gennodejs/ros/match_points/msg/matched_points.js
+CMakeFiles/match_points_generate_messages_nodejs: devel/share/gennodejs/ros/match_points/srv/stopMatching.js
+CMakeFiles/match_points_generate_messages_nodejs: devel/share/gennodejs/ros/match_points/srv/getNextMatchingPoint.js
+CMakeFiles/match_points_generate_messages_nodejs: devel/share/gennodejs/ros/match_points/srv/setDistBetwChosenPoints.js
 
 
-devel/share/gennodejs/ros/match_points/msg/matched_points.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
-devel/share/gennodejs/ros/match_points/msg/matched_points.js: ../msg/matched_points.msg
-devel/share/gennodejs/ros/match_points/msg/matched_points.js: /opt/ros/kinetic/share/geometry_msgs/msg/Quaternion.msg
-devel/share/gennodejs/ros/match_points/msg/matched_points.js: /opt/ros/kinetic/share/geometry_msgs/msg/PoseStamped.msg
-devel/share/gennodejs/ros/match_points/msg/matched_points.js: /opt/ros/kinetic/share/geometry_msgs/msg/Pose.msg
-devel/share/gennodejs/ros/match_points/msg/matched_points.js: /opt/ros/kinetic/share/std_msgs/msg/Header.msg
-devel/share/gennodejs/ros/match_points/msg/matched_points.js: /opt/ros/kinetic/share/geometry_msgs/msg/Point.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/rovi2/catkin_ws/src/match_points/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from match_points/matched_points.msg"
-	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/rovi2/catkin_ws/src/match_points/msg/matched_points.msg -Imatch_points:/home/rovi2/catkin_ws/src/match_points/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p match_points -o /home/rovi2/catkin_ws/src/match_points/cmake-build-debug/devel/share/gennodejs/ros/match_points/msg
+devel/share/gennodejs/ros/match_points/srv/stopMatching.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
+devel/share/gennodejs/ros/match_points/srv/stopMatching.js: ../srv/stopMatching.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/match_points/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from match_points/stopMatching.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/jepod13/catkin_ws/src/match_points/srv/stopMatching.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p match_points -o /home/jepod13/catkin_ws/src/match_points/cmake-build-debug/devel/share/gennodejs/ros/match_points/srv
+
+devel/share/gennodejs/ros/match_points/srv/getNextMatchingPoint.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
+devel/share/gennodejs/ros/match_points/srv/getNextMatchingPoint.js: ../srv/getNextMatchingPoint.srv
+devel/share/gennodejs/ros/match_points/srv/getNextMatchingPoint.js: /opt/ros/kinetic/share/geometry_msgs/msg/Quaternion.msg
+devel/share/gennodejs/ros/match_points/srv/getNextMatchingPoint.js: /opt/ros/kinetic/share/geometry_msgs/msg/PoseStamped.msg
+devel/share/gennodejs/ros/match_points/srv/getNextMatchingPoint.js: /opt/ros/kinetic/share/geometry_msgs/msg/Pose.msg
+devel/share/gennodejs/ros/match_points/srv/getNextMatchingPoint.js: /opt/ros/kinetic/share/std_msgs/msg/Header.msg
+devel/share/gennodejs/ros/match_points/srv/getNextMatchingPoint.js: /opt/ros/kinetic/share/geometry_msgs/msg/Point.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/match_points/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from match_points/getNextMatchingPoint.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/jepod13/catkin_ws/src/match_points/srv/getNextMatchingPoint.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p match_points -o /home/jepod13/catkin_ws/src/match_points/cmake-build-debug/devel/share/gennodejs/ros/match_points/srv
+
+devel/share/gennodejs/ros/match_points/srv/setDistBetwChosenPoints.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
+devel/share/gennodejs/ros/match_points/srv/setDistBetwChosenPoints.js: ../srv/setDistBetwChosenPoints.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/match_points/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Javascript code from match_points/setDistBetwChosenPoints.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/jepod13/catkin_ws/src/match_points/srv/setDistBetwChosenPoints.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p match_points -o /home/jepod13/catkin_ws/src/match_points/cmake-build-debug/devel/share/gennodejs/ros/match_points/srv
 
 match_points_generate_messages_nodejs: CMakeFiles/match_points_generate_messages_nodejs
-match_points_generate_messages_nodejs: devel/share/gennodejs/ros/match_points/msg/matched_points.js
+match_points_generate_messages_nodejs: devel/share/gennodejs/ros/match_points/srv/stopMatching.js
+match_points_generate_messages_nodejs: devel/share/gennodejs/ros/match_points/srv/getNextMatchingPoint.js
+match_points_generate_messages_nodejs: devel/share/gennodejs/ros/match_points/srv/setDistBetwChosenPoints.js
 match_points_generate_messages_nodejs: CMakeFiles/match_points_generate_messages_nodejs.dir/build.make
 
 .PHONY : match_points_generate_messages_nodejs
@@ -82,6 +96,6 @@ CMakeFiles/match_points_generate_messages_nodejs.dir/clean:
 .PHONY : CMakeFiles/match_points_generate_messages_nodejs.dir/clean
 
 CMakeFiles/match_points_generate_messages_nodejs.dir/depend:
-	cd /home/rovi2/catkin_ws/src/match_points/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rovi2/catkin_ws/src/match_points /home/rovi2/catkin_ws/src/match_points /home/rovi2/catkin_ws/src/match_points/cmake-build-debug /home/rovi2/catkin_ws/src/match_points/cmake-build-debug /home/rovi2/catkin_ws/src/match_points/cmake-build-debug/CMakeFiles/match_points_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jepod13/catkin_ws/src/match_points/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jepod13/catkin_ws/src/match_points /home/jepod13/catkin_ws/src/match_points /home/jepod13/catkin_ws/src/match_points/cmake-build-debug /home/jepod13/catkin_ws/src/match_points/cmake-build-debug /home/jepod13/catkin_ws/src/match_points/cmake-build-debug/CMakeFiles/match_points_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/match_points_generate_messages_nodejs.dir/depend
 

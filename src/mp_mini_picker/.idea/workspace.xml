@@ -14,8 +14,8 @@
       <config projectName="mp_mini_picker" targetName="caros_common_msgs_generate_messages_py" />
       <config projectName="mp_mini_picker" targetName="std_msgs_generate_messages_lisp" />
       <config projectName="mp_mini_picker" targetName="mp_mini_picker_generate_messages_py" />
-      <config projectName="mp_mini_picker" targetName="caros_common_robwork_msgs_generate_messages_nodejs" />
       <config projectName="mp_mini_picker" targetName="geometry_msgs_generate_messages_nodejs" />
+      <config projectName="mp_mini_picker" targetName="caros_common_robwork_msgs_generate_messages_nodejs" />
       <config projectName="mp_mini_picker" targetName="geometry_msgs_generate_messages_py" />
       <config projectName="mp_mini_picker" targetName="geometry_msgs_generate_messages_eus" />
       <config projectName="mp_mini_picker" targetName="rosgraph_msgs_generate_messages_cpp" />
@@ -29,8 +29,8 @@
       <config projectName="mp_mini_picker" targetName="mp_mini_picker_generate_messages" />
       <config projectName="mp_mini_picker" targetName="roscpp_generate_messages_cpp" />
       <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_currentQ" />
-      <config projectName="mp_mini_picker" targetName="clean_test_results" />
       <config projectName="mp_mini_picker" targetName="roscpp_generate_messages_lisp" />
+      <config projectName="mp_mini_picker" targetName="clean_test_results" />
       <config projectName="mp_mini_picker" targetName="std_msgs_generate_messages_cpp" />
       <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_moveToQ" />
       <config projectName="mp_mini_picker" targetName="geometry_msgs_generate_messages_cpp" />
@@ -43,21 +43,22 @@
       <config projectName="mp_mini_picker" targetName="caros_control_msgs_generate_messages_nodejs" />
       <config projectName="mp_mini_picker" targetName="roscpp_generate_messages_eus" />
       <config projectName="mp_mini_picker" targetName="geometry_msgs_generate_messages_lisp" />
-      <config projectName="mp_mini_picker" targetName="mp_mini_picker_geneus" />
+      <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_currrentToolPosition" />
       <config projectName="mp_mini_picker" targetName="std_msgs_generate_messages_eus" />
+      <config projectName="mp_mini_picker" targetName="mp_mini_picker_geneus" />
       <config projectName="mp_mini_picker" targetName="rosgraph_msgs_generate_messages_nodejs" />
       <config projectName="mp_mini_picker" targetName="caros_control_msgs_generate_messages_eus" />
       <config projectName="mp_mini_picker" targetName="mp_mini_picker_node" />
-      <config projectName="mp_mini_picker" targetName="caros_common_msgs_generate_messages_eus" />
       <config projectName="mp_mini_picker" targetName="caros_control_msgs_generate_messages_py" />
+      <config projectName="mp_mini_picker" targetName="caros_common_msgs_generate_messages_eus" />
       <config projectName="mp_mini_picker" targetName="run_tests" />
       <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_moveToPose" />
       <config projectName="mp_mini_picker" targetName="roscpp_generate_messages_py" />
       <config projectName="mp_mini_picker" targetName="caros_common_msgs_generate_messages_lisp" />
       <config projectName="mp_mini_picker" targetName="mp_mini_picker_genlisp" />
       <config projectName="mp_mini_picker" targetName="mp_mini_picker_gennodejs" />
-      <config projectName="mp_mini_picker" targetName="caros_common_robwork_msgs_generate_messages_py" />
       <config projectName="mp_mini_picker" targetName="rosgraph_msgs_generate_messages_py" />
+      <config projectName="mp_mini_picker" targetName="caros_common_robwork_msgs_generate_messages_py" />
       <config projectName="mp_mini_picker" targetName="caros_common_msgs_generate_messages_nodejs" />
       <config projectName="mp_mini_picker" targetName="gtest" />
     </generated>
@@ -79,13 +80,15 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="180" column="44" lean-forward="true" selection-start-line="180" selection-start-column="44" selection-end-line="180" selection-end-column="44" />
-              <folding />
+            <state relative-caret-position="867">
+              <caret line="51" column="12" lean-forward="true" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="12" />
+              <folding>
+                <element signature="e#1#37#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,11 +108,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="292" />
+  <component name="ProjectFrameBounds" extendedState="4">
+    <option name="x" value="142" />
     <option name="y" value="24" />
-    <option name="width" value="1400" />
-    <option name="height" value="1028" />
+    <option name="width" value="1774" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -133,17 +136,6 @@
               <item name="mp_mini_picker" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="mp_mini_picker" type="47feb1d3:ProjectViewModuleNode" />
             </path>
-            <path>
-              <item name="mp_mini_picker" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="mp_mini_picker" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="mp_mini_picker" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mp_mini_picker" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="mp_mini_picker" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="mp_mini_picker" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -151,7 +143,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../match_points/CMakeLists.txt" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RunDashboard">
@@ -171,6 +163,9 @@
       <envs />
     </configuration>
     <configuration name="_mp_mini_picker_generate_messages_check_deps_currentQ" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="_mp_mini_picker_generate_messages_check_deps_currentQ" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_mp_mini_picker_generate_messages_check_deps_currrentToolPosition" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="_mp_mini_picker_generate_messages_check_deps_currrentToolPosition" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="_mp_mini_picker_generate_messages_check_deps_moveToPoint" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="_mp_mini_picker_generate_messages_check_deps_moveToPoint" CONFIG_NAME="Debug">
@@ -344,73 +339,74 @@
     <configuration name="tests" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="tests" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <list size="59">
+    <list size="60">
       <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
       <item index="1" class="java.lang.String" itemvalue="Application._mp_mini_picker_generate_messages_check_deps_currentQ" />
-      <item index="2" class="java.lang.String" itemvalue="Application._mp_mini_picker_generate_messages_check_deps_moveToPoint" />
-      <item index="3" class="java.lang.String" itemvalue="Application._mp_mini_picker_generate_messages_check_deps_moveToPose" />
-      <item index="4" class="java.lang.String" itemvalue="Application._mp_mini_picker_generate_messages_check_deps_moveToQ" />
-      <item index="5" class="java.lang.String" itemvalue="Application.caros_common_msgs_generate_messages_cpp" />
-      <item index="6" class="java.lang.String" itemvalue="Application.caros_common_msgs_generate_messages_eus" />
-      <item index="7" class="java.lang.String" itemvalue="Application.caros_common_msgs_generate_messages_lisp" />
-      <item index="8" class="java.lang.String" itemvalue="Application.caros_common_msgs_generate_messages_nodejs" />
-      <item index="9" class="java.lang.String" itemvalue="Application.caros_common_msgs_generate_messages_py" />
-      <item index="10" class="java.lang.String" itemvalue="Application.caros_common_robwork_msgs_generate_messages_cpp" />
-      <item index="11" class="java.lang.String" itemvalue="Application.caros_common_robwork_msgs_generate_messages_eus" />
-      <item index="12" class="java.lang.String" itemvalue="Application.caros_common_robwork_msgs_generate_messages_lisp" />
-      <item index="13" class="java.lang.String" itemvalue="Application.caros_common_robwork_msgs_generate_messages_nodejs" />
-      <item index="14" class="java.lang.String" itemvalue="Application.caros_common_robwork_msgs_generate_messages_py" />
-      <item index="15" class="java.lang.String" itemvalue="Application.caros_control_msgs_generate_messages_cpp" />
-      <item index="16" class="java.lang.String" itemvalue="Application.caros_control_msgs_generate_messages_eus" />
-      <item index="17" class="java.lang.String" itemvalue="Application.caros_control_msgs_generate_messages_lisp" />
-      <item index="18" class="java.lang.String" itemvalue="Application.caros_control_msgs_generate_messages_nodejs" />
-      <item index="19" class="java.lang.String" itemvalue="Application.caros_control_msgs_generate_messages_py" />
-      <item index="20" class="java.lang.String" itemvalue="Application.clean_test_results" />
-      <item index="21" class="java.lang.String" itemvalue="Application.download_extra_data" />
-      <item index="22" class="java.lang.String" itemvalue="Application.doxygen" />
-      <item index="23" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_cpp" />
-      <item index="24" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_eus" />
-      <item index="25" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_lisp" />
-      <item index="26" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_nodejs" />
-      <item index="27" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_py" />
-      <item index="28" class="java.lang.String" itemvalue="Application.mp_mini_picker_gencpp" />
-      <item index="29" class="java.lang.String" itemvalue="Application.mp_mini_picker_generate_messages" />
-      <item index="30" class="java.lang.String" itemvalue="Application.mp_mini_picker_generate_messages_cpp" />
-      <item index="31" class="java.lang.String" itemvalue="Application.mp_mini_picker_generate_messages_eus" />
-      <item index="32" class="java.lang.String" itemvalue="Application.mp_mini_picker_generate_messages_lisp" />
-      <item index="33" class="java.lang.String" itemvalue="Application.mp_mini_picker_generate_messages_nodejs" />
-      <item index="34" class="java.lang.String" itemvalue="Application.mp_mini_picker_generate_messages_py" />
-      <item index="35" class="java.lang.String" itemvalue="Application.mp_mini_picker_geneus" />
-      <item index="36" class="java.lang.String" itemvalue="Application.mp_mini_picker_genlisp" />
-      <item index="37" class="java.lang.String" itemvalue="Application.mp_mini_picker_gennodejs" />
-      <item index="38" class="java.lang.String" itemvalue="Application.mp_mini_picker_genpy" />
-      <item index="39" class="java.lang.String" itemvalue="Application.mp_mini_picker_node" />
-      <item index="40" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_cpp" />
-      <item index="41" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_eus" />
-      <item index="42" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_lisp" />
-      <item index="43" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_nodejs" />
-      <item index="44" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_py" />
-      <item index="45" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_cpp" />
-      <item index="46" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_eus" />
-      <item index="47" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_lisp" />
-      <item index="48" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_nodejs" />
-      <item index="49" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_py" />
-      <item index="50" class="java.lang.String" itemvalue="Application.run_tests" />
-      <item index="51" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_cpp" />
-      <item index="52" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_eus" />
-      <item index="53" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_lisp" />
-      <item index="54" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_nodejs" />
-      <item index="55" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_py" />
-      <item index="56" class="java.lang.String" itemvalue="Application.tests" />
-      <item index="57" class="java.lang.String" itemvalue="Application.gtest" />
-      <item index="58" class="java.lang.String" itemvalue="Application.gtest_main" />
+      <item index="2" class="java.lang.String" itemvalue="Application._mp_mini_picker_generate_messages_check_deps_currrentToolPosition" />
+      <item index="3" class="java.lang.String" itemvalue="Application._mp_mini_picker_generate_messages_check_deps_moveToPoint" />
+      <item index="4" class="java.lang.String" itemvalue="Application._mp_mini_picker_generate_messages_check_deps_moveToPose" />
+      <item index="5" class="java.lang.String" itemvalue="Application._mp_mini_picker_generate_messages_check_deps_moveToQ" />
+      <item index="6" class="java.lang.String" itemvalue="Application.caros_common_msgs_generate_messages_cpp" />
+      <item index="7" class="java.lang.String" itemvalue="Application.caros_common_msgs_generate_messages_eus" />
+      <item index="8" class="java.lang.String" itemvalue="Application.caros_common_msgs_generate_messages_lisp" />
+      <item index="9" class="java.lang.String" itemvalue="Application.caros_common_msgs_generate_messages_nodejs" />
+      <item index="10" class="java.lang.String" itemvalue="Application.caros_common_msgs_generate_messages_py" />
+      <item index="11" class="java.lang.String" itemvalue="Application.caros_common_robwork_msgs_generate_messages_cpp" />
+      <item index="12" class="java.lang.String" itemvalue="Application.caros_common_robwork_msgs_generate_messages_eus" />
+      <item index="13" class="java.lang.String" itemvalue="Application.caros_common_robwork_msgs_generate_messages_lisp" />
+      <item index="14" class="java.lang.String" itemvalue="Application.caros_common_robwork_msgs_generate_messages_nodejs" />
+      <item index="15" class="java.lang.String" itemvalue="Application.caros_common_robwork_msgs_generate_messages_py" />
+      <item index="16" class="java.lang.String" itemvalue="Application.caros_control_msgs_generate_messages_cpp" />
+      <item index="17" class="java.lang.String" itemvalue="Application.caros_control_msgs_generate_messages_eus" />
+      <item index="18" class="java.lang.String" itemvalue="Application.caros_control_msgs_generate_messages_lisp" />
+      <item index="19" class="java.lang.String" itemvalue="Application.caros_control_msgs_generate_messages_nodejs" />
+      <item index="20" class="java.lang.String" itemvalue="Application.caros_control_msgs_generate_messages_py" />
+      <item index="21" class="java.lang.String" itemvalue="Application.clean_test_results" />
+      <item index="22" class="java.lang.String" itemvalue="Application.download_extra_data" />
+      <item index="23" class="java.lang.String" itemvalue="Application.doxygen" />
+      <item index="24" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_cpp" />
+      <item index="25" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_eus" />
+      <item index="26" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_lisp" />
+      <item index="27" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_nodejs" />
+      <item index="28" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_py" />
+      <item index="29" class="java.lang.String" itemvalue="Application.mp_mini_picker_gencpp" />
+      <item index="30" class="java.lang.String" itemvalue="Application.mp_mini_picker_generate_messages" />
+      <item index="31" class="java.lang.String" itemvalue="Application.mp_mini_picker_generate_messages_cpp" />
+      <item index="32" class="java.lang.String" itemvalue="Application.mp_mini_picker_generate_messages_eus" />
+      <item index="33" class="java.lang.String" itemvalue="Application.mp_mini_picker_generate_messages_lisp" />
+      <item index="34" class="java.lang.String" itemvalue="Application.mp_mini_picker_generate_messages_nodejs" />
+      <item index="35" class="java.lang.String" itemvalue="Application.mp_mini_picker_generate_messages_py" />
+      <item index="36" class="java.lang.String" itemvalue="Application.mp_mini_picker_geneus" />
+      <item index="37" class="java.lang.String" itemvalue="Application.mp_mini_picker_genlisp" />
+      <item index="38" class="java.lang.String" itemvalue="Application.mp_mini_picker_gennodejs" />
+      <item index="39" class="java.lang.String" itemvalue="Application.mp_mini_picker_genpy" />
+      <item index="40" class="java.lang.String" itemvalue="Application.mp_mini_picker_node" />
+      <item index="41" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_cpp" />
+      <item index="42" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_eus" />
+      <item index="43" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_lisp" />
+      <item index="44" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_nodejs" />
+      <item index="45" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_py" />
+      <item index="46" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_cpp" />
+      <item index="47" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_eus" />
+      <item index="48" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_lisp" />
+      <item index="49" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_nodejs" />
+      <item index="50" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_py" />
+      <item index="51" class="java.lang.String" itemvalue="Application.run_tests" />
+      <item index="52" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_cpp" />
+      <item index="53" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_eus" />
+      <item index="54" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_lisp" />
+      <item index="55" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_nodejs" />
+      <item index="56" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_py" />
+      <item index="57" class="java.lang.String" itemvalue="Application.tests" />
+      <item index="58" class="java.lang.String" itemvalue="Application.gtest" />
+      <item index="59" class="java.lang.String" itemvalue="Application.gtest_main" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>$USER_HOME$/.subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -420,32 +416,33 @@
       <option name="presentableId" value="Default" />
       <updated>1512654562961</updated>
       <workItem from="1512654564096" duration="322000" />
+      <workItem from="1516187605986" duration="1712000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="322000" />
+    <option name="totallyTimeSpent" value="2034000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="292" y="24" width="1400" height="1028" extended-state="0" />
+    <frame x="142" y="24" width="1774" height="1056" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19673055" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22478992" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -462,9 +459,21 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="180" column="44" lean-forward="true" selection-start-line="180" selection-start-column="44" selection-end-line="180" selection-end-column="44" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#1#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" column="12" lean-forward="true" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="12" />
+          <folding>
+            <element signature="e#1#37#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

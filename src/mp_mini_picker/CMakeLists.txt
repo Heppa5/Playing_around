@@ -17,6 +17,7 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
   roscpp
   std_msgs
+  message_package
 )
 
 ## System dependencies are found with CMake's conventions
@@ -53,9 +54,10 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 # Generate messages in the 'msg' folder
- add_message_files(
-   FILES
- )
+#  add_message_files(
+#    FILES
+#    currrentToolPosition.msg
+#  )
 
 ## Generate services in the 'srv' folder
 add_service_files(
@@ -77,6 +79,7 @@ add_service_files(
  generate_messages(
    DEPENDENCIES
    std_msgs
+   geometry_msgs
  )
 #caros_common_msgs#   caros_control_msgs#   geometry_msgs#
 
@@ -110,9 +113,9 @@ add_service_files(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  INCLUDE_DIRS include
-  LIBRARIES mp_mini_picker
-  CATKIN_DEPENDS caros_common caros_common_msgs caros_common_robwork caros_control caros_control_msgs geometry_msgs roscpp std_msgs
+#   INCLUDE_DIRS include
+#   LIBRARIES mp_mini_picker
+   CATKIN_DEPENDS caros_common caros_common_msgs caros_common_robwork caros_control caros_control_msgs geometry_msgs roscpp std_msgs
 #  DEPENDS system_lib
 )
 
@@ -150,7 +153,7 @@ include_directories(
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
- add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+  add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
  target_link_libraries(${PROJECT_NAME}_node

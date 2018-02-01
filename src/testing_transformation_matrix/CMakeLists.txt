@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(testing_transformation_matrix)
 
-## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+# Compile as C++11, supported in ROS Kinetic and newer
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -15,10 +15,24 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
     cv_bridge
   image_transport
-  match_points
+  message_package
   tf
 #   mp_mini_picker
 )
+
+
+find_package(OpenCV REQUIRED)
+
+# If the package has been found, several variables will
+# be set, you can find the full list with descriptions
+# in the OpenCVConfig.cmake file.
+# Print some message showing some of them
+message(STATUS "OpenCV library status:")
+message(STATUS "    version: ${OpenCV_VERSION}")
+message(STATUS "    libraries: ${OpenCV_LIBS}")
+message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
+
+include_directories(${OpenCV_INCLUDE_DIRS})
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -123,7 +137,7 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+    include
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -140,7 +154,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(${PROJECT_NAME}_node src/testing_transformation_matrix_node.cpp)
+add_executable(${PROJECT_NAME}_node src/testing_transformation_matrix_node.cpp include/helping_functions.h)
 
 
 ## Add cmake target dependencies of the library
@@ -161,6 +175,7 @@ add_executable(${PROJECT_NAME}_node src/testing_transformation_matrix_node.cpp)
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
+  ${OpenCV_LIBS}
 )
 
 #############

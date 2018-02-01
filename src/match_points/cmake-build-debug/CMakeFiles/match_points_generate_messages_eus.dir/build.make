@@ -34,45 +34,59 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/rovi2/clion-2017.3/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/jepod13/clion-2017.3.1/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /home/rovi2/clion-2017.3/bin/cmake/bin/cmake -E remove -f
+RM = /home/jepod13/clion-2017.3.1/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/rovi2/catkin_ws/src/match_points
+CMAKE_SOURCE_DIR = /home/jepod13/catkin_ws/src/match_points
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/rovi2/catkin_ws/src/match_points/cmake-build-debug
+CMAKE_BINARY_DIR = /home/jepod13/catkin_ws/src/match_points/cmake-build-debug
 
 # Utility rule file for match_points_generate_messages_eus.
 
 # Include the progress variables for this target.
 include CMakeFiles/match_points_generate_messages_eus.dir/progress.make
 
-CMakeFiles/match_points_generate_messages_eus: devel/share/roseus/ros/match_points/msg/matched_points.l
+CMakeFiles/match_points_generate_messages_eus: devel/share/roseus/ros/match_points/srv/stopMatching.l
+CMakeFiles/match_points_generate_messages_eus: devel/share/roseus/ros/match_points/srv/getNextMatchingPoint.l
+CMakeFiles/match_points_generate_messages_eus: devel/share/roseus/ros/match_points/srv/setDistBetwChosenPoints.l
 CMakeFiles/match_points_generate_messages_eus: devel/share/roseus/ros/match_points/manifest.l
 
 
-devel/share/roseus/ros/match_points/msg/matched_points.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
-devel/share/roseus/ros/match_points/msg/matched_points.l: ../msg/matched_points.msg
-devel/share/roseus/ros/match_points/msg/matched_points.l: /opt/ros/kinetic/share/geometry_msgs/msg/Quaternion.msg
-devel/share/roseus/ros/match_points/msg/matched_points.l: /opt/ros/kinetic/share/geometry_msgs/msg/PoseStamped.msg
-devel/share/roseus/ros/match_points/msg/matched_points.l: /opt/ros/kinetic/share/geometry_msgs/msg/Pose.msg
-devel/share/roseus/ros/match_points/msg/matched_points.l: /opt/ros/kinetic/share/std_msgs/msg/Header.msg
-devel/share/roseus/ros/match_points/msg/matched_points.l: /opt/ros/kinetic/share/geometry_msgs/msg/Point.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/rovi2/catkin_ws/src/match_points/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from match_points/matched_points.msg"
-	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/rovi2/catkin_ws/src/match_points/msg/matched_points.msg -Imatch_points:/home/rovi2/catkin_ws/src/match_points/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p match_points -o /home/rovi2/catkin_ws/src/match_points/cmake-build-debug/devel/share/roseus/ros/match_points/msg
+devel/share/roseus/ros/match_points/srv/stopMatching.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
+devel/share/roseus/ros/match_points/srv/stopMatching.l: ../srv/stopMatching.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/match_points/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from match_points/stopMatching.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/jepod13/catkin_ws/src/match_points/srv/stopMatching.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p match_points -o /home/jepod13/catkin_ws/src/match_points/cmake-build-debug/devel/share/roseus/ros/match_points/srv
+
+devel/share/roseus/ros/match_points/srv/getNextMatchingPoint.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
+devel/share/roseus/ros/match_points/srv/getNextMatchingPoint.l: ../srv/getNextMatchingPoint.srv
+devel/share/roseus/ros/match_points/srv/getNextMatchingPoint.l: /opt/ros/kinetic/share/geometry_msgs/msg/Quaternion.msg
+devel/share/roseus/ros/match_points/srv/getNextMatchingPoint.l: /opt/ros/kinetic/share/geometry_msgs/msg/PoseStamped.msg
+devel/share/roseus/ros/match_points/srv/getNextMatchingPoint.l: /opt/ros/kinetic/share/geometry_msgs/msg/Pose.msg
+devel/share/roseus/ros/match_points/srv/getNextMatchingPoint.l: /opt/ros/kinetic/share/std_msgs/msg/Header.msg
+devel/share/roseus/ros/match_points/srv/getNextMatchingPoint.l: /opt/ros/kinetic/share/geometry_msgs/msg/Point.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/match_points/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from match_points/getNextMatchingPoint.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/jepod13/catkin_ws/src/match_points/srv/getNextMatchingPoint.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p match_points -o /home/jepod13/catkin_ws/src/match_points/cmake-build-debug/devel/share/roseus/ros/match_points/srv
+
+devel/share/roseus/ros/match_points/srv/setDistBetwChosenPoints.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
+devel/share/roseus/ros/match_points/srv/setDistBetwChosenPoints.l: ../srv/setDistBetwChosenPoints.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/match_points/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp code from match_points/setDistBetwChosenPoints.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/jepod13/catkin_ws/src/match_points/srv/setDistBetwChosenPoints.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p match_points -o /home/jepod13/catkin_ws/src/match_points/cmake-build-debug/devel/share/roseus/ros/match_points/srv
 
 devel/share/roseus/ros/match_points/manifest.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/rovi2/catkin_ws/src/match_points/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp manifest code for match_points"
-	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/rovi2/catkin_ws/src/match_points/cmake-build-debug/devel/share/roseus/ros/match_points match_points std_msgs geometry_msgs
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/match_points/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating EusLisp manifest code for match_points"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/jepod13/catkin_ws/src/match_points/cmake-build-debug/devel/share/roseus/ros/match_points match_points std_msgs geometry_msgs
 
 match_points_generate_messages_eus: CMakeFiles/match_points_generate_messages_eus
-match_points_generate_messages_eus: devel/share/roseus/ros/match_points/msg/matched_points.l
+match_points_generate_messages_eus: devel/share/roseus/ros/match_points/srv/stopMatching.l
+match_points_generate_messages_eus: devel/share/roseus/ros/match_points/srv/getNextMatchingPoint.l
+match_points_generate_messages_eus: devel/share/roseus/ros/match_points/srv/setDistBetwChosenPoints.l
 match_points_generate_messages_eus: devel/share/roseus/ros/match_points/manifest.l
 match_points_generate_messages_eus: CMakeFiles/match_points_generate_messages_eus.dir/build.make
 
@@ -88,6 +102,6 @@ CMakeFiles/match_points_generate_messages_eus.dir/clean:
 .PHONY : CMakeFiles/match_points_generate_messages_eus.dir/clean
 
 CMakeFiles/match_points_generate_messages_eus.dir/depend:
-	cd /home/rovi2/catkin_ws/src/match_points/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rovi2/catkin_ws/src/match_points /home/rovi2/catkin_ws/src/match_points /home/rovi2/catkin_ws/src/match_points/cmake-build-debug /home/rovi2/catkin_ws/src/match_points/cmake-build-debug /home/rovi2/catkin_ws/src/match_points/cmake-build-debug/CMakeFiles/match_points_generate_messages_eus.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jepod13/catkin_ws/src/match_points/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jepod13/catkin_ws/src/match_points /home/jepod13/catkin_ws/src/match_points /home/jepod13/catkin_ws/src/match_points/cmake-build-debug /home/jepod13/catkin_ws/src/match_points/cmake-build-debug /home/jepod13/catkin_ws/src/match_points/cmake-build-debug/CMakeFiles/match_points_generate_messages_eus.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/match_points_generate_messages_eus.dir/depend
 

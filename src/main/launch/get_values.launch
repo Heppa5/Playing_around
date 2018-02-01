@@ -11,7 +11,7 @@
   </group>-->
   
   <group if="$(arg set_workcell)">
-    <arg name="workcell_path" default="/home/rovi2/Jesper/UR5/Mini-Picker/Mini-Picker_v2_DHJoints.wc.xml" />
+    <arg name="workcell_path" default="/home/jepod13/Jesper/UR5/Mini-Picker/Mini-Picker_v2_DHJoints.wc.xml" />
     <param name="/caros/workcell" value="$(arg workcell_path)" />
   </group>
 

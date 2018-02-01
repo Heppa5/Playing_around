@@ -85,8 +85,9 @@ public:
 //         filtering_constant=3.14/6.0;
         filtering_constant=3.14/4.0;
         
-        Mat rvec_marker2,rvec_marker3;
-        
+//         Mat rvec_marker2,rvec_marker3;
+        rvec_marker2.create(3,1,CV_64F);
+        rvec_marker3.create(3,1,CV_64F);
         
     }
 
@@ -130,7 +131,7 @@ public:
         aruco::detectMarkers(image, mark_dict, markerCorners, markerIds);
         aruco::drawDetectedMarkers(image, markerCorners, markerIds);
         
-        Mat rvec, tvec;
+        Mat rvec(3,1,CV_64F), tvec;
         vector<Mat> rvecs,tvecs;
         
         
@@ -146,7 +147,8 @@ public:
                 {
                     if(rvec_marker2.rows==3) // initialized or not
                     {
-                        if(norm(rvec_marker2-rvec)<filtering_constant)
+                        Mat rot_dif=rvec_marker2-rvec;
+                        if(norm(rot_dif)<filtering_constant)
                         {
 //                             aruco::drawAxis(image, camera_matrix, distortion_mat, rvec, tvec,marker2_size * 0.5f);               
                             aruco::drawAxis(image, camera_matrix, empty_mat, rvec, tvec,marker2_size * 0.5f);
@@ -195,7 +197,8 @@ public:
                 {
                     if(rvec_marker3.rows==3) // initialized or not
                     {
-                        if(norm(rvec_marker3-rvec)<filtering_constant)
+                        Mat rot_dif=rvec_marker3-rvec;
+                        if(norm(rot_dif)<filtering_constant)
                         {
 //                             aruco::drawAxis(image, camera_matrix, distortion_mat, rvec, tvec,marker3_size * 0.5f);
                             aruco::drawAxis(image, camera_matrix, empty_mat, rvec, tvec,marker3_size * 0.5f);
@@ -248,15 +251,33 @@ public:
     
     Mat select_rotation(vector<Mat>* data)
     {
+//         cout << "################################# \n SELECT ROTATION" << endl;
         double lowest_error=9999999;
         int index=0;
         
         double current_error=0;
+        Mat ith(3,1,CV_64F);
+        Mat jth(3,1,CV_64F);
+        
         for(int i=0 ; i < data->size() ; i++)
         {
             for(int j=0 ; j < data->size() ; j++)
             {
-                current_error=current_error+norm(data->at(j)-data->at(i));
+                ith.at<double>(0,0)=data->at(i).at<double>(0,0);
+                ith.at<double>(1,0)=data->at(i).at<double>(1,0);
+                ith.at<double>(2,0)=data->at(i).at<double>(2,0);
+                
+                jth.at<double>(0,0)=data->at(j).at<double>(0,0);
+                jth.at<double>(1,0)=data->at(j).at<double>(1,0);
+                jth.at<double>(2,0)=data->at(j).at<double>(2,0);
+//                 cout << ith << endl;
+//                 cout << jth << endl;
+//                 cout <<"Error being calculated" << endl;
+//                 Mat error=data->at(j)-data->at(i);
+                Mat error=jth-ith;
+//                 cout <<"Error calculated" << endl;
+                current_error=current_error+norm(error);
+//                 cout <<"_currentError calculated" << endl;
             }
             if(current_error<lowest_error)
             {

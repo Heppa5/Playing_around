@@ -1,2 +1,2 @@
-set(match_points_MESSAGE_FILES "/home/rovi2/catkin_ws/src/match_points/msg/matched_points.msg")
-set(match_points_SERVICE_FILES "")
+set(match_points_MESSAGE_FILES "")
+set(match_points_SERVICE_FILES "/home/jepod13/catkin_ws/src/match_points/srv/getNextMatchingPoint.srv;/home/jepod13/catkin_ws/src/match_points/srv/setDistBetwChosenPoints.srv;/home/jepod13/catkin_ws/src/match_points/srv/stopMatching.srv")

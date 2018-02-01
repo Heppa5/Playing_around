@@ -2,72 +2,78 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="match_points" targetName="gtest" />
-      <config projectName="match_points" targetName="clean_test_results" />
-      <config projectName="match_points" targetName="roscpp_generate_messages_eus" />
-      <config projectName="match_points" targetName="std_msgs_generate_messages_cpp" />
-      <config projectName="match_points" targetName="sensor_msgs_generate_messages_nodejs" />
-      <config projectName="match_points" targetName="match_points_generate_messages" />
-      <config projectName="match_points" targetName="match_points_generate_messages_eus" />
-      <config projectName="match_points" targetName="tests" />
-      <config projectName="match_points" targetName="tf_generate_messages_cpp" />
-      <config projectName="match_points" targetName="tf2_msgs_generate_messages_cpp" />
-      <config projectName="match_points" targetName="gtest_main" />
       <config projectName="match_points" targetName="roscpp_generate_messages_lisp" />
-      <config projectName="match_points" targetName="tf_generate_messages_lisp" />
-      <config projectName="match_points" targetName="match_points_genlisp" />
-      <config projectName="match_points" targetName="geometry_msgs_generate_messages_lisp" />
-      <config projectName="match_points" targetName="actionlib_msgs_generate_messages_eus" />
-      <config projectName="match_points" targetName="geometry_msgs_generate_messages_eus" />
-      <config projectName="match_points" targetName="actionlib_generate_messages_eus" />
-      <config projectName="match_points" targetName="tf_generate_messages_nodejs" />
       <config projectName="match_points" targetName="tf2_msgs_generate_messages_nodejs" />
-      <config projectName="match_points" targetName="match_points_genpy" />
-      <config projectName="match_points" targetName="match_points_node" />
-      <config projectName="match_points" targetName="roscpp_generate_messages_cpp" />
-      <config projectName="match_points" targetName="tf_generate_messages_py" />
-      <config projectName="match_points" targetName="rosgraph_msgs_generate_messages_cpp" />
-      <config projectName="match_points" targetName="match_points_generate_messages_cpp" />
-      <config projectName="match_points" targetName="sensor_msgs_generate_messages_eus" />
-      <config projectName="match_points" targetName="geometry_msgs_generate_messages_nodejs" />
-      <config projectName="match_points" targetName="download_extra_data" />
-      <config projectName="match_points" targetName="geometry_msgs_generate_messages_py" />
-      <config projectName="match_points" targetName="match_points_gencpp" />
-      <config projectName="match_points" targetName="actionlib_generate_messages_lisp" />
-      <config projectName="match_points" targetName="std_msgs_generate_messages_lisp" />
-      <config projectName="match_points" targetName="match_points_generate_messages_py" />
-      <config projectName="match_points" targetName="_match_points_generate_messages_check_deps_matched_points" />
-      <config projectName="match_points" targetName="sensor_msgs_generate_messages_py" />
-      <config projectName="match_points" targetName="actionlib_msgs_generate_messages_cpp" />
-      <config projectName="match_points" targetName="actionlib_generate_messages_cpp" />
-      <config projectName="match_points" targetName="rosgraph_msgs_generate_messages_lisp" />
-      <config projectName="match_points" targetName="match_points_generate_messages_lisp" />
-      <config projectName="match_points" targetName="tf2_msgs_generate_messages_py" />
-      <config projectName="match_points" targetName="rosgraph_msgs_generate_messages_eus" />
-      <config projectName="match_points" targetName="sensor_msgs_generate_messages_cpp" />
-      <config projectName="match_points" targetName="doxygen" />
-      <config projectName="match_points" targetName="match_points_geneus" />
-      <config projectName="match_points" targetName="actionlib_msgs_generate_messages_py" />
-      <config projectName="match_points" targetName="roscpp_generate_messages_nodejs" />
-      <config projectName="match_points" targetName="match_points_generate_messages_nodejs" />
-      <config projectName="match_points" targetName="rosgraph_msgs_generate_messages_nodejs" />
-      <config projectName="match_points" targetName="actionlib_generate_messages_py" />
-      <config projectName="match_points" targetName="actionlib_msgs_generate_messages_lisp" />
-      <config projectName="match_points" targetName="match_points" />
-      <config projectName="match_points" targetName="std_msgs_generate_messages_py" />
       <config projectName="match_points" targetName="tf2_msgs_generate_messages_lisp" />
-      <config projectName="match_points" targetName="std_msgs_generate_messages_eus" />
+      <config projectName="match_points" targetName="std_msgs_generate_messages_cpp" />
+      <config projectName="match_points" targetName="_match_points_generate_messages_check_deps_stopMatching" />
       <config projectName="match_points" targetName="actionlib_generate_messages_nodejs" />
-      <config projectName="match_points" targetName="actionlib_msgs_generate_messages_nodejs" />
-      <config projectName="match_points" targetName="run_tests" />
-      <config projectName="match_points" targetName="tf2_msgs_generate_messages_eus" />
       <config projectName="match_points" targetName="tf_generate_messages_eus" />
+      <config projectName="match_points" targetName="match_points_generate_messages_eus" />
+      <config projectName="match_points" targetName="match_points_gencpp" />
+      <config projectName="match_points" targetName="actionlib_generate_messages_eus" />
+      <config projectName="match_points" targetName="clean_test_results" />
+      <config projectName="match_points" targetName="match_points_generate_messages_py" />
+      <config projectName="match_points" targetName="sensor_msgs_generate_messages_lisp" />
+      <config projectName="match_points" targetName="run_tests" />
+      <config projectName="match_points" targetName="match_points_genlisp" />
+      <config projectName="match_points" targetName="tf2_msgs_generate_messages_py" />
+      <config projectName="match_points" targetName="geometry_msgs_generate_messages_cpp" />
+      <config projectName="match_points" targetName="tf2_msgs_generate_messages_cpp" />
+      <config projectName="match_points" targetName="gtest" />
+      <config projectName="match_points" targetName="message_package_generate_messages_py" />
+      <config projectName="match_points" targetName="match_points_generate_messages" />
+      <config projectName="match_points" targetName="tf_generate_messages_nodejs" />
+      <config projectName="match_points" targetName="match_points_geneus" />
+      <config projectName="match_points" targetName="geometry_msgs_generate_messages_lisp" />
+      <config projectName="match_points" targetName="message_package_generate_messages_cpp" />
       <config projectName="match_points" targetName="match_points_gennodejs" />
       <config projectName="match_points" targetName="std_msgs_generate_messages_nodejs" />
-      <config projectName="match_points" targetName="geometry_msgs_generate_messages_cpp" />
-      <config projectName="match_points" targetName="sensor_msgs_generate_messages_lisp" />
+      <config projectName="match_points" targetName="sensor_msgs_generate_messages_cpp" />
+      <config projectName="match_points" targetName="match_points_node" />
+      <config projectName="match_points" targetName="roscpp_generate_messages_eus" />
+      <config projectName="match_points" targetName="geometry_msgs_generate_messages_py" />
+      <config projectName="match_points" targetName="match_points_generate_messages_nodejs" />
+      <config projectName="match_points" targetName="geometry_msgs_generate_messages_eus" />
+      <config projectName="match_points" targetName="tf2_msgs_generate_messages_eus" />
+      <config projectName="match_points" targetName="match_points_generate_messages_lisp" />
+      <config projectName="match_points" targetName="roscpp_generate_messages_cpp" />
+      <config projectName="match_points" targetName="tf_generate_messages_lisp" />
+      <config projectName="match_points" targetName="match_points_genpy" />
+      <config projectName="match_points" targetName="actionlib_generate_messages_lisp" />
+      <config projectName="match_points" targetName="doxygen" />
+      <config projectName="match_points" targetName="message_package_generate_messages_eus" />
+      <config projectName="match_points" targetName="geometry_msgs_generate_messages_nodejs" />
+      <config projectName="match_points" targetName="actionlib_generate_messages_py" />
+      <config projectName="match_points" targetName="sensor_msgs_generate_messages_py" />
+      <config projectName="match_points" targetName="std_msgs_generate_messages_lisp" />
+      <config projectName="match_points" targetName="rosgraph_msgs_generate_messages_cpp" />
+      <config projectName="match_points" targetName="std_msgs_generate_messages_eus" />
       <config projectName="match_points" targetName="rosgraph_msgs_generate_messages_py" />
+      <config projectName="match_points" targetName="actionlib_msgs_generate_messages_cpp" />
+      <config projectName="match_points" targetName="roscpp_generate_messages_nodejs" />
+      <config projectName="match_points" targetName="_match_points_generate_messages_check_deps_getNextMatchingPoint" />
+      <config projectName="match_points" targetName="rosgraph_msgs_generate_messages_nodejs" />
+      <config projectName="match_points" targetName="std_msgs_generate_messages_py" />
       <config projectName="match_points" targetName="roscpp_generate_messages_py" />
+      <config projectName="match_points" targetName="sensor_msgs_generate_messages_eus" />
+      <config projectName="match_points" targetName="tf_generate_messages_py" />
+      <config projectName="match_points" targetName="actionlib_msgs_generate_messages_nodejs" />
+      <config projectName="match_points" targetName="tf_generate_messages_cpp" />
+      <config projectName="match_points" targetName="match_points_generate_messages_cpp" />
+      <config projectName="match_points" targetName="actionlib_msgs_generate_messages_lisp" />
+      <config projectName="match_points" targetName="rosgraph_msgs_generate_messages_eus" />
+      <config projectName="match_points" targetName="rosgraph_msgs_generate_messages_lisp" />
+      <config projectName="match_points" targetName="actionlib_generate_messages_cpp" />
+      <config projectName="match_points" targetName="message_package_generate_messages_nodejs" />
+      <config projectName="match_points" targetName="download_extra_data" />
+      <config projectName="match_points" targetName="actionlib_msgs_generate_messages_py" />
+      <config projectName="match_points" targetName="actionlib_msgs_generate_messages_eus" />
+      <config projectName="match_points" targetName="_match_points_generate_messages_check_deps_setDistBetwChosenPoints" />
+      <config projectName="match_points" targetName="gtest_main" />
+      <config projectName="match_points" targetName="message_package_generate_messages_lisp" />
+      <config projectName="match_points" targetName="tests" />
+      <config projectName="match_points" targetName="sensor_msgs_generate_messages_nodejs" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -76,7 +82,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea6dd7c7-1ecd-48f1-b03b-edcb160aae08" name="Default" comment="" />
+    <list default="true" readonly="true" id="c3d1376f-a94d-4c78-91a9-fb2e61988453" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -87,12 +93,26 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="match_points_node.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/match_points_node.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="72" column="31" lean-forward="true" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
+            <state relative-caret-position="317">
+              <caret line="385" column="8" lean-forward="true" selection-start-line="385" selection-start-column="8" selection-end-line="385" selection-end-column="8" />
+              <folding>
+                <element signature="e#282#302#0" expanded="true" />
+                <element signature="e#1139#1158#0" expanded="true" />
+                <marker date="1516281207960" expanded="true" signature="18062:18075" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -114,10 +134,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="292" />
-    <option name="y" value="24" />
-    <option name="width" value="1400" />
-    <option name="height" value="1028" />
+    <option name="x" value="142" />
+    <option name="y" value="52" />
+    <option name="width" value="1774" />
+    <option name="height" value="992" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -159,8 +179,9 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/CMakeLists.txt" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../testing_transformation_matrix/CMakeLists.txt" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -178,7 +199,13 @@
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
       <envs />
     </configuration>
-    <configuration name="_match_points_generate_messages_check_deps_matched_points" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="match_points" TARGET_NAME="_match_points_generate_messages_check_deps_matched_points" CONFIG_NAME="Debug">
+    <configuration name="_match_points_generate_messages_check_deps_getNextMatchingPoint" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="match_points" TARGET_NAME="_match_points_generate_messages_check_deps_getNextMatchingPoint" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_match_points_generate_messages_check_deps_setDistBetwChosenPoints" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="match_points" TARGET_NAME="_match_points_generate_messages_check_deps_setDistBetwChosenPoints" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_match_points_generate_messages_check_deps_stopMatching" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="match_points" TARGET_NAME="_match_points_generate_messages_check_deps_stopMatching" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="actionlib_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="match_points" TARGET_NAME="actionlib_generate_messages_cpp" CONFIG_NAME="Debug">
@@ -241,9 +268,6 @@
     <configuration name="gtest_main" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="match_points" TARGET_NAME="gtest_main" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="match_points" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="match_points" TARGET_NAME="match_points" CONFIG_NAME="Debug">
-      <envs />
-    </configuration>
     <configuration name="match_points_gencpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="match_points" TARGET_NAME="match_points_gencpp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
@@ -278,6 +302,21 @@
       <envs />
     </configuration>
     <configuration name="match_points_node" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="match_points" TARGET_NAME="match_points_node" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="match_points" RUN_TARGET_NAME="match_points_node">
+      <envs />
+    </configuration>
+    <configuration name="message_package_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="match_points" TARGET_NAME="message_package_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="message_package_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="match_points" TARGET_NAME="message_package_generate_messages_eus" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="message_package_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="match_points" TARGET_NAME="message_package_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="message_package_generate_messages_nodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="match_points" TARGET_NAME="message_package_generate_messages_nodejs" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="message_package_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="match_points" TARGET_NAME="message_package_generate_messages_py" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="roscpp_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="match_points" TARGET_NAME="roscpp_generate_messages_cpp" CONFIG_NAME="Debug">
@@ -376,116 +415,126 @@
     <configuration name="tf_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="match_points" TARGET_NAME="tf_generate_messages_py" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <list size="67">
+    <list size="73">
       <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
-      <item index="1" class="java.lang.String" itemvalue="Application._match_points_generate_messages_check_deps_matched_points" />
-      <item index="2" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_cpp" />
-      <item index="3" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_eus" />
-      <item index="4" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_lisp" />
-      <item index="5" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_nodejs" />
-      <item index="6" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_py" />
-      <item index="7" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_cpp" />
-      <item index="8" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_eus" />
-      <item index="9" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_lisp" />
-      <item index="10" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_nodejs" />
-      <item index="11" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_py" />
-      <item index="12" class="java.lang.String" itemvalue="Application.clean_test_results" />
-      <item index="13" class="java.lang.String" itemvalue="Application.download_extra_data" />
-      <item index="14" class="java.lang.String" itemvalue="Application.doxygen" />
-      <item index="15" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_cpp" />
-      <item index="16" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_eus" />
-      <item index="17" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_lisp" />
-      <item index="18" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_nodejs" />
-      <item index="19" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_py" />
-      <item index="20" class="java.lang.String" itemvalue="Application.match_points" />
-      <item index="21" class="java.lang.String" itemvalue="Application.match_points_gencpp" />
-      <item index="22" class="java.lang.String" itemvalue="Application.match_points_generate_messages" />
-      <item index="23" class="java.lang.String" itemvalue="Application.match_points_generate_messages_cpp" />
-      <item index="24" class="java.lang.String" itemvalue="Application.match_points_generate_messages_eus" />
-      <item index="25" class="java.lang.String" itemvalue="Application.match_points_generate_messages_lisp" />
-      <item index="26" class="java.lang.String" itemvalue="Application.match_points_generate_messages_nodejs" />
-      <item index="27" class="java.lang.String" itemvalue="Application.match_points_generate_messages_py" />
-      <item index="28" class="java.lang.String" itemvalue="Application.match_points_geneus" />
-      <item index="29" class="java.lang.String" itemvalue="Application.match_points_genlisp" />
-      <item index="30" class="java.lang.String" itemvalue="Application.match_points_gennodejs" />
-      <item index="31" class="java.lang.String" itemvalue="Application.match_points_genpy" />
-      <item index="32" class="java.lang.String" itemvalue="Application.match_points_node" />
-      <item index="33" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_cpp" />
-      <item index="34" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_eus" />
-      <item index="35" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_lisp" />
-      <item index="36" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_nodejs" />
-      <item index="37" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_py" />
-      <item index="38" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_cpp" />
-      <item index="39" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_eus" />
-      <item index="40" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_lisp" />
-      <item index="41" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_nodejs" />
-      <item index="42" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_py" />
-      <item index="43" class="java.lang.String" itemvalue="Application.run_tests" />
-      <item index="44" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_cpp" />
-      <item index="45" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_eus" />
-      <item index="46" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_lisp" />
-      <item index="47" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_nodejs" />
-      <item index="48" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_py" />
-      <item index="49" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_cpp" />
-      <item index="50" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_eus" />
-      <item index="51" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_lisp" />
-      <item index="52" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_nodejs" />
-      <item index="53" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_py" />
-      <item index="54" class="java.lang.String" itemvalue="Application.tests" />
-      <item index="55" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_cpp" />
-      <item index="56" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_eus" />
-      <item index="57" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_lisp" />
-      <item index="58" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_nodejs" />
-      <item index="59" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_py" />
-      <item index="60" class="java.lang.String" itemvalue="Application.tf_generate_messages_cpp" />
-      <item index="61" class="java.lang.String" itemvalue="Application.tf_generate_messages_eus" />
-      <item index="62" class="java.lang.String" itemvalue="Application.tf_generate_messages_lisp" />
-      <item index="63" class="java.lang.String" itemvalue="Application.tf_generate_messages_nodejs" />
-      <item index="64" class="java.lang.String" itemvalue="Application.tf_generate_messages_py" />
-      <item index="65" class="java.lang.String" itemvalue="Application.gtest" />
-      <item index="66" class="java.lang.String" itemvalue="Application.gtest_main" />
+      <item index="1" class="java.lang.String" itemvalue="Application._match_points_generate_messages_check_deps_getNextMatchingPoint" />
+      <item index="2" class="java.lang.String" itemvalue="Application._match_points_generate_messages_check_deps_setDistBetwChosenPoints" />
+      <item index="3" class="java.lang.String" itemvalue="Application._match_points_generate_messages_check_deps_stopMatching" />
+      <item index="4" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_cpp" />
+      <item index="5" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_eus" />
+      <item index="6" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_lisp" />
+      <item index="7" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_nodejs" />
+      <item index="8" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_py" />
+      <item index="9" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_cpp" />
+      <item index="10" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_eus" />
+      <item index="11" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_lisp" />
+      <item index="12" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_nodejs" />
+      <item index="13" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_py" />
+      <item index="14" class="java.lang.String" itemvalue="Application.clean_test_results" />
+      <item index="15" class="java.lang.String" itemvalue="Application.download_extra_data" />
+      <item index="16" class="java.lang.String" itemvalue="Application.doxygen" />
+      <item index="17" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_cpp" />
+      <item index="18" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_eus" />
+      <item index="19" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_lisp" />
+      <item index="20" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_nodejs" />
+      <item index="21" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_py" />
+      <item index="22" class="java.lang.String" itemvalue="Application.match_points_gencpp" />
+      <item index="23" class="java.lang.String" itemvalue="Application.match_points_generate_messages" />
+      <item index="24" class="java.lang.String" itemvalue="Application.match_points_generate_messages_cpp" />
+      <item index="25" class="java.lang.String" itemvalue="Application.match_points_generate_messages_eus" />
+      <item index="26" class="java.lang.String" itemvalue="Application.match_points_generate_messages_lisp" />
+      <item index="27" class="java.lang.String" itemvalue="Application.match_points_generate_messages_nodejs" />
+      <item index="28" class="java.lang.String" itemvalue="Application.match_points_generate_messages_py" />
+      <item index="29" class="java.lang.String" itemvalue="Application.match_points_geneus" />
+      <item index="30" class="java.lang.String" itemvalue="Application.match_points_genlisp" />
+      <item index="31" class="java.lang.String" itemvalue="Application.match_points_gennodejs" />
+      <item index="32" class="java.lang.String" itemvalue="Application.match_points_genpy" />
+      <item index="33" class="java.lang.String" itemvalue="Application.match_points_node" />
+      <item index="34" class="java.lang.String" itemvalue="Application.message_package_generate_messages_cpp" />
+      <item index="35" class="java.lang.String" itemvalue="Application.message_package_generate_messages_eus" />
+      <item index="36" class="java.lang.String" itemvalue="Application.message_package_generate_messages_lisp" />
+      <item index="37" class="java.lang.String" itemvalue="Application.message_package_generate_messages_nodejs" />
+      <item index="38" class="java.lang.String" itemvalue="Application.message_package_generate_messages_py" />
+      <item index="39" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_cpp" />
+      <item index="40" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_eus" />
+      <item index="41" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_lisp" />
+      <item index="42" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_nodejs" />
+      <item index="43" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_py" />
+      <item index="44" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_cpp" />
+      <item index="45" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_eus" />
+      <item index="46" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_lisp" />
+      <item index="47" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_nodejs" />
+      <item index="48" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_py" />
+      <item index="49" class="java.lang.String" itemvalue="Application.run_tests" />
+      <item index="50" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_cpp" />
+      <item index="51" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_eus" />
+      <item index="52" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_lisp" />
+      <item index="53" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_nodejs" />
+      <item index="54" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_py" />
+      <item index="55" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_cpp" />
+      <item index="56" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_eus" />
+      <item index="57" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_lisp" />
+      <item index="58" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_nodejs" />
+      <item index="59" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_py" />
+      <item index="60" class="java.lang.String" itemvalue="Application.tests" />
+      <item index="61" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_cpp" />
+      <item index="62" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_eus" />
+      <item index="63" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_lisp" />
+      <item index="64" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_nodejs" />
+      <item index="65" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_py" />
+      <item index="66" class="java.lang.String" itemvalue="Application.tf_generate_messages_cpp" />
+      <item index="67" class="java.lang.String" itemvalue="Application.tf_generate_messages_eus" />
+      <item index="68" class="java.lang.String" itemvalue="Application.tf_generate_messages_lisp" />
+      <item index="69" class="java.lang.String" itemvalue="Application.tf_generate_messages_nodejs" />
+      <item index="70" class="java.lang.String" itemvalue="Application.tf_generate_messages_py" />
+      <item index="71" class="java.lang.String" itemvalue="Application.gtest" />
+      <item index="72" class="java.lang.String" itemvalue="Application.gtest_main" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>$USER_HOME$/.subversion</configuration>
+    <supportedVersion>125</supportedVersion>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ea6dd7c7-1ecd-48f1-b03b-edcb160aae08" name="Default" comment="" />
-      <created>1512649970822</created>
+      <changelist id="c3d1376f-a94d-4c78-91a9-fb2e61988453" name="Default" comment="" />
+      <created>1516190127336</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1512649970822</updated>
-      <workItem from="1512649972027" duration="723000" />
+      <updated>1516190127336</updated>
+      <workItem from="1516190128549" duration="821000" />
+      <workItem from="1516275281335" duration="2893000" />
+      <workItem from="1516278322747" duration="1002000" />
+      <workItem from="1516279340215" duration="1004000" />
+      <workItem from="1516281861995" duration="20000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="723000" />
+    <option name="totallyTimeSpent" value="5740000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="292" y="24" width="1400" height="1028" extended-state="0" />
-    <editor active="true" />
+    <frame x="142" y="52" width="1774" height="992" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24971814" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08220721" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -496,15 +545,107 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/match_points_node.cpp</url>
+          <line>453</line>
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/match_points_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="72" column="31" lean-forward="true" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#282#302#0" expanded="true" />
+            <element signature="e#1139#1158#0" expanded="true" />
+            <marker date="1516281207960" expanded="true" signature="18062:18075" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/match_points_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#282#302#0" expanded="true" />
+            <element signature="e#1139#1158#0" expanded="true" />
+            <marker date="1516281207960" expanded="true" signature="18062:18075" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/match_points_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#282#302#0" expanded="true" />
+            <element signature="e#1139#1158#0" expanded="true" />
+            <marker date="1516281207960" expanded="true" signature="18062:18075" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="20" lean-forward="true" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/match_points_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#282#302#0" expanded="true" />
+            <element signature="e#1139#1158#0" expanded="true" />
+            <marker date="1516281207960" expanded="true" signature="18062:18075" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/match_points_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="385" column="8" lean-forward="true" selection-start-line="385" selection-start-column="8" selection-end-line="385" selection-end-column="8" />
+          <folding>
+            <element signature="e#282#302#0" expanded="true" />
+            <element signature="e#1139#1158#0" expanded="true" />
+            <marker date="1516281207960" expanded="true" signature="18062:18075" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>

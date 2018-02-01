@@ -17,6 +17,19 @@ find_package(catkin REQUIRED COMPONENTS
   tf
 )
 
+find_package(OpenCV REQUIRED)
+
+# If the package has been found, several variables will
+# be set, you can find the full list with descriptions
+# in the OpenCVConfig.cmake file.
+# Print some message showing some of them
+message(STATUS "OpenCV library status:")
+message(STATUS "    version: ${OpenCV_VERSION}")
+message(STATUS "    libraries: ${OpenCV_LIBS}")
+message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
+
+include_directories(${OpenCV_INCLUDE_DIRS})
+
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -150,6 +163,7 @@ add_dependencies(kalman_filter_node1 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catki
 ## Specify libraries to link a library or executable target against
 target_link_libraries(kalman_filter_node1
   ${catkin_LIBRARIES}
+  ${OpenCV_LIBS}
 )
 
 ## Declare a C++ executable
@@ -160,8 +174,10 @@ add_executable(kalman_filter_node2 src/kalman_filter_node2.cpp)
 add_dependencies(kalman_filter_node2 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
+# Specify libraries to link a library or executable target against
 target_link_libraries(kalman_filter_node2
   ${catkin_LIBRARIES}
+  ${OpenCV_LIBS}
 )
 
 

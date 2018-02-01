@@ -1,8 +1,8 @@
-prefix=/home/rovi2/catkin_ws/src/testing_transformation_matrix/cmake-build-debug/devel
+prefix=/home/jepod13/catkin_ws/src/testing_transformation_matrix/cmake-build-debug/devel
 
 Name: testing_transformation_matrix
 Description: Description of testing_transformation_matrix
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/rovi2/catkin_ws/src/testing_transformation_matrix/cmake-build-debug/devel/lib 
+Libs: -L/home/jepod13/catkin_ws/src/testing_transformation_matrix/cmake-build-debug/devel/lib 
 Requires: 

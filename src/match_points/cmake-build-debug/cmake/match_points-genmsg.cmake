@@ -1,8 +1,8 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "match_points: 1 messages, 0 services")
+message(STATUS "match_points: 0 messages, 3 services")
 
-set(MSG_I_FLAGS "-Imatch_points:/home/rovi2/catkin_ws/src/match_points/msg;-Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg")
+set(MSG_I_FLAGS "-Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg")
 
 # Find all generators
 find_package(gencpp REQUIRED)
@@ -17,9 +17,19 @@ add_custom_target(match_points_generate_messages ALL)
 
 
 
-get_filename_component(_filename "/home/rovi2/catkin_ws/src/match_points/msg/matched_points.msg" NAME_WE)
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/stopMatching.srv" NAME_WE)
 add_custom_target(_match_points_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "match_points" "/home/rovi2/catkin_ws/src/match_points/msg/matched_points.msg" "geometry_msgs/Quaternion:geometry_msgs/PoseStamped:geometry_msgs/Pose:std_msgs/Header:geometry_msgs/Point"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "match_points" "/home/jepod13/catkin_ws/src/match_points/srv/stopMatching.srv" ""
+)
+
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/getNextMatchingPoint.srv" NAME_WE)
+add_custom_target(_match_points_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "match_points" "/home/jepod13/catkin_ws/src/match_points/srv/getNextMatchingPoint.srv" "geometry_msgs/Quaternion:geometry_msgs/PoseStamped:geometry_msgs/Pose:std_msgs/Header:geometry_msgs/Point"
+)
+
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/setDistBetwChosenPoints.srv" NAME_WE)
+add_custom_target(_match_points_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "match_points" "/home/jepod13/catkin_ws/src/match_points/srv/setDistBetwChosenPoints.srv" ""
 )
 
 #
@@ -28,14 +38,26 @@ add_custom_target(_match_points_generate_messages_check_deps_${_filename}
 
 ### Section generating for lang: gencpp
 ### Generating Messages
-_generate_msg_cpp(match_points
-  "/home/rovi2/catkin_ws/src/match_points/msg/matched_points.msg"
+
+### Generating Services
+_generate_srv_cpp(match_points
+  "/home/jepod13/catkin_ws/src/match_points/srv/stopMatching.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/match_points
+)
+_generate_srv_cpp(match_points
+  "/home/jepod13/catkin_ws/src/match_points/srv/getNextMatchingPoint.srv"
   "${MSG_I_FLAGS}"
   "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/kinetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Point.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/match_points
 )
-
-### Generating Services
+_generate_srv_cpp(match_points
+  "/home/jepod13/catkin_ws/src/match_points/srv/setDistBetwChosenPoints.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/match_points
+)
 
 ### Generating Module File
 _generate_module_cpp(match_points
@@ -49,7 +71,11 @@ add_custom_target(match_points_generate_messages_cpp
 add_dependencies(match_points_generate_messages match_points_generate_messages_cpp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/rovi2/catkin_ws/src/match_points/msg/matched_points.msg" NAME_WE)
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/stopMatching.srv" NAME_WE)
+add_dependencies(match_points_generate_messages_cpp _match_points_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/getNextMatchingPoint.srv" NAME_WE)
+add_dependencies(match_points_generate_messages_cpp _match_points_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/setDistBetwChosenPoints.srv" NAME_WE)
 add_dependencies(match_points_generate_messages_cpp _match_points_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -61,14 +87,26 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS match_points_generate_messages_cpp)
 
 ### Section generating for lang: geneus
 ### Generating Messages
-_generate_msg_eus(match_points
-  "/home/rovi2/catkin_ws/src/match_points/msg/matched_points.msg"
+
+### Generating Services
+_generate_srv_eus(match_points
+  "/home/jepod13/catkin_ws/src/match_points/srv/stopMatching.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/match_points
+)
+_generate_srv_eus(match_points
+  "/home/jepod13/catkin_ws/src/match_points/srv/getNextMatchingPoint.srv"
   "${MSG_I_FLAGS}"
   "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/kinetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Point.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/match_points
 )
-
-### Generating Services
+_generate_srv_eus(match_points
+  "/home/jepod13/catkin_ws/src/match_points/srv/setDistBetwChosenPoints.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/match_points
+)
 
 ### Generating Module File
 _generate_module_eus(match_points
@@ -82,7 +120,11 @@ add_custom_target(match_points_generate_messages_eus
 add_dependencies(match_points_generate_messages match_points_generate_messages_eus)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/rovi2/catkin_ws/src/match_points/msg/matched_points.msg" NAME_WE)
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/stopMatching.srv" NAME_WE)
+add_dependencies(match_points_generate_messages_eus _match_points_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/getNextMatchingPoint.srv" NAME_WE)
+add_dependencies(match_points_generate_messages_eus _match_points_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/setDistBetwChosenPoints.srv" NAME_WE)
 add_dependencies(match_points_generate_messages_eus _match_points_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -94,14 +136,26 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS match_points_generate_messages_eus)
 
 ### Section generating for lang: genlisp
 ### Generating Messages
-_generate_msg_lisp(match_points
-  "/home/rovi2/catkin_ws/src/match_points/msg/matched_points.msg"
+
+### Generating Services
+_generate_srv_lisp(match_points
+  "/home/jepod13/catkin_ws/src/match_points/srv/stopMatching.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/match_points
+)
+_generate_srv_lisp(match_points
+  "/home/jepod13/catkin_ws/src/match_points/srv/getNextMatchingPoint.srv"
   "${MSG_I_FLAGS}"
   "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/kinetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Point.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/match_points
 )
-
-### Generating Services
+_generate_srv_lisp(match_points
+  "/home/jepod13/catkin_ws/src/match_points/srv/setDistBetwChosenPoints.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/match_points
+)
 
 ### Generating Module File
 _generate_module_lisp(match_points
@@ -115,7 +169,11 @@ add_custom_target(match_points_generate_messages_lisp
 add_dependencies(match_points_generate_messages match_points_generate_messages_lisp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/rovi2/catkin_ws/src/match_points/msg/matched_points.msg" NAME_WE)
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/stopMatching.srv" NAME_WE)
+add_dependencies(match_points_generate_messages_lisp _match_points_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/getNextMatchingPoint.srv" NAME_WE)
+add_dependencies(match_points_generate_messages_lisp _match_points_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/setDistBetwChosenPoints.srv" NAME_WE)
 add_dependencies(match_points_generate_messages_lisp _match_points_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -127,14 +185,26 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS match_points_generate_messages_lisp
 
 ### Section generating for lang: gennodejs
 ### Generating Messages
-_generate_msg_nodejs(match_points
-  "/home/rovi2/catkin_ws/src/match_points/msg/matched_points.msg"
+
+### Generating Services
+_generate_srv_nodejs(match_points
+  "/home/jepod13/catkin_ws/src/match_points/srv/stopMatching.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/match_points
+)
+_generate_srv_nodejs(match_points
+  "/home/jepod13/catkin_ws/src/match_points/srv/getNextMatchingPoint.srv"
   "${MSG_I_FLAGS}"
   "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/kinetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Point.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/match_points
 )
-
-### Generating Services
+_generate_srv_nodejs(match_points
+  "/home/jepod13/catkin_ws/src/match_points/srv/setDistBetwChosenPoints.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/match_points
+)
 
 ### Generating Module File
 _generate_module_nodejs(match_points
@@ -148,7 +218,11 @@ add_custom_target(match_points_generate_messages_nodejs
 add_dependencies(match_points_generate_messages match_points_generate_messages_nodejs)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/rovi2/catkin_ws/src/match_points/msg/matched_points.msg" NAME_WE)
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/stopMatching.srv" NAME_WE)
+add_dependencies(match_points_generate_messages_nodejs _match_points_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/getNextMatchingPoint.srv" NAME_WE)
+add_dependencies(match_points_generate_messages_nodejs _match_points_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/setDistBetwChosenPoints.srv" NAME_WE)
 add_dependencies(match_points_generate_messages_nodejs _match_points_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -160,14 +234,26 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS match_points_generate_messages_node
 
 ### Section generating for lang: genpy
 ### Generating Messages
-_generate_msg_py(match_points
-  "/home/rovi2/catkin_ws/src/match_points/msg/matched_points.msg"
+
+### Generating Services
+_generate_srv_py(match_points
+  "/home/jepod13/catkin_ws/src/match_points/srv/stopMatching.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/match_points
+)
+_generate_srv_py(match_points
+  "/home/jepod13/catkin_ws/src/match_points/srv/getNextMatchingPoint.srv"
   "${MSG_I_FLAGS}"
   "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/kinetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Point.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/match_points
 )
-
-### Generating Services
+_generate_srv_py(match_points
+  "/home/jepod13/catkin_ws/src/match_points/srv/setDistBetwChosenPoints.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/match_points
+)
 
 ### Generating Module File
 _generate_module_py(match_points
@@ -181,7 +267,11 @@ add_custom_target(match_points_generate_messages_py
 add_dependencies(match_points_generate_messages match_points_generate_messages_py)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/rovi2/catkin_ws/src/match_points/msg/matched_points.msg" NAME_WE)
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/stopMatching.srv" NAME_WE)
+add_dependencies(match_points_generate_messages_py _match_points_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/getNextMatchingPoint.srv" NAME_WE)
+add_dependencies(match_points_generate_messages_py _match_points_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/jepod13/catkin_ws/src/match_points/srv/setDistBetwChosenPoints.srv" NAME_WE)
 add_dependencies(match_points_generate_messages_py _match_points_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

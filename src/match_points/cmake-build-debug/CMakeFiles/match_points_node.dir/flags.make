@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=c++11
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_PACKAGE_NAME=\"match_points\"
 
-CXX_INCLUDES = -I/home/rovi2/catkin_ws/src/match_points/cmake-build-debug/devel/include -I/opt/ros/kinetic/include -I/opt/ros/kinetic/include/opencv-3.2.0-dev -I/opt/ros/kinetic/include/opencv-3.2.0-dev/opencv -I/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
+CXX_INCLUDES = -I/home/jepod13/catkin_ws/src/match_points/cmake-build-debug/devel/include -isystem /opt/ros/kinetic/include/opencv-3.3.1 -isystem /opt/ros/kinetic/include/opencv-3.3.1/opencv -I/home/jepod13/catkin_ws/devel/include -I/opt/ros/kinetic/include -I/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
 

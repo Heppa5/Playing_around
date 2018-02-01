@@ -33,8 +33,14 @@ namespace patch
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
 
-#include <match_points/matched_points.h>
+#include <message_package/matched_points.h>
+#include "message_package/currentToolPosition.h"
+#include "match_points/setDistBetwChosenPoints.h"
+#include "match_points/stopMatching.h"
+#include "match_points/getNextMatchingPoint.h"
+// #include "mp_mini_picker/currentToolPosition.h"
 
+// #include "/home/jepod13/catkin_ws/devel/include/mp_mini_picker/currentToolPosition.h"
 
 #include <iostream>
 #include <fstream>
@@ -46,8 +52,11 @@ using namespace cv;
 
 struct matchedPoint {
   geometry_msgs::PoseStamped camera;
-  geometry_msgs::PoseStamped robot;
+//   geometry_msgs::PoseStamped robot;
+  message_package::currentToolPosition robot;
 } ;
+
+class Response;
 
 class MatchPoints
 {
@@ -63,7 +72,7 @@ class MatchPoints
 public:
     MatchPoints()
     {
-        use_cheat=true;
+        use_cheat=false;
         if(use_cheat==true)
         {
             string chosenPoint;
@@ -102,13 +111,13 @@ public:
                                 hej.camera.pose.position.z=number;
                                 break;
                             case 3:
-                                hej.robot.pose.position.x=number;
+                                hej.robot.tcp.pose.position.x=number;
                                 break;
                             case 4:
-                                hej.robot.pose.position.y=number;
+                                hej.robot.tcp.pose.position.y=number;
                                 break;
                             case 5:
-                                hej.robot.pose.position.z=number;
+                                hej.robot.tcp.pose.position.z=number;
                                 break;
                         }
                         current_case++;
@@ -132,13 +141,13 @@ public:
                                 hej.camera.pose.position.z=number;
                                 break;
                             case 3:
-                                hej.robot.pose.position.x=number;
+                                hej.robot.tcp.pose.position.x=number;
                                 break;
                             case 4:
-                                hej.robot.pose.position.y=number;
+                                hej.robot.tcp.pose.position.y=number;
                                 break;
                             case 5:
-                                hej.robot.pose.position.z=number;
+                                hej.robot.tcp.pose.position.z=number;
                                 break;
                         }
                         current_case++;
@@ -156,9 +165,9 @@ public:
                 cout << chosenMatchedPoints[i].camera.pose.position.x << ",";
                 cout << chosenMatchedPoints[i].camera.pose.position.y << ",";
                 cout << chosenMatchedPoints[i].camera.pose.position.z << ",";
-                cout << chosenMatchedPoints[i].robot.pose.position.x << ",";
-                cout << chosenMatchedPoints[i].robot.pose.position.y << ",";
-                cout << chosenMatchedPoints[i].robot.pose.position.z << "\n";
+                cout << chosenMatchedPoints[i].robot.tcp.pose.position.x << ",";
+                cout << chosenMatchedPoints[i].robot.tcp.pose.position.y << ",";
+                cout << chosenMatchedPoints[i].robot.tcp.pose.position.z << "\n";
                 
             }
             
@@ -167,7 +176,7 @@ public:
         
         // Subscrive to input video feed and publish output video feed
         transformation_pub_ = nh_.advertise<geometry_msgs::Transform>("/matched_points/transformation_matrix", 1);
-        matched_points_pub_ = nh_.advertise<match_points::matched_points>("/matched_points/all_matched_points", 1);
+        matched_points_pub_ = nh_.advertise<message_package::matched_points>("/matched_points/chosenMatchedPoints", 1);
         
         robot_sub_ = nh_.subscribe("/robot/moved", 1, &MatchPoints::robot_has_moved,this);
         camera_point_sub_ = nh_.subscribe("/kalman_filter/marker1", 1, &MatchPoints::camera_3D_points,this);
@@ -181,24 +190,82 @@ public:
     
     void camera_3D_points(const geometry_msgs::PoseStamped::ConstPtr msg)
     {
-        camera_points.insert(camera_points.begin(),*msg);
-        if(camera_points.size() > 7) // only one second of data is stored
+        if(do_match_points==true)
         {
-            camera_points.pop_back();
+            camera_points.insert(camera_points.begin(),*msg);
+            if(camera_points.size() > 7) // only one second of data is stored
+            {
+                camera_points.pop_back();
+            }
+            match_points();
         }
-        match_points();
+        else if(temp_match_point==true)
+        {
+            camera_points.insert(camera_points.begin(),*msg);
+            match_a_point_pair();
+        } else
+        {
+            camera_points.clear();
+            chosenMatchedPoints.clear();
+        }
     }
-    
-    void robot_has_moved(const geometry_msgs::PoseStamped::ConstPtr msg)
+
+    void robot_has_moved(const message_package::currentToolPosition::ConstPtr msg)
     {
-        robot_positions.insert(robot_positions.begin(),*msg);
-        if(robot_positions.size() > 7) // only one second of data is stored
+        if(do_match_points==true)
         {
-            robot_positions.pop_back();
+            robot_positions.insert(robot_positions.begin(),*msg);
+            if(robot_positions.size() > 7) // only one second of data is stored
+            {
+                robot_positions.pop_back();
+            }
+            match_points();
         }
-        match_points();
+        else if(temp_match_point==true)
+        {
+            robot_positions.insert(robot_positions.begin(),*msg);
+            match_a_point_pair();
+        } else
+        {
+            robot_positions.clear();
+            chosenMatchedPoints.clear();
+        }
     }
-    
+
+    void match_a_point_pair()
+    {
+        for( int i = 0 ; i < robot_positions.size() ; i++) {
+            for (int j = 0; j < camera_points.size(); j++) {
+                ros::Duration possible_match(0.0714); // 7 Hz * 2 = 14 HZ
+                ros::Time low_bound = camera_points[j].header.stamp - possible_match;
+                ros::Time high_bound = camera_points[j].header.stamp + possible_match;
+                if (robot_positions[i].tcp.header.stamp > low_bound &&
+                    robot_positions[i].tcp.header.stamp < high_bound)
+                {
+                    message_package::matched_points msg;
+                    msg.robot=robot_positions[i].tcp;
+                    msg.wTtcp=robot_positions[i].wTtcp;
+                    msg.camera=camera_points[i];
+
+                    matched_points_pub_.publish(msg);
+                    temp_match_point=false;
+                    cout << msg.camera.pose.position.x << ",";
+                    cout << msg.camera.pose.position.y << ",";
+                    cout << msg.camera.pose.position.z << ",";
+                    cout << msg.robot.pose.position.x << ",";
+                    cout << msg.robot.pose.position.y << ",";
+                    cout << msg.robot.pose.position.z << "\n";
+                    cout << msg.wTtcp.pose.position.x << ",";
+                    cout << msg.wTtcp.pose.position.y << ",";
+                    cout << msg.wTtcp.pose.position.z << ",";
+                    cout << msg.wTtcp.pose.orientation.x << ",";
+                    cout << msg.wTtcp.pose.orientation.y << ",";
+                    cout << msg.wTtcp.pose.orientation.z << "\n";
+                }
+            }
+        }
+    }
+
     void match_points()
     {
 //         ROS_INFO("MATCHING POINTS: Number of robot points: %d  -  Camera points: %d ", robot_positions.size(), camera_points.size());
@@ -209,7 +276,7 @@ public:
                 ros::Duration possible_match(0.0714); // 7 Hz * 2 = 14 HZ
                 ros::Time low_bound = camera_points[j].header.stamp - possible_match;
                 ros::Time high_bound = camera_points[j].header.stamp + possible_match;
-                if(robot_positions[i].header.stamp>low_bound && robot_positions[i].header.stamp<high_bound)
+                if(robot_positions[i].tcp.header.stamp>low_bound && robot_positions[i].tcp.header.stamp<high_bound)
                 {
 //                     cout << camera_points[j].stamp << " ~ " << robot_positions[i].header.stamp << endl;
 //                     cout << robot_positions[i].pose << endl;
@@ -219,11 +286,7 @@ public:
                     current.camera=camera_points[j];
                     current.robot=robot_positions[i];
                     
-                    match_points::matched_points msg;
-                    msg.robot=robot_positions[i];
-                    msg.camera=camera_points[j];
                     
-                    matched_points_pub_.publish(msg);
                     
                     matchedPoints.insert(matchedPoints.begin(),current);
                     
@@ -254,28 +317,44 @@ public:
         // choosing points based on, whether the robot has moved position 
             while(matchedPoints.size()>0)
             {
-//                 ROS_INFO("Hej %f",dist_between_points(matchedPoints[0].robot.pose,chosenMatchedPoints[0].robot.pose));
+//                 ROS_INFO("Hej %f",dist_between_points(matchedPoints[0].robot.tcp.pose,chosenMatchedPoints[0].robot.tcp.pose));
                 int i = matchedPoints.size()-1;
-                if(compare_3D_points(matchedPoints[i].robot.pose,chosenMatchedPoints[0].robot.pose,0.02))
+                if(compare_3D_points(matchedPoints[i].robot.tcp.pose,chosenMatchedPoints[0].robot.tcp.pose,0.02))
                 {
-                    
-                    
-                    float rob_dist=dist_between_points(matchedPoints[i].robot.pose,chosenMatchedPoints[0].robot.pose);
-                    float cam_dist= 
-                    dist_between_points(matchedPoints[i].camera.pose,chosenMatchedPoints[0].camera.pose);
+                    float rob_dist=dist_between_points(matchedPoints[i].robot.tcp.pose,chosenMatchedPoints[0].robot.tcp.pose);
+                    float cam_dist=dist_between_points(matchedPoints[i].camera.pose,chosenMatchedPoints[0].camera.pose);
                     if(abs(cam_dist-rob_dist)/rob_dist < 0.15)
                     {
                         added_points = true;
-                        ROS_INFO("Distance between chosen poinsts:  %f",dist_between_points(matchedPoints[0].robot.pose,chosenMatchedPoints[0].robot.pose));
-//                         cout << chosenMatchedPoints[0].camera.pose.position.x << ",";
-//                         cout << chosenMatchedPoints[0].camera.pose.position.y << ",";
-//                         cout << chosenMatchedPoints[0].camera.pose.position.z << ",";
-//                         cout << chosenMatchedPoints[0].robot.pose.position.x << ",";
-//                         cout << chosenMatchedPoints[0].robot.pose.position.y << ",";
-//                         cout << chosenMatchedPoints[0].robot.pose.position.z << "\n";
-                        
+//                         ROS_INFO("Distance between chosen poinsts:  %f",dist_between_points(matchedPoints[0].robot.tcp.pose,chosenMatchedPoints[0].robot.tcp.pose));
+                        cout << chosenMatchedPoints[0].camera.pose.position.x << ",";
+                        cout << chosenMatchedPoints[0].camera.pose.position.y << ",";
+                        cout << chosenMatchedPoints[0].camera.pose.position.z << ",";
+                        cout << chosenMatchedPoints[0].camera.pose.orientation.x << ",";
+                        cout << chosenMatchedPoints[0].camera.pose.orientation.y << ",";
+                        cout << chosenMatchedPoints[0].camera.pose.orientation.z << "\n";
+                        cout << chosenMatchedPoints[0].robot.tcp.pose.position.x << ",";
+                        cout << chosenMatchedPoints[0].robot.tcp.pose.position.y << ",";
+                        cout << chosenMatchedPoints[0].robot.tcp.pose.position.z << ",";
+                        cout << chosenMatchedPoints[0].robot.tcp.pose.orientation.x << ",";
+                        cout << chosenMatchedPoints[0].robot.tcp.pose.orientation.y << ",";
+                        cout << chosenMatchedPoints[0].robot.tcp.pose.orientation.z << "\n";
+//                         cout << chosenMatchedPoints[0].robot.wTtcp.pose.position.x << ",";
+//                         cout << chosenMatchedPoints[0].robot.wTtcp.pose.position.y << ",";
+//                         cout << chosenMatchedPoints[0].robot.wTtcp.pose.position.z << ",";
+//                         cout << chosenMatchedPoints[0].robot.wTtcp.pose.orientation.x << ",";
+//                         cout << chosenMatchedPoints[0].robot.wTtcp.pose.orientation.y << ",";
+//                         cout << chosenMatchedPoints[0].robot.wTtcp.pose.orientation.z << "\n";
+//                         
                         chosenMatchedPoints.insert(chosenMatchedPoints.begin(),matchedPoints[i]);
                         matchedPoints.erase(matchedPoints.end());
+                        
+                        message_package::matched_points msg;
+                        msg.robot=chosenMatchedPoints[0].robot.tcp;
+                        msg.wTtcp=chosenMatchedPoints[0].robot.wTtcp;
+                        msg.camera=chosenMatchedPoints[0].camera;
+                    
+                        matched_points_pub_.publish(msg);
                     }
                     else
                     {
@@ -292,65 +371,13 @@ public:
                 }
                 else
                 {
-//                     float x=chosenMatchedPoints[0].robot.pose.position.x;
-//                     float y=chosenMatchedPoints[0].robot.pose.position.y;
-//                     float z=chosenMatchedPoints[0].robot.pose.position.z;
-//                     
-//                     float x2=matchedPoints[0].robot.pose.position.x;
-//                     float y2=matchedPoints[0].robot.pose.position.y;
-//                     float z2=matchedPoints[0].robot.pose.position.z;
-//                     
-//                     ROS_INFO("Rej. Dist:  %f and chosen point is: ( %f, %f, %f) \n While compared point is: ( %f, %f, %f) ",dist_between_points(matchedPoints[0].robot.pose,chosenMatchedPoints[0].robot.pose),x,y,z,x2,y2,z2);
                     
                     matchedPoints.erase(matchedPoints.end());
                 }
             }
-        if(added_points && chosenMatchedPoints.size() > 3)
+        if(added_points)
         {
-            
-//             cout << " --------------------  Points used for estimating transformation -------------------" << endl;
-//             for(int i = 0; i<chosenMatchedPoints.size() ; i++)
-//             {
-//                 cout << "PAIR :" << i << endl;
-//                 cout << "Robot: " <<  chosenMatchedPoints[i].robot.pose.position.x << " , " << chosenMatchedPoints[i].robot.pose.position.y << " , " << chosenMatchedPoints[i].robot.pose.position.z << endl;
-//                 cout << "Camera: " <<  chosenMatchedPoints[i].camera.pose.position.x << " , " << chosenMatchedPoints[i].camera.pose.position.y << " , " << chosenMatchedPoints[i].camera.pose.position.z << endl;
-//                 if (i>0) 
-//                 {
-//                     cout << "Dist between last to points - robot: " <<  
-//                     dist_between_points(chosenMatchedPoints[i].robot.pose, chosenMatchedPoints[i-1].robot.pose) << endl;
-//                     cout << "Dist between last to points - camera: " <<  
-//                     dist_between_points(chosenMatchedPoints[i].camera.pose, chosenMatchedPoints[i-1].camera.pose) << endl;
-//                 }
-//                 
-//             }
-//             
-//             
-//             cout << " --------------------  END: Points used for estimating transformation -------------------" << endl;
-            
-            
-            
-            
-//             cout << "########################################" << endl;
-            
-//             for(int i = 0 ; i<chosenMatchedPoints.size() ; i++)
-//             {
-//                 if (i>0) 
-//                 {
-//                     float rob_dist=dist_between_points(chosenMatchedPoints[i].robot.pose, chosenMatchedPoints[i-1].robot.pose);
-//                     float cam_dist= 
-//                     dist_between_points(chosenMatchedPoints[i].camera.pose, chosenMatchedPoints[i-1].camera.pose);
-//                     if(abs(cam_dist-rob_dist)/rob_dist > 0.15)
-//                     {
-//                         chosenMatchedPoints.erase(chosenMatchedPoints.begin()+1);
-//                         cout << "Sorted out " << i << endl;
-//                     }
-//                 }
-//             }
-            
-            if( chosenMatchedPoints.size() > 3)
-            {
-                find_transformation();
-            }
+            chosenMatchedPoints.erase(chosenMatchedPoints.end()-(chosenMatchedPoints.size()-2),chosenMatchedPoints.end());
             
         }
     }
@@ -365,103 +392,7 @@ public:
         return point;
     }
     
-    void find_transformation()
-    {
-        // finding centroids
-        // frame 1 is camera 
-        Mat frame1_sum=Mat::zeros(3,1,CV_32F);
-        Mat frame2_sum=Mat::zeros(3,1,CV_32F);
-        for(int i=0 ; i<chosenMatchedPoints.size(); i++)
-        {
-            Mat cam_point=convert_geomsg_to_mat(chosenMatchedPoints[i].camera);
-            Mat rob_point=convert_geomsg_to_mat(chosenMatchedPoints[i].robot);
-            
-            frame1_sum=frame1_sum+cam_point;
-            frame2_sum=frame2_sum+rob_point;
-        }
-        
-
-        
-        frame1_sum=frame1_sum/((float)chosenMatchedPoints.size());
-        frame2_sum=frame2_sum/((float)chosenMatchedPoints.size());
-
-
-
-        // Using SVD - create H matrix
-        Mat H = Mat::zeros(3,3,CV_32F);
-        for(int i=0 ; i<chosenMatchedPoints.size(); i++)
-        {
-            Mat transposed;
-            transpose(convert_geomsg_to_mat(chosenMatchedPoints[i].robot)-frame2_sum,transposed);
-            H=H+(convert_geomsg_to_mat(chosenMatchedPoints[i].camera)-frame1_sum)*transposed;
-        }
-
-        Mat w,u,vt,v,ut;
-        SVD::compute(H,w,u,vt);
-        transpose(vt,v);
-        transpose(u,ut);
-
-        Mat R_computed=v*ut;
-        
-        if(cv::determinant(R_computed) < 0)
-        {
-//             cout << "----------------------------"  << " Reflection special case " << " ----------------------------" << endl;
-//             cout << "Before "  << R_computed << endl;
-            for(int i=0; i<R_computed.rows ; i++)
-            {
-                R_computed.at<float>(i,2)=R_computed.at<float>(i,2)*(-1);
-            }
-//             cout << "After "  << R_computed << endl;
-//             
-//             cout << "----------------------------"  << " END: Reflection special case " << " ----------------------------" << endl;
-        }
-
-        // getting the translation
-
-        Mat t_computed= -R_computed*frame1_sum+frame2_sum;
-        
-        
-        float euc_translation_dif=norm(t_computed-t_computed_old);
-        
-        //if(euc_dist/norm(t_computed_old) > 0.5 && posted_tranformation==true)
-        if(euc_translation_dif>=euc_translation_dif_old && posted_tranformation==true && false)
-        {
-            cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
-            //cout << euc_dist/norm(t_computed_old) << endl;
-            cout << euc_translation_dif << " , " << euc_translation_dif_old << endl;
-            cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
-            // We normally insert in the front of the vector  -  bad point and it should be deleted. 
-            chosenMatchedPoints.erase(chosenMatchedPoints.begin());
-        }
-        else
-        {
-            euc_translation_dif_old=euc_translation_dif;
-            
-            posted_tranformation = true;
-            t_computed_old=t_computed;
-
-            
-            
-            Mat R_vector;
-            Rodrigues(R_computed,R_vector);
-            
-            geometry_msgs::Transform msg;
-            msg.translation.x=t_computed.at<float>(0,0);
-            msg.translation.y=t_computed.at<float>(1,0);
-            msg.translation.z=t_computed.at<float>(2,0);
-                    
-            msg.rotation.x=R_vector.at<float>(0,0);
-            msg.rotation.y=R_vector.at<float>(1,0);
-            msg.rotation.z=R_vector.at<float>(2,0);
-            
-            transformation_pub_.publish(msg);
-        }
-//         cout <<R_computed <<t_computed << endl;
-        
-
-//         cout << "Difference: " << endl << (R_computed-R) << endl;
-        sendTransformTf(t_computed,R_computed,"world","camera");
-    }
+    
     
     void sendTransformTf(Mat translation, Mat rotation, string to_frame, string from_frame)
     {
@@ -483,8 +414,31 @@ public:
         
         
     }
-    
-    
+    bool stop_matching(match_points::stopMatching::Request  &req,
+                       match_points::stopMatching::Response &res)
+    {
+        do_match_points=!(req.stop);
+        if (req.stop==0)
+            cout << "###################  Started Matching ###################" << endl;
+        else
+            cout << "###################  stopped Matching ###################" << endl;
+        
+        res.done=true;
+    }
+
+    bool distBetwPoints(match_points::setDistBetwChosenPoints::Request &req,
+                        match_points::setDistBetwChosenPoints::Response &res)
+    {
+        dist_accepted_points=req.dist;
+        res.done=true;
+    }
+
+    bool getNextMatchingPoint(match_points::getNextMatchingPoint::Request &req,
+                              match_points::getNextMatchingPoint::Response &res)
+    {
+        temp_match_point=req.getMatchedPoint;
+        res.done=true;
+    }
 private:
     
     bool compare_3D_points(geometry_msgs::Pose new_position, geometry_msgs::Pose old_position, double expected_distance)
@@ -525,18 +479,27 @@ private:
     bool use_cheat,gain_first_element=false;
     
     vector<geometry_msgs::PoseStamped> camera_points;
-    vector<geometry_msgs::PoseStamped> robot_positions;
+//     vector<geometry_msgs::PoseStamped> robot_positions;
+    vector<message_package::currentToolPosition> robot_positions;
     vector<matchedPoint> matchedPoints;
     vector<matchedPoint> chosenMatchedPoints;
     
+    bool do_match_points=false;
+    double dist_accepted_points=0.02;
+    bool temp_match_point=false;
 };
 
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "match_points");
-  MatchPoints ic;
-  ROS_INFO("Starting camera node up");
-  ros::spin();
-  return 0;
+    ros::init(argc, argv, "match_points");
+    ros::NodeHandle n;
+    MatchPoints ic;
+    ROS_INFO("Starting camera node up");
+//    ros::ServiceServer service = n.advertiseService("/robot/GetCurrentQ", &UrTest::get_current_Q, &ur_test);
+    ros::ServiceServer service = n.advertiseService("/match_points/stopMatching", &MatchPoints::stop_matching, &ic);
+    ros::ServiceServer service1 = n.advertiseService("/match_points/getNextMatchedPoint", &MatchPoints::getNextMatchingPoint, &ic);
+    ros::ServiceServer service2 = n.advertiseService("/match_points/distanceBetweenAcceptedPoints", &MatchPoints::distBetwPoints, &ic);
+    ros::spin();
+    return 0;
 }
 

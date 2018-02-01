@@ -30,6 +30,7 @@
 #include <stdexcept>
 
 #include <std_msgs/String.h>
+#include <message_package/currrentToolPosition.h>
 
 
 #include <geometry_msgs/PoseStamped.h>
@@ -47,7 +48,7 @@ class UrTest
             initPathPlannerWithCollisionDetector();
             
             
-            robot_move = nodehandle_.advertise<geometry_msgs::PoseStamped>("/robot/moved", 1);
+            robot_move = nodehandle_.advertise<message_package::currrentToolPosition>("/robot/moved", 1);
             
         }
 
@@ -208,7 +209,9 @@ class UrTest
             
             auto wTb=device_->worldTbase(currentState);
             auto bTw = inverse(wTb);
-            auto tool_frame=workcell_->findFrame("marker_f");
+//             auto tool_frame=workcell_->findFrame("marker_f");
+            auto tool_frame=workcell_->findFrame("UR5.TCP");
+            
             rw::invkin::JacobianIKSolver findQ(device_,tool_frame,currentState);
 
             auto bTtool=(device_->baseTframe(tool_frame,currentState));
@@ -274,7 +277,9 @@ class UrTest
             
 //             auto bTe=device_->baseTend(currentState);
 //             auto tcp_frame=workcell_->findFrame("UR5.Joint5");
-            auto tcp_frame=workcell_->findFrame("marker_f");
+            
+//            auto tcp_frame=workcell_->findFrame("marker_f");
+            auto tcp_frame=workcell_->findFrame("UR5.TCP");
             auto bTe=device_->baseTframe(tcp_frame,currentState);
             auto bMarker= wTb*bTe*rw::math::Vector3D<double>(0,0,0);
             
@@ -283,17 +288,38 @@ class UrTest
 
             auto Rvec_WtoE=rw::math::EAA<double>(R_WtoE);
 //             auto Rvec_WtoE=rw::math::EAA<double>(R_WtoE);
-            
-            
-            geometry_msgs::PoseStamped msg;
-            msg.pose.position.x= bMarker[0];
-            msg.pose.position.y= bMarker[1];
-            msg.pose.position.z= bMarker[2];
-            msg.pose.orientation.x=Rvec_WtoE[0];
-            msg.pose.orientation.y=Rvec_WtoE[1];
-            msg.pose.orientation.z=Rvec_WtoE[2];
-            msg.header.stamp = ros::Time::now();
+
+            // Get Transformation matrix from w to tcp
+            auto wTtcp=wTb*bTe;
+            auto Rvec_wTtcp=rw::math::EAA<double>(wTtcp.R());
+            auto tvec_wTtcp=wTtcp.P();
+
+            message_package::currrentToolPosition msg;
+            msg.wTtcp.pose.position.x= tvec_wTtcp[0];
+            msg.wTtcp.pose.position.y= tvec_wTtcp[1];
+            msg.wTtcp.pose.position.z= tvec_wTtcp[2];
+            msg.wTtcp.pose.orientation.x=Rvec_wTtcp[0];
+            msg.wTtcp.pose.orientation.y=Rvec_wTtcp[1];
+            msg.wTtcp.pose.orientation.z=Rvec_wTtcp[2];
+
+            msg.tcp.pose.position.x= bMarker[0];
+            msg.tcp.pose.position.y= bMarker[1];
+            msg.tcp.pose.position.z= bMarker[2];
+            msg.tcp.pose.orientation.x=Rvec_WtoE[0];
+            msg.tcp.pose.orientation.y=Rvec_WtoE[1];
+            msg.tcp.pose.orientation.z=Rvec_WtoE[2];
+            msg.tcp.header.stamp = ros::Time::now();
+//            geometry_msgs::PoseStamped msg;
+//            msg.pose.position.x= bMarker[0];
+//            msg.pose.position.y= bMarker[1];
+//            msg.pose.position.z= bMarker[2];
+//            msg.pose.orientation.x=Rvec_WtoE[0];
+//            msg.pose.orientation.y=Rvec_WtoE[1];
+//            msg.pose.orientation.z=Rvec_WtoE[2];
+//            msg.header.stamp = ros::Time::now();
             robot_move.publish(msg);
+            
+            
 
         }
     protected:

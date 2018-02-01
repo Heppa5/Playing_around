@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/match_points_generate_messages_cpp"
-  "devel/include/match_points/matched_points.h"
+  "devel/include/match_points/stopMatching.h"
+  "devel/include/match_points/getNextMatchingPoint.h"
+  "devel/include/match_points/setDistBetwChosenPoints.h"
 )
 
 # Per-language clean rules from dependency scanning.

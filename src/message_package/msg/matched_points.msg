@@ -1,0 +1,3 @@
+geometry_msgs/PoseStamped camera
+geometry_msgs/PoseStamped robot
+geometry_msgs/PoseStamped wTtcp

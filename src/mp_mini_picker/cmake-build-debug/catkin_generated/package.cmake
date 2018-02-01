@@ -10,4 +10,7 @@ set(mp_mini_picker_EXEC_DEPENDS "caros_common" "caros_common_msgs" "caros_common
 set(mp_mini_picker_RUN_DEPENDS "caros_common" "caros_common_msgs" "caros_common_robwork" "caros_control" "caros_control_msgs" "geometry_msgs" "roscpp" "std_msgs" "message_runtime")
 set(mp_mini_picker_TEST_DEPENDS )
 set(mp_mini_picker_DOC_DEPENDS )
+set(mp_mini_picker_URL_WEBSITE "")
+set(mp_mini_picker_URL_BUGTRACKER "")
+set(mp_mini_picker_URL_REPOSITORY "")
 set(mp_mini_picker_DEPRECATED "")

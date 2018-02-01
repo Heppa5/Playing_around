@@ -24,25 +24,27 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
 
-#include <match_points/matched_points.h>
+#include <message_package/matched_points.h>
+#include <message_package/currentToolPosition.h>
 #include "mp_mini_picker/moveToPoint.h"
 #include "mp_mini_picker/moveToPose.h"
 #include "mp_mini_picker/moveToQ.h"
 #include "mp_mini_picker/currentQ.h"
 
+#include "match_points/stopMatching.h"
+#include "match_points/getNextMatchingPoint.h"
+#include "match_points/setDistBetwChosenPoints.h"
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 
+#include <helping_functions.h>
+
 using namespace std;
 using namespace cv;
 
 
-// struct matchedPoint {
-//   geometry_msgs::PoseStamped camera;
-//   geometry_msgs::PoseStamped robot;
-// } ;
 
 class TestClass
 {
@@ -67,6 +69,12 @@ class TestClass
 
     ros::ServiceClient serv_get_robotQ_;
 
+    ros::ServiceClient serv_stop_matching_;
+
+    ros::ServiceClient serv_set_distance_betw_matched_points_;
+
+    ros::ServiceClient serv_get_matched_point_;
+
     bool debug=false;
     bool use_incremental_correction;
 public:
@@ -74,10 +82,9 @@ public:
     {
         use_incremental_correction=incremental_correction;
         // Subscribe to different topics
-        transformation_sub_ = nh_.subscribe("/matched_points/transformation_matrix", 1,&TestClass::update_tranformation,this);
-        matched_points_sub_ = nh_.subscribe("/matched_points/all_matched_points", 1, &TestClass::newest_point, this);
+        matched_points_sub_ = nh_.subscribe("/matched_points/chosenMatchedPoints", 1, &TestClass::new_chosen_point, this);
         robot_position_sub_ = nh_.subscribe("/robot/moved", 1, &TestClass::update_robot_position, this);
-        marker2_sub_ = nh_.subscribe("/kalman_filter/marker2",1,&TestClass::update_marker2_position, this);
+//        marker2_sub_ = nh_.subscribe("/kalman_filter/marker2",1,&TestClass::update_marker2_position, this);
         marker1_sub_ = nh_.subscribe("/kalman_filter/marker1",1,&TestClass::update_marker1_position, this);
         
         
@@ -91,23 +98,19 @@ public:
         serv_move_robot_pose_ = nh_.serviceClient<mp_mini_picker::moveToPose>("/robot/MoveToPose");
         serv_move_robotQ_ = nh_.serviceClient<mp_mini_picker::moveToQ>("/robot/MoveToQ");
         serv_get_robotQ_ = nh_.serviceClient<mp_mini_picker::currentQ>("/robot/GetCurrentQ");
+        serv_stop_matching_ = nh_.serviceClient<match_points::stopMatching>("/match_points/stopMatching");
+        serv_get_matched_point_ = nh_.serviceClient<match_points::getNextMatchingPoint>("/match_points/getNextMatchedPoint");
+        serv_set_distance_betw_matched_points_ = nh_.serviceClient<match_points::setDistBetwChosenPoints>("/match_points/distanceBetweenAcceptedPoints");
         
-        
-        // create our transformation matrix as homogenous 
-        trans_mat = Mat::zeros(4,4,CV_32F);
-        trans_mat.at<float>(3,3)=1;
-        
+        // create our transformation matrix as homogenous
+        wTc_estimate = Mat::zeros(4,4,CV_32F);
+        wTc_estimate.at<float>(3,3)=1;
+        tcpTmarker_estimate = Mat::zeros(4,4,CV_32F);
+        tcpTmarker_estimate.at<float>(3,3)=1;
+
         // Set our seed 
         srand(time(NULL));
-        
-        
-// //         Set robot to starting position - old
-//         srv_home.request.Q[0]=-0.227210823689596;
-//         srv_home.request.Q[1]=-1.2569144407855433;
-//         srv_home.request.Q[2]=-1.6682723204242151;
-//         srv_home.request.Q[3]=-1.3121197859393519;
-//         srv_home.request.Q[4]=2.0358359813690186;
-//         srv_home.request.Q[5]=-0.44079381624330694;
+
         
 //         //New home position
         srv_home.request.Q[0]=0.24905504286289215;
@@ -152,35 +155,116 @@ public:
             }
             ros::spinOnce();
         }
-        
-        
-        
-        
-        
-        
+        wTb = Mat::zeros(4,4,CV_32F);
+         wTb = (Mat_<float>(4,4) <<    3.06162e-16, -1.0, 0.0, -0.326,
+                                                  1.0, 3.06162e-16, 0.0,  -0.303,
+                                                  0.0, 0.0, 1.0, 0.642,
+                                                    0.0, 0.0, 0.0, 1.0);
+//        cout << wTb << endl;
     }
 
     ~TestClass()
     {
         //     cv::destroyWindow(OPENCV_WINDOW);
     }
-    
-    void update_marker2_position(const geometry_msgs::PoseStamped::ConstPtr msg)
+
+    void calculate_wTc()
     {
-        marker2_position=*msg;
-        if(got_trans_mat==true)
+        wTc_estimate=find_transformation(wTc_ChosenMatchedPoints);
+        cout << "wTc_estimate \n" << wTc_estimate << endl;
+    }
+    void print_point_pair(message_package::matched_points current)
+    {
+        cout << current.camera.pose.position.x << " , ";
+        cout << current.camera.pose.position.y << " , ";
+        cout << current.camera.pose.position.z << endl;
+        cout << current.robot.pose.position.x << " , ";
+        cout << current.robot.pose.position.y << " , ";
+        cout << current.robot.pose.position.z << endl;
+    }
+
+    void calculate_tcpTmarker()
+    {
+////          cout << "Calculation tcpTmarker" << endl;
+//         vector<message_package::matched_points> tcpTmarker_copy(tcpTmarker_ChosenMatchedPoints);
+////         for(int i=0; i<tcpTmarker_ChosenMatchedPoints.size() ; i++)
+////            tcpTmarker_copy.push_back(tcpTmarker_ChosenMatchedPoints[i]);
+//         cout << tcpTmarker_copy.size() << endl;
+//
+//        cout << tcpTmarker_copy[0].camera << endl;
+//
+//        for(int i=0 ; i<tcpTmarker_copy.size() ; i++)
+//        {
+//            cout << "######################### iteration " << i << " #######" << endl;
+//            Mat cPmarker=convert_geomsg_to_hommat(tcpTmarker_copy[i].camera);
+////            cout << cPmarker << endl;
+//            Mat wPmarker=wTc_estimate*cPmarker;
+////            cout << wPmarker << endl;
+//            tcpTmarker_copy[i].camera.pose.position.x=wPmarker.at<float>(0,0);
+//            tcpTmarker_copy[i].camera.pose.position.y=wPmarker.at<float>(1,0);
+//            tcpTmarker_copy[i].camera.pose.position.z=wPmarker.at<float>(2,0);
+//            print_point_pair(tcpTmarker_copy[i]);
+////            cout << tcpTmarker_copy[i] << endl;
+//        }
+//        cout << tcpTmarker_copy[0].camera << endl;
+//        cout << "Her er jeg" << endl;
+//        tcpTmarker_estimate=find_transformation(tcpTmarker_copy);
+//        cout << "tcpTmarker_estimate \n" << tcpTmarker_estimate << endl;
+
+
+        cout << "Calculation tcpTmarker" << endl;
+        vector<message_package::matched_points> tcpTmarker_copy(tcpTmarker_ChosenMatchedPoints);
+//         for(int i=0; i<tcpTmarker_ChosenMatchedPoints.size() ; i++)
+//            tcpTmarker_copy.push_back(tcpTmarker_ChosenMatchedPoints[i]);
+        cout << tcpTmarker_copy.size() << endl;
+
+        cout << tcpTmarker_copy[0].camera << endl;
+
+        for(int i=0 ; i<tcpTmarker_copy.size() ; i++)
         {
-//             cout << trans_mat << endl;
-            Mat cP2 = convert_geomsg_to_hommat(marker2_position);
-            Mat wP2=trans_mat*cP2;
-            Mat cR2_vec=(Mat_<float>(3,1) <<    marker2_position.pose.orientation.x, marker2_position.pose.orientation.y, marker2_position.pose.orientation.z);
-            Mat cR2;
-            Rodrigues(cR2_vec,cR2);
-            Mat wR2=R_cam_to_world*cR2;
-//             cout << wP2 << endl;
-//             cout << wR2 << endl;
-            sendTransformTf(wP2,wR2,"world","marker2_camera");
+            cout << "######################### iteration " << i << " #######" << endl;
+            Mat cPmarker=convert_geomsg_to_hommat(tcpTmarker_copy[i].camera);
+//            cout << cPmarker << endl;
+            Mat tcpPmarker=inverse_T(convert_geomsg_to_trans(tcpTmarker_copy[i].wTtcp))*inverse_T(wTb)*wTc_estimate*cPmarker;
+//            cout << wPmarker << endl;
+            tcpTmarker_copy[i].camera.pose.position.x=tcpPmarker.at<float>(0,0);
+            tcpTmarker_copy[i].camera.pose.position.y=tcpPmarker.at<float>(1,0);
+            tcpTmarker_copy[i].camera.pose.position.z=tcpPmarker.at<float>(2,0);
+
+            Mat wPtcp=convert_geomsg_to_hommat(tcpTmarker_copy[i].robot);
+            Mat tcpPtcp=inverse_T(convert_geomsg_to_trans(tcpTmarker_copy[i].wTtcp))*inverse_T(wTb)*wPtcp;
+            tcpTmarker_copy[i].robot.pose.position.x=tcpPtcp.at<float>(0,0);
+            tcpTmarker_copy[i].robot.pose.position.y=tcpPtcp.at<float>(1,0);
+            tcpTmarker_copy[i].robot.pose.position.z=tcpPtcp.at<float>(2,0);
+
+            print_point_pair(tcpTmarker_copy[i]);
+//            cout << tcpTmarker_copy[i] << endl;
         }
+        cout << tcpTmarker_copy[0].camera << endl;
+//        cout << "Her er jeg" << endl;
+        tcpTmarker_estimate=find_transformation(tcpTmarker_copy);
+        cout << "tcpTmarker_estimate \n" << tcpTmarker_estimate << endl;
+
+//         cout << "Før " << endl;
+//         tcpTmarker_estimate=find_transformation(tcpTmarker_copy);
+//         cout << "efter " << endl;
+//         cout << "tcpTmarker_estimate \n" << tcpTmarker_estimate << endl;
+//         vector<message_package::matched_points> wTc_MatchedPoints_copy;
+//         cout << " Done " << endl;
+        
+        
+//        wTc_MatchedPoints_copy=wTc_ChosenMatchedPoints;
+//        // take robot positions and add newly found transformation to them and transform them back to world
+//        Mat markerT
+//        for(int i=0 ; i<wTc_MatchedPoints_copy.size() ; i++)
+//        {
+//            Mat wPtcp=convert_geomsg_to_hommat(wTc_MatchedPoints_copy[i].robot);
+//            Mat wTtcp=convert_geomsg_to_trans(wTc_MatchedPoints_copy[i].wTtcp);
+//            Mat tcpTw=inverse_T(wTtcp);
+//            Mat Ptcp=tcpTw*wPtcp;
+//
+//
+//        }
     }
     
     void update_marker1_position(const geometry_msgs::PoseStamped::ConstPtr msg)
@@ -189,360 +273,110 @@ public:
         Mat cam_marker1 = convert_geomsg_to_mat(marker1_position);
         Mat cam_marker2 = convert_geomsg_to_mat(marker2_position);
         
-        geometry_msgs::PoseStamped dist_msg;
-        dist_msg.header.stamp=ros::Time::now();
-        dist_msg.pose.position.x=norm(cam_marker2-cam_marker1);
-        marker_dist_pub_.publish(dist_msg);
-        
-        if(got_trans_mat==true)
-        {
-//             cout << trans_mat << endl;
-            Mat cP1 = convert_geomsg_to_hommat(marker1_position);
-            Mat wP1=trans_mat*cP1;
-            Mat cR1_vec=(Mat_<float>(3,1) <<    marker1_position.pose.orientation.x, marker1_position.pose.orientation.y, marker1_position.pose.orientation.z);
-            Mat cR1;
-            Rodrigues(cR1_vec,cR1);
-            Mat wR1=R_cam_to_world*cR1;
-//             cout << wP1 << endl;
-//             cout << wR1 << endl;
-            sendTransformTf(wP1,wR1,"world","marker1_camera");
-        }
-        
     }
-    
-    void update_robot_position(const geometry_msgs::PoseStamped::ConstPtr msg)
+
+    void update_robot_position(const message_package::currentToolPosition::ConstPtr msg)
     {
         current_robot_position=*msg;
-        sendTransformTf_PoseStamped(current_robot_position,"world","marker1_robot");
-    }
-    
-    void newest_point(const match_points::matched_points::ConstPtr msg)
-    {
-        Mat cam = convert_geomsg_to_hommat((msg->camera));
-        Mat robot = convert_geomsg_to_hommat((msg->robot));
-        
-        if(got_trans_mat==true)
-        {
-            
-            Mat rob_cam = trans_mat*cam;
-            Mat result = robot-rob_cam;
-            
-            geometry_msgs::PoseStamped msg;
-            
-            msg.pose.position.x=result.at<float>(0,0);
-            msg.pose.position.y=result.at<float>(1,0);
-            msg.pose.position.z=result.at<float>(2,0);
-            
-            difference_pub_.publish(msg);
-            
-        }
-    }
-    
-    void update_tranformation(const geometry_msgs::Transform::ConstPtr msg)
-    {
-        if(debug)
-            cout << "#######robot_position_sub_########Test node updating its transformation matrix #################### " << endl;
-        
-        trans_mat_copy=trans_mat.clone();
-        
-        Mat R;
-        Mat R_vector=Mat::zeros(3,1,CV_32F);
-        
-        R_vector.at<float>(0,0)=msg->rotation.x;
-        R_vector.at<float>(1,0)=msg->rotation.y;
-        R_vector.at<float>(2,0)=msg->rotation.z;
-        
-        Rodrigues(R_vector,R);
-        
-        R_cam_to_world=R;
-        
-        R.copyTo(trans_mat(Rect(0,0,R.cols,R.rows)));
-        trans_mat.at<float>(0,3)=msg->translation.x;
-        trans_mat.at<float>(1,3)=msg->translation.y;
-        trans_mat.at<float>(2,3)=msg->translation.z;
-        
-        //cout << "Transformation_matrix at test node:" << endl << trans_mat << endl;
-        got_trans_mat=true;
-        
-        
-//         Mat correct_estimate = (Mat_<float>(4,1) <<    0.229208,0.368607,0.84233, 1);
-//         Mat cam_marker2 = convert_geomsg_to_hommat(marker2_position);
-//         Mat rob_marker2 = trans_mat*cam_marker2;
-//         
-//         
-//         Mat cam_marker1 = convert_geomsg_to_hommat(marker1_position);
-//         Mat rob_marker1 = trans_mat*cam_marker1;
-        
-
-        if(debug)
-        {
-            cout << "Change in translation compared to last iteration: " << norm(trans_mat.col(3)-trans_mat_copy.col(3)) << " - current transformation matrix is: " << endl << trans_mat << endl;
-        }
-        
-        if(trans_mat_copy.cols == 4 && trans_mat_copy.rows == 4 && trans_mat.cols == 4 && trans_mat.rows == 4 && move_robot_randomly == true && robot_initialized==true)
-        {
-            //ROS_INFO("Have a transformation_matrix");
-            bool significant_difference=false;
-            for(int i = 0 ; i<4 ; i++)
-            {
-                for(int j=0 ; j<4 ; j++)
-                {
-                    double comparison=abs((trans_mat.at<float>(i,j)-trans_mat_copy.at<float>(i,j))/trans_mat_copy.at<float>(i,j));
-                    if(comparison>0.10)
-                    {
-//                         cout << i << "," << j << " : " << trans_mat.at<float>(i,j) << " , " << trans_mat_c)opy.at<float>(i,j) << endl;
-                        significant_difference = true;
-                    }
-                }
-            }
-            if(significant_difference==true)
-            {
-                ROS_INFO("Got rejected due to too large change compared to last iteration");
-            }
-            else
-            {
-                ROS_INFO("Less than 10 percent change for each element compared to last iteration \n ");
-                move_robot_randomly=false;
-                system_initialized=true;
-                                
-                if (serv_move_robotQ_.call(srv_home))
-                {
-                    ROS_INFO("Moving to start position");
-                }
-                
-                ROS_INFO("Waiting for it to move to start position");
-                while(robot_at_home_position()==false)
-                {
-                    // wait
-                    usleep(100000);
-                    ros::spinOnce();
-                }
-                if(!use_incremental_correction)
-                {
-                    move_robot_to_marker2();
-                }
-                else
-                {
-                    move_robot_reduce_error(0.05);
-                }
-
-                
-            }
-            
-            if(debug)
-            {
-                cout << "############### Test node finished updating #################### " << endl;
-            }
-        }
-        
-        
-    }
-
-    
-    void move_robot_to_marker2()
-    {
-        bool use_pose=true;
-        if(use_pose==false)
-        {
-            mp_mini_picker::moveToPoint srv;
-                    
-            Mat marker2_cam = convert_geomsg_to_hommat(marker2_position);
-            Mat rob_marker2_cam = trans_mat*marker2_cam;
-            
-            srv.request.point[0]=(double)(rob_marker2_cam.at<float>(0,0)-0.05);
-            srv.request.point[1]=(double)(rob_marker2_cam.at<float>(1,0)-0.05);
-            srv.request.point[2]=(double)(rob_marker2_cam.at<float>(2,0)+0.1);
-            cout << "Calculated position of Marker 2 in world frame: "  <<srv.request.point[0]  << " , " << srv.request.point[1]  << " , " << srv.request.point[2]  << endl;
-            ROS_INFO("Now moving to marker 2");
-            if (serv_move_robot_point_.call(srv))
-            {
-                ROS_INFO ("Succesful call to robot");
-            }
-            else
-            {
-                ROS_INFO("Houston we got a problem");
-            }
-            
-            desired_robot_position.pose.position.x=srv.request.point[0];
-            desired_robot_position.pose.position.y=srv.request.point[1];
-            desired_robot_position.pose.position.z=srv.request.point[2];
-        }
-        else
-        {
-            mp_mini_picker::moveToPose srv;
-            Mat wTc=trans_mat;
-            Mat wRc=R_cam_to_world;
-            
-            Mat cP2 = convert_geomsg_to_hommat(marker2_position);
-            Mat wP2 = wTc*cP2;
-            
-            wP2.at<float>(0,0)=wP2.at<float>(0,0)-0.05;
-            wP2.at<float>(1,0)=wP2.at<float>(1,0)-0.05;
-            wP2.at<float>(2,0)=wP2.at<float>(2,0)+0.1;
-            
-            srv.request.pose[0]=(double)(wP2.at<float>(0,0));
-            srv.request.pose[1]=(double)(wP2.at<float>(1,0));
-            srv.request.pose[2]=(double)(wP2.at<float>(2,0));
-            
-            Mat cR1_vec=(Mat_<float>(3,1) <<    marker1_position.pose.orientation.x, marker1_position.pose.orientation.y, marker1_position.pose.orientation.z);
-            Mat cR2_vec= (Mat_<float>(3,1) <<    marker2_position.pose.orientation.x, marker2_position.pose.orientation.y, marker2_position.pose.orientation.z);
-            
-            Mat cR1,cR2;
-            Rodrigues(cR1_vec,cR1);
-            Rodrigues(cR2_vec,cR2);
-            
-            Mat wR1=wRc*cR1;
-            Mat wR2=wRc*cR2;
-            
-
-            
-            Mat _1Rw;
-            transpose(wR1,_1Rw);
-            
-            Mat _1R2=_1Rw*wR2;
-            Mat _1R2_vec;
-            Rodrigues(_1R2,_1R2_vec);
-            
-            
-            Mat wRt_vec= (Mat_<float>(3,1) <<    current_robot_position.pose.orientation.x, current_robot_position.pose.orientation.y, current_robot_position.pose.orientation.z);
-            Mat wRt;
-            Rodrigues(wRt_vec,wRt);
-            
-            // tool(t) is the as marker1
-//             Mat _2R1;
-//             transpose(_1R2,_2R1);
-            Mat wR2_tool=wRt*_1R2;
-//             Mat wR2_tool=wRc*cR1*_1R2;
-//             Mat wR2_tool=wRt*_2R1;
-            Mat wR2_vec;
-            Rodrigues(wR2_tool,wR2_vec);
-            
-            srv.request.pose[3]=(double)(wR2_vec.at<float>(0,0));
-            srv.request.pose[4]=(double)(wR2_vec.at<float>(1,0));
-            srv.request.pose[5]=(double)(wR2_vec.at<float>(2,0));
-
-            
-            cout << "1R2: " << _1R2_vec.at<float>(0,0) << " , " << _1R2_vec.at<float>(1,0) << " , " << _1R2_vec.at<float>(2,0) << " \t" << norm(_1R2_vec)*180/M_PI << endl;
-            
-            cout << "Current rotation of robot: " << current_robot_position.pose.orientation.x << " , " << current_robot_position.pose.orientation.y << " , " << current_robot_position.pose.orientation.z << endl;
-            cout << "Current rotation of marker1: " << wR1.at<float>(0,0)<< " , " <<  wR1.at<float>(1,0) << " , " <<  wR1.at<float>(2,0) << endl;
-            
-            
-            cout << "Calculated position of Marker 2 in world frame: "  <<srv.request.pose[0]  << " , " << srv.request.pose[1]  << " , " << srv.request.pose[2]  << endl;
-            cout << "Calculated rotation of tool in world frame: " << srv.request.pose[3]  << " , " << srv.request.pose[4]  << " , " << srv.request.pose[5]  << endl;
-            
-            
-            
-            ROS_INFO("Now moving to marker 2");
-            if (serv_move_robot_pose_.call(srv))
-            {
-                ROS_INFO ("Succesful call to robot");
-            }
-            else
-            {
-                ROS_INFO("Houston we got a problem");
-            }
-            
-            sendTransformTf(wP2,wR2_tool,"world","desired_location");
-//             cout << "WORKED" << endl;
-            
-            desired_robot_position.pose.position.x=srv.request.pose[0];
-            desired_robot_position.pose.position.y=srv.request.pose[1];
-            desired_robot_position.pose.position.z=srv.request.pose[2];
-            desired_robot_position.pose.orientation.x=srv.request.pose[3];
-            desired_robot_position.pose.orientation.y=srv.request.pose[4];
-            desired_robot_position.pose.orientation.z=srv.request.pose[5];
-        }
-    }
-
-
-    void move_robot_reduce_error(double correction)
-    {
-        // First transl
-        mp_mini_picker::moveToPose srv;
-        Mat wTc=trans_mat;
-        Mat wRc=R_cam_to_world;
-
-        Mat cP2 = convert_geomsg_to_hommat(marker2_position);
-        Mat wP2 = wTc*cP2;
-
-        wP2.at<float>(0,0)=wP2.at<float>(0,0)-0.05;
-        wP2.at<float>(1,0)=wP2.at<float>(1,0)-0.05;
-        wP2.at<float>(2,0)=wP2.at<float>(2,0)+0.1;
-
-        Mat cP1 = convert_geomsg_to_hommat(marker1_position);
-        Mat wP1 = wTc*cP1;
-
-        cout << "wP1: " << wP1 << endl;
-        cout << "wP2: " << wP2 << endl;
-
-        Mat T_error=wP2-wP1;
-
-        cout << "T_error: "<< T_error << endl;
-
-        srv.request.pose[0]=(double)(current_robot_position.pose.position.x+T_error.at<float>(0,0)*correction);
-        srv.request.pose[1]=(double)(current_robot_position.pose.position.y+T_error.at<float>(1,0)*correction);
-        srv.request.pose[2]=(double)(current_robot_position.pose.position.z+T_error.at<float>(2,0)*correction);
-        cout << "T_error with correction: " << (T_error.at<float>(0,0)*correction) << " , " << (T_error.at<float>(1,0)*correction) << " , " << (T_error.at<float>(2,0)*correction) << endl;
-        cout << "Requested new position: " << srv.request.pose[0] << " , " << srv.request.pose[1] << " , " << srv.request.pose[2] << endl;
-
-        // Rotation
-        Mat cR1_vec=(Mat_<float>(3,1) <<    marker1_position.pose.orientation.x, marker1_position.pose.orientation.y, marker1_position.pose.orientation.z);
-        Mat cR2_vec= (Mat_<float>(3,1) <<    marker2_position.pose.orientation.x, marker2_position.pose.orientation.y, marker2_position.pose.orientation.z);
-        // Creation rotation matrices from vectors
-        Mat cR1,cR2;
-        Rodrigues(cR1_vec,cR1);
-        Rodrigues(cR2_vec,cR2);
-        cout << "Marker 1 rotation " << cR1_vec << endl;
-        cout << "Marker 2 rotation " << cR2_vec << endl;
-        // Changing to world rotation
-        Mat wR1=wRc*cR1;
-        Mat wR2=wRc*cR2;
-        Mat _1Rw;
-        transpose(wR1,_1Rw);
-        Mat _1R2=_1Rw*wR2;
-        Mat _1R2_vec;
-        Rodrigues(_1R2,_1R2_vec);
-
-        cout << "Total rotational error: " << _1R2_vec << endl;
-        _1R2_vec=_1R2_vec*correction;
-        cout << "Updated rotational error: " << _1R2_vec << endl;
-        Rodrigues(_1R2_vec,_1R2);
-
-
-        // Updating these values based current robot orientaiton
-        Mat wRt_vec= (Mat_<float>(3,1) <<    current_robot_position.pose.orientation.x, current_robot_position.pose.orientation.y, current_robot_position.pose.orientation.z);
-        Mat wRt;
-        Rodrigues(wRt_vec,wRt);
-        Mat wR2_tool=wRt*_1R2;
-        Mat wR2_vec;
-        Rodrigues(wR2_tool,wR2_vec);
-
-        srv.request.pose[3]=(double)(wR2_vec.at<float>(0,0));
-        srv.request.pose[4]=(double)(wR2_vec.at<float>(1,0));
-        srv.request.pose[5]=(double)(wR2_vec.at<float>(2,0));
-
-        ROS_INFO("Now moving to marker 2");
-        if (serv_move_robot_pose_.call(srv))
-        {
-            ROS_INFO ("Succesful call to robot");
-        }
-        else
-        {
-            ROS_INFO("Houston we got a problem");
-        }
-
-        sendTransformTf(wP1+(T_error*correction),wR2_tool,"world","desired_location");
-
-        desired_robot_position.pose.position.x=srv.request.pose[0];
-        desired_robot_position.pose.position.y=srv.request.pose[1];
-        desired_robot_position.pose.position.z=srv.request.pose[2];
-        desired_robot_position.pose.orientation.x=srv.request.pose[3];
-        desired_robot_position.pose.orientation.y=srv.request.pose[4];
-        desired_robot_position.pose.orientation.z=srv.request.pose[5];
+//        sendTransformTf_PoseStamped(current_robot_position.tcp,"world","marker1_robot");
 
     }
     
+    void new_chosen_point(const message_package::matched_points::ConstPtr msg)
+    {
+        if(wTc_ChosenMatchedPoints.size()<dataset_size)
+        {
+            wTc_ChosenMatchedPoints.push_back(*msg);
+            cout << "We have " << wTc_ChosenMatchedPoints.size() << " matched points" << endl;
+        }
+        else if(getNextMatchingPoint)
+        {
+            tcpTmarker_ChosenMatchedPoints.push_back(*msg);
+            cout << "We have reached " << tcpTmarker_ChosenMatchedPoints.size() << " out of "<<wTc_ChosenMatchedPoints.size()<< " matched points" << endl;
+            getNextMatchingPoint=false;
+            gotMatchedPoint=true;
+        }
+
+    }
+    int count=0;
+    bool move_to_next_point_wTc_dataset()
+    {
+        if (count < dataset_size)
+        {
+            Mat cPmarker = convert_geomsg_to_hommat(wTc_ChosenMatchedPoints[count].camera);
+            count++;
+            Mat wPmarker = wTc_estimate * cPmarker;
+            mp_mini_picker::moveToPoint serv;
+            serv.request.point[0] = wPmarker.at<float>(0, 0);
+            serv.request.point[1] = wPmarker.at<float>(1, 0);
+            serv.request.point[2] = wPmarker.at<float>(2, 0);
+            bool done = false;
+            while (done == false) {
+                serv_move_robot_point_.call(serv);
+                if (serv.response.ok == true) {
+                    done = true;
+                }
+            }
+            desired_robot_position.pose.position.x = serv.request.point[0];
+            desired_robot_position.pose.position.y = serv.request.point[1];
+            desired_robot_position.pose.position.z = serv.request.point[2];
+            gotMatchedPoint=false;
+            return true;
+        } else
+            return false;
+
+
+    }
+
+    
+    bool got_matching_point()
+    {
+        return gotMatchedPoint;
+    }
+
+    void get_a_matching_point()
+    {
+        getNextMatchingPoint=true;
+        match_points::getNextMatchingPoint serv;
+        serv.request.getMatchedPoint=true;
+        bool response= false;
+        while(response==false)
+        {
+            serv_get_matched_point_.call(serv);
+            if(serv.response.done==true)
+            {
+                response=true;
+            }
+        }
+        cout << "Asked for Matching Point" << endl;
+
+    }
+
+    void start_matching_points()
+    {
+        match_points::stopMatching srv;
+        srv.request.stop=false;
+        bool got_response=false;
+        while(got_response==false)
+        {
+            serv_stop_matching_.call(srv);
+            if(srv.response.done==true)
+                got_response=true;
+        }
+    }
+    void stop_matching_points()
+    {
+        match_points::stopMatching srv;
+        srv.request.stop=true;
+        bool got_response=false;
+        while(got_response==false)
+        {
+            serv_stop_matching_.call(srv);
+            if(srv.response.done==true)
+                got_response=true;
+        }
+    }
+
     
     bool robot_at_home_position()
     {
@@ -574,40 +408,29 @@ public:
             return false;
     }
     
-    
-    Mat convert_geomsg_to_mat(geometry_msgs::PoseStamped msg)
-    {
-        Mat point=Mat::zeros(3,1,CV_32F);
-        point.at<float>(0,0)=(float)msg.pose.position.x;
-        point.at<float>(1,0)=(float)msg.pose.position.y;
-        point.at<float>(2,0)=(float)msg.pose.position.z;
-        
-        return point;
-    }
-    
-    Mat convert_geomsg_to_hommat(geometry_msgs::PoseStamped msg)
-    {
-        Mat point=Mat::zeros(4,1,CV_32F);
-        point.at<float>(0,0)=(float)msg.pose.position.x;
-        point.at<float>(1,0)=(float)msg.pose.position.y;
-        point.at<float>(2,0)=(float)msg.pose.position.z;
-        point.at<float>(3,0)=1;
-        
-        return point;
-    }
+
     
     bool robot_at_asked_position()
     {
         // compare_3D_points checks if the distance is greater than expected_distance. If yes then return true. Since we want these two variables to be close to eachother, then we invert the result. 
-        if(compare_3D_points(desired_robot_position.pose,current_robot_position.pose,0.005) == true)
+        if(compare_3D_points(desired_robot_position.pose,current_robot_position.tcp.pose,0.005) == true)
             return false;
-        else
+        else {
+//             cout << "Accepted point: " << current_robot_position.tcp.pose.position.x << " , " <<  current_robot_position.tcp.pose.position.y << " , " << current_robot_position.tcp.pose.position.z << endl;
             return true;
+        }
+    }
+    void print_current_robot_position()
+    {
+        cout << "###############################################" << endl;
+        cout << "current robot position: " << current_robot_position.tcp.pose.position.x << " , " <<  current_robot_position.tcp.pose.position.y << " , " << current_robot_position.tcp.pose.position.z << endl;
+        cout << "desired robot position: " << desired_robot_position.pose.position.x << " , " <<  desired_robot_position.pose.position.y << " , " << desired_robot_position.pose.position.z << endl;
+        cout << "###############################################" << endl;
     }
     bool robot_at_asked_pose(double ok_trans_error, double ok_rot_error)
     {
         // poses is inverted compared point-call above.
-        if(compare_3D_poses(desired_robot_position.pose,current_robot_position.pose,ok_trans_error,ok_rot_error))
+        if(compare_3D_poses(desired_robot_position.pose,current_robot_position.tcp.pose,ok_trans_error,ok_rot_error))
             return true;
         else
             return false;
@@ -616,40 +439,32 @@ public:
     long int counter=0;
     void move_robot_random_direction()
     {
-        
-             
         srand(time(&counter));
         counter++;
         if(move_robot_randomly==true)
         {
              
             mp_mini_picker::moveToPoint srv=generate_random_point(6.5);
-            
-            
-        
 //             if (serv_move_robot_point_.call(srv));
             bool got_valid_point=false;
             while(got_valid_point==false)
             {
 //                 cout <<"Jeg laver nyt kald (y)";
                 srv=generate_random_point(6.5);
-                if (serv_move_robot_point_.call(srv))
+                serv_move_robot_point_.call(srv);
+                if(srv.response.ok==1)
                 {
-//                     cout << "Jeg blev accepteret" << endl;
+//                      cout << "Jeg blev accepteret" << endl;
                     got_valid_point=true;
                 }
             }
-            
-//             cout <<" requested point: " << srv.request.point[0] << " , " << srv.request.point[1] << " , " << srv.request.point[2] << " , " << endl;
-//             
-//             cout <<" current position: " << current_robot_position.pose.position.x << " , " << current_robot_position.pose.position.y << " , " << current_robot_position.pose.position.z << " , " << endl;
-            
-            
             desired_robot_position.pose.position.x=srv.request.point[0];
             desired_robot_position.pose.position.y=srv.request.point[1];
             desired_robot_position.pose.position.z=srv.request.point[2];
-//                 cout << "Succesful call" << endl;
-            
+
+//            cout << "New desired is: " << srv.request.point[0] << " , " << srv.request.point[1] << " , " << srv.request.point[2] << endl;
+//             cout << "####################### \n GOT NEW DESIRED" << endl;
+//             print_current_robot_position();
         }
     }
     
@@ -668,17 +483,17 @@ public:
         
         mp_mini_picker::moveToPoint srv;
         if (rand()%2==1)
-            srv.request.point[0]=current_robot_position.pose.position.x+cor_x_dir;
+            srv.request.point[0]=current_robot_position.tcp.pose.position.x+cor_x_dir;
         else
-            srv.request.point[0]=current_robot_position.pose.position.x-cor_x_dir;
+            srv.request.point[0]=current_robot_position.tcp.pose.position.x-cor_x_dir;
         if (rand()%2==1)
-            srv.request.point[1]=current_robot_position.pose.position.y+cor_y_dir;
+            srv.request.point[1]=current_robot_position.tcp.pose.position.y+cor_y_dir;
         else
-            srv.request.point[1]=current_robot_position.pose.position.y-cor_y_dir;
+            srv.request.point[1]=current_robot_position.tcp.pose.position.y-cor_y_dir;
         if (rand()%2==1)
-            srv.request.point[2]=current_robot_position.pose.position.z+cor_z_dir;
+            srv.request.point[2]=current_robot_position.tcp.pose.position.z+cor_z_dir;
         else
-            srv.request.point[2]=current_robot_position.pose.position.z-cor_z_dir;
+            srv.request.point[2]=current_robot_position.tcp.pose.position.z-cor_z_dir;
         
         return srv;
     }
@@ -688,103 +503,34 @@ public:
         return !(move_robot_randomly);
     }
     
-    bool is_system_initialized()
+    bool wtc_dataset_ready()
     {
-        return system_initialized;
+        return (wTc_ChosenMatchedPoints.size()>=dataset_size);
     }
     
 
     
 private:
-    
-    bool compare_3D_points(geometry_msgs::Pose new_position, geometry_msgs::Pose old_position, double expected_distance)
-    {
-        double old_dist=sqrt(pow(old_position.position.x,2)+pow(old_position.position.y,2)+pow(old_position.position.z,2));
-        double new_dist=sqrt(pow(new_position.position.x,2)+pow(new_position.position.y,2)+pow(new_position.position.z,2));
-        
-        if(abs(new_dist-old_dist)>=expected_distance)
-            return true;
-        else 
-            return false;
-    }
-    bool compare_3D_poses(geometry_msgs::Pose new_position, geometry_msgs::Pose old_position, double accepted_distance, double accepted_rotational_error)
-    {
-        // translation error
-        double old_dist=sqrt(pow(old_position.position.x,2)+pow(old_position.position.y,2)+pow(old_position.position.z,2));
-        double new_dist=sqrt(pow(new_position.position.x,2)+pow(new_position.position.y,2)+pow(new_position.position.z,2));
-//        desired_robot_position.pose,current_robot_position.pose
-        // rotational error
-        Mat wRt_vec= (Mat_<float>(3,1) <<    old_position.orientation.x, old_position.orientation.y, old_position.orientation.z);
-        Mat wRd_vec= (Mat_<float>(3,1) <<    new_position.orientation.x, new_position.orientation.y, new_position.orientation.z);
-        Mat wRt, wRd,tRw;
-        Rodrigues(wRd_vec,wRd);
-        Rodrigues(wRt_vec,wRt);
-        transpose(wRt,tRw);
-        Mat tRd=tRw*wRd;
-        Mat tRd_vec;
-        Rodrigues(tRd,tRd_vec);
-        if(abs(new_dist-old_dist)<accepted_distance && norm(tRd_vec)<accepted_rotational_error) {
-            cout << "#################################################" << endl;
-            cout << "Accepted distance error: "<< abs(new_dist-old_dist) << endl;
-            cout << "Accepted rotation error: " << norm(tRd_vec) << endl;
-            cout << "#################################################" << endl;
 
-            return true;
-        }
-        else
-            return false;
-    }
+    bool got_trans_mat=false,robot_initialized=false;
+    
+    bool gotMatchedPoint=false;
+    
+    bool move_robot_randomly=true,getNextMatchingPoint=false;
+    
+    geometry_msgs::PoseStamped desired_robot_position,marker2_position,marker1_position;
+    message_package::currentToolPosition current_robot_position;
 
-    double dist_between_points(geometry_msgs::Pose new_position, geometry_msgs::Pose old_position)
-    {
-        double old_dist=sqrt(pow(old_position.position.x,2)+pow(old_position.position.y,2)+pow(old_position.position.z,2));
-        double new_dist=sqrt(pow(new_position.position.x,2)+pow(new_position.position.y,2)+pow(new_position.position.z,2));
-        return abs(new_dist-old_dist);
-    }
-    bool got_trans_mat=false,robot_initialized=false, system_initialized=false;
-
-    Mat trans_mat,trans_mat_copy,R_cam_to_world;
-    
-    bool move_robot_randomly=true;
-    
-    geometry_msgs::PoseStamped current_robot_position,desired_robot_position,marker2_position,marker1_position;
-    
+    vector<message_package::matched_points> wTc_ChosenMatchedPoints,tcpTmarker_ChosenMatchedPoints;
 
     mp_mini_picker::moveToQ srv_home;
 
-    void sendTransformTf_PoseStamped(geometry_msgs::PoseStamped pose, string to_frame, string from_frame)
-    {
-        Mat Rvec=(Mat_<float>(3,1) << pose.pose.orientation.x,pose.pose.orientation.y,pose.pose.orientation.z);
-        Mat R;
-        Rodrigues(Rvec,R);
+    Mat wTc_estimate,tcpTmarker_estimate;
 
+    int dataset_size = 20;
 
-        tf::Matrix3x3 rot;
-        rot.setValue(R.at<float>(0,0),R.at<float>(0,1),R.at<float>(0,2),
-                     R.at<float>(1,0),R.at<float>(1,1),R.at<float>(1,2),
-                     R.at<float>(2,0),R.at<float>(2,1),R.at<float>(2,2));
-        tf::Vector3 t;
-        t.setValue(pose.pose.position.x,pose.pose.position.y,pose.pose.position.z);
-        tf::Transform wTc(rot,t);
+    Mat wTb;
 
-        tf::StampedTransform msg(wTc,ros::Time::now(),to_frame,from_frame);
-        static tf::TransformBroadcaster br;
-        br.sendTransform(msg);
-    }
-
-    void sendTransformTf(Mat translation, Mat rotation, string to_frame, string from_frame) {
-        tf::Matrix3x3 rot;
-        rot.setValue(rotation.at<float>(0, 0), rotation.at<float>(0, 1), rotation.at<float>(0, 2),
-                     rotation.at<float>(1, 0), rotation.at<float>(1, 1), rotation.at<float>(1, 2),
-                     rotation.at<float>(2, 0), rotation.at<float>(2, 1), rotation.at<float>(2, 2));
-        tf::Vector3 t;
-        t.setValue(translation.at<float>(0, 0), translation.at<float>(1, 0), translation.at<float>(2, 0));
-        tf::Transform wTc(rot, t);
-
-        tf::StampedTransform msg(wTc, ros::Time::now(), to_frame, from_frame);
-        static tf::TransformBroadcaster br;
-        br.sendTransform(msg);
-    }
 };
 
 int main(int argc, char** argv)
@@ -797,39 +543,53 @@ int main(int argc, char** argv)
 
     
     bool first_iteration=true;
-    bool transformation_settled=false;
+    bool wTc_dataset_collected=false,tcpTmarker_dataset_collected=false, wTc_calculated=false;
 
     ros::Time last_publish=ros::Time::now();
     ros::Duration start_sequence(3);
+    ros::Duration debug_sequence(10);
     ros::Duration time_inverval_after_transformation_is_settled(0.5);
     
     ros::Duration time_difference;
-    
+
+    ros::Duration debug_time_difference;
+    ros::Time debug_last_publish;
     while(true)
     {
-        if(ic.is_system_initialized())
-        {
-            transformation_settled=true;
-        }
-        if(first_iteration)
-        {
-            while(!ic.robot_at_home_position())
-            {
+
+        if(first_iteration) {
+            while (!ic.robot_at_home_position()) {
                 // wait
                 usleep(100000);
                 ros::spinOnce();
-//                 cout << "Waiting in main loop" << endl;
             }
-//             cout << "Sleeping" << endl;
+            ic.start_matching_points();
             usleep(1000000); // half a seconds
-//             cout << "Done Sleeping" << endl;
             ic.move_robot_random_direction();
-            first_iteration=false;
+            first_iteration = false;
         }
-        
+
+        if(ic.wtc_dataset_ready()&& wTc_calculated==false)
+        {
+            ic.stop_matching_points();
+            wTc_dataset_collected=true;
+            ic.calculate_wTc();
+            wTc_calculated=true;
+            // ensure random move is done
+            while (!ic.robot_at_asked_position()) {
+                // wait
+                usleep(100000);
+                ros::spinOnce();
+            }
+            // Make move towards first location of list
+            ic.move_to_next_point_wTc_dataset();
+        }
+
+
         ros::Time current_time=ros::Time::now();
         time_difference=current_time-last_publish;
-        if(time_difference>=start_sequence && !transformation_settled)
+        debug_time_difference=current_time-debug_last_publish;
+        if(time_difference>=start_sequence && wTc_dataset_collected==false)
         {
             if(ic.robot_at_asked_position())
             {
@@ -837,26 +597,28 @@ int main(int argc, char** argv)
                 last_publish=ros::Time::now();
             }
         }
-        
-        if(/*time_difference>=time_inverval_after_transformation_is_settled &&*/ transformation_settled)
+        else if(time_difference>=start_sequence && wTc_dataset_collected==true && tcpTmarker_dataset_collected==false)
         {
-            if(use_incremental_correction)
+            if(ic.robot_at_asked_position())
             {
-                if(ic.robot_at_asked_pose(0.005, M_PI / 180))
+                ic.get_a_matching_point();
+                while(ic.got_matching_point()==false)
                 {
-                    ic.move_robot_reduce_error(0.1);
+                    ros::spinOnce();
+                }
+                bool delivered_new_request=ic.move_to_next_point_wTc_dataset();
+                if(delivered_new_request)
+                {
                     last_publish=ros::Time::now();
+                } else{
+                    ic.calculate_tcpTmarker();
+                    tcpTmarker_dataset_collected=true;
                 }
             }
-            else
-            {
-                if(ic.robot_at_asked_position())
-                {
-                    ic.move_robot_to_marker2();
-                    last_publish=ros::Time::now();
-                }
-            }
-
+        }
+        if(tcpTmarker_dataset_collected && wTc_dataset_collected)
+        {
+//            cout << "JEG GEMMER mig i main-loop" << endl;
         }
         
         ros::spinOnce();

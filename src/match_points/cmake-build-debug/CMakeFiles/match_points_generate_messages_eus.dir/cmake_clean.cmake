@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/match_points_generate_messages_eus"
-  "devel/share/roseus/ros/match_points/msg/matched_points.l"
+  "devel/share/roseus/ros/match_points/srv/stopMatching.l"
+  "devel/share/roseus/ros/match_points/srv/getNextMatchingPoint.l"
+  "devel/share/roseus/ros/match_points/srv/setDistBetwChosenPoints.l"
   "devel/share/roseus/ros/match_points/manifest.l"
 )
 

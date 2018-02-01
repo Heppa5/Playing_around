@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/rovi2/catkin_ws/src/match_points/cmake-build-debug/devel/setup.sh
+    local-name: /home/jepod13/catkin_ws/src/match_points/cmake-build-debug/devel/setup.sh
