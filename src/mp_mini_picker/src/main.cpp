@@ -1,8 +1,10 @@
 
 #include "mp_mini_picker/currentQ.h"
 #include "mp_mini_picker/moveToQ.h"
-#include "mp_mini_picker/moveToPoint.h"
-#include "mp_mini_picker/moveToPose.h"
+#include "mp_mini_picker/moveToPointTcp.h"
+#include "mp_mini_picker/moveToPoseTcp.h"
+#include "mp_mini_picker/moveToPointMarker.h"
+#include "mp_mini_picker/moveToPoseMarker.h"
 
 #include <caros/serial_device_si_proxy.h>
 #include <caros/common_robwork.h>
@@ -18,11 +20,13 @@
 
 #include <rw/invkin/JacobianIKSolver.hpp>
 
-
+#include <rw/kinematics/FixedFrame.hpp>
+#include <rw/kinematics/MovableFrame.hpp>
 #include <rw/math/Vector3D.hpp>
 #include <rw/math/EAA.hpp>
 #include <rw/math/Rotation3DVector.hpp>
-
+#include <rw/math/Rotation3D.hpp>
+#include <rw/math/RPY.hpp>
 
 #include <ros/ros.h>
 
@@ -30,8 +34,8 @@
 #include <stdexcept>
 
 #include <std_msgs/String.h>
-#include <message_package/currrentToolPosition.h>
-
+// #include <message_package/currrentToolPosition.h>
+#include <message_package/currentToolPosition2.h>
 
 #include <geometry_msgs/PoseStamped.h>
 
@@ -48,8 +52,8 @@ class UrTest
             initPathPlannerWithCollisionDetector();
             
             
-            robot_move = nodehandle_.advertise<message_package::currrentToolPosition>("/robot/moved", 1);
-            
+//             robot_move = nodehandle_.advertise<message_package::currrentToolPosition>("/robot/moved", 1);
+            robot_move = nodehandle_.advertise<message_package::currentToolPosition2>("/robot/moved", 1);
         }
 
         virtual ~UrTest()
@@ -115,26 +119,175 @@ class UrTest
                 //ROS_INFO("Should have send a move");
 //                 
             }
-            
-
-
-            
         }
+
+    bool move_to_pose_marker(mp_mini_picker::moveToPoseMarker::Request  &req,
+                             mp_mini_picker::moveToPoseMarker::Response &res)
+    {
+        rw::math::Q current_configuration = getCurrentJointConfiguration();
+
+        device_->setQ(current_configuration,currentState);
+
+        auto wTb=device_->worldTbase(currentState);
+        auto bTw = inverse(wTb);
+
+        // Update the transform om "marker_f".
+        rw::kinematics::FixedFrame* marker_frame=(rw::kinematics::FixedFrame*)workcell_->findFrame("marker_f");
+        cout << "First: " << marker_frame->getTransform(currentState) << endl;
+        rw::math::Vector3D<double> tcpPmarker(req.tcpPmarker[0],req.tcpPmarker[1],req.tcpPmarker[2]);
+        rw::math::EAA<double> tcpRvecmarker(req.tcpRmarker[0],req.tcpRmarker[1],req.tcpRmarker[2]);
+        marker_frame->setTransform(rw::math::Transform3D<double>(tcpPmarker,tcpRvecmarker.toRotation3D()));
+        cout << "Second: " << marker_frame->getTransform(currentState) << endl;
+//        rw::kinematics::Frame* tool_frame=(rw::kinematics::Frame*)marker_frame;
+
+
+        rw::invkin::JacobianIKSolver findQ(device_,marker_frame,currentState);
+
+        auto bTtool=(device_->baseTframe(marker_frame,currentState));
+
+
+        rw::math::Vector3D<double> desired_position_world(req.pose[0],req.pose[1],req.pose[2]);
+        auto desired_position_base=bTw*desired_position_world;
+
+//             auto current_rotation=bTtool.R();
+
+        auto desired_rotation_world_vec=rw::math::EAA<double>(req.pose[3],req.pose[4],req.pose[5]);
+        auto desired_rotation_world=desired_rotation_world_vec.toRotation3D();
+        rw::math::RPY<double> test(desired_rotation_world);
+        cout << "Desired rotation in world: " <<test << endl;
+        auto desired_rotation_base=bTw.R()*desired_rotation_world;
+
+        rw::math::Transform3D<double> desired_transform(desired_position_base,desired_rotation_base);
+
+        auto end_configuration = findQ.solve(desired_transform,currentState);
+        rw::trajectory::QPath path;
+
+        if(end_configuration.size() > 0)
+        {
+            res.ok=end_configuration.size();
+
+            bool valid_path = false;
+            ROS_ASSERT(planner_);
+            valid_path = planner_->query(current_configuration, end_configuration[0], path);
+            if (!valid_path)
+            {
+                cout << "Desired position in base frame: " << desired_position_base << endl;
+                cout << "Desired rotation (and current): " << desired_rotation_base << endl;
+                ROS_ERROR_STREAM("Could not find a path from '" << current_configuration << "' to '" << end_configuration[0] << "'.");
+                throw std::runtime_error("No valid path found.");
+
+                res.ok=0;
+            }
+            else
+                res.ok=1;
+
+            for (int i = 0; i<path.size() ; i++)
+            {
+                rw::math::Q p = path[i];
+                bool ret = false;
+                ret = sdsip_.moveServoQ(p);
+
+                if (!ret)
+                {
+                    ROS_ERROR_STREAM("The serial device didn't acknowledge the movePtp command.");
+                }
+            }
+        }
+        else
+        {
+            ROS_INFO("No solution to JacobianIKSolver");
+            res.ok = 0;
+        }
+    }
+
+    bool move_to_point_marker(mp_mini_picker::moveToPointMarker::Request  &req,
+                              mp_mini_picker::moveToPointMarker::Response &res)
+    {
+        rw::math::Q current_configuration = getCurrentJointConfiguration();
+
+
+//             rw::kinematics::State state = workcell_->getDefaultState();
+
+        device_->setQ(current_configuration,currentState);
+
+
+        auto wTb=device_->worldTbase(currentState);
+        auto bTw = inverse(wTb);
+
+        // Update the transform om "marker_f".
+        rw::kinematics::FixedFrame* marker_frame=(rw::kinematics::FixedFrame*)workcell_->findFrame("marker_f");
+        cout << "First: " << marker_frame->getTransform(currentState) << endl;
+        rw::math::Vector3D<double> tcpPmarker(req.tcpPmarker[0],req.tcpPmarker[1],req.tcpPmarker[2]);
+        rw::math::EAA<double> tcpRvecmarker(req.tcpRmarker[0],req.tcpRmarker[1],req.tcpRmarker[2]);
+        marker_frame->setTransform(rw::math::Transform3D<double>(tcpPmarker,tcpRvecmarker.toRotation3D()));
+        cout << "Second: " << marker_frame->getTransform(currentState) << endl;
+
+        rw::invkin::JacobianIKSolver findQ(device_,marker_frame,currentState);
+
+        auto bTtcp=(device_->baseTframe(marker_frame,currentState));
+
+
+        rw::math::Vector3D<double> desired_position(req.point[0],req.point[1],req.point[2]);
+        auto Wdesired_position=bTw*desired_position;
+
+        auto current_rotation=bTtcp.R();
+        rw::math::Transform3D<double> desired_transform(Wdesired_position,current_rotation);
+
+
+
+        auto end_configuration = findQ.solve(desired_transform,currentState);
+
+
+        rw::trajectory::QPath path;
+
+        if(end_configuration.size() > 0)
+        {
+            res.ok=end_configuration.size();
+
+            bool valid_path = false;
+            ROS_ASSERT(planner_);
+            valid_path = planner_->query(current_configuration, end_configuration[0], path);
+            if (!valid_path)
+            {
+                cout << "Desired position in base frame: " << Wdesired_position << endl;
+                cout << "Desired rotation (and current): " << current_rotation << endl;
+                ROS_ERROR_STREAM("Could not find a path from '" << current_configuration << "' to '" << end_configuration[0] << "'.");
+                throw std::runtime_error("No valid path found.");
+
+                res.ok=0;
+            }
+            else
+                res.ok=1;
+
+            for (int i = 0; i<path.size() ; i++)
+            {
+                rw::math::Q p = path[i];
+                bool ret = false;
+                ret = sdsip_.movePtp(p);
+
+                if (!ret)
+                {
+                    ROS_ERROR_STREAM("The serial device didn't acknowledge the movePtp command.");
+                }
+            }
+        }
+        else
+        {
+            ROS_INFO("No solution to JacobianIKSolver");
+            res.ok = 0;
+        }
+    }
         
-        bool move_to_pose(mp_mini_picker::moveToPose::Request  &req,
-                   mp_mini_picker::moveToPose::Response &res)
+        bool move_to_pose_tcp(mp_mini_picker::moveToPoseTcp::Request  &req,
+                   mp_mini_picker::moveToPoseTcp::Response &res)
         {
             rw::math::Q current_configuration = getCurrentJointConfiguration();
-            
-            
-//             rw::kinematics::State state = workcell_->getDefaultState();
-            
+
             device_->setQ(current_configuration,currentState);
-            
-            
+
             auto wTb=device_->worldTbase(currentState);
             auto bTw = inverse(wTb);
-            auto tool_frame=workcell_->findFrame("marker_f");
+            auto tool_frame=workcell_->findFrame("UR5.TCP");
             rw::invkin::JacobianIKSolver findQ(device_,tool_frame,currentState);
 
             auto bTtool=(device_->baseTframe(tool_frame,currentState));
@@ -150,9 +303,7 @@ class UrTest
             auto desired_rotation_base=bTw.R()*desired_rotation_world;
             
             rw::math::Transform3D<double> desired_transform(desired_position_base,desired_rotation_base);
-            
 
-            
             auto end_configuration = findQ.solve(desired_transform,currentState);
             
             
@@ -196,8 +347,8 @@ class UrTest
             }    
         }
         
-        bool move_to_point(mp_mini_picker::moveToPoint::Request  &req,
-                   mp_mini_picker::moveToPoint::Response &res)
+        bool move_to_point_tcp(mp_mini_picker::moveToPointTcp::Request  &req,
+                   mp_mini_picker::moveToPointTcp::Response &res)
         {
             rw::math::Q current_configuration = getCurrentJointConfiguration();
             
@@ -209,7 +360,6 @@ class UrTest
             
             auto wTb=device_->worldTbase(currentState);
             auto bTw = inverse(wTb);
-//             auto tool_frame=workcell_->findFrame("marker_f");
             auto tool_frame=workcell_->findFrame("UR5.TCP");
             
             rw::invkin::JacobianIKSolver findQ(device_,tool_frame,currentState);
@@ -294,7 +444,7 @@ class UrTest
             auto Rvec_wTtcp=rw::math::EAA<double>(wTtcp.R());
             auto tvec_wTtcp=wTtcp.P();
 
-            message_package::currrentToolPosition msg;
+            message_package::currentToolPosition2 msg;
             msg.wTtcp.pose.position.x= tvec_wTtcp[0];
             msg.wTtcp.pose.position.y= tvec_wTtcp[1];
             msg.wTtcp.pose.position.z= tvec_wTtcp[2];
@@ -317,6 +467,14 @@ class UrTest
 //            msg.pose.orientation.y=Rvec_WtoE[1];
 //            msg.pose.orientation.z=Rvec_WtoE[2];
 //            msg.header.stamp = ros::Time::now();
+            
+            
+            for(int i = 0 ; i < 6 ; i++) // 6 joints 
+            {
+                msg.Q[i]=current_configuration[i];
+            }
+//             msg.woopa=10;
+            
             robot_move.publish(msg);
             
             
@@ -406,11 +564,22 @@ int main(int argc, char* argv[])
 
     UrTest ur_test;
     
+    rw::math::RPY<double> wow(M_PI,-M_PI/2.0,0.0);
+    
+    cout << "Correct rotation for marker vs. tool:\n" << wow.toRotation3D() << endl;
+    
+//     cout << rw::math::RPY(rw::math::Rotation3D(0.268154, 0.801153, 0.535021, 0.358975, -0.59846, 0.716228, 0.893997, -0, -0.448074)) << endl;
+
+//    rw::math::Rotation3D<double> hej(-0.73812979,-0.057609037, -0.6721946,0.67215085, -0.14862442, -0.72534406,-0.058118165, -0.98721433, 0.14842606);
+//    rw::math::RPY<double> wow(hej);
+//    cout << wow << endl;
     
     ros::ServiceServer service = n.advertiseService("/robot/GetCurrentQ", &UrTest::get_current_Q, &ur_test);
     ros::ServiceServer service2 = n.advertiseService("/robot/MoveToQ", &UrTest::move_to_Q, &ur_test);
-    ros::ServiceServer service3 = n.advertiseService("/robot/MoveToPoint", &UrTest::move_to_point, &ur_test);
-    ros::ServiceServer service5 = n.advertiseService("/robot/MoveToPose", &UrTest::move_to_pose, &ur_test);
+    ros::ServiceServer service3 = n.advertiseService("/robot/MoveToPointTcp", &UrTest::move_to_point_tcp, &ur_test);
+    ros::ServiceServer service4 = n.advertiseService("/robot/MoveToPoseTcp", &UrTest::move_to_pose_tcp, &ur_test);
+    ros::ServiceServer service5 = n.advertiseService("/robot/MoveToPointMarker", &UrTest::move_to_point_marker, &ur_test);
+    ros::ServiceServer service6 = n.advertiseService("/robot/MoveToPoseMarker", &UrTest::move_to_pose_marker, &ur_test);
     
     ROS_INFO("We are about to spin");
     //ros::spin();

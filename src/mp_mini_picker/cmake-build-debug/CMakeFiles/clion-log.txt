@@ -12,7 +12,7 @@
 -- Using Python nosetests: /usr/bin/nosetests-2.7
 -- catkin 0.7.8
 -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
--- mp_mini_picker: 1 messages, 4 services
+-- mp_mini_picker: 0 messages, 6 services
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug

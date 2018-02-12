@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 2.8)
+add_compile_options(-std=c++11)
+project( est_wRc )
+find_package( OpenCV REQUIRED )
+add_executable( est_wRc ./src/est_wRc.cpp )
+target_link_libraries( est_wRc ${OpenCV_LIBS} )

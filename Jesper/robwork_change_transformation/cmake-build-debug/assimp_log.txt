@@ -1,0 +1,11 @@
+Info,  T0: this is my info call
+Info,  T0: Load /home/jepod13/Jesper/robwork_change_transformation/cmake-build-debug/../Mini-Picker/Geometry/handlingstation.obj
+Debug, T0: Assimp 3.2.0 amd64 gcc debug shared singlethreaded
+Info,  T0: Found a matching importer for this file format
+Info,  T0: Import root directory is '/home/jepod13/Jesper/robwork_change_transformation/cmake-build-debug/../Mini-Picker/Geometry/'
+Info,  T0: Entering post processing pipeline
+Debug, T0: Generate spatially-sorted vertex cache
+Debug, T0: JoinVerticesProcess begin
+Debug, T0: Mesh 0 (acmat_0) | Verts in: 24 out: 24 | ~0%
+Debug, T0: JoinVerticesProcess finished 
+Info,  T0: Leaving post processing pipeline

@@ -1,0 +1,6 @@
+/home/jepod13/clion-2017.3.1/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/jepod13/Jesper/robwork_change_transformation
+-- RobWork root: /home/jepod13/RobWork_root/RobWork/
+-- warning: RobWork was not compiled with type:debug using type:release instead!
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/jepod13/Jesper/robwork_change_transformation/cmake-build-debug

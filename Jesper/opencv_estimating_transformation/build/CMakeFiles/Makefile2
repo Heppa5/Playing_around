@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/rovi2/Jesper/opencv_estimating_transformation
+CMAKE_SOURCE_DIR = /home/jepod13/Jesper/opencv_estimating_transformation
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/rovi2/Jesper/opencv_estimating_transformation/build
+CMAKE_BINARY_DIR = /home/jepod13/Jesper/opencv_estimating_transformation/build
 
 #=============================================================================
 # Target rules for target CMakeFiles/est_trans.dir
@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /home/rovi2/Jesper/opencv_estimating_transformation/build
 CMakeFiles/est_trans.dir/all:
 	$(MAKE) -f CMakeFiles/est_trans.dir/build.make CMakeFiles/est_trans.dir/depend
 	$(MAKE) -f CMakeFiles/est_trans.dir/build.make CMakeFiles/est_trans.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/rovi2/Jesper/opencv_estimating_transformation/build/CMakeFiles --progress-num=1,2 "Built target est_trans"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jepod13/Jesper/opencv_estimating_transformation/build/CMakeFiles --progress-num=1,2 "Built target est_trans"
 .PHONY : CMakeFiles/est_trans.dir/all
 
 # Include target in all.
@@ -76,9 +76,9 @@ all: CMakeFiles/est_trans.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/est_trans.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rovi2/Jesper/opencv_estimating_transformation/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jepod13/Jesper/opencv_estimating_transformation/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/est_trans.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rovi2/Jesper/opencv_estimating_transformation/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jepod13/Jesper/opencv_estimating_transformation/build/CMakeFiles 0
 .PHONY : CMakeFiles/est_trans.dir/rule
 
 # Convenience name for target.

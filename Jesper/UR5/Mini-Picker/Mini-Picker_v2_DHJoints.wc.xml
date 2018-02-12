@@ -79,11 +79,32 @@
      </CollisionModel> -->
 </Frame>
 
-<Frame name="marker_f" refframe="UR5.TCP" type="Movable">
-     <RPY> 180 -90 0 </RPY> <Pos> 0.032 -0.112 0.067 </Pos>
+<Frame name="big_box_f2" refframe="WORLD" type="Movable">
+     <RPY> 0 0 0 </RPY> <Pos> -0.72 -0.04 0 </Pos>
+     <Drawable name="big_box2" refframe="big_box_f2">
+         <Polytope file="big_box" />
+     </Drawable>
+     <!--<CollisionModel name="big_box" refframe="big_box_f">
+         <Polytope file="big_box" />
+     </CollisionModel> -->
+</Frame>
+
+<!-- <Frame name="marker_f" refframe="UR5.TCP" type="Movable"> -->
+<Frame name="marker_f" refframe="UR5.TCP" type="Fixed">
+<!--      <RPY> 180 -90 0 </RPY> <Pos> 0.032 -0.112 0.067 </Pos> -->
+    <RPY> 0 0 0 </RPY> <Pos> 0.0 0.0 0.01 </Pos> 
      <Drawable name="marker" refframe="marker_f">
          <Polytope file="marker" />
      </Drawable>
+</Frame>
+
+<Frame name="cam" refframe="WORLD">
+     <!--<RPY> 0 0 0 </RPY> <Pos> 0.5 0.5 0.8 </Pos>-->
+    <RPY> 137.68 3.33 -81.45 </RPY> <Pos> 0.703 0.992 0.768 </Pos>
+   
+     <!--<Drawable name="cam" refframe="cam">
+         <Polytope file="marker" />
+     </Drawable>-->
 </Frame>
 
 

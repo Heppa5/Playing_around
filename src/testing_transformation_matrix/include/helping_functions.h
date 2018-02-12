@@ -35,6 +35,7 @@
 #include "match_points/stopMatching.h"
 #include "match_points/getNextMatchingPoint.h"
 #include "match_points/setDistBetwChosenPoints.h"
+#include <random>
 
 
 using namespace std;
@@ -144,6 +145,74 @@ Mat find_transformation(vector<message_package::matched_points> &dataMatchedPoin
     return T;
 }
 
+
+Mat find_transformation(vector<Mat> &dataMatchedPoints, Mat tcp_robot)
+{
+    // finding centroids
+    // frame 1 is camera
+    Mat frame1_sum=Mat::zeros(3,1,CV_32F);
+    Mat frame2_sum=Mat::zeros(3,1,CV_32F);
+    for(int i=0 ; i<dataMatchedPoints.size(); i++)
+    {
+        Mat cam_point=dataMatchedPoints[i];
+        Mat rob_point=tcp_robot;
+
+        frame1_sum=frame1_sum+cam_point;
+        frame2_sum=frame2_sum+rob_point;
+    }
+
+    frame1_sum=frame1_sum/((float)dataMatchedPoints.size());
+    frame2_sum=frame2_sum/((float)dataMatchedPoints.size());
+
+    // Using SVD - create H matrix
+    Mat H = Mat::zeros(3,3,CV_32F);
+    for(int i=0 ; i<dataMatchedPoints.size(); i++)
+    {
+        Mat transposed;
+        transpose(tcp_robot-frame2_sum,transposed);
+        H=H+(dataMatchedPoints[i]-frame1_sum)*transposed;
+    }
+
+    Mat w,u,vt,v,ut;
+    SVD::compute(H,w,u,vt);
+    transpose(vt,v);
+    transpose(u,ut);
+
+    Mat R_computed=v*ut;
+
+    if(cv::determinant(R_computed) < 0)
+    {
+//             cout << "----------------------------"  << " Reflection special case " << " ----------------------------" << endl;
+//             cout << "Before "  << R_computed << endl;
+        for(int i=0; i<R_computed.rows ; i++)
+        {
+            R_computed.at<float>(i,2)=R_computed.at<float>(i,2)*(-1);
+        }
+//             cout << "After "  << R_computed << endl;
+//
+//             cout << "----------------------------"  << " END: Reflection special case " << " ----------------------------" << endl;
+    }
+
+    // getting the translation
+
+    Mat t_computed= -R_computed*frame1_sum+frame2_sum;
+
+    cout <<R_computed << endl;
+    cout << t_computed << endl;
+
+    Mat T = Mat::zeros(4,4,CV_32F);
+    T.at<float>(3,3)=1;
+
+    R_computed.copyTo(T(Rect(0,0,R_computed.cols,R_computed.rows)));
+
+    T.at<float>(0,3)=t_computed.at<float>(0,0);
+    T.at<float>(1,3)=t_computed.at<float>(1,0);
+    T.at<float>(2,3)=t_computed.at<float>(2,0);
+    cout << T << endl;
+    return T;
+}
+
+
 bool compare_3D_points(geometry_msgs::Pose new_position, geometry_msgs::Pose old_position, double expected_distance)
 {
     double old_dist=sqrt(pow(old_position.position.x,2)+pow(old_position.position.y,2)+pow(old_position.position.z,2));
@@ -171,15 +240,32 @@ bool compare_3D_poses(geometry_msgs::Pose new_position, geometry_msgs::Pose old_
     Mat tRd_vec;
     Rodrigues(tRd,tRd_vec);
     if(abs(new_dist-old_dist)<accepted_distance && norm(tRd_vec)<accepted_rotational_error) {
-        cout << "#################################################" << endl;
-        cout << "Accepted distance error: "<< abs(new_dist-old_dist) << endl;
-        cout << "Accepted rotation error: " << norm(tRd_vec) << endl;
-        cout << "#################################################" << endl;
+//        cout << "#################################################" << endl;
+//        cout << "Accepted distance error: "<< abs(new_dist-old_dist) << endl;
+//        cout << "Accepted rotation error: " << norm(tRd_vec) << endl;
+//        cout << "#################################################" << endl;
 
         return true;
     }
     else
         return false;
+}
+
+double dot_product(Mat vec1, Mat vec2)
+{
+    if(vec1.rows==vec2.rows && vec1.cols == vec2.cols && vec1.cols==1)
+    {
+        double result=0;
+        for(int i=0; i<vec1.rows ; i++)
+        {
+            result=result+vec1.at<double>(i,0)*vec2.at<double>(i,0);
+        }
+        return result;
+    }
+    else
+    {
+        cout << "Weird dimensions of your vectors" << endl;
+    }
 }
 
 double dist_between_points(geometry_msgs::Pose new_position, geometry_msgs::Pose old_position)
@@ -210,6 +296,28 @@ Mat convert_geomsg_to_trans(geometry_msgs::PoseStamped T)
     return transformation;
 }
 
+Mat convert_geomsg_to_R(geometry_msgs::PoseStamped R)
+{
+    Mat R_vec;
+    R_vec= Mat::zeros(3,1,CV_32F);
+    R_vec.at<float>(0,0)=R.pose.orientation.x;
+    R_vec.at<float>(1,0)=R.pose.orientation.y;
+    R_vec.at<float>(2,0)=R.pose.orientation.z;
+    Mat R_result;
+    Rodrigues(R_vec,R_result);
+    return R_result;
+}
+
+Mat convert_geomsg_to_Rvec(geometry_msgs::PoseStamped R)
+{
+    Mat R_vec;
+    R_vec= Mat::zeros(3,1,CV_32F);
+    R_vec.at<float>(0,0)=R.pose.orientation.x;
+    R_vec.at<float>(1,0)=R.pose.orientation.y;
+    R_vec.at<float>(2,0)=R.pose.orientation.z;
+    return R_vec;
+}
+
 Mat calc_transformation_of_point(geometry_msgs::PoseStamped T, geometry_msgs::PoseStamped point)
 {
     Mat Point_transformed=convert_geomsg_to_trans(T)*convert_geomsg_to_hommat(point);
@@ -235,5 +343,131 @@ Mat inverse_T(Mat T)
 //    cout << T_inverse << endl;
     return T_inverse;
 }
+
+Mat generate_random_vector(double length,double mean=0.0, double std_dev=10.0)
+{
+//    std::default_random_engine generator;
+    std::random_device generator;
+    std::normal_distribution<double> distribution(mean,std_dev); // mean, std. dev
+
+    double x=distribution(generator);
+    double y=distribution(generator);
+    double z=distribution(generator);
+    double factor=sqrt(pow(x,2)+pow(y,2)+pow(z,2));
+    Mat result=Mat::zeros(3,1,CV_64F);
+    result.at<double>(0,0)=x/factor*length;
+    result.at<double>(1,0)=y/factor*length;
+    result.at<double>(2,0)=z/factor*length;
+
+    return result;
+}
+
+double get_sum(vector<Mat> data, string variable1="0", string variable2="0", string variable3="0") {
+    double sum = 0;
+    for (Mat data_point : data) {
+        if (variable1 == "x" && variable2 == "0" && variable3 == "0") {
+            sum = sum + data_point.at<double>(0, 0);
+        } else if (variable1 == "y" && variable2 == "0" && variable3 == "0") {
+            sum = sum + data_point.at<double>(1, 0);
+        } else if (variable1 == "z" && variable2 == "0" && variable3 == "0") {
+            sum = sum + data_point.at<double>(2, 0);
+        } else if (variable1 == "x" && variable2 == "x" && variable3 == "0") {
+            sum = sum + data_point.at<double>(0, 0) * data_point.at<double>(0, 0);
+        } else if (variable1 == "y" && variable2 == "y" && variable3 == "0") {
+            sum = sum + data_point.at<double>(1, 0) * data_point.at<double>(1, 0);
+        } else if (variable1 == "z" && variable2 == "z" && variable3 == "0") {
+            sum = sum + data_point.at<double>(2, 0) * data_point.at<double>(2, 0);
+        } else if (variable1 == "x" && variable2 == "y" && variable3 == "0") {
+            sum = sum + data_point.at<double>(0, 0) * data_point.at<double>(1, 0);
+        } else if (variable1 == "x" && variable2 == "z" && variable3 == "0") {
+            sum = sum + data_point.at<double>(0, 0) * data_point.at<double>(2, 0);
+        } else if (variable1 == "y" && variable2 == "z" && variable3 == "0") {
+            sum = sum + data_point.at<double>(1, 0) * data_point.at<double>(2, 0);
+        } else if (variable1 == "x" && variable2 == "x" && variable3 == "x") {
+            sum = sum + data_point.at<double>(0, 0) * data_point.at<double>(0, 0) * data_point.at<double>(0, 0);
+        } else if (variable1 == "y" && variable2 == "y" && variable3 == "y") {
+            sum = sum + data_point.at<double>(1, 0) * data_point.at<double>(1, 0) * data_point.at<double>(1, 0);
+        } else if (variable1 == "z" && variable2 == "z" && variable3 == "z") {
+            sum = sum + data_point.at<double>(2, 0) * data_point.at<double>(2, 0) * data_point.at<double>(2, 0);
+        } else if (variable1 == "x" && variable2 == "y" && variable3 == "y") {
+            sum = sum + data_point.at<double>(0, 0) * data_point.at<double>(1, 0) * data_point.at<double>(1, 0);
+        } else if (variable1 == "x" && variable2 == "z" && variable3 == "z") {
+            sum = sum + data_point.at<double>(0, 0) * data_point.at<double>(2, 0) * data_point.at<double>(2, 0);
+        } else if (variable1 == "x" && variable2 == "x" && variable3 == "y") {
+            sum = sum + data_point.at<double>(0, 0) * data_point.at<double>(0, 0) * data_point.at<double>(1, 0);
+        } else if (variable1 == "x" && variable2 == "x" && variable3 == "z") {
+            sum = sum + data_point.at<double>(0, 0) * data_point.at<double>(0, 0) * data_point.at<double>(2, 0);
+        } else if (variable1 == "y" && variable2 == "y" && variable3 == "z") {
+            sum = sum + data_point.at<double>(1, 0) * data_point.at<double>(1, 0) * data_point.at<double>(2, 0);
+        } else if (variable1 == "y" && variable2 == "z" && variable3 == "z") {
+            sum = sum + data_point.at<double>(1, 0) * data_point.at<double>(2, 0) * data_point.at<double>(2, 0);
+        }
+    }
+}
+
+Mat fit_sphere(vector<Mat> points)
+{
+        double N=points.size();
+        double Sx=get_sum(points,"x");
+        double Sy=get_sum(points,"y");
+        double Sz=get_sum(points,"z");
+        cout << Sx << " , " << Sy << " , " << Sz << endl;
+
+        double Sxx=get_sum(points,"x","x");
+        double Syy=get_sum(points,"y","y");
+        double Szz=get_sum(points,"z","z");
+        double Sxy=get_sum(points,"x","y");
+        double Sxz=get_sum(points,"x","z");
+        double Syz=get_sum(points,"y","z");
+        cout << endl;
+        cout << Sxx << " , " << Syy << " , " << Szz << endl;
+        cout << Sxy << " , " << Sxz << " , " << Syz << endl;
+
+        double Sxxx=get_sum(points,"x","x","x");
+        double Syyy=get_sum(points,"y","y","y");
+        double Szzz=get_sum(points,"z","z","z");
+        double Sxyy=get_sum(points,"x","y","y");
+        double Sxzz=get_sum(points,"x","z","z");
+        double Sxxy=get_sum(points,"x","x","y");
+        double Sxxz=get_sum(points,"x","x","z");
+        double Syyz=get_sum(points,"y","y","z");
+        double Syzz=get_sum(points,"y","z","z");
+
+        cout << endl;
+        cout << Sxxx << " , " << Syyy << " , " << Szzz << endl;
+        cout << Sxyy << " , " << Syzz << " , " << Sxxy << endl;
+        cout << Sxxz << " , " << Syyz << " , " << Syzz << endl;
+
+        double A1 = Sxx +Syy +Szz;
+
+        double a=2*Sx*Sx-2*N*Sxx;
+        double b=2*Sx*Sy-2*N*Sxy;
+        double c=2*Sx*Sz-2*N*Sxz;
+        double d=-N*(Sxxx +Sxyy +Sxzz)+A1*Sx;
+
+        double e=2*Sx*Sy-2*N*Sxy;
+        double f=2*Sy*Sy-2*N*Syy;
+        double g=2*Sy*Sz-2*N*Syz;
+        double h=-N*(Sxxy +Syyy +Syzz)+A1*Sy;
+
+        double j=2*Sx*Sz-2*N*Sxz;
+        double k=2*Sy*Sz-2*N*Syz;
+        double l=2*Sz*Sz-2*N*Szz;
+        double m=-N*(Sxxz +Syyz + Szzz)+A1*Sz;
+        double delta = a*(f*l - g*k)-e*(b*l-c*k) + j*(b*g-c*f);
+
+        double xc = (d*(f*l-g*k) -h*(b*l-c*k) +m*(b*g-c*f))/delta;
+        double yc = (a*(h*l-m*g) -e*(d*l-m*c) +j*(d*g-h*c))/delta;
+        double zc = (a*(f*m-h*k) -e*(b*m-d*k) +j*(b*h-d*f))/delta;
+        double R = sqrt(pow(xc,2)+pow(yc,2)+pow(zc,2)+(A1-2*(xc*Sx+yc*Sy+zc*Sz))/N);
+
+        Mat result=Mat::zeros(4,1,CV_64F);
+        result.at<double>(0,0)=xc;
+        result.at<double>(1,0)=yc;
+        result.at<double>(2,0)=zc;
+        result.at<double>(3,0)=R;
+        return result;
+}
+
 
 #endif // FOO_H_

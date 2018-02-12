@@ -4,5 +4,5 @@ Name: mp_mini_picker
 Description: Description of mp_mini_picker
 Version: 0.0.0
 Cflags: -I/usr/local/include
-Libs: -L/usr/local/lib -lmp_mini_picker
+Libs: -L/usr/local/lib 
 Requires: caros_common caros_common_msgs caros_common_robwork caros_control caros_control_msgs geometry_msgs roscpp std_msgs

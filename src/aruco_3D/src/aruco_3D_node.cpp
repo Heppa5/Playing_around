@@ -83,11 +83,12 @@ public:
                                                 0.000000, 0.000000, 1.000000);
         
 //         filtering_constant=3.14/6.0;
-        filtering_constant=3.14/4.0;
+//         filtering_constant=3.14/4.0;
+        filtering_constant=3.14/8.0;
         
 //         Mat rvec_marker2,rvec_marker3;
-        rvec_marker2.create(3,1,CV_64F);
-        rvec_marker3.create(3,1,CV_64F);
+//        rvec_marker2.create(3,1,CV_64F);
+//        rvec_marker3.create(3,1,CV_64F);
         
     }
 
@@ -106,7 +107,7 @@ public:
         mean=mean/data.size();
         return mean;
     }
-    
+    int count2=0;
     void imageCb(const sensor_msgs::ImageConstPtr& msg)
     {
         vector<double> empty_array;
@@ -122,19 +123,17 @@ public:
             ROS_ERROR("cv_bridge exception: %s", e.what());
             return;
         }
-        
-//         cout << "undistort" << endl;
-//         image = cv_ptr->image;
+
         cv::undistort(cv_ptr->image,image, camera_matrix,distortion_mat,camera_matrix_updated);
-//         cout << "wow" << endl;
-//         cout << camera_matrix << "\t" << camera_matrix_updated << endl;
+
+
         aruco::detectMarkers(image, mark_dict, markerCorners, markerIds);
         aruco::drawDetectedMarkers(image, markerCorners, markerIds);
         
         Mat rvec(3,1,CV_64F), tvec;
         vector<Mat> rvecs,tvecs;
         
-        
+
         
         for(int i = 0 ; i < markerCorners.size() ; i++)
         {
@@ -145,34 +144,47 @@ public:
 //                 solvePnP(marker3_3D,markerCorners[i],camera_matrix,empty_array,rvec,tvec);
                 if(initialized_marker2==true)
                 {
-                    if(rvec_marker2.rows==3) // initialized or not
+
+                    Mat rot_dif=rvec_marker2-rvec;
+
+                    if(norm(rot_dif)<filtering_constant)
                     {
-                        Mat rot_dif=rvec_marker2-rvec;
-                        if(norm(rot_dif)<filtering_constant)
-                        {
-//                             aruco::drawAxis(image, camera_matrix, distortion_mat, rvec, tvec,marker2_size * 0.5f);               
-                            aruco::drawAxis(image, camera_matrix, empty_mat, rvec, tvec,marker2_size * 0.5f);
-                            geometry_msgs::PoseStamped aruco3D_msg;
-                            aruco3D_msg.header.stamp=msg->header.stamp;
-                            aruco3D_msg.pose.position.x=tvec.at<double>(0,0);
-                            aruco3D_msg.pose.position.y=tvec.at<double>(1,0);
-                            aruco3D_msg.pose.position.z=tvec.at<double>(2,0);
-                            aruco3D_msg.pose.orientation.x=rvec.at<double>(0,0);
-                            aruco3D_msg.pose.orientation.y=rvec.at<double>(1,0);
-                            aruco3D_msg.pose.orientation.z=rvec.at<double>(2,0);
-                            aruco_point_pub2_.publish(aruco3D_msg);
-                        }
-                        else
-                        {
+
+//                      aruco::drawAxis(image, camera_matrix, distortion_mat, rvec, tvec,marker2_size * 0.5f);
+                        aruco::drawAxis(image, camera_matrix, empty_mat, rvec, tvec,marker2_size * 0.5f);
+
+                        geometry_msgs::PoseStamped aruco3D_msg;
+                        aruco3D_msg.header.stamp=msg->header.stamp;
+                        aruco3D_msg.pose.position.x=tvec.at<double>(0,0);
+                        aruco3D_msg.pose.position.y=tvec.at<double>(1,0);
+                        aruco3D_msg.pose.position.z=tvec.at<double>(2,0);
+                        aruco3D_msg.pose.orientation.x=rvec.at<double>(0,0);
+                        aruco3D_msg.pose.orientation.y=rvec.at<double>(1,0);
+                        aruco3D_msg.pose.orientation.z=rvec.at<double>(2,0);
+                        aruco_point_pub2_.publish(aruco3D_msg);
+                        rvec_marker2=rvec.clone();
+
+                    }
+                    else {
+//                         cout << "¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤" << endl;
+//                         cout << "Size of rot dif: " << norm(rot_dif) << endl;
+//                         cout << "Rot difference is : \n" << rot_dif << endl;
+//                         cout << "Rvec is: \n " << rvec << endl;
+//                         cout << "Rvec_marker2 is: " <<rvec_marker2 << endl;
+//                         cout << "¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤" << endl;
+
 //                             aruco::drawAxis(image, camera_matrix, distortion_mat, rvec, tvec,marker2_size * 1.0f);
-                            aruco::drawAxis(image, camera_matrix, empty_mat, rvec, tvec,marker2_size * 1.0f);
-                        
-                        }
+                        aruco::drawAxis(image, camera_matrix, empty_mat, rvec, tvec, marker2_size * 1.0f);
+
                     }
-                    else
+                    if(rvec_marker2.rows!=3)
                     {
-                        rvec_marker2=rvec;
+                        cout << "LIFE IS A BITCH AND YOUR MATRICE ISN'T THE RIGHT SIZE!" << endl;
                     }
+//                    else
+//                    {
+//                        rvec_marker2=rvec;
+//                    }
                 }
                 else
                 {
@@ -180,6 +192,7 @@ public:
                     {
                         rvec_marker2=select_rotation(&initialize_marker2);
                         initialized_marker2=true;
+//                         cout << "First guess: \n" << rvec_marker2 << endl;
                     }
                     else
                     {
@@ -211,16 +224,13 @@ public:
                             aruco3D_msg.pose.orientation.y=rvec.at<double>(1,0);
                             aruco3D_msg.pose.orientation.z=rvec.at<double>(2,0);
                             aruco_point_pub3_.publish(aruco3D_msg);
+                            rvec_marker3=rvec.clone();
                         }
                         else
                         {
 //                             aruco::drawAxis(image, camera_matrix, distortion_mat, rvec, tvec,marker3_size * 1.0f);
                              aruco::drawAxis(image, camera_matrix, empty_mat, rvec, tvec,marker3_size * 1.0f);
                         }
-                    }
-                    else
-                    {
-                        rvec_marker3=rvec;
                     }
                 }
                 else{

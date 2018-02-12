@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 2.8)
+add_compile_options(-std=c++11)
+project( fit_sphere )
+find_package( OpenCV REQUIRED )
+add_executable( fit_sphere ./src/fit_sphere.cpp )
+target_link_libraries( fit_sphere ${OpenCV_LIBS} )

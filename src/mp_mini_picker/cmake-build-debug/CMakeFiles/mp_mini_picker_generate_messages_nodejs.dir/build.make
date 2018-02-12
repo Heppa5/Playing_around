@@ -53,49 +53,51 @@ CMAKE_BINARY_DIR = /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug
 # Include the progress variables for this target.
 include CMakeFiles/mp_mini_picker_generate_messages_nodejs.dir/progress.make
 
-CMakeFiles/mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/msg/currrentToolPosition.js
-CMakeFiles/mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/moveToQ.js
+CMakeFiles/mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPoseTcp.js
 CMakeFiles/mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/currentQ.js
-CMakeFiles/mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPose.js
-CMakeFiles/mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPoint.js
+CMakeFiles/mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPointMarker.js
+CMakeFiles/mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPointTcp.js
+CMakeFiles/mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPoseMarker.js
+CMakeFiles/mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/moveToQ.js
 
 
-devel/share/gennodejs/ros/mp_mini_picker/msg/currrentToolPosition.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
-devel/share/gennodejs/ros/mp_mini_picker/msg/currrentToolPosition.js: ../msg/currrentToolPosition.msg
-devel/share/gennodejs/ros/mp_mini_picker/msg/currrentToolPosition.js: /opt/ros/kinetic/share/geometry_msgs/msg/Quaternion.msg
-devel/share/gennodejs/ros/mp_mini_picker/msg/currrentToolPosition.js: /opt/ros/kinetic/share/geometry_msgs/msg/PoseStamped.msg
-devel/share/gennodejs/ros/mp_mini_picker/msg/currrentToolPosition.js: /opt/ros/kinetic/share/geometry_msgs/msg/Pose.msg
-devel/share/gennodejs/ros/mp_mini_picker/msg/currrentToolPosition.js: /opt/ros/kinetic/share/std_msgs/msg/Header.msg
-devel/share/gennodejs/ros/mp_mini_picker/msg/currrentToolPosition.js: /opt/ros/kinetic/share/geometry_msgs/msg/Point.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from mp_mini_picker/currrentToolPosition.msg"
-	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/jepod13/catkin_ws/src/mp_mini_picker/msg/currrentToolPosition.msg -Imp_mini_picker:/home/jepod13/catkin_ws/src/mp_mini_picker/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/gennodejs/ros/mp_mini_picker/msg
-
-devel/share/gennodejs/ros/mp_mini_picker/srv/moveToQ.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
-devel/share/gennodejs/ros/mp_mini_picker/srv/moveToQ.js: ../srv/moveToQ.srv
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from mp_mini_picker/moveToQ.srv"
-	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToQ.srv -Imp_mini_picker:/home/jepod13/catkin_ws/src/mp_mini_picker/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/gennodejs/ros/mp_mini_picker/srv
+devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPoseTcp.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
+devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPoseTcp.js: ../srv/moveToPoseTcp.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from mp_mini_picker/moveToPoseTcp.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPoseTcp.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/gennodejs/ros/mp_mini_picker/srv
 
 devel/share/gennodejs/ros/mp_mini_picker/srv/currentQ.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
 devel/share/gennodejs/ros/mp_mini_picker/srv/currentQ.js: ../srv/currentQ.srv
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Javascript code from mp_mini_picker/currentQ.srv"
-	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/currentQ.srv -Imp_mini_picker:/home/jepod13/catkin_ws/src/mp_mini_picker/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/gennodejs/ros/mp_mini_picker/srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from mp_mini_picker/currentQ.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/currentQ.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/gennodejs/ros/mp_mini_picker/srv
 
-devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPose.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
-devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPose.js: ../srv/moveToPose.srv
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Javascript code from mp_mini_picker/moveToPose.srv"
-	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPose.srv -Imp_mini_picker:/home/jepod13/catkin_ws/src/mp_mini_picker/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/gennodejs/ros/mp_mini_picker/srv
+devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPointMarker.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
+devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPointMarker.js: ../srv/moveToPointMarker.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Javascript code from mp_mini_picker/moveToPointMarker.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPointMarker.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/gennodejs/ros/mp_mini_picker/srv
 
-devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPoint.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
-devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPoint.js: ../srv/moveToPoint.srv
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Javascript code from mp_mini_picker/moveToPoint.srv"
-	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPoint.srv -Imp_mini_picker:/home/jepod13/catkin_ws/src/mp_mini_picker/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/gennodejs/ros/mp_mini_picker/srv
+devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPointTcp.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
+devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPointTcp.js: ../srv/moveToPointTcp.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Javascript code from mp_mini_picker/moveToPointTcp.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPointTcp.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/gennodejs/ros/mp_mini_picker/srv
+
+devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPoseMarker.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
+devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPoseMarker.js: ../srv/moveToPoseMarker.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Javascript code from mp_mini_picker/moveToPoseMarker.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPoseMarker.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/gennodejs/ros/mp_mini_picker/srv
+
+devel/share/gennodejs/ros/mp_mini_picker/srv/moveToQ.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
+devel/share/gennodejs/ros/mp_mini_picker/srv/moveToQ.js: ../srv/moveToQ.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating Javascript code from mp_mini_picker/moveToQ.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToQ.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/gennodejs/ros/mp_mini_picker/srv
 
 mp_mini_picker_generate_messages_nodejs: CMakeFiles/mp_mini_picker_generate_messages_nodejs
-mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/msg/currrentToolPosition.js
-mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/moveToQ.js
+mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPoseTcp.js
 mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/currentQ.js
-mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPose.js
-mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPoint.js
+mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPointMarker.js
+mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPointTcp.js
+mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPoseMarker.js
+mp_mini_picker_generate_messages_nodejs: devel/share/gennodejs/ros/mp_mini_picker/srv/moveToQ.js
 mp_mini_picker_generate_messages_nodejs: CMakeFiles/mp_mini_picker_generate_messages_nodejs.dir/build.make
 
 .PHONY : mp_mini_picker_generate_messages_nodejs

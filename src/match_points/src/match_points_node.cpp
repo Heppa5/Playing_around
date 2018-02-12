@@ -18,6 +18,7 @@ namespace patch
 // #include <Matrix3x3.h>
 
 #include <ros/ros.h>
+
 #include <ros/time.h>
 #include "std_msgs/String.h"
 #include "std_msgs/Header.h"
@@ -34,7 +35,7 @@ namespace patch
 #include <iostream>
 
 #include <message_package/matched_points.h>
-#include "message_package/currentToolPosition.h"
+#include "message_package/currentToolPosition2.h"
 #include "match_points/setDistBetwChosenPoints.h"
 #include "match_points/stopMatching.h"
 #include "match_points/getNextMatchingPoint.h"
@@ -53,7 +54,7 @@ using namespace cv;
 struct matchedPoint {
   geometry_msgs::PoseStamped camera;
 //   geometry_msgs::PoseStamped robot;
-  message_package::currentToolPosition robot;
+  message_package::currentToolPosition2 robot;
 } ;
 
 class Response;
@@ -210,7 +211,7 @@ public:
         }
     }
 
-    void robot_has_moved(const message_package::currentToolPosition::ConstPtr msg)
+    void robot_has_moved(const message_package::currentToolPosition2::ConstPtr msg)
     {
         if(do_match_points==true)
         {
@@ -333,12 +334,22 @@ public:
                         cout << chosenMatchedPoints[0].camera.pose.orientation.x << ",";
                         cout << chosenMatchedPoints[0].camera.pose.orientation.y << ",";
                         cout << chosenMatchedPoints[0].camera.pose.orientation.z << "\n";
-                        cout << chosenMatchedPoints[0].robot.tcp.pose.position.x << ",";
-                        cout << chosenMatchedPoints[0].robot.tcp.pose.position.y << ",";
-                        cout << chosenMatchedPoints[0].robot.tcp.pose.position.z << ",";
-                        cout << chosenMatchedPoints[0].robot.tcp.pose.orientation.x << ",";
-                        cout << chosenMatchedPoints[0].robot.tcp.pose.orientation.y << ",";
-                        cout << chosenMatchedPoints[0].robot.tcp.pose.orientation.z << "\n";
+                        
+                        cout << chosenMatchedPoints[0].robot.Q[0] << ",";
+                        cout << chosenMatchedPoints[0].robot.Q[1] << ",";
+                        cout << chosenMatchedPoints[0].robot.Q[2] << ",";
+                        cout << chosenMatchedPoints[0].robot.Q[3] << ",";
+                        cout << chosenMatchedPoints[0].robot.Q[4] << ",";
+                        cout << chosenMatchedPoints[0].robot.Q[5] << "\n";
+                        
+                        
+//                         cout << chosenMatchedPoints[0].robot.tcp.pose.position.x << ",";
+//                         cout << chosenMatchedPoints[0].robot.tcp.pose.position.y << ",";
+//                         cout << chosenMatchedPoints[0].robot.tcp.pose.position.z << ",";
+//                         cout << chosenMatchedPoints[0].robot.tcp.pose.orientation.x << ",";
+//                         cout << chosenMatchedPoints[0].robot.tcp.pose.orientation.y << ",";
+//                         cout << chosenMatchedPoints[0].robot.tcp.pose.orientation.z << "\n";
+                        
 //                         cout << chosenMatchedPoints[0].robot.wTtcp.pose.position.x << ",";
 //                         cout << chosenMatchedPoints[0].robot.wTtcp.pose.position.y << ",";
 //                         cout << chosenMatchedPoints[0].robot.wTtcp.pose.position.z << ",";
@@ -480,7 +491,7 @@ private:
     
     vector<geometry_msgs::PoseStamped> camera_points;
 //     vector<geometry_msgs::PoseStamped> robot_positions;
-    vector<message_package::currentToolPosition> robot_positions;
+    vector<message_package::currentToolPosition2> robot_positions;
     vector<matchedPoint> matchedPoints;
     vector<matchedPoint> chosenMatchedPoints;
     

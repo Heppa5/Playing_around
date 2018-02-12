@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(mp_mini_picker_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/include;/home/jepod13/catkin_ws/src/mp_mini_picker/include " STREQUAL " ")
+if(NOT "/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/include " STREQUAL " ")
   set(mp_mini_picker_INCLUDE_DIRS "")
-  set(_include_dirs "/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/include;/home/jepod13/catkin_ws/src/mp_mini_picker/include")
+  set(_include_dirs "/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/include")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -116,7 +116,7 @@ if(NOT "/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/inclu
   endforeach()
 endif()
 
-set(libraries "mp_mini_picker")
+set(libraries "")
 foreach(library ${libraries})
   # keep build configuration keywords, target names and absolute libraries as-is
   if("${library}" MATCHES "^(debug|optimized|general)$")

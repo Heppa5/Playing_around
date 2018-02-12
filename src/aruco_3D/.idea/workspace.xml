@@ -2,39 +2,39 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_nodejs" />
-      <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_nodejs" />
-      <config projectName="aruco_3D" targetName="roscpp_generate_messages_py" />
-      <config projectName="aruco_3D" targetName="aruco_3D_node" />
-      <config projectName="aruco_3D" targetName="run_tests" />
-      <config projectName="aruco_3D" targetName="roscpp_generate_messages_lisp" />
-      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_eus" />
-      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_nodejs" />
-      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_py" />
-      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_lisp" />
-      <config projectName="aruco_3D" targetName="doxygen" />
-      <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_eus" />
-      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_eus" />
-      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_nodejs" />
-      <config projectName="aruco_3D" targetName="tests" />
       <config projectName="aruco_3D" targetName="download_extra_data" />
+      <config projectName="aruco_3D" targetName="roscpp_generate_messages_lisp" />
+      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_eus" />
+      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_py" />
+      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_eus" />
+      <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_cpp" />
+      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_nodejs" />
+      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_cpp" />
+      <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_py" />
+      <config projectName="aruco_3D" targetName="aruco_3D_node" />
       <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_lisp" />
       <config projectName="aruco_3D" targetName="std_msgs_generate_messages_cpp" />
       <config projectName="aruco_3D" targetName="roscpp_generate_messages_eus" />
-      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_py" />
-      <config projectName="aruco_3D" targetName="roscpp_generate_messages_nodejs" />
-      <config projectName="aruco_3D" targetName="gtest_main" />
-      <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_py" />
-      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_cpp" />
-      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_py" />
-      <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_cpp" />
-      <config projectName="aruco_3D" targetName="clean_test_results" />
       <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_cpp" />
-      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_lisp" />
+      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_lisp" />
+      <config projectName="aruco_3D" targetName="clean_test_results" />
+      <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_nodejs" />
+      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_py" />
+      <config projectName="aruco_3D" targetName="doxygen" />
       <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_lisp" />
-      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_eus" />
-      <config projectName="aruco_3D" targetName="roscpp_generate_messages_cpp" />
+      <config projectName="aruco_3D" targetName="roscpp_generate_messages_py" />
       <config projectName="aruco_3D" targetName="gtest" />
+      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_py" />
+      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_nodejs" />
+      <config projectName="aruco_3D" targetName="roscpp_generate_messages_cpp" />
+      <config projectName="aruco_3D" targetName="run_tests" />
+      <config projectName="aruco_3D" targetName="gtest_main" />
+      <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_eus" />
+      <config projectName="aruco_3D" targetName="roscpp_generate_messages_nodejs" />
+      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_nodejs" />
+      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_eus" />
+      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_lisp" />
+      <config projectName="aruco_3D" targetName="tests" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -43,7 +43,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d46ab48b-9b55-4820-8968-89e0583fbf7f" name="Default" comment="" />
+    <list default="true" readonly="true" id="d46ab48b-9b55-4820-8968-89e0583fbf7f" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -54,12 +54,25 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="aruco_3D_node.cpp" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="aruco_3D_node.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/aruco_3D_node.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="125" selection-end-column="33" />
+            <state relative-caret-position="288">
+              <caret line="168" column="86" lean-forward="false" selection-start-line="168" selection-start-column="86" selection-end-line="168" selection-end-column="86" />
+              <folding>
+                <element signature="e#3#20#0" expanded="true" />
+                <element signature="e#218#238#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="change_tcpTmarker.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$USER_HOME$/Jesper/robwork_change_transformation/src/change_tcpTmarker.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -68,14 +81,19 @@
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="111" column="1" lean-forward="true" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
+            <state relative-caret-position="1998">
+              <caret line="111" column="1" lean-forward="false" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>rvec_marker2</find>
+    </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -91,11 +109,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="292" />
-    <option name="y" value="52" />
-    <option name="width" value="1400" />
-    <option name="height" value="1000" />
+    <option name="y" value="24" />
+    <option name="width" value="1398" />
+    <option name="height" value="992" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -119,26 +137,6 @@
               <item name="aruco_3D" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="aruco_3D" type="47feb1d3:ProjectViewModuleNode" />
             </path>
-            <path>
-              <item name="aruco_3D" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="aruco_3D" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="aruco_3D" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="aruco_3D" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="aruco_3D" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="aruco_3D" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="aruco_3D" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="aruco_3D" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Header Search Paths" type="70bed36:NamedLibraryElementNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -147,6 +145,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Jesper/robwork_change_transformation/CMakeLists.txt" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -303,8 +302,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>$USER_HOME$/.subversion</configuration>
+    <supportedVersion>125</supportedVersion>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -314,32 +314,35 @@
       <option name="presentableId" value="Default" />
       <updated>1512644317344</updated>
       <workItem from="1512644319542" duration="856000" />
+      <workItem from="1518184073283" duration="2790000" />
+      <workItem from="1518422972523" duration="46000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="856000" />
+    <option name="totallyTimeSpent" value="3692000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="292" y="52" width="1400" height="1000" extended-state="0" />
+    <frame x="292" y="24" width="1857" height="1092" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18814017" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32924107" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -354,9 +357,31 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/aruco_3D_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#3#20#0" expanded="true" />
+            <element signature="e#218#238#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aruco_3D_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#3#20#0" expanded="true" />
+            <element signature="e#218#238#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
+        <state relative-caret-position="1998">
           <caret line="111" column="1" lean-forward="true" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
           <folding />
         </state>
@@ -364,8 +389,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/aruco_3D_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="125" selection-end-column="33" />
+        <state relative-caret-position="288">
+          <caret line="168" column="86" lean-forward="false" selection-start-line="168" selection-start-column="86" selection-end-line="168" selection-end-column="86" />
+          <folding>
+            <element signature="e#3#20#0" expanded="true" />
+            <element signature="e#218#238#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1998">
+          <caret line="111" column="1" lean-forward="false" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Jesper/robwork_change_transformation/src/change_tcpTmarker.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -52,6 +52,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   currentToolPosition.msg
+  currentToolPosition2.msg
   matched_points.msg
 )
 

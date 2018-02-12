@@ -115,15 +115,13 @@ file(INSTALL DESTINATION "/usr/local" TYPE FILE FILES "/home/jepod13/catkin_ws/s
 endif()
 
 if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/mp_mini_picker/msg" TYPE FILE FILES "/home/jepod13/catkin_ws/src/mp_mini_picker/msg/currrentToolPosition.msg")
-endif()
-
-if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/mp_mini_picker/srv" TYPE FILE FILES
     "/home/jepod13/catkin_ws/src/mp_mini_picker/srv/currentQ.srv"
     "/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToQ.srv"
-    "/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPoint.srv"
-    "/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPose.srv"
+    "/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPointTcp.srv"
+    "/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPoseTcp.srv"
+    "/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPointMarker.srv"
+    "/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPoseMarker.srv"
     )
 endif()
 

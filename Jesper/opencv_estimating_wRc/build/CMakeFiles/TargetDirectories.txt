@@ -1,0 +1,3 @@
+/home/jepod13/Jesper/opencv_estimating_wRc/build/CMakeFiles/rebuild_cache.dir
+/home/jepod13/Jesper/opencv_estimating_wRc/build/CMakeFiles/edit_cache.dir
+/home/jepod13/Jesper/opencv_estimating_wRc/build/CMakeFiles/est_wRc.dir

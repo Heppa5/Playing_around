@@ -1,10 +1,11 @@
 file(REMOVE_RECURSE
   "CMakeFiles/mp_mini_picker_generate_messages_lisp"
-  "devel/share/common-lisp/ros/mp_mini_picker/msg/currrentToolPosition.lisp"
-  "devel/share/common-lisp/ros/mp_mini_picker/srv/moveToQ.lisp"
+  "devel/share/common-lisp/ros/mp_mini_picker/srv/moveToPoseTcp.lisp"
   "devel/share/common-lisp/ros/mp_mini_picker/srv/currentQ.lisp"
-  "devel/share/common-lisp/ros/mp_mini_picker/srv/moveToPose.lisp"
-  "devel/share/common-lisp/ros/mp_mini_picker/srv/moveToPoint.lisp"
+  "devel/share/common-lisp/ros/mp_mini_picker/srv/moveToPointMarker.lisp"
+  "devel/share/common-lisp/ros/mp_mini_picker/srv/moveToPointTcp.lisp"
+  "devel/share/common-lisp/ros/mp_mini_picker/srv/moveToPoseMarker.lisp"
+  "devel/share/common-lisp/ros/mp_mini_picker/srv/moveToQ.lisp"
 )
 
 # Per-language clean rules from dependency scanning.

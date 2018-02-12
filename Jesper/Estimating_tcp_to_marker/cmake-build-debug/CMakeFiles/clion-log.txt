@@ -1,0 +1,4 @@
+/home/jepod13/clion-2017.3.1/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/jepod13/Jesper/Estimating_tcp_to_marker
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/jepod13/Jesper/Estimating_tcp_to_marker/cmake-build-debug

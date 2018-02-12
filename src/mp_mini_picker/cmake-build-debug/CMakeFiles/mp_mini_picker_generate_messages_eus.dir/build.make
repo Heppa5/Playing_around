@@ -53,54 +53,56 @@ CMAKE_BINARY_DIR = /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug
 # Include the progress variables for this target.
 include CMakeFiles/mp_mini_picker_generate_messages_eus.dir/progress.make
 
-CMakeFiles/mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/msg/currrentToolPosition.l
-CMakeFiles/mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/moveToQ.l
+CMakeFiles/mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/moveToPoseTcp.l
 CMakeFiles/mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/currentQ.l
-CMakeFiles/mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/moveToPose.l
-CMakeFiles/mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/moveToPoint.l
+CMakeFiles/mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/moveToPointMarker.l
+CMakeFiles/mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/moveToPointTcp.l
+CMakeFiles/mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/moveToPoseMarker.l
+CMakeFiles/mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/moveToQ.l
 CMakeFiles/mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/manifest.l
 
 
-devel/share/roseus/ros/mp_mini_picker/msg/currrentToolPosition.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
-devel/share/roseus/ros/mp_mini_picker/msg/currrentToolPosition.l: ../msg/currrentToolPosition.msg
-devel/share/roseus/ros/mp_mini_picker/msg/currrentToolPosition.l: /opt/ros/kinetic/share/geometry_msgs/msg/Quaternion.msg
-devel/share/roseus/ros/mp_mini_picker/msg/currrentToolPosition.l: /opt/ros/kinetic/share/geometry_msgs/msg/PoseStamped.msg
-devel/share/roseus/ros/mp_mini_picker/msg/currrentToolPosition.l: /opt/ros/kinetic/share/geometry_msgs/msg/Pose.msg
-devel/share/roseus/ros/mp_mini_picker/msg/currrentToolPosition.l: /opt/ros/kinetic/share/std_msgs/msg/Header.msg
-devel/share/roseus/ros/mp_mini_picker/msg/currrentToolPosition.l: /opt/ros/kinetic/share/geometry_msgs/msg/Point.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from mp_mini_picker/currrentToolPosition.msg"
-	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/jepod13/catkin_ws/src/mp_mini_picker/msg/currrentToolPosition.msg -Imp_mini_picker:/home/jepod13/catkin_ws/src/mp_mini_picker/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/roseus/ros/mp_mini_picker/msg
-
-devel/share/roseus/ros/mp_mini_picker/srv/moveToQ.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
-devel/share/roseus/ros/mp_mini_picker/srv/moveToQ.l: ../srv/moveToQ.srv
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from mp_mini_picker/moveToQ.srv"
-	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToQ.srv -Imp_mini_picker:/home/jepod13/catkin_ws/src/mp_mini_picker/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/roseus/ros/mp_mini_picker/srv
+devel/share/roseus/ros/mp_mini_picker/srv/moveToPoseTcp.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
+devel/share/roseus/ros/mp_mini_picker/srv/moveToPoseTcp.l: ../srv/moveToPoseTcp.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from mp_mini_picker/moveToPoseTcp.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPoseTcp.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/roseus/ros/mp_mini_picker/srv
 
 devel/share/roseus/ros/mp_mini_picker/srv/currentQ.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
 devel/share/roseus/ros/mp_mini_picker/srv/currentQ.l: ../srv/currentQ.srv
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp code from mp_mini_picker/currentQ.srv"
-	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/currentQ.srv -Imp_mini_picker:/home/jepod13/catkin_ws/src/mp_mini_picker/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/roseus/ros/mp_mini_picker/srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from mp_mini_picker/currentQ.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/currentQ.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/roseus/ros/mp_mini_picker/srv
 
-devel/share/roseus/ros/mp_mini_picker/srv/moveToPose.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
-devel/share/roseus/ros/mp_mini_picker/srv/moveToPose.l: ../srv/moveToPose.srv
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating EusLisp code from mp_mini_picker/moveToPose.srv"
-	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPose.srv -Imp_mini_picker:/home/jepod13/catkin_ws/src/mp_mini_picker/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/roseus/ros/mp_mini_picker/srv
+devel/share/roseus/ros/mp_mini_picker/srv/moveToPointMarker.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
+devel/share/roseus/ros/mp_mini_picker/srv/moveToPointMarker.l: ../srv/moveToPointMarker.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp code from mp_mini_picker/moveToPointMarker.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPointMarker.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/roseus/ros/mp_mini_picker/srv
 
-devel/share/roseus/ros/mp_mini_picker/srv/moveToPoint.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
-devel/share/roseus/ros/mp_mini_picker/srv/moveToPoint.l: ../srv/moveToPoint.srv
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating EusLisp code from mp_mini_picker/moveToPoint.srv"
-	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPoint.srv -Imp_mini_picker:/home/jepod13/catkin_ws/src/mp_mini_picker/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/roseus/ros/mp_mini_picker/srv
+devel/share/roseus/ros/mp_mini_picker/srv/moveToPointTcp.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
+devel/share/roseus/ros/mp_mini_picker/srv/moveToPointTcp.l: ../srv/moveToPointTcp.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating EusLisp code from mp_mini_picker/moveToPointTcp.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPointTcp.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/roseus/ros/mp_mini_picker/srv
+
+devel/share/roseus/ros/mp_mini_picker/srv/moveToPoseMarker.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
+devel/share/roseus/ros/mp_mini_picker/srv/moveToPoseMarker.l: ../srv/moveToPoseMarker.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating EusLisp code from mp_mini_picker/moveToPoseMarker.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPoseMarker.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/roseus/ros/mp_mini_picker/srv
+
+devel/share/roseus/ros/mp_mini_picker/srv/moveToQ.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
+devel/share/roseus/ros/mp_mini_picker/srv/moveToQ.l: ../srv/moveToQ.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating EusLisp code from mp_mini_picker/moveToQ.srv"
+	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToQ.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p mp_mini_picker -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/roseus/ros/mp_mini_picker/srv
 
 devel/share/roseus/ros/mp_mini_picker/manifest.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating EusLisp manifest code for mp_mini_picker"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Generating EusLisp manifest code for mp_mini_picker"
 	catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/share/roseus/ros/mp_mini_picker mp_mini_picker std_msgs geometry_msgs
 
 mp_mini_picker_generate_messages_eus: CMakeFiles/mp_mini_picker_generate_messages_eus
-mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/msg/currrentToolPosition.l
-mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/moveToQ.l
+mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/moveToPoseTcp.l
 mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/currentQ.l
-mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/moveToPose.l
-mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/moveToPoint.l
+mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/moveToPointMarker.l
+mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/moveToPointTcp.l
+mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/moveToPoseMarker.l
+mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/srv/moveToQ.l
 mp_mini_picker_generate_messages_eus: devel/share/roseus/ros/mp_mini_picker/manifest.l
 mp_mini_picker_generate_messages_eus: CMakeFiles/mp_mini_picker_generate_messages_eus.dir/build.make
 

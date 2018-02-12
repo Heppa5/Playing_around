@@ -3,6 +3,6 @@ prefix=/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel
 Name: mp_mini_picker
 Description: Description of mp_mini_picker
 Version: 0.0.0
-Cflags: -I/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/include -I/home/jepod13/catkin_ws/src/mp_mini_picker/include
-Libs: -L/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/lib -lmp_mini_picker
+Cflags: -I/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/include
+Libs: -L/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/lib 
 Requires: caros_common caros_common_msgs caros_common_robwork caros_control caros_control_msgs geometry_msgs roscpp std_msgs

@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 2.8)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+project( est_trans )
+find_package( OpenCV REQUIRED )
+add_executable( est_trans ./src/main.cpp )
+target_link_libraries( est_trans ${OpenCV_LIBS} )
