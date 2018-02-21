@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPointTcp.js"
   "devel/share/gennodejs/ros/mp_mini_picker/srv/moveToPoseMarker.js"
   "devel/share/gennodejs/ros/mp_mini_picker/srv/moveToQ.js"
+  "devel/share/gennodejs/ros/mp_mini_picker/srv/changeTcpTMarker.js"
 )
 
 # Per-language clean rules from dependency scanning.

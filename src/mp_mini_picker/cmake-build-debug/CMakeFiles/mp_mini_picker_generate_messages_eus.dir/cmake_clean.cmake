@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "devel/share/roseus/ros/mp_mini_picker/srv/moveToPointTcp.l"
   "devel/share/roseus/ros/mp_mini_picker/srv/moveToPoseMarker.l"
   "devel/share/roseus/ros/mp_mini_picker/srv/moveToQ.l"
+  "devel/share/roseus/ros/mp_mini_picker/srv/changeTcpTMarker.l"
   "devel/share/roseus/ros/mp_mini_picker/manifest.l"
 )
 

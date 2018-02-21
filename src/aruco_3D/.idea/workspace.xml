@@ -13,21 +13,21 @@
       <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_py" />
       <config projectName="aruco_3D" targetName="aruco_3D_node" />
       <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_lisp" />
+      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_py" />
       <config projectName="aruco_3D" targetName="std_msgs_generate_messages_cpp" />
       <config projectName="aruco_3D" targetName="roscpp_generate_messages_eus" />
       <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_cpp" />
       <config projectName="aruco_3D" targetName="std_msgs_generate_messages_lisp" />
+      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_py" />
+      <config projectName="aruco_3D" targetName="run_tests" />
       <config projectName="aruco_3D" targetName="clean_test_results" />
       <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_nodejs" />
-      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_py" />
+      <config projectName="aruco_3D" targetName="roscpp_generate_messages_py" />
       <config projectName="aruco_3D" targetName="doxygen" />
       <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_lisp" />
-      <config projectName="aruco_3D" targetName="roscpp_generate_messages_py" />
-      <config projectName="aruco_3D" targetName="gtest" />
-      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_py" />
-      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_nodejs" />
       <config projectName="aruco_3D" targetName="roscpp_generate_messages_cpp" />
-      <config projectName="aruco_3D" targetName="run_tests" />
+      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_nodejs" />
+      <config projectName="aruco_3D" targetName="gtest" />
       <config projectName="aruco_3D" targetName="gtest_main" />
       <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_eus" />
       <config projectName="aruco_3D" targetName="roscpp_generate_messages_nodejs" />
@@ -55,25 +55,15 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="aruco_3D_node.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="aruco_3D_node.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/aruco_3D_node.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="168" column="86" lean-forward="false" selection-start-line="168" selection-start-column="86" selection-end-line="168" selection-end-column="86" />
+            <state relative-caret-position="1040">
+              <caret line="218" column="21" lean-forward="true" selection-start-line="218" selection-start-column="21" selection-end-line="218" selection-end-column="21" />
               <folding>
                 <element signature="e#3#20#0" expanded="true" />
                 <element signature="e#218#238#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="change_tcpTmarker.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$USER_HOME$/Jesper/robwork_change_transformation/src/change_tcpTmarker.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -145,7 +135,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Jesper/robwork_change_transformation/CMakeLists.txt" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../testing_transformation_matrix/CMakeLists.txt" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -316,11 +306,15 @@
       <workItem from="1512644319542" duration="856000" />
       <workItem from="1518184073283" duration="2790000" />
       <workItem from="1518422972523" duration="46000" />
+      <workItem from="1519042771682" duration="998000" />
+      <workItem from="1519043795878" duration="38000" />
+      <workItem from="1519049178459" duration="362000" />
+      <workItem from="1519119394467" duration="752000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3692000" />
+    <option name="totallyTimeSpent" value="5842000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="292" y="24" width="1857" height="1092" extended-state="6" />
@@ -368,6 +362,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///opt/ros/kinetic/include/opencv-3.3.1/opencv2/aruco.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8244">
+          <caret line="458" column="35" lean-forward="true" selection-start-line="458" selection-start-column="35" selection-end-line="458" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1998">
+          <caret line="111" column="1" lean-forward="false" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/aruco_3D_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -382,14 +392,33 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1998">
-          <caret line="111" column="1" lean-forward="true" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
+          <caret line="111" column="1" lean-forward="false" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/aruco_3D_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#3#20#0" expanded="true" />
+            <element signature="e#218#238#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1998">
+          <caret line="111" column="1" lean-forward="false" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aruco_3D_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3024">
           <caret line="168" column="86" lean-forward="false" selection-start-line="168" selection-start-column="86" selection-end-line="168" selection-end-column="86" />
           <folding>
             <element signature="e#3#20#0" expanded="true" />
@@ -410,7 +439,70 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aruco_3D_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#3#20#0" expanded="true" />
+            <element signature="e#218#238#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aruco_3D_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#3#20#0" expanded="true" />
+            <element signature="e#218#238#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1998">
+          <caret line="111" column="1" lean-forward="true" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1998">
+          <caret line="111" column="1" lean-forward="false" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Jesper/robwork_change_transformation/src/change_tcpTmarker.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-324">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/ros/kinetic/include/opencv-3.3.1/opencv2/aruco.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8244">
+          <caret line="458" column="35" lean-forward="true" selection-start-line="458" selection-start-column="35" selection-end-line="458" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aruco_3D_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1040">
+          <caret line="218" column="21" lean-forward="true" selection-start-line="218" selection-start-column="21" selection-end-line="218" selection-end-column="21" />
+          <folding>
+            <element signature="e#3#20#0" expanded="true" />
+            <element signature="e#218#238#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

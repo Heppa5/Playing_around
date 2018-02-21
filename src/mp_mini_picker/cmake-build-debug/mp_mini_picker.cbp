@@ -529,6 +529,16 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="_mp_mini_picker_generate_messages_check_deps_changeTcpTMarker">
+				<Option working_dir="/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/Makefile&quot;  VERBOSE=1 _mp_mini_picker_generate_messages_check_deps_changeTcpTMarker"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="rosgraph_msgs_generate_messages_py">
 				<Option working_dir="/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug"/>
 				<Option type="4"/>

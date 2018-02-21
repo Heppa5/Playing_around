@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "devel/include/mp_mini_picker/moveToPointTcp.h"
   "devel/include/mp_mini_picker/moveToPoseMarker.h"
   "devel/include/mp_mini_picker/moveToQ.h"
+  "devel/include/mp_mini_picker/changeTcpTMarker.h"
 )
 
 # Per-language clean rules from dependency scanning.

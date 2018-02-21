@@ -122,6 +122,7 @@ if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMP
     "/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPoseTcp.srv"
     "/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPointMarker.srv"
     "/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPoseMarker.srv"
+    "/home/jepod13/catkin_ws/src/mp_mini_picker/srv/changeTcpTMarker.srv"
     )
 endif()
 

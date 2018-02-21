@@ -68,6 +68,7 @@ add_service_files(
   moveToPoseTcp.srv
   moveToPointMarker.srv
   moveToPoseMarker.srv
+  changeTcpTMarker.srv
 )
 
 ## Generate actions in the 'action' folder

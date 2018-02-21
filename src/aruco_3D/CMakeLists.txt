@@ -28,6 +28,13 @@ message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
 
 include_directories(${OpenCV_INCLUDE_DIRS})
 
+SET(RW_ROOT $ENV{RW_ROOT})
+MESSAGE("-- RobWork root: " ${RW_ROOT})
+SET(RobWork_DIR ${RW_ROOT}/cmake)
+FIND_PACKAGE(RobWork REQUIRED)
+INCLUDE_DIRECTORIES( ${ROBWORK_INCLUDE_DIRS} )
+LINK_DIRECTORIES( ${ROBWORK_LIBRARY_DIRS} )
+
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -165,6 +172,7 @@ add_executable(${PROJECT_NAME}_node src/aruco_3D_node.cpp)
 target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
   ${OpenCV_LIBS}
+  ${ROBWORK_LIBRARIES} 
 )
 
 

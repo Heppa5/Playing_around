@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "devel/share/common-lisp/ros/mp_mini_picker/srv/moveToPointTcp.lisp"
   "devel/share/common-lisp/ros/mp_mini_picker/srv/moveToPoseMarker.lisp"
   "devel/share/common-lisp/ros/mp_mini_picker/srv/moveToQ.lisp"
+  "devel/share/common-lisp/ros/mp_mini_picker/srv/changeTcpTMarker.lisp"
 )
 
 # Per-language clean rules from dependency scanning.

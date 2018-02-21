@@ -5,6 +5,7 @@
 #include "mp_mini_picker/moveToPoseTcp.h"
 #include "mp_mini_picker/moveToPointMarker.h"
 #include "mp_mini_picker/moveToPoseMarker.h"
+#include "mp_mini_picker/changeTcpTMarker.h"
 
 #include <caros/serial_device_si_proxy.h>
 #include <caros/common_robwork.h>
@@ -54,6 +55,7 @@ class UrTest
             
 //             robot_move = nodehandle_.advertise<message_package::currrentToolPosition>("/robot/moved", 1);
             robot_move = nodehandle_.advertise<message_package::currentToolPosition2>("/robot/moved", 1);
+            robot_move_marker = nodehandle_.advertise<message_package::currentToolPosition2>("/robot/moved_marker", 1);
         }
 
         virtual ~UrTest()
@@ -120,7 +122,19 @@ class UrTest
 //                 
             }
         }
-
+        
+    
+    bool change_end_transformation(mp_mini_picker::changeTcpTMarker::Request  &req,
+                             mp_mini_picker::changeTcpTMarker::Response &res)
+    {
+        got_tcpTmarker=true;
+        rw::math::Vector3D<double> tcpPmarker(req.tcpPmarker[0],req.tcpPmarker[1],req.tcpPmarker[2]);
+        rw::math::EAA<double> tcpRvecmarker(req.tcpRmarker[0],req.tcpRmarker[1],req.tcpRmarker[2]);
+        tcpTmarker=rw::math::Transform3D<double>(tcpPmarker,tcpRvecmarker.toRotation3D());
+        res.ok=true;
+        cout << tcpTmarker << endl;
+    }
+    
     bool move_to_pose_marker(mp_mini_picker::moveToPoseMarker::Request  &req,
                              mp_mini_picker::moveToPoseMarker::Response &res)
     {
@@ -133,11 +147,11 @@ class UrTest
 
         // Update the transform om "marker_f".
         rw::kinematics::FixedFrame* marker_frame=(rw::kinematics::FixedFrame*)workcell_->findFrame("marker_f");
-        cout << "First: " << marker_frame->getTransform(currentState) << endl;
+//         cout << "First: " << marker_frame->getTransform(currentState) << endl;
         rw::math::Vector3D<double> tcpPmarker(req.tcpPmarker[0],req.tcpPmarker[1],req.tcpPmarker[2]);
         rw::math::EAA<double> tcpRvecmarker(req.tcpRmarker[0],req.tcpRmarker[1],req.tcpRmarker[2]);
         marker_frame->setTransform(rw::math::Transform3D<double>(tcpPmarker,tcpRvecmarker.toRotation3D()));
-        cout << "Second: " << marker_frame->getTransform(currentState) << endl;
+//         cout << "Second: " << marker_frame->getTransform(currentState) << endl;
 //        rw::kinematics::Frame* tool_frame=(rw::kinematics::Frame*)marker_frame;
 
 
@@ -154,7 +168,7 @@ class UrTest
         auto desired_rotation_world_vec=rw::math::EAA<double>(req.pose[3],req.pose[4],req.pose[5]);
         auto desired_rotation_world=desired_rotation_world_vec.toRotation3D();
         rw::math::RPY<double> test(desired_rotation_world);
-        cout << "Desired rotation in world: " <<test << endl;
+//         cout << "Desired rotation in world: " <<test << endl;
         auto desired_rotation_base=bTw.R()*desired_rotation_world;
 
         rw::math::Transform3D<double> desired_transform(desired_position_base,desired_rotation_base);
@@ -176,7 +190,7 @@ class UrTest
                 ROS_ERROR_STREAM("Could not find a path from '" << current_configuration << "' to '" << end_configuration[0] << "'.");
                 throw std::runtime_error("No valid path found.");
 
-                res.ok=0;
+                res.ok=2;
             }
             else
                 res.ok=1;
@@ -196,7 +210,7 @@ class UrTest
         else
         {
             ROS_INFO("No solution to JacobianIKSolver");
-            res.ok = 0;
+            res.ok = 3;
         }
     }
 
@@ -480,6 +494,72 @@ class UrTest
             
 
         }
+        
+        void publish_marker_position()
+        {
+            if(got_tcpTmarker==true)
+            {
+                auto current_configuration=sdsip_.getQ();
+    //             rw::kinematics::State state = workcell_->getDefaultState();
+                device_->setQ(current_configuration,currentState);
+                auto wTb=device_->worldTbase(currentState);
+                
+    //             auto bTe=device_->baseTend(currentState);
+    //             auto tcp_frame=workcell_->findFrame("UR5.Joint5");
+                
+    //            auto tcp_frame=workcell_->findFrame("marker_f");
+                auto tcp_frame=workcell_->findFrame("UR5.TCP");
+                auto bTe=device_->baseTframe(tcp_frame,currentState);
+                auto bMarker= wTb*bTe*tcpTmarker*rw::math::Vector3D<double>(0,0,0);
+                
+                
+                auto R_WtoE=(wTb.R())*(bTe.R())*(tcpTmarker.R());
+
+                auto Rvec_WtoE=rw::math::EAA<double>(R_WtoE);
+    //             auto Rvec_WtoE=rw::math::EAA<double>(R_WtoE);
+
+                // Get Transformation matrix from w to tcp
+                auto wTmarker=wTb*bTe*tcpTmarker;
+                auto Rvec_wTtcp=rw::math::EAA<double>(wTmarker.R());
+                auto tvec_wTtcp=wTmarker.P();
+
+                message_package::currentToolPosition2 msg;
+                msg.wTtcp.pose.position.x= tvec_wTtcp[0];
+                msg.wTtcp.pose.position.y= tvec_wTtcp[1];
+                msg.wTtcp.pose.position.z= tvec_wTtcp[2];
+                msg.wTtcp.pose.orientation.x=Rvec_wTtcp[0];
+                msg.wTtcp.pose.orientation.y=Rvec_wTtcp[1];
+                msg.wTtcp.pose.orientation.z=Rvec_wTtcp[2];
+
+                msg.tcp.pose.position.x= bMarker[0];
+                msg.tcp.pose.position.y= bMarker[1];
+                msg.tcp.pose.position.z= bMarker[2];
+                msg.tcp.pose.orientation.x=Rvec_WtoE[0];
+                msg.tcp.pose.orientation.y=Rvec_WtoE[1];
+                msg.tcp.pose.orientation.z=Rvec_WtoE[2];
+                msg.tcp.header.stamp = ros::Time::now();
+    //            geometry_msgs::PoseStamped msg;
+    //            msg.pose.position.x= bMarker[0];
+    //            msg.pose.position.y= bMarker[1];
+    //            msg.pose.position.z= bMarker[2];
+    //            msg.pose.orientation.x=Rvec_WtoE[0];
+    //            msg.pose.orientation.y=Rvec_WtoE[1];
+    //            msg.pose.orientation.z=Rvec_WtoE[2];
+    //            msg.header.stamp = ros::Time::now();
+                
+                
+                for(int i = 0 ; i < 6 ; i++) // 6 joints 
+                {
+                    msg.Q[i]=current_configuration[i];
+                }
+    //             msg.woopa=10;
+                
+                robot_move_marker.publish(msg);
+            }
+            
+            
+
+        }
     protected:
         
 
@@ -552,6 +632,11 @@ class UrTest
         rw::kinematics::State  currentState;
         
         ros::Publisher robot_move;
+        
+        ros::Publisher robot_move_marker;
+        
+        rw::math::Transform3D<double> tcpTmarker;
+        bool got_tcpTmarker=false;
 };
 
 
@@ -565,8 +650,10 @@ int main(int argc, char* argv[])
     UrTest ur_test;
     
     rw::math::RPY<double> wow(M_PI,-M_PI/2.0,0.0);
-    
+    rw::math::Rotation3D<double> wow2(-0.55818027, 0.13887417, -0.81698585,0.80561882, 0.16013092, -0.56890559,0.067801453, -0.9773857, -0.19605455);
+    rw::math::RPY<double> wow3(wow2);
     cout << "Correct rotation for marker vs. tool:\n" << wow.toRotation3D() << endl;
+    cout <<"WATHC HERE: " << wow3 << endl;
     
 //     cout << rw::math::RPY(rw::math::Rotation3D(0.268154, 0.801153, 0.535021, 0.358975, -0.59846, 0.716228, 0.893997, -0, -0.448074)) << endl;
 
@@ -580,6 +667,7 @@ int main(int argc, char* argv[])
     ros::ServiceServer service4 = n.advertiseService("/robot/MoveToPoseTcp", &UrTest::move_to_pose_tcp, &ur_test);
     ros::ServiceServer service5 = n.advertiseService("/robot/MoveToPointMarker", &UrTest::move_to_point_marker, &ur_test);
     ros::ServiceServer service6 = n.advertiseService("/robot/MoveToPoseMarker", &UrTest::move_to_pose_marker, &ur_test);
+    ros::ServiceServer service7 = n.advertiseService("/robot/tcpTmarker", &UrTest::change_end_transformation, &ur_test);
     
     ROS_INFO("We are about to spin");
     //ros::spin();
@@ -595,6 +683,7 @@ int main(int argc, char* argv[])
 //             ROS_INFO("I'm inside");
             last_publish=ros::Time::now();
             ur_test.publish_position();
+            ur_test.publish_marker_position();
         }
         
         ros::spinOnce();

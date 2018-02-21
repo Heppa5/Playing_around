@@ -1,7 +1,7 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
 messages_str = ""
-services_str = "/home/jepod13/catkin_ws/src/mp_mini_picker/srv/currentQ.srv;/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToQ.srv;/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPointTcp.srv;/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPoseTcp.srv;/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPointMarker.srv;/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPoseMarker.srv"
+services_str = "/home/jepod13/catkin_ws/src/mp_mini_picker/srv/currentQ.srv;/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToQ.srv;/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPointTcp.srv;/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPoseTcp.srv;/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPointMarker.srv;/home/jepod13/catkin_ws/src/mp_mini_picker/srv/moveToPoseMarker.srv;/home/jepod13/catkin_ws/src/mp_mini_picker/srv/changeTcpTMarker.srv"
 pkg_name = "mp_mini_picker"
 dependencies_str = "std_msgs;geometry_msgs"
 langs = "gencpp;geneus;genlisp;gennodejs;genpy"

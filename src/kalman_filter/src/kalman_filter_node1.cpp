@@ -49,23 +49,45 @@ class kalman_filter_class {
     
     unsigned long long number_of_observations=0;
     ros::Time hej2;
-
+    int marker_id=0;
 public:
     kalman_filter_class(string useF) {
-        if(useF=="1")
+        if(useF=="12")
         {
             ROS_INFO("Using filter");
             use_filter=true;
+            marker_id=2;
+            measMark1_sub = nh_.subscribe("/aruco/marker1", 100, &kalman_filter_class::update_marker1, this);
+            estMark1_pub = nh_.advertise<geometry_msgs::PoseStamped>("/kalman_filter/marker1", 100);
         }
-        else
+        else if(useF=="13")
+        {
+            ROS_INFO("Using filter");
+            use_filter=true;
+            marker_id=3;
+            measMark1_sub = nh_.subscribe("/aruco/marker2", 100, &kalman_filter_class::update_marker1, this);
+            estMark1_pub = nh_.advertise<geometry_msgs::PoseStamped>("/kalman_filter/marker2", 100);
+        }
+        else if(useF=="02")
         {
             ROS_INFO("Not using filter");
             use_filter=false;
+            marker_id=2;
+            measMark1_sub = nh_.subscribe("/aruco/marker1", 100, &kalman_filter_class::update_marker1, this);
+            estMark1_pub = nh_.advertise<geometry_msgs::PoseStamped>("/kalman_filter/marker1", 100);
         }
-        measMark1_sub = nh_.subscribe("/aruco/marker1", 100, &kalman_filter_class::update_marker1, this);
+        else if(useF=="03")
+        {
+            ROS_INFO("Not using filter");
+            use_filter=false;
+            marker_id=3;
+            measMark1_sub = nh_.subscribe("/aruco/marker2", 100, &kalman_filter_class::update_marker1, this);
+            estMark1_pub = nh_.advertise<geometry_msgs::PoseStamped>("/kalman_filter/marker2", 100);
+        }
+
 //         measMark2_sub = nh_.subscribe("/aruco/marker2", 100, &kalman_filter::measCb, this);
         
-        estMark1_pub = nh_.advertise<geometry_msgs::PoseStamped>("/kalman_filter/marker1", 100);
+
 //         estMark2_pub = nh_.advertise<geometry_msgs::PoseStamped>("/kalman_filter/marker2", 100);
 
         processNoise = .0005;
@@ -77,14 +99,14 @@ public:
         a = .5*dt*dt;
         
         F = (Mat_<float>(9, 9) <<	1, 0, 0, v, 0, 0, a, 0, 0, 
-                                        0, 1, 0, 0, v, 0, 0, a, 0, 
-                                        0, 0, 1, 0, 0, v, 0, 0, a, 
-                                        0, 0, 0, 1, 0, 0, v, 0, 0, 
-                                        0, 0, 0, 0, 1, 0, 0, v, 0, 
-                                        0, 0, 0, 0, 0, 1, 0, 0, v, 
-                                        0, 0, 0, 0, 0, 0, 1, 0, 0, 
-                                        0, 0, 0, 0, 0, 0, 0, 1, 0, 
-                                        0, 0, 0, 0, 0, 0, 0, 0, 1);
+                                    0, 1, 0, 0, v, 0, 0, a, 0,
+                                    0, 0, 1, 0, 0, v, 0, 0, a,
+                                    0, 0, 0, 1, 0, 0, v, 0, 0,
+                                    0, 0, 0, 0, 1, 0, 0, v, 0,
+                                    0, 0, 0, 0, 0, 1, 0, 0, v,
+                                    0, 0, 0, 0, 0, 0, 1, 0, 0,
+                                    0, 0, 0, 0, 0, 0, 0, 1, 0,
+                                    0, 0, 0, 0, 0, 0, 0, 0, 1);
         F_rot = (Mat_<float>(9, 9) <<	1, 0, 0, v, 0, 0, a, 0, 0, 
                                         0, 1, 0, 0, v, 0, 0, a, 0, 
                                         0, 0, 1, 0, 0, v, 0, 0, a, 
@@ -212,7 +234,7 @@ public:
             marker1=msg;
             marker1_updated=true;
             estMark1_pub.publish(msg);
-            sendTransformTf_PoseStamped(marker1,"camera","marker1_camera");
+//            sendTransformTf_PoseStamped(marker1,"camera","marker1_camera");
             
         }
         number_of_observations++;
@@ -395,12 +417,15 @@ public:
 
 int main(int argc, char** argv)
 {
-        
-    ros::init(argc, argv, "kalman_filter_marker1");
-    kalman_filter_class kf(argv[1]);
+    string wow=argv[1];
+    ros::init(argc, argv, "kalman_filter_marker"+wow);
+    kalman_filter_class kf(wow);
     ros::NodeHandle n;
-    
-    ros::ServiceServer service = n.advertiseService("/kalman_filter/marker1/turn", &kalman_filter_class::turn, &kf);
+
+    if(wow=="02" || wow=="12")
+        ros::ServiceServer service = n.advertiseService("/kalman_filter/marker1/turn", &kalman_filter_class::turn, &kf);
+    else if(wow=="03" || wow=="13")
+        ros::ServiceServer service = n.advertiseService("/kalman_filter/marker2/turn", &kalman_filter_class::turn, &kf);
     
     
     
