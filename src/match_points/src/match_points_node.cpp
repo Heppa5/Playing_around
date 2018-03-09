@@ -320,7 +320,7 @@ public:
             {
 //                 ROS_INFO("Hej %f",dist_between_points(matchedPoints[0].robot.tcp.pose,chosenMatchedPoints[0].robot.tcp.pose));
                 int i = matchedPoints.size()-1;
-                if(compare_3D_points(matchedPoints[i].robot.tcp.pose,chosenMatchedPoints[0].robot.tcp.pose,0.02))
+                if(compare_3D_points(matchedPoints[i].robot.tcp.pose,chosenMatchedPoints[0].robot.tcp.pose,dist_accepted_points)&&dist_accepted_points!=0.0)
                 {
                     float rob_dist=dist_between_points(matchedPoints[i].robot.tcp.pose,chosenMatchedPoints[0].robot.tcp.pose);
                     float cam_dist=dist_between_points(matchedPoints[i].camera.pose,chosenMatchedPoints[0].camera.pose);
@@ -328,28 +328,28 @@ public:
                     {
                         added_points = true;
 //                         ROS_INFO("Distance between chosen poinsts:  %f",dist_between_points(matchedPoints[0].robot.tcp.pose,chosenMatchedPoints[0].robot.tcp.pose));
-                        cout << chosenMatchedPoints[0].camera.pose.position.x << ",";
-                        cout << chosenMatchedPoints[0].camera.pose.position.y << ",";
-                        cout << chosenMatchedPoints[0].camera.pose.position.z << ",";
-                        cout << chosenMatchedPoints[0].camera.pose.orientation.x << ",";
-                        cout << chosenMatchedPoints[0].camera.pose.orientation.y << ",";
-                        cout << chosenMatchedPoints[0].camera.pose.orientation.z << "\n";
-                        
-                        cout << chosenMatchedPoints[0].robot.Q[0] << ",";
-                        cout << chosenMatchedPoints[0].robot.Q[1] << ",";
-                        cout << chosenMatchedPoints[0].robot.Q[2] << ",";
-                        cout << chosenMatchedPoints[0].robot.Q[3] << ",";
-                        cout << chosenMatchedPoints[0].robot.Q[4] << ",";
-                        cout << chosenMatchedPoints[0].robot.Q[5] << "\n";
-                        
-                        
+//                         cout << chosenMatchedPoints[0].camera.pose.position.x << ",";
+//                         cout << chosenMatchedPoints[0].camera.pose.position.y << ",";
+//                         cout << chosenMatchedPoints[0].camera.pose.position.z << ",";
+//                         cout << chosenMatchedPoints[0].camera.pose.orientation.x << ",";
+//                         cout << chosenMatchedPoints[0].camera.pose.orientation.y << ",";
+//                         cout << chosenMatchedPoints[0].camera.pose.orientation.z << "\n";
+//                         
+//                         cout << chosenMatchedPoints[0].robot.Q[0] << ",";
+//                         cout << chosenMatchedPoints[0].robot.Q[1] << ",";
+//                         cout << chosenMatchedPoints[0].robot.Q[2] << ",";
+//                         cout << chosenMatchedPoints[0].robot.Q[3] << ",";
+//                         cout << chosenMatchedPoints[0].robot.Q[4] << ",";
+//                         cout << chosenMatchedPoints[0].robot.Q[5] << "\n";
+//                         
+//                         
 //                         cout << chosenMatchedPoints[0].robot.tcp.pose.position.x << ",";
 //                         cout << chosenMatchedPoints[0].robot.tcp.pose.position.y << ",";
 //                         cout << chosenMatchedPoints[0].robot.tcp.pose.position.z << ",";
 //                         cout << chosenMatchedPoints[0].robot.tcp.pose.orientation.x << ",";
 //                         cout << chosenMatchedPoints[0].robot.tcp.pose.orientation.y << ",";
 //                         cout << chosenMatchedPoints[0].robot.tcp.pose.orientation.z << "\n";
-                        
+//                         
 //                         cout << chosenMatchedPoints[0].robot.wTtcp.pose.position.x << ",";
 //                         cout << chosenMatchedPoints[0].robot.wTtcp.pose.position.y << ",";
 //                         cout << chosenMatchedPoints[0].robot.wTtcp.pose.position.z << ",";
@@ -379,6 +379,19 @@ public:
 //                         chosenMatchedPoints.erase(chosenMatchedPoints.end());
 //                     }
 
+                }
+                else if(dist_accepted_points==0.0)
+                {
+//                     cout << "Going in" << endl;
+                    chosenMatchedPoints.insert(chosenMatchedPoints.begin(),matchedPoints[i]);
+                    matchedPoints.erase(matchedPoints.end());
+                    
+                    message_package::matched_points msg;
+                    msg.robot=chosenMatchedPoints[0].robot.tcp;
+                    msg.wTtcp=chosenMatchedPoints[0].robot.wTtcp;
+                    msg.camera=chosenMatchedPoints[0].camera;
+                
+                    matched_points_pub_.publish(msg);
                 }
                 else
                 {

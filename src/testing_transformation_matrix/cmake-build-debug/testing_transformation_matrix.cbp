@@ -814,6 +814,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/jepod13/catkin_ws/src/testing_transformation_matrix/include/find_gradient.h">
+			<Option target="testing_transformation_matrix_node"/>
+		</Unit>
 		<Unit filename="/home/jepod13/catkin_ws/src/testing_transformation_matrix/include/helping_functions.h">
 			<Option target="testing_transformation_matrix_node"/>
 		</Unit>

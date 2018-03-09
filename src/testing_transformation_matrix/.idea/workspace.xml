@@ -3,9 +3,10 @@
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
       <config projectName="testing_transformation_matrix" targetName="actionlib_generate_messages_eus" />
+      <config projectName="testing_transformation_matrix" targetName="actionlib_generate_messages_lisp" />
       <config projectName="testing_transformation_matrix" targetName="download_extra_data" />
       <config projectName="testing_transformation_matrix" targetName="geometry_msgs_generate_messages_py" />
-      <config projectName="testing_transformation_matrix" targetName="actionlib_generate_messages_nodejs" />
+      <config projectName="testing_transformation_matrix" targetName="tf2_msgs_generate_messages_py" />
       <config projectName="testing_transformation_matrix" targetName="actionlib_generate_messages_cpp" />
       <config projectName="testing_transformation_matrix" targetName="tf2_msgs_generate_messages_cpp" />
       <config projectName="testing_transformation_matrix" targetName="roscpp_generate_messages_lisp" />
@@ -16,24 +17,23 @@
       <config projectName="testing_transformation_matrix" targetName="tf_generate_messages_cpp" />
       <config projectName="testing_transformation_matrix" targetName="message_package_generate_messages_eus" />
       <config projectName="testing_transformation_matrix" targetName="sensor_msgs_generate_messages_cpp" />
-      <config projectName="testing_transformation_matrix" targetName="rosgraph_msgs_generate_messages_py" />
-      <config projectName="testing_transformation_matrix" targetName="rosgraph_msgs_generate_messages_eus" />
       <config projectName="testing_transformation_matrix" targetName="rosgraph_msgs_generate_messages_cpp" />
-      <config projectName="testing_transformation_matrix" targetName="sensor_msgs_generate_messages_py" />
-      <config projectName="testing_transformation_matrix" targetName="tests" />
+      <config projectName="testing_transformation_matrix" targetName="sensor_msgs_generate_messages_lisp" />
       <config projectName="testing_transformation_matrix" targetName="sensor_msgs_generate_messages_nodejs" />
       <config projectName="testing_transformation_matrix" targetName="geometry_msgs_generate_messages_lisp" />
-      <config projectName="testing_transformation_matrix" targetName="roscpp_generate_messages_py" />
       <config projectName="testing_transformation_matrix" targetName="tf_generate_messages_lisp" />
       <config projectName="testing_transformation_matrix" targetName="actionlib_msgs_generate_messages_nodejs" />
-      <config projectName="testing_transformation_matrix" targetName="sensor_msgs_generate_messages_eus" />
-      <config projectName="testing_transformation_matrix" targetName="sensor_msgs_generate_messages_lisp" />
+      <config projectName="testing_transformation_matrix" targetName="tests" />
+      <config projectName="testing_transformation_matrix" targetName="tf2_msgs_generate_messages_nodejs" />
+      <config projectName="testing_transformation_matrix" targetName="std_msgs_generate_messages_cpp" />
       <config projectName="testing_transformation_matrix" targetName="message_package_generate_messages_lisp" />
       <config projectName="testing_transformation_matrix" targetName="actionlib_msgs_generate_messages_py" />
-      <config projectName="testing_transformation_matrix" targetName="tf_generate_messages_eus" />
-      <config projectName="testing_transformation_matrix" targetName="std_msgs_generate_messages_cpp" />
+      <config projectName="testing_transformation_matrix" targetName="actionlib_generate_messages_nodejs" />
+      <config projectName="testing_transformation_matrix" targetName="gtest_main" />
+      <config projectName="testing_transformation_matrix" targetName="sensor_msgs_generate_messages_py" />
       <config projectName="testing_transformation_matrix" targetName="roscpp_generate_messages_eus" />
       <config projectName="testing_transformation_matrix" targetName="testing_transformation_matrix_node" />
+      <config projectName="testing_transformation_matrix" targetName="run_tests" />
       <config projectName="testing_transformation_matrix" targetName="std_msgs_generate_messages_lisp" />
       <config projectName="testing_transformation_matrix" targetName="message_package_generate_messages_cpp" />
       <config projectName="testing_transformation_matrix" targetName="actionlib_msgs_generate_messages_eus" />
@@ -42,24 +42,24 @@
       <config projectName="testing_transformation_matrix" targetName="std_msgs_generate_messages_nodejs" />
       <config projectName="testing_transformation_matrix" targetName="clean_test_results" />
       <config projectName="testing_transformation_matrix" targetName="message_package_generate_messages_nodejs" />
-      <config projectName="testing_transformation_matrix" targetName="tf2_msgs_generate_messages_py" />
-      <config projectName="testing_transformation_matrix" targetName="run_tests" />
+      <config projectName="testing_transformation_matrix" targetName="tf_generate_messages_eus" />
+      <config projectName="testing_transformation_matrix" targetName="actionlib_generate_messages_py" />
       <config projectName="testing_transformation_matrix" targetName="doxygen" />
       <config projectName="testing_transformation_matrix" targetName="_catkin_empty_exported_target" />
       <config projectName="testing_transformation_matrix" targetName="geometry_msgs_generate_messages_nodejs" />
-      <config projectName="testing_transformation_matrix" targetName="actionlib_generate_messages_py" />
+      <config projectName="testing_transformation_matrix" targetName="rosgraph_msgs_generate_messages_eus" />
       <config projectName="testing_transformation_matrix" targetName="tf2_msgs_generate_messages_eus" />
       <config projectName="testing_transformation_matrix" targetName="roscpp_generate_messages_cpp" />
       <config projectName="testing_transformation_matrix" targetName="tf_generate_messages_nodejs" />
       <config projectName="testing_transformation_matrix" targetName="message_package_generate_messages_py" />
       <config projectName="testing_transformation_matrix" targetName="geometry_msgs_generate_messages_eus" />
       <config projectName="testing_transformation_matrix" targetName="gtest" />
-      <config projectName="testing_transformation_matrix" targetName="gtest_main" />
-      <config projectName="testing_transformation_matrix" targetName="actionlib_generate_messages_lisp" />
+      <config projectName="testing_transformation_matrix" targetName="roscpp_generate_messages_py" />
+      <config projectName="testing_transformation_matrix" targetName="sensor_msgs_generate_messages_eus" />
       <config projectName="testing_transformation_matrix" targetName="roscpp_generate_messages_nodejs" />
       <config projectName="testing_transformation_matrix" targetName="std_msgs_generate_messages_py" />
       <config projectName="testing_transformation_matrix" targetName="rosgraph_msgs_generate_messages_nodejs" />
-      <config projectName="testing_transformation_matrix" targetName="tf2_msgs_generate_messages_nodejs" />
+      <config projectName="testing_transformation_matrix" targetName="rosgraph_msgs_generate_messages_py" />
       <config projectName="testing_transformation_matrix" targetName="rosgraph_msgs_generate_messages_lisp" />
     </generated>
   </component>
@@ -81,21 +81,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="25" column="29" lean-forward="false" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="testing_transformation_matrix_node.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/testing_transformation_matrix_node.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="1463" column="26" lean-forward="true" selection-start-line="1463" selection-start-column="26" selection-end-line="1463" selection-end-column="26" />
+            <state relative-caret-position="-102">
+              <caret line="1174" column="9" lean-forward="false" selection-start-line="1174" selection-start-column="9" selection-end-line="1174" selection-end-column="9" />
               <folding>
                 <element signature="e#331#375#0" expanded="true" />
               </folding>
@@ -103,11 +93,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="find_gradient.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/find_gradient.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="212">
+              <caret line="276" column="0" lean-forward="true" selection-start-line="276" selection-start-column="0" selection-end-line="277" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="helping_functions.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/include/helping_functions.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="684">
-              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+            <state relative-caret-position="792">
+              <caret line="44" column="5" lean-forward="false" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="20" />
               <folding>
                 <element signature="e#382#426#0" expanded="true" />
               </folding>
@@ -119,16 +119,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>to_string</find>
-      <find>program_finished</find>
-      <find>finished_program</find>
-      <find>update_robot_position</find>
-      <find>update_ro</find>
-      <find>current_robot_position</find>
-      <find>transformation_settled</find>
-      <find>system</find>
-      <find>system_ini</find>
-      <find>move_robot_random_direction</find>
       <find>robot_at_asked_position</find>
       <find>print_current_robot_position</find>
       <find>robot_initialized</find>
@@ -145,19 +135,31 @@
       <find>wTc</find>
       <find>saw_marker1</find>
       <find>move_iteratively_to_marker2</find>
-      <find>cheat</find>
       <find>image_pub_2</find>
       <find>image_pub_</find>
+      <find>move</find>
+      <find>random</find>
+      <find>wTc_ChosenMatchedPoints</find>
+      <find>sendTransformTf</find>
+      <find>dataset_size</find>
+      <find>dataset_size=31</find>
+      <find>test_jes</find>
+      <find>update_tr</find>
+      <find>move_robot_randomly</find>
+      <find>cTw_update</find>
+      <find>update_tran</find>
+      <find>cheat</find>
     </findStrings>
     <replaceStrings>
       <replace>current_robot_position.tcp</replace>
+      <replace>latest_point</replace>
     </replaceStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/include/helping_functions.h" />
         <option value="$PROJECT_DIR$/../aruco_3D/src/aruco_3D_node.cpp" />
+        <option value="$PROJECT_DIR$/include/helping_functions.h" />
         <option value="$PROJECT_DIR$/src/testing_transformation_matrix_node.cpp" />
       </list>
     </option>
@@ -169,10 +171,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="292" />
-    <option name="y" value="24" />
-    <option name="width" value="1400" />
-    <option name="height" value="1028" />
+    <option name="x" value="65" />
+    <option name="y" value="28" />
+    <option name="width" value="1398" />
+    <option name="height" value="992" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -207,6 +209,12 @@
               <item name="testing_transformation_matrix" type="462c0819:PsiDirectoryNode" />
               <item name="include" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="testing_transformation_matrix" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="testing_transformation_matrix" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="testing_transformation_matrix" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -214,7 +222,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/Jesper/robwork_change_transformation/CMakeLists.txt" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/CMakeLists.txt" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
@@ -516,17 +524,24 @@
       <workItem from="1519118460448" duration="926000" />
       <workItem from="1519120149046" duration="3841000" />
       <workItem from="1519125780075" duration="3100000" />
+      <workItem from="1519303290161" duration="1869000" />
+      <workItem from="1519735371160" duration="41000" />
+      <workItem from="1519743115545" duration="5546000" />
+      <workItem from="1519806279319" duration="2095000" />
+      <workItem from="1520238884929" duration="525000" />
+      <workItem from="1520243594572" duration="330000" />
+      <workItem from="1520496637508" duration="10995000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134438000" />
+    <option name="totallyTimeSpent" value="155839000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="292" y="24" width="1857" height="1092" extended-state="6" />
+    <frame x="0" y="-28" width="1920" height="1108" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18221024" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17447917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -537,7 +552,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20612244" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22058824" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -554,26 +569,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/testing_transformation_matrix_node.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16272">
-          <caret line="904" column="24" lean-forward="false" selection-start-line="904" selection-start-column="24" selection-end-line="904" selection-end-column="71" />
-          <folding>
-            <element signature="e#331#375#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -601,7 +605,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -629,7 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -657,7 +659,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -685,7 +686,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -713,7 +713,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -741,7 +740,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -769,7 +767,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -797,7 +794,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -825,7 +821,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -853,7 +848,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -881,7 +875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -899,7 +892,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -917,7 +909,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -935,7 +926,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -953,7 +943,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -971,7 +960,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -992,14 +980,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" column="29" lean-forward="false" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../aruco_3D/src/aruco_3D_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="296">
@@ -1007,20 +987,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="29" lean-forward="false" selection-start-line="0" selection-start-column="29" selection-end-line="0" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/include/helping_functions.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+        <state relative-caret-position="792">
+          <caret line="44" column="5" lean-forward="false" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="20" />
           <folding>
             <element signature="e#382#426#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/include/find_gradient.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="276" column="0" lean-forward="true" selection-start-line="276" selection-start-column="0" selection-end-line="277" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/testing_transformation_matrix_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="1463" column="26" lean-forward="true" selection-start-line="1463" selection-start-column="26" selection-end-line="1463" selection-end-column="26" />
+        <state relative-caret-position="-102">
+          <caret line="1174" column="9" lean-forward="false" selection-start-line="1174" selection-start-column="9" selection-end-line="1174" selection-end-column="9" />
           <folding>
             <element signature="e#331#375#0" expanded="true" />
           </folding>

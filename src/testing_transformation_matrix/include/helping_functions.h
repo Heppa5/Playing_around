@@ -27,10 +27,10 @@
 
 #include <message_package/matched_points.h>
 #include <message_package/currentToolPosition.h>
-#include "mp_mini_picker/moveToPoint.h"
-#include "mp_mini_picker/moveToPose.h"
-#include "mp_mini_picker/moveToQ.h"
-#include "mp_mini_picker/currentQ.h"
+// #include "mp_mini_picker/moveToPoint.h"
+// #include "mp_mini_picker/moveToPose.h"
+// #include "mp_mini_picker/moveToQ.h"
+// #include "mp_mini_picker/currentQ.h"
 
 #include "match_points/stopMatching.h"
 #include "match_points/getNextMatchingPoint.h"
@@ -389,10 +389,14 @@ Mat generate_random_vector(double length,double mean=0.0, double std_dev=10.0)
     double y=distribution(generator);
     double z=distribution(generator);
     double factor=sqrt(pow(x,2)+pow(y,2)+pow(z,2));
-    Mat result=Mat::zeros(3,1,CV_64F);
-    result.at<double>(0,0)=x/factor*length;
-    result.at<double>(1,0)=y/factor*length;
-    result.at<double>(2,0)=z/factor*length;
+//    Mat result=Mat::zeros(3,1,CV_64F);
+//    result.at<double>(0,0)=x/factor*length;
+//    result.at<double>(1,0)=y/factor*length;
+//    result.at<double>(2,0)=z/factor*length;
+    Mat result=Mat::zeros(3,1,CV_32F);
+    result.at<float>(0,0)=(float)(x/factor*length);
+    result.at<float>(1,0)=(float)(y/factor*length);
+    result.at<float>(2,0)=(float)(z/factor*length);
 
     return result;
 }

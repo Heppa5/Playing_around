@@ -154,7 +154,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(${PROJECT_NAME}_node src/testing_transformation_matrix_node.cpp include/helping_functions.h)
+add_executable(${PROJECT_NAME}_node src/testing_transformation_matrix_node.cpp include/helping_functions.h include/find_gradient.h)
 
 
 ## Add cmake target dependencies of the library
