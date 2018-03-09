@@ -82,20 +82,36 @@ public:
 
 
 
-        distortion.push_back(-0.228385);
-        distortion.push_back(0.266082);
-        distortion.push_back(-0.001812);
-        distortion.push_back(0.000035);
+//         distortion.push_back(-0.228385);
+//         distortion.push_back(0.266082);
+//         distortion.push_back(-0.001812);
+//         distortion.push_back(0.000035);
+//         distortion.push_back(0.000000);
+//         distortion_mat=(Mat_<float>(5,1) <<    -0.228385,0.266082,-0.001812,0.000035,0.000000);
+        
+        distortion_mat=(Mat_<float>(5,1) <<    -0.21475579816108,0.202105909302347,-0.00070360488190,0.000066847865518,0.000000);
+//         distortion_mat=(Mat_<float>(4,1) <<    -0.21475579816108,0.202105909302347,-0.00070360488190,0.000066847865518);
+        distortion.push_back(-0.21475579816108);
+        distortion.push_back(0.202105909302347);
+        distortion.push_back(-0.00070360488190);
+        distortion.push_back(0.000066847865518);
         distortion.push_back(0.000000);
+        
+        
         
         print_pixel_values=true;
         
-        distortion_mat=(Mat_<float>(5,1) <<    -0.228385,0.266082,-0.001812,0.000035,0.000000);
+        
         mark_dict = aruco::getPredefinedDictionary(aruco::DICT_4X4_50);
         
-        camera_matrix = (Mat_<float>(3,3) <<    1348.715676, 0.000000, 722.486120,
-                                                0.000000, 1347.386029, 495.012476,
+//         camera_matrix = (Mat_<float>(3,3) <<    1348.715676, 0.000000, 722.486120,
+//                                                 0.000000, 1347.386029, 495.012476,
+//                                                 0.000000, 0.000000, 1.000000);
+        camera_matrix = (Mat_<float>(3,3) <<    1323.53603931762, 0.000000, 717.013056698467,
+                                                0.000000, 1323.10476760428, 487.627723543151,
                                                 0.000000, 0.000000, 1.000000);
+        
+        
         
 //         filtering_constant=3.14/6.0;
 //         filtering_constant=3.14/4.0;
