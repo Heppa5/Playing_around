@@ -33,6 +33,9 @@
 #include "mp_mini_picker/moveToQ.h"
 #include "mp_mini_picker/currentQ.h"
 #include "mp_mini_picker/changeTcpTMarker.h"
+#include "caros_universalrobot/UrServiceSetIO.h"
+#include "testing_transformation_matrix/brick_to_home.h"
+
 
 #include "match_points/stopMatching.h"
 #include "match_points/getNextMatchingPoint.h"
@@ -95,6 +98,8 @@ class TestClass
 
     ros::ServiceClient serv_get_matched_point_;
 
+    ros::ServiceClient serv_turn_on_io_;
+
     bool debug=false;
     bool use_incremental_correction;
 public:
@@ -128,78 +133,74 @@ public:
         serv_get_matched_point_ = nh_.serviceClient<match_points::getNextMatchingPoint>("/match_points/getNextMatchedPoint");
         serv_set_distance_betw_matched_points_ = nh_.serviceClient<match_points::setDistBetwChosenPoints>("/match_points/distanceBetweenAcceptedPoints");
         serv_change_tcpTmarker_ = nh_.serviceClient<mp_mini_picker::changeTcpTMarker>("/robot/tcpTmarker");
-
+        serv_turn_on_io_ = nh_.serviceClient<caros_universalrobot::UrServiceSetIO>("/caros_universalrobot/set_io");
 
 
         // Set our seed 
         srand(time(NULL));
 
-        
-//         //New home position
-//        srv_home.request.Q[0]=-0.5745800177203577;
-//        srv_home.request.Q[1]=-1.7719739119159144;
-//        srv_home.request.Q[2]=-2.2175000349627894;
-//        srv_home.request.Q[3]=-0.793243710194723;
-//        srv_home.request.Q[4]=1.5708764791488647;
-//        srv_home.request.Q[5]=-0.9832060972796839;
-        
-        srv_home.request.Q[0]=-0.5358255545245569;
-        srv_home.request.Q[1]=-2.1341140905963343;
-        srv_home.request.Q[2]=-1.8766534964190882;
-        srv_home.request.Q[3]=-0.8037985006915491;
-        srv_home.request.Q[4]=1.554266333580017;
-        srv_home.request.Q[5]=-0.9420283476458948;
-//         srv_home.request.Q[0]=-32.0/180.0*M_PI;
-//         srv_home.request.Q[1]=-130.0/180.0*M_PI;
-//         srv_home.request.Q[2]=-96.0/180.0*M_PI;
-//         srv_home.request.Q[3]=-40.0/180.0*M_PI;
-//         srv_home.request.Q[4]=59.0/180.0*M_PI;
-//         srv_home.request.Q[5]=-50.0/180.0*M_PI;
-
-//        srv_home.request.Q[0]=0.24905504286289215;
-//        srv_home.request.Q[1]=-1.2299278418170374;
-//        srv_home.request.Q[2]=-1.6500452200519007;
-//        srv_home.request.Q[3]=-1.8819416205035608;
-//        srv_home.request.Q[4]=1.6246130466461182;
-//        srv_home.request.Q[5]=-0.15994674364198858;
-
-
-//        [-0.5745800177203577, -1.7719739119159144, -2.2175000349627894, -0.793243710194723, 1.5708764791488647, -0.9832060972796839]
-        
-        ros::Time last_publish=ros::Time::now();
-        ros::Duration time_between_publishing(5); // Start up time
-        ros::Duration time_difference;
-        bool command_send=false;
-        bool continue_program=false;
-        ROS_INFO("Test node moving robot in 5 seconds");
-        while(continue_program == false)
+        ros::Time current=ros::Time::now();
+        while(ros::Time::now()-current<ros::Duration(7))
         {
-            ros::Time current_time=ros::Time::now();
-            time_difference=current_time-last_publish;
-            if(time_difference>=time_between_publishing)
-            {
-                last_publish=ros::Time::now();
-                if(command_send==false)
-                {
-                    serv_move_robotQ_.call(srv_home);
-                    if (srv_home.response.ok==1)
-                    {
-                        ROS_INFO("Moving to start position");
-                        command_send=true;
-                    }
-                    else
-                    {
-                        ROS_INFO("Did not succeed in moving robot to start position");
-                    }
-                    ROS_INFO("Waiting another 5 seconds");
-                }
-                else
-                {
-                    continue_program=true;
-                }
-            }
             ros::spinOnce();
         }
+        mp_mini_picker::moveToQ serv;
+        serv.request.Q[0]=-0.30601674715151006;
+        serv.request.Q[1]=-2.941286865864889;
+        serv.request.Q[2]= -1.4713957945453089;
+        serv.request.Q[3]=-0.35617334047426397;
+        serv.request.Q[4]=1.5167635679244995;
+        serv.request.Q[5]=1.2242028713226318;
+        serv_move_robotQ_.call(serv);
+        while(robot_at_Q(serv.request,0.0009)==false)
+        {
+            ros::spinOnce();
+        }
+        
+        srv_home.request.Q[0]=-0.30713206926454717;
+        srv_home.request.Q[1]=-2.991063896809713;
+        srv_home.request.Q[2]=-1.4273207823382776;
+        srv_home.request.Q[3]=-0.350809399281637;
+        srv_home.request.Q[4]=1.5168954133987427;
+        srv_home.request.Q[5]=1.2231471538543701;
+        serv_move_robotQ_.call(srv_home);
+
+
+        cout << "Going out" << endl;
+
+//        ros::Time last_publish=ros::Time::now();
+//        ros::Duration time_between_publishing(5); // Start up time
+//        bool command_send=false;
+//        bool continue_program=false;
+//        ROS_INFO("Test node moving robot in 5 seconds");
+//        while(continue_program == false)
+//        {
+//            ros::Time current_time=ros::Time::now();
+//            time_difference=current_time-last_publish;
+//            if(time_difference>=time_between_publishing)
+//            {
+//                last_publish=ros::Time::now();
+//                if(command_send==false)
+//                {
+//                    serv_move_robotQ_.call(srv_home);
+//                    if (srv_home.response.ok==1)
+//                    {
+//                        ROS_INFO("Moving to start position");
+//                        command_send=true;
+//                    }
+//                    else
+//                    {
+//                        ROS_INFO("Did not succeed in moving robot to start position");
+//                    }
+//                    ROS_INFO("Waiting another 5 seconds");
+//                }
+//                else
+//                {
+//                    continue_program=true;
+//                }
+//            }
+//            ros::spinOnce();
+//        }
 //        wTb = Mat::zeros(4,4,CV_32F);
 //         wTb = (Mat_<float>(4,4) <<    3.06162e-16, -1.0, 0.0, -0.326,
 //                                                  1.0, 3.06162e-16, 0.0,  -0.303,
@@ -373,7 +374,7 @@ public:
     }
 
     
-    bool robot_at_home_position()
+    bool robot_at_home_position(double precision=0.0009)
     {
         mp_mini_picker::currentQ srv;
         srv.request.getQ=1;
@@ -382,7 +383,7 @@ public:
             bool robot_at_position=true;
             for(int i=0; i<6 ; i++)
             {
-                if(srv.response.Q[i] >= (srv_home.request.Q[i]-0.009) && srv.response.Q[i] <= (srv_home.request.Q[i]+0.009))
+                if(srv.response.Q[i] >= (srv_home.request.Q[i]-precision) && srv.response.Q[i] <= (srv_home.request.Q[i]+precision))
                 {
                     // nothing
                 }
@@ -400,6 +401,36 @@ public:
                 return false;
         }
         else 
+            return false;
+    }
+
+    bool robot_at_Q( mp_mini_picker::moveToQ::Request service_call_request, double precision=0.0009)
+    {
+        mp_mini_picker::currentQ srv;
+        srv.request.getQ=1;
+        if(serv_get_robotQ_.call(srv))
+        {
+            bool robot_at_position=true;
+            for(int i=0; i<6 ; i++)
+            {
+                if(srv.response.Q[i] >= (service_call_request.Q[i]-precision) && srv.response.Q[i] <= (service_call_request.Q[i]+precision))
+                {
+                    // nothing
+                }
+                else
+                {
+                    robot_at_position=false;
+                }
+            }
+            if(robot_at_position==true)
+            {
+                robot_initialized=true;
+                return true;
+            }
+            else
+                return false;
+        }
+        else
             return false;
     }
     
@@ -811,8 +842,6 @@ public:
         cout << "wTtcp is: \n" << wTtcp << endl;
         Mat tcpTw = inverse_T(wTtcp);
         cout << "tcpTw is: \n" << tcpTw << endl;
-        Mat bTw = inverse_T(wTb);
-        cout << "bTw: \n" << bTw << endl;
 
 
 //         Mat wPtcp=convert_geomsg_to_hommat(current_robot_position.tcp);
@@ -938,12 +967,13 @@ public:
 
     }
 
-    Mat find_rotation_error_between_markers(double error_correction=0.1)
+    Mat find_rotation_error_between_markers(double error_correction=0.1, bool output=true)
     {
         // find desired pose and dR
         Mat cR2=convert_geomsg_to_R(marker2_position);
-        _2R1=roll(-M_PI/2); // Hard coded offset in current setup
-        Mat cRdesired=cR2*_2R1;
+//        _2R1=roll(-M_PI/2); // Hard coded offset in current setup
+//        Mat cRdesired=cR2*_2R1;
+        Mat cRdesired=cR2;
 //        Mat cRdesired=cR2;
         Mat cR1=convert_geomsg_to_R(marker1_position);
         Mat _1Rc;
@@ -953,32 +983,40 @@ public:
         // Reduce rotation error with error correction variable
         Mat _1Rdesired_vec;
         Rodrigues(_1Rdesired,_1Rdesired_vec);
-//        cout << "_1Rdesired_vec is: \n" << _1Rdesired_vec << endl;
-//        cout << "_1Rdesired_vec*error_correction is: \n" << _1Rdesired_vec*error_correction << endl;
+        if(output)
+        {
+            cout << "_1Rdesired_vec is: \n" << _1Rdesired_vec << endl;
+            cout << "_1Rdesired_vec*error_correction is: \n" << _1Rdesired_vec*error_correction << endl;
+        }
+
         _1Rdesired_vec=_1Rdesired_vec*error_correction;
         Rodrigues(_1Rdesired_vec,_1Rdesired);
         return _1Rdesired;
     }
 
-    Mat calc_wPtool_tip()
+    Mat calc_wPtool_tip(bool output=true)
     {
         Mat cTmarker1=convert_geomsg_to_trans(marker1_position); // given as a relative transformation
-        cout << "CTmarker1: \n" << convert_geomsg_to_trans(marker1_position) <<  endl;
-        Mat tip_correction = (Mat_<float>(4,1) << 0.169, -0.021, -0.028, 1.0); // correcting for tip seen from marker 1 frame
+        if(output)
+            cout << "CTmarker1: \n" << convert_geomsg_to_trans(marker1_position) <<  endl;
+//        Mat tip_correction = (Mat_<float>(4,1) << 0.169, -0.021, -0.028, 1.0); // correcting for tip seen from marker 1 frame
 //        Mat tip_correction = (Mat_<float>(4,1) << 0.168, -0.025, -0.027, 1.0); // correcting for tip seen from marker 1 frame
 //        Mat tip_correction = (Mat_<float>(4,1) << 0, 0, 0, 1.0); // correcting for tip seen from marker 1 frame
+        Mat tip_correction = (Mat_<float>(4,1) << 0, -0.025, 0, 1.0); // we want to allign the lower corner of the brick.
         Mat wPtip=wTc*cTmarker1*tip_correction;
         return wPtip;
     }
 
-    Mat calc_positional_iterative_error()
+    Mat calc_positional_iterative_error(bool output=true)
     {
-        Mat wPtip=calc_wPtool_tip();
+        Mat wPtip=calc_wPtool_tip(output);
         // correct marker 2
 
         Mat cTmarker2=convert_geomsg_to_trans(marker2_position);
-        Mat corner_in_marker2F = (Mat_<float>(4,1) << -0.006, 0.008, 0, 1);
-        Mat correction = (Mat_<float>(4,1) << 0, 0, 0.01, 0.0);
+//        Mat corner_in_marker2F = (Mat_<float>(4,1) << -0.006, 0.008, 0, 1);
+//        Mat corner_in_marker2F = (Mat_<float>(4,1) << -0.006, 0.008, 0, 1);
+        Mat corner_in_marker2F = (Mat_<float>(4,1) << 0, 0, 0, 1);
+        Mat correction = (Mat_<float>(4,1) << 0, 0, 0.003, 0.0);
         Mat wPcorner=wTc*cTmarker2*corner_in_marker2F+correction;
 
         // Find positional error and the desired correction of that error
@@ -989,7 +1027,7 @@ public:
     void move_iteratively_to_marker2(double error_correction=0.1)
     {
         cout << "################################################### \nNew move for visual servoing" << endl;
-        cout << "Rotation error: " << find_rotation_error_between_markers(error_correction) << endl;
+        cout << "Rotation error: \n" << find_rotation_error_between_markers(error_correction) << endl;
         Mat _1Rdesired=find_rotation_error_between_markers(error_correction);
         // Now correct current rotation with our rotation error
         Mat tcpRmarker=tcpTmarker(Rect(0,0,3,3));
@@ -1227,25 +1265,43 @@ public:
 
 
         }
-//        // update alpha:
-//        tcpTmarker_update.at<float>(2,1)=tcpTmarker_update.at<float>(2,1)+gradient.at<float>(9,0);
-//        tcpTmarker_update.at<float>(1,2)=tcpTmarker_update.at<float>(1,2)-gradient.at<float>(9,0);
-//        // update beta:
-//        tcpTmarker_update.at<float>(2,0)=tcpTmarker_update.at<float>(2,0)-gradient.at<float>(10,0);
-//        tcpTmarker_update.at<float>(0,2)=tcpTmarker_update.at<float>(0,2)+gradient.at<float>(10,0);
-//        // update gamma:
-//        tcpTmarker_update.at<float>(0,1)=tcpTmarker_update.at<float>(0,1)-gradient.at<float>(11,0);
-//        tcpTmarker_update.at<float>(1,0)=tcpTmarker_update.at<float>(1,0)+gradient.at<float>(11,0);
 
-
-
-//        cout << "cTw_update \n" << cTw_update << endl;
-//        cout << "Updated cTw: \n" << cTw*cTw_update << endl;
-//        cout << "Updated tcpTmarker: \n" << tcpTmarker*tcpTmarker_update << endl;
-
-//        cout << "tcpTmarker_update is after correction: \n" << tcpTmarker_update << endl;
     }
 
+    void turn_on_suctionCup(bool turnOn=true)
+    {
+        caros_universalrobot::UrServiceSetIO serv;
+        serv.request.pin=3;
+        serv.request.value=turnOn;
+        serv_turn_on_io_.call(serv);
+    }
+
+    bool function_brick_to_home(testing_transformation_matrix::brick_to_home::Request &req,
+                              testing_transformation_matrix::brick_to_home::Response &res)
+    {
+        bool done=false;
+
+        while(done==false)
+        {
+            serv_move_robotQ_.call(srv_home);
+            if(srv_home.response.ok==true)
+            {
+                done=true;
+            }
+        }
+
+        while (!robot_at_home_position(0.00009)) {
+            // wait
+            //usleep(100000);
+            ros::spinOnce();
+        }
+
+        turn_on_suctionCup(false);
+        while(true)
+        {
+            ros::spinOnce();
+        }
+    }
 
 private:
 
@@ -1253,14 +1309,13 @@ private:
     
     bool gotMatchedPoint=false;
     
-    bool move_robot_randomly=true,getNextMatchingPoint=false;
+   bool getNextMatchingPoint=false;
     
     geometry_msgs::PoseStamped desired_robot_position,marker2_position,marker1_position;
     message_package::currentToolPosition2 current_robot_position,old_robot_position,current_robot_marker_position ;
 
     vector<message_package::matched_points> wTc_ChosenMatchedPoints,tcpTmarker_ChosenMatchedPoints;
 
-//    message_package::matched_points latest_desired_matched_point;
 
     mp_mini_picker::moveToQ srv_home;
 
@@ -1276,9 +1331,15 @@ int main(int argc, char** argv)
 {
     bool use_incremental_correction=true;
     ros::init(argc, argv, "test matched points");
+    ros::NodeHandle n;
     TestClass ic(use_incremental_correction);
+    //n.advertiseService("/funName/hej",TestClass::function_brick_to_home,&ic);
+    ros::ServiceServer service = n.advertiseService("/testing_transformation_matric/brick_to_home", &TestClass::function_brick_to_home, &ic);
+
     ROS_INFO("Starting test node up");
-    
+
+
+
     vector<Mat> sphere_coordinates;
 
     message_package::currentToolPosition2 rotation_start_pose;
@@ -1287,11 +1348,10 @@ int main(int argc, char** argv)
     bool first_iteration=true, found_wRc=false, asked_for_points=false, first_iteration_angleMinMax=true, positive_direction=false;
     bool first_minimum=true;
     int find_wRc_round=0;
-    double length=0.1;
-    int total_number_of_tcp_rotations=15;
+    double length=0.05;
     int find_minMax_round=0;
     double total_angle=0;
-    Mat Rmin,Rmax,Pmin,Pmax,Ymin,Ymax;
+//    Mat Rmin,Rmax,Pmin,Pmax,Ymin,Ymax;
 
     bool wTc_dataset_collected=false,tcpTmarker_dataset_collected=false, wTc_calculated=false, changed_pose=false, got_sphere=false, found_minMax_angles=false, big_error_correction;
 
@@ -1308,18 +1368,18 @@ int main(int argc, char** argv)
     bool cheat=true;
     if(cheat)
     {
-        Mat wTc = (Mat_<float>(4, 4) << 0.85251993, 0.10858911, -0.50973761, 1.0800163,
-                                        0.55342996, -0.10745841, 0.82497406, -1.1997528,
-                                        0.033956207, -0.98651284, -0.15509245, 0.062517919,
+        Mat wTc = (Mat_<float>(4, 4) << 0.57820296, 0.2957612, -0.74569559, 1.019987,
+                                        0.71818298, -0.24055234, 0.63576972, -0.53199458,
+                                        0.026527436, -0.94258791, -0.2977913, -0.32615924,
                                         0, 0, 0, 1);
         
         Mat R=wTc(Rect(0,0,3,3));
         Mat wTc_vec;
         Rodrigues(R,wTc_vec);
         cout << "HERE: \n" << wTc_vec << endl;
-        Mat tcpTmarker = (Mat_<float>(4, 4) <<  0.0069673657, -0.027343974, 0.9938972, 0.028517187,
-                                                -0.00068785436, -1.0042343, -0.016774893, -0.11282735,
-                                                1.0005599, -0.012419891, -0.012510687, 0.063874424,
+        Mat tcpTmarker = (Mat_<float>(4, 4) <<  0.052412093, -0.11294428, -0.98047107,-0.089645892,
+                                                0.98793167, -0.056496799, -0.077397525, 0.0020134151,
+                                                -0.08686763, -0.96998024, 0.15211879, 0.27541357,
                                                 0, 0, 0, 1);
         // Bad version of original start guess
 //        Mat tcpTmarker = (Mat_<float>(4, 4) <<  0.0069673657, -0.027343974, 0.9938972, 0.020517187,
@@ -1330,7 +1390,7 @@ int main(int argc, char** argv)
         ic.cheat(wTc,tcpTmarker);
         while (!ic.robot_at_home_position()) {
             // wait
-            usleep(100000);
+            usleep(1000000);
             ros::spinOnce();
         }
 
@@ -1344,13 +1404,15 @@ int main(int argc, char** argv)
 //        {
 //            ros::spinOnce();
 //        }
-//        Mat point=(Mat_<double>(3, 1) << 0.2, 0.2, 1.1);
-//        ic.move_tcp_absolute(point);
-//        while (!ic.robot_at_asked_position()) {
-//            // wait
-//            usleep(100000);
-//            ros::spinOnce();
-//        }
+        ic.turn_on_suctionCup(true);
+
+        Mat point=(Mat_<double>(3, 1) << 0.4849, -0.1815, -0.1606); // position that should be withing camera view
+        ic.move_tcp_absolute(point);
+        while (!ic.robot_at_asked_position()) {
+            // wait
+            usleep(100000);
+            ros::spinOnce();
+        }
 //        while(true)
 //        {
 //            usleep(500000);
@@ -1368,15 +1430,18 @@ int main(int argc, char** argv)
                 usleep(100000);
                 ros::spinOnce();
             }
+            ic.turn_on_suctionCup();
+            Mat point=Mat::zeros(3,1,CV_64F);
+            point.at<double>(0,0)=0.4849-0.05;
+            point.at<double>(1,0)=-0.1815-0.05;
+            point.at<double>(2,0)=-0.1606-0.1;
 
-//            Mat point=Mat::zeros(3,1,CV_64F);
-//            point.at<double>(2,0)=0.765;
-//            ic.move_tcp_absolute(point);
-//            while (!ic.robot_at_asked_position()) {
-//                // wait
-//                usleep(100000);
-//                ros::spinOnce();
-//            }
+            ic.move_tcp_absolute(point);
+            while (!ic.robot_at_asked_position()) {
+                // wait
+                usleep(100000);
+                ros::spinOnce();
+            }
 
             ic.set_get_marker_positions();
             asked_for_points=true;
@@ -1611,42 +1676,39 @@ int main(int argc, char** argv)
                     break;
                 case 4:
 //                    ic.move_to_marker2();
-                    ic.get_all_matching_points(true);
+                    ic.get_all_matching_points(true); // used for updating transformation matrix
                     find_minMax_round++;
                     break;
                 case 5:
                     //code for visual servoing:
-                    if (ic.robot_at_asked_pose(0.005, M_PI / (90*2),false) && big_error_correction==false || ic.robot_at_asked_pose(0.05, M_PI / (45),false) && big_error_correction==true || first_iteration_angleMinMax == true) {
+                    if (ic.robot_at_asked_pose(0.005, M_PI / (90*2),false) && big_error_correction==false || ic.robot_at_asked_pose(0.10, M_PI / (45),false) && big_error_correction==true || first_iteration_angleMinMax == true) {
                         if(ic.seen_marker1())
                         {
 //                            usleep(500000);
-                            if(norm(ic.calc_positional_iterative_error())>0.05)
+                            if(norm(ic.calc_positional_iterative_error(false))>0.05)
                             {
-                                ic.move_iteratively_to_marker2(0.35);
+                                ic.move_iteratively_to_marker2(0.25);
                                 big_error_correction=true;
                             }
                             else
                             {
                                 ic.move_iteratively_to_marker2(0.1);
                                 big_error_correction=false;
+                                usleep(300000);
                             }
                             first_iteration_angleMinMax = false;
                         }
                     }
-//                    if (ic.robot_at_asked_position(0.01) || first_iteration_angleMinMax == true) {
-////                        if (ic.seen_marker1())
-////                        {
-//                        usleep(500000);
-//                        bool succeeded = false;
-////                        ic.print_current_robot_position();
-//                        while (succeeded == false) {
-//                            Mat direction = generate_random_vector(1.0);
-////                            cout << "Direction is: "<< direction << endl;
-//                            succeeded = ic.move_tcp(direction, 0.1);
-//                        }
-//                        first_iteration_angleMinMax = false;
-////                        }
-//                    }
+                    if(norm(ic.calc_positional_iterative_error(false))<0.001)
+                    {
+                        ic.turn_on_suctionCup(false);
+                        cout << "We are hereby done" << endl;
+                        while(true)
+                        {
+                            ros::spinOnce();
+                        }
+                    }
+
                     if(ros::Time::now()-last_publish>ros::Duration(0.3))
                     {
                         last_publish=ros::Time::now();

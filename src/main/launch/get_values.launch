@@ -1,8 +1,8 @@
 <launch>
 
    
-   <node name = "camera_handling" pkg = "aruco_3D" type = "aruco_3D_node" respawn = "true" output = "screen" args = "2"/>
-   <node name = "camera_handling3" pkg = "aruco_3D" type = "aruco_3D_node" respawn = "true" output = "screen" args = "3"/>
+   <node name = "camera_handling" pkg = "aruco_3D" type = "aruco_3D_node" respawn = "true" output = "screen" args = "4"/>
+   <node name = "camera_handling3" pkg = "aruco_3D" type = "aruco_3D_node" respawn = "true" output = "screen" args = "5"/>
    
    
    <node name = "matching_points" pkg = "match_points" type = "match_points_node" respawn = "true" output = "screen" args = ""/>

@@ -115,7 +115,43 @@ file(INSTALL DESTINATION "/usr/local" TYPE FILE FILES "/home/jepod13/catkin_ws/s
 endif()
 
 if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/testing_transformation_matrix/srv" TYPE FILE FILES "/home/jepod13/catkin_ws/src/testing_transformation_matrix/srv/brick_to_home.srv")
+endif()
+
+if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/testing_transformation_matrix/cmake" TYPE FILE FILES "/home/jepod13/catkin_ws/src/testing_transformation_matrix/cmake-build-debug/catkin_generated/installspace/testing_transformation_matrix-msg-paths.cmake")
+endif()
+
+if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/jepod13/catkin_ws/src/testing_transformation_matrix/cmake-build-debug/devel/include/testing_transformation_matrix")
+endif()
+
+if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/jepod13/catkin_ws/src/testing_transformation_matrix/cmake-build-debug/devel/share/roseus/ros/testing_transformation_matrix")
+endif()
+
+if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/jepod13/catkin_ws/src/testing_transformation_matrix/cmake-build-debug/devel/share/common-lisp/ros/testing_transformation_matrix")
+endif()
+
+if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/jepod13/catkin_ws/src/testing_transformation_matrix/cmake-build-debug/devel/share/gennodejs/ros/testing_transformation_matrix")
+endif()
+
+if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  execute_process(COMMAND "/usr/bin/python" -m compileall "/home/jepod13/catkin_ws/src/testing_transformation_matrix/cmake-build-debug/devel/lib/python2.7/dist-packages/testing_transformation_matrix")
+endif()
+
+if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/jepod13/catkin_ws/src/testing_transformation_matrix/cmake-build-debug/devel/lib/python2.7/dist-packages/testing_transformation_matrix")
+endif()
+
+if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/jepod13/catkin_ws/src/testing_transformation_matrix/cmake-build-debug/catkin_generated/installspace/testing_transformation_matrix.pc")
+endif()
+
+if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/testing_transformation_matrix/cmake" TYPE FILE FILES "/home/jepod13/catkin_ws/src/testing_transformation_matrix/cmake-build-debug/catkin_generated/installspace/testing_transformation_matrix-msg-extras.cmake")
 endif()
 
 if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)

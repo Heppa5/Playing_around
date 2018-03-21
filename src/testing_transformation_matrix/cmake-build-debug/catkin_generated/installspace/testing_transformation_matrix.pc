@@ -3,6 +3,6 @@ prefix=/usr/local
 Name: testing_transformation_matrix
 Description: Description of testing_transformation_matrix
 Version: 0.0.0
-Cflags: 
+Cflags: -I/usr/local/include
 Libs: -L/usr/local/lib 
-Requires: 
+Requires: message_runtime

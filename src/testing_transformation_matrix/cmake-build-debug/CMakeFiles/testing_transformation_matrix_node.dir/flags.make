@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=c++11
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_PACKAGE_NAME=\"testing_transformation_matrix\"
 
-CXX_INCLUDES = -isystem /opt/ros/kinetic/include/opencv-3.3.1 -isystem /opt/ros/kinetic/include/opencv-3.3.1/opencv -I/home/jepod13/catkin_ws/src/testing_transformation_matrix/include -I/home/jepod13/catkin_ws/devel/include -I/opt/ros/kinetic/include -I/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
+CXX_INCLUDES = -I/home/jepod13/catkin_ws/src/testing_transformation_matrix/cmake-build-debug/devel/include -isystem /opt/ros/kinetic/include/opencv-3.3.1 -isystem /opt/ros/kinetic/include/opencv-3.3.1/opencv -I/home/jepod13/catkin_ws/src/testing_transformation_matrix/include -I/home/jepod13/catkin_ws/devel/include -I/opt/ros/kinetic/include -I/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
 

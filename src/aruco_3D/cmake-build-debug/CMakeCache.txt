@@ -124,8 +124,7 @@ CMAKE_LINKER:FILEPATH=/usr/bin/ld
 //Path to a program.
 CMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/make
 
-//Flags used by the linker during the creation of modules.
-CMAKE_MODULE_LINKER_FLAGS:STRING=
+CMAKE_MODULE_LINKER_FLAGS:STRING=' '
 
 //Flags used by the linker during debug builds.
 CMAKE_MODULE_LINKER_FLAGS_DEBUG:STRING=
@@ -154,8 +153,7 @@ CMAKE_PROJECT_NAME:STATIC=aruco_3D
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
 
-//Flags used by the linker during the creation of dll's.
-CMAKE_SHARED_LINKER_FLAGS:STRING=
+CMAKE_SHARED_LINKER_FLAGS:STRING=' '
 
 //Flags used by the linker during debug builds.
 CMAKE_SHARED_LINKER_FLAGS_DEBUG:STRING=
@@ -248,8 +246,27 @@ ProcessorCount_cmd_getconf:FILEPATH=/usr/bin/getconf
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/sbin/sysctl
 
+//RobWork version
+ROBWORK_VERSION:STRING=0.7.0
+
 //Path to a library.
 RT_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/librt.so
+
+//Change this to force using your own 
+//\n                  flags and not those of RobWork
+RW_CXX_FLAGS:STRING=-Wall -Wno-strict-aliasing -Wno-unused-function -Wno-pragmas -fPIC -std=c++11
+
+//Change this to force using your own 
+//\n                  flags and not those of RobWork
+RW_C_FLAGS:STRING= -fPIC
+
+//Change this to force using your own 
+//\n                  definitions and not those of RobWork
+RW_DEFINITIONS:STRING=-DBOOST_DISABLE_ASSERTS
+
+//Change this to force using your own linker
+//\n                  flags and not those of RobWork
+RW_LINKER_FLAGS:STRING=
 
 //Enable debian style python package layout
 SETUPTOOLS_DEB_LAYOUT:BOOL=ON
@@ -359,6 +376,9 @@ sensor_msgs_DIR:PATH=/opt/ros/kinetic/share/sensor_msgs/cmake
 
 //The directory containing a CMake configuration file for std_msgs.
 std_msgs_DIR:PATH=/opt/ros/kinetic/share/std_msgs/cmake
+
+//Path to a library.
+tmp:FILEPATH=tmp-NOTFOUND
 
 //The directory containing a CMake configuration file for xmlrpcpp.
 xmlrpcpp_DIR:PATH=/opt/ros/kinetic/share/xmlrpcpp/cmake
@@ -526,6 +546,8 @@ CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 FIND_PACKAGE_MESSAGE_DETAILS_OpenCV:INTERNAL=[/opt/ros/kinetic][v3.3.1()]
 //Details about finding PythonInterp
 FIND_PACKAGE_MESSAGE_DETAILS_PythonInterp:INTERNAL=[/usr/bin/python][v2.7.12()]
+//Details about finding RobWork
+FIND_PACKAGE_MESSAGE_DETAILS_RobWork:INTERNAL=[/home/jepod13/RobWork_root/RobWork/cmake/..][/home/jepod13/RobWork_root/RobWork/libs/release/librw_lua_s.a;/home/jepod13/RobWork_root/RobWork/libs/release/liblua51.a;/home/jepod13/RobWork_root/RobWork/libs/release/librw_algorithms.so;/home/jepod13/RobWork_root/RobWork/libs/release/librw_pathplanners.so;/home/jepod13/RobWork_root/RobWork/libs/release/librw_pathoptimization.so;/home/jepod13/RobWork_root/RobWork/libs/release/librw_simulation.so;/home/jepod13/RobWork_root/RobWork/libs/release/librw_opengl.so;/home/jepod13/RobWork_root/RobWork/libs/release/librw_assembly.so;/home/jepod13/RobWork_root/RobWork/libs/release/librw_task.so;/home/jepod13/RobWork_root/RobWork/libs/release/librw_calibration.so;/home/jepod13/RobWork_root/RobWork/libs/release/librw_csg.so;/home/jepod13/RobWork_root/RobWork/libs/release/librw_control.so;/home/jepod13/RobWork_root/RobWork/libs/release/librw_proximitystrategies.so;/home/jepod13/RobWork_root/RobWork/libs/release/libyaobi.a;/home/jepod13/RobWork_root/RobWork/libs/release/libpqp.a;/home/jepod13/RobWork_root/RobWork/libs/release/libfcl.so;/home/jepod13/RobWork_root/RobWork/libs/release/librw.so;/usr/lib/x86_64-linux-gnu/libGLU.so;/usr/lib/x86_64-linux-gnu/libGL.so;/usr/lib/x86_64-linux-gnu/libxerces-c.so;/usr/lib/x86_64-linux-gnu/libassimp.so;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;/usr/lib/x86_64-linux-gnu/libboost_regex.so;/usr/lib/x86_64-linux-gnu/libboost_serialization.so;/usr/lib/x86_64-linux-gnu/libboost_system.so;/usr/lib/x86_64-linux-gnu/libboost_thread.so;/usr/lib/x86_64-linux-gnu/libboost_program_options.so;/usr/lib/x86_64-linux-gnu/libboost_chrono.so;/usr/lib/x86_64-linux-gnu/libboost_date_time.so;/usr/lib/x86_64-linux-gnu/libboost_atomic.so;/usr/lib/x86_64-linux-gnu/libpthread.so;/usr/lib/x86_64-linux-gnu/libboost_test_exec_monitor.a;/usr/lib/x86_64-linux-gnu/libboost_unit_test_framework.so;/home/jepod13/RobWork_root/RobWork/libs/release/librw_qhull.a;/home/jepod13/RobWork_root/RobWork/libs/release/librw_csgjs.a;/usr/lib/x86_64-linux-gnu/libdl.so][/home/jepod13/RobWork_root/RobWork/cmake/../ext/boostbindings;/usr/include/eigen3;/home/jepod13/RobWork_root/RobWork/cmake/../src/;/usr/include;/home/jepod13/RobWork_root/RobWork/cmake/../ext/rwyaobi;/home/jepod13/RobWork_root/RobWork/cmake/../ext/rwpqp;/home/jepod13/RobWork_root/RobWork/cmake/../ext/lua/src/;/home/jepod13/RobWork_root/RobWork/cmake/../ext/qhull/src;/home/jepod13/RobWork_root/RobWork/cmake/../ext/csgjs/src;/usr/include/assimp][/home/jepod13/RobWork_root/RobWork/cmake/../ext/boostbindings;/usr/include/eigen3;/home/jepod13/RobWork_root/RobWork/cmake/../src/;/usr/include;/home/jepod13/RobWork_root/RobWork/cmake/../ext/rwyaobi;/home/jepod13/RobWork_root/RobWork/cmake/../ext/rwpqp;/home/jepod13/RobWork_root/RobWork/cmake/../ext/lua/src/;/home/jepod13/RobWork_root/RobWork/cmake/../ext/qhull/src;/home/jepod13/RobWork_root/RobWork/cmake/../ext/csgjs/src;/usr/include/assimp][/home/jepod13/RobWork_root/RobWork/cmake/../libs/release/;/usr/lib/x86_64-linux-gnu][v()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 GTEST_FROM_SOURCE_FOUND:INTERNAL=TRUE

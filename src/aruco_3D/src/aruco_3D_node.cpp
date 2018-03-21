@@ -60,24 +60,72 @@ public:
         {
             image_pub_ = it_.advertise("/image_converter/output_video", 1);
             aruco_point_pub2_ = nh_.advertise<geometry_msgs::PoseStamped>("/aruco/marker1", 1);
+            marker2_3D.push_back(Point3f(0,0,0));
+            marker2_3D.push_back(Point3f(0.066,0,0));
+            marker2_3D.push_back(Point3f(0.066,-0.066,0));
+            marker2_3D.push_back(Point3f(0,-0.066,0));
+            
+            marker3_3D.push_back(Point3f(0,0,0));
+            marker3_3D.push_back(Point3f(0.055,0,0));
+            marker3_3D.push_back(Point3f(0.055,-0.055,0));
+            marker3_3D.push_back(Point3f(0,-0.055,0));
+            marker2_size=0.066;
+            marker3_size=0.055;
         }
         else if(Marker_ID==3)
         {
             image_pub2_ = it_.advertise("/image_converter/output_video2", 1);
             aruco_point_pub3_ = nh_.advertise<geometry_msgs::PoseStamped>("/aruco/marker2", 1);
+            marker2_3D.push_back(Point3f(0,0,0));
+            marker2_3D.push_back(Point3f(0.066,0,0));
+            marker2_3D.push_back(Point3f(0.066,-0.066,0));
+            marker2_3D.push_back(Point3f(0,-0.066,0));
+            
+            marker3_3D.push_back(Point3f(0,0,0));
+            marker3_3D.push_back(Point3f(0.055,0,0));
+            marker3_3D.push_back(Point3f(0.055,-0.055,0));
+            marker3_3D.push_back(Point3f(0,-0.055,0));
+            marker2_size=0.066;
+            marker3_size=0.055;
+        }
+        if(Marker_ID==4)
+        {
+            image_pub_ = it_.advertise("/image_converter/output_video", 1);
+            aruco_point_pub2_ = nh_.advertise<geometry_msgs::PoseStamped>("/aruco/marker1", 1);
+            marker2_3D.push_back(Point3f(0,0,0));
+            marker2_3D.push_back(Point3f(0.024,0,0));
+            marker2_3D.push_back(Point3f(0.024,-0.024,0));
+            marker2_3D.push_back(Point3f(0,-0.024,0));
+            
+            marker3_3D.push_back(Point3f(0,0,0));
+            marker3_3D.push_back(Point3f(0.024,0,0));
+            marker3_3D.push_back(Point3f(0.024,-0.024,0));
+            marker3_3D.push_back(Point3f(0,-0.024,0));
+            cout << Marker_ID << endl;
+            marker2_size=0.024;
+            marker3_size=0.024;
+        }
+        else if(Marker_ID==5)
+        {
+            image_pub2_ = it_.advertise("/image_converter/output_video2", 1);
+            aruco_point_pub3_ = nh_.advertise<geometry_msgs::PoseStamped>("/aruco/marker2", 1);
+            marker2_3D.push_back(Point3f(0,0,0));
+            marker2_3D.push_back(Point3f(0.024,0,0));
+            marker2_3D.push_back(Point3f(0.024,-0.024,0));
+            marker2_3D.push_back(Point3f(0,-0.024,0));
+            
+            marker3_3D.push_back(Point3f(0,0,0));
+            marker3_3D.push_back(Point3f(0.024,0,0));
+            marker3_3D.push_back(Point3f(0.024,-0.024,0));
+            marker3_3D.push_back(Point3f(0,-0.024,0));
+            cout << Marker_ID << endl;
+            marker2_size=0.024;
+            marker3_size=0.024;
         }
 
         
 
-        marker2_3D.push_back(Point3f(0,0,0));
-        marker2_3D.push_back(Point3f(0.066,0,0));
-        marker2_3D.push_back(Point3f(0.066,-0.066,0));
-        marker2_3D.push_back(Point3f(0,-0.066,0));
         
-        marker3_3D.push_back(Point3f(0,0,0));
-        marker3_3D.push_back(Point3f(0.055,0,0));
-        marker3_3D.push_back(Point3f(0.055,-0.055,0));
-        marker3_3D.push_back(Point3f(0,-0.055,0));
         
 
 
@@ -139,6 +187,7 @@ public:
         return mean;
     }
     int count2=0;
+    vector<Point2f> last_marker4;
     void imageCb(const sensor_msgs::ImageConstPtr& msg)
     {
         vector<double> empty_array;
@@ -159,18 +208,46 @@ public:
 //        cv::undistort(cv_ptr->image,image, camera_matrix,distortion_mat,camera_matrix_updated);
 
 
-        aruco::detectMarkers(image, mark_dict, markerCorners, markerIds);
+        aruco::detectMarkers(image, mark_dict, markerCorners, markerIds,aruco::DetectorParameters::create(),rejectedImagePoints);
         aruco::drawDetectedMarkers(image, markerCorners, markerIds);
         
         Mat rvec3(3,1,CV_64F), tvec3(3,1,CV_64F);
         Mat rvec2(3,1,CV_64F), tvec2(3,1,CV_64F);
         vector<Mat> rvecs,tvecs;
-        
+
+//        bool its_there=false;
+//        for(int i = 0 ; i < markerCorners.size() ; i++)
+//        {
+//            if(4 == markerIds[i] && Marker_ID==4) {
+//                its_there=true;
+//            }
+//        }
+//        if(its_there==false)
+//        {
+//            cout << "¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤" << endl;
+//            for(int i=0; i<rejectedImagePoints.size() ; i++)
+//            {
+//                cout << "Pixel coordinates: \n" << endl;
+//                for(int j=0; j<rejectedImagePoints[i].size() ; j++)
+//                {
+//                    cout  << rejectedImagePoints[i][j].x << " , " << rejectedImagePoints[i][j].y << "\t";
+//
+//                }
+//                cout << endl;
+//            }
+//            cout << "Last pixel coordinate for marker 4: \n" << endl;
+//            for(int j=0; j<last_marker4.size() ; j++)
+//            {
+//                cout  << last_marker4[j].x << " , " << last_marker4[j].y << "\t";
+//            }
+//            cout << endl;
+//            cout << "¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤" << endl;
+//        }
 
         
         for(int i = 0 ; i < markerCorners.size() ; i++)
         {
-            if(2 == markerIds[i] && Marker_ID==2)
+            if(4 == markerIds[i] && Marker_ID==4)
             {
 //                solvePnP(marker3_3D,markerCorners[i],camera_matrix,empty_array,rvec,tvec);
                 solvePnP(marker2_3D,markerCorners[i],camera_matrix,distortion,rvec2,tvec2);
@@ -178,6 +255,10 @@ public:
 //                 solvePnP(marker2_3D,markerCorners[i],camera_matrix,empty_array,rvec,tvec);
                 if(initialized_marker2==true)
                 {
+                    last_marker4.clear();
+                    for(int j=0; j<markerCorners[i].size() ; j++) {
+                        last_marker4.push_back(markerCorners[i][j]);
+                    }
 
                     Mat rot_dif=rvec_marker2-rvec2;
 
@@ -236,7 +317,7 @@ public:
                 }
                 
             }
-            else if(3 == markerIds[i] && Marker_ID==3)
+            else if(5 == markerIds[i] && Marker_ID==5)
             {
                 solvePnP(marker3_3D,markerCorners[i],camera_matrix,distortion,rvec3,tvec3);
 //                solvePnP(marker3_3D,markerCorners[i],camera_matrix,empty_array,rvec,tvec);
@@ -288,14 +369,14 @@ public:
             }
         }
         
-        if(print_pixel_values && Marker_ID==2 )
+        if(print_pixel_values && Marker_ID==4 )
         {
             sensor_msgs::ImagePtr msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", image).toImageMsg();
             image_pub_.publish(msg);
 //             msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", cv_ptr->image).toImageMsg();
 //             image_pub2_.publish(msg);
         }
-        if(print_pixel_values && Marker_ID==3 )
+        if(print_pixel_values && Marker_ID==5 )
         {
             sensor_msgs::ImagePtr msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", image).toImageMsg();
             image_pub2_.publish(msg);
@@ -357,14 +438,14 @@ private:
     Ptr<aruco::Dictionary> mark_dict;
     Mat_<float> camera_matrix, camera_matrix_updated;
 
-    vector< vector<Point2f> > markerCorners; // So, the first corner is the top left corner, followed by the top right, bottom right and bottom left.
+    vector< vector<Point2f> > markerCorners, rejectedImagePoints; // So, the first corner is the top left corner, followed by the top right, bottom right and bottom left.
     vector<int> markerIds;
 
     int count=0;
     int Marker_ID;
     bool print_pixel_values;
     
-    double marker2_size=0.066, marker3_size=0.055;
+    double marker2_size, marker3_size;
     
     bool chose_a_rotation=false;
     int count_of_rotatations=0;

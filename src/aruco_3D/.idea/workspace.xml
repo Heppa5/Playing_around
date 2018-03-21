@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/aruco_3D_node.cpp" line="229" />
+  </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="aruco_3D" targetName="download_extra_data" />
-      <config projectName="aruco_3D" targetName="roscpp_generate_messages_lisp" />
-      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_eus" />
-      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_py" />
-      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_eus" />
-      <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_cpp" />
-      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_nodejs" />
-      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_cpp" />
-      <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_py" />
-      <config projectName="aruco_3D" targetName="aruco_3D_node" />
-      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_lisp" />
-      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_py" />
-      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_cpp" />
-      <config projectName="aruco_3D" targetName="roscpp_generate_messages_eus" />
-      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_cpp" />
-      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_lisp" />
-      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_py" />
-      <config projectName="aruco_3D" targetName="run_tests" />
-      <config projectName="aruco_3D" targetName="clean_test_results" />
+      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_nodejs" />
       <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_nodejs" />
       <config projectName="aruco_3D" targetName="roscpp_generate_messages_py" />
-      <config projectName="aruco_3D" targetName="doxygen" />
-      <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_lisp" />
-      <config projectName="aruco_3D" targetName="roscpp_generate_messages_cpp" />
-      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_nodejs" />
-      <config projectName="aruco_3D" targetName="gtest" />
-      <config projectName="aruco_3D" targetName="gtest_main" />
-      <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_eus" />
-      <config projectName="aruco_3D" targetName="roscpp_generate_messages_nodejs" />
-      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_nodejs" />
+      <config projectName="aruco_3D" targetName="aruco_3D_node" />
+      <config projectName="aruco_3D" targetName="run_tests" />
+      <config projectName="aruco_3D" targetName="roscpp_generate_messages_lisp" />
       <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_eus" />
-      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_lisp" />
+      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_nodejs" />
+      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_py" />
+      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_lisp" />
+      <config projectName="aruco_3D" targetName="doxygen" />
+      <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_eus" />
+      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_eus" />
+      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_nodejs" />
       <config projectName="aruco_3D" targetName="tests" />
+      <config projectName="aruco_3D" targetName="download_extra_data" />
+      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_lisp" />
+      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_cpp" />
+      <config projectName="aruco_3D" targetName="roscpp_generate_messages_eus" />
+      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_py" />
+      <config projectName="aruco_3D" targetName="roscpp_generate_messages_nodejs" />
+      <config projectName="aruco_3D" targetName="gtest_main" />
+      <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_py" />
+      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_cpp" />
+      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_py" />
+      <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_cpp" />
+      <config projectName="aruco_3D" targetName="rosgraph_msgs_generate_messages_lisp" />
+      <config projectName="aruco_3D" targetName="geometry_msgs_generate_messages_cpp" />
+      <config projectName="aruco_3D" targetName="clean_test_results" />
+      <config projectName="aruco_3D" targetName="sensor_msgs_generate_messages_lisp" />
+      <config projectName="aruco_3D" targetName="std_msgs_generate_messages_eus" />
+      <config projectName="aruco_3D" targetName="roscpp_generate_messages_cpp" />
+      <config projectName="aruco_3D" targetName="gtest" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -58,8 +61,8 @@
       <file leaf-file-name="aruco_3D_node.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/aruco_3D_node.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1040">
-              <caret line="218" column="21" lean-forward="true" selection-start-line="218" selection-start-column="21" selection-end-line="218" selection-end-column="21" />
+            <state relative-caret-position="1086">
+              <caret line="248" column="9" lean-forward="true" selection-start-line="248" selection-start-column="9" selection-end-line="248" selection-end-column="9" />
               <folding>
                 <element signature="e#3#20#0" expanded="true" />
                 <element signature="e#218#238#0" expanded="true" />
@@ -72,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1998">
-              <caret line="111" column="1" lean-forward="false" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
+              <caret line="111" column="0" lean-forward="false" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -310,11 +313,12 @@
       <workItem from="1519043795878" duration="38000" />
       <workItem from="1519049178459" duration="362000" />
       <workItem from="1519119394467" duration="752000" />
+      <workItem from="1521022154924" duration="2980000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5842000" />
+    <option name="totallyTimeSpent" value="8822000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="292" y="24" width="1857" height="1092" extended-state="6" />
@@ -324,12 +328,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -351,6 +355,25 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/aruco_3D_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#3#20#0" expanded="true" />
+            <element signature="e#218#238#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1998">
+          <caret line="111" column="0" lean-forward="true" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/aruco_3D_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -475,7 +498,7 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1998">
-          <caret line="111" column="1" lean-forward="false" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
+          <caret line="111" column="0" lean-forward="false" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -497,8 +520,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/aruco_3D_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1040">
-          <caret line="218" column="21" lean-forward="true" selection-start-line="218" selection-start-column="21" selection-end-line="218" selection-end-column="21" />
+        <state relative-caret-position="1086">
+          <caret line="248" column="9" lean-forward="true" selection-start-line="248" selection-start-column="9" selection-end-line="248" selection-end-column="9" />
           <folding>
             <element signature="e#3#20#0" expanded="true" />
             <element signature="e#218#238#0" expanded="true" />

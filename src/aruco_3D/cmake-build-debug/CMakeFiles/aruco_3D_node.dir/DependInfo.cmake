@@ -10,6 +10,7 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
+  "BOOST_DISABLE_ASSERTS"
   "ROSCONSOLE_BACKEND_LOG4CXX"
   "ROS_PACKAGE_NAME=\"aruco_3D\""
   )
@@ -18,6 +19,15 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/opt/ros/kinetic/include/opencv-3.3.1"
   "/opt/ros/kinetic/include/opencv-3.3.1/opencv"
+  "/home/jepod13/RobWork_root/RobWork/cmake/../ext/boostbindings"
+  "/usr/include/eigen3"
+  "/home/jepod13/RobWork_root/RobWork/cmake/../src"
+  "/home/jepod13/RobWork_root/RobWork/cmake/../ext/rwyaobi"
+  "/home/jepod13/RobWork_root/RobWork/cmake/../ext/rwpqp"
+  "/home/jepod13/RobWork_root/RobWork/cmake/../ext/lua/src"
+  "/home/jepod13/RobWork_root/RobWork/cmake/../ext/qhull/src"
+  "/home/jepod13/RobWork_root/RobWork/cmake/../ext/csgjs/src"
+  "/usr/include/assimp"
   "/opt/ros/kinetic/include"
   "/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   )

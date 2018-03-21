@@ -3,6 +3,6 @@ prefix=/home/jepod13/catkin_ws/src/testing_transformation_matrix/cmake-build-deb
 Name: testing_transformation_matrix
 Description: Description of testing_transformation_matrix
 Version: 0.0.0
-Cflags: 
+Cflags: -I/home/jepod13/catkin_ws/src/testing_transformation_matrix/cmake-build-debug/devel/include
 Libs: -L/home/jepod13/catkin_ws/src/testing_transformation_matrix/cmake-build-debug/devel/lib 
-Requires: 
+Requires: message_runtime

@@ -9,7 +9,7 @@ add_compile_options(-std=c++11)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   message_generation
-  message_runtime
+  #message_runtime
   roscpp
   rospy
   std_msgs
@@ -18,6 +18,7 @@ find_package(catkin REQUIRED COMPONENTS
   message_package
   tf
 #   mp_mini_picker
+   # message_generation
 )
 
 
@@ -67,19 +68,19 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 ##   * uncomment the generate_messages entry below
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
-## Generate messages in the 'msg' folder
+# Generate messages in the 'msg' folder
 # add_message_files(
 #   FILES
-#   Message1.msg
-#   Message2.msg
+#   brick_to_home.msg
+# 
 # )
 
-## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+# Generate services in the 'srv' folder
+add_service_files(
+  FILES
+  brick_to_home.srv
+
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -88,11 +89,11 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 #   Action2.action
 # )
 
-## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
+# Generate added messages and services with any dependencies listed here
+generate_messages(
+  DEPENDENCIES
+  std_msgs  # Or other packages containing msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -126,7 +127,7 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES testing_transformation_matrix
-#  CATKIN_DEPENDS message_generation message_runtime roscpp rospy stds_msg
+  CATKIN_DEPENDS message_runtime
 #  DEPENDS system_lib
 )
 
