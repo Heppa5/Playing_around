@@ -37,6 +37,88 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="mp_mini_picker_sim_node">
+				<Option output="/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/lib/mp_mini_picker/mp_mini_picker_sim_node" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/lib/mp_mini_picker"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DROS_PACKAGE_NAME=&quot;mp_mini_picker&quot;"/>
+					<Add option="-DROSCONSOLE_BACKEND_LOG4CXX"/>
+					<Add directory="/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/include"/>
+					<Add directory="/home/jepod13/catkin_ws/devel/include"/>
+					<Add directory="/home/jepod13/catkin_ws/src/caros/core/caros_common/include"/>
+					<Add directory="/home/jepod13/catkin_ws/src/caros/core/caros_common_robwork/include"/>
+					<Add directory="/home/jepod13/catkin_ws/src/caros/interfaces/caros_control/include"/>
+					<Add directory="/opt/ros/kinetic/include"/>
+					<Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"/>
+					<Add directory="/home/jepod13/RobWork_root/RobWork/cmake/../ext/boostbindings"/>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/home/jepod13/RobWork_root/RobWork/cmake/../src"/>
+					<Add directory="/home/jepod13/RobWork_root/RobWork/cmake/../ext/rwyaobi"/>
+					<Add directory="/home/jepod13/RobWork_root/RobWork/cmake/../ext/rwpqp"/>
+					<Add directory="/home/jepod13/RobWork_root/RobWork/cmake/../ext/lua/src"/>
+					<Add directory="/home/jepod13/RobWork_root/RobWork/cmake/../ext/qhull/src"/>
+					<Add directory="/home/jepod13/RobWork_root/RobWork/cmake/../ext/csgjs/src"/>
+					<Add directory="/usr/include/assimp"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/Makefile&quot;  VERBOSE=1 mp_mini_picker_sim_node"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mp_mini_picker_sim_node/fast">
+				<Option output="/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/lib/mp_mini_picker/mp_mini_picker_sim_node" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/lib/mp_mini_picker"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DROS_PACKAGE_NAME=&quot;mp_mini_picker&quot;"/>
+					<Add option="-DROSCONSOLE_BACKEND_LOG4CXX"/>
+					<Add directory="/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/include"/>
+					<Add directory="/home/jepod13/catkin_ws/devel/include"/>
+					<Add directory="/home/jepod13/catkin_ws/src/caros/core/caros_common/include"/>
+					<Add directory="/home/jepod13/catkin_ws/src/caros/core/caros_common_robwork/include"/>
+					<Add directory="/home/jepod13/catkin_ws/src/caros/interfaces/caros_control/include"/>
+					<Add directory="/opt/ros/kinetic/include"/>
+					<Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"/>
+					<Add directory="/home/jepod13/RobWork_root/RobWork/cmake/../ext/boostbindings"/>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/home/jepod13/RobWork_root/RobWork/cmake/../src"/>
+					<Add directory="/home/jepod13/RobWork_root/RobWork/cmake/../ext/rwyaobi"/>
+					<Add directory="/home/jepod13/RobWork_root/RobWork/cmake/../ext/rwpqp"/>
+					<Add directory="/home/jepod13/RobWork_root/RobWork/cmake/../ext/lua/src"/>
+					<Add directory="/home/jepod13/RobWork_root/RobWork/cmake/../ext/qhull/src"/>
+					<Add directory="/home/jepod13/RobWork_root/RobWork/cmake/../ext/csgjs/src"/>
+					<Add directory="/usr/include/assimp"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/Makefile&quot;  VERBOSE=1 mp_mini_picker_sim_node/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="mp_mini_picker_node">
 				<Option output="/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/lib/mp_mini_picker/mp_mini_picker_node" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/jepod13/catkin_ws/src/mp_mini_picker/cmake-build-debug/devel/lib/mp_mini_picker"/>
@@ -906,6 +988,9 @@
 		</Build>
 		<Unit filename="/home/jepod13/catkin_ws/src/mp_mini_picker/src/main.cpp">
 			<Option target="mp_mini_picker_node"/>
+		</Unit>
+		<Unit filename="/home/jepod13/catkin_ws/src/mp_mini_picker/src/mp_mini_picker_sim.cpp">
+			<Option target="mp_mini_picker_sim_node"/>
 		</Unit>
 		<Unit filename="/usr/src/gtest/src/gtest-all.cc">
 			<Option target="gtest"/>

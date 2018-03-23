@@ -36,6 +36,27 @@ Mat inverse_T(Mat T)
 //             inverse(aTb.R()));
 //     }
 
+Mat calc_trans(float x, float y, float z,float rx, float ry, float rz)
+{
+    Mat transformation;
+    transformation = Mat::zeros(4,4,CV_32F);
+    transformation.at<float>(3,3)=1;
+    transformation.at<float>(0,3)=x;
+    transformation.at<float>(1,3)=y;
+    transformation.at<float>(2,3)=z;
+    Mat R_vec;
+    R_vec= Mat::zeros(3,1,CV_32F);
+    R_vec.at<float>(0,0)=rx;
+    R_vec.at<float>(1,0)=ry;
+    R_vec.at<float>(2,0)=rz;
+    Mat R;
+    Rodrigues(R_vec,R);
+
+    R.copyTo(transformation(Rect(0,0,R.cols,R.rows)));
+
+    return transformation;
+}
+
 int main(int argc, char** argv )
 {
     // http://nghiaho.com/?page_id=671
@@ -95,6 +116,12 @@ int main(int argc, char** argv )
 //     tvec.at<float>(0,3)=1.2;
 //     tvec.at<float>(1,3)=5;
 //     tvec.at<float>(2,3)=3.7;
+    
+    
+    Mat wTtcp=calc_trans(-0.433206226909,0.239729258575,0.702726872866,3.08233709157,0.0280841672773,-0.0545889463978);
+    Mat origin = (Mat_<float>(4,1) << 0, 0, 0.0, 1.0);
+    cout << endl << wTtcp*origin << endl;
+    
     
 }
 

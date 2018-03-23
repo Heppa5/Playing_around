@@ -15,6 +15,15 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/home/jepod13/RobWork_root/RobWork/cmake/../ext/boostbindings"
+  "/usr/include/eigen3"
+  "/home/jepod13/RobWork_root/RobWork/cmake/../src"
+  "/home/jepod13/RobWork_root/RobWork/cmake/../ext/rwyaobi"
+  "/home/jepod13/RobWork_root/RobWork/cmake/../ext/rwpqp"
+  "/home/jepod13/RobWork_root/RobWork/cmake/../ext/lua/src"
+  "/home/jepod13/RobWork_root/RobWork/cmake/../ext/qhull/src"
+  "/home/jepod13/RobWork_root/RobWork/cmake/../ext/csgjs/src"
+  "/usr/include/assimp"
   )
 
 # Targets to which this target links.

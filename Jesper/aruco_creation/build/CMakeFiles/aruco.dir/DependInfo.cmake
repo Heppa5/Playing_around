@@ -4,14 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/rovi2/Jesper/aruco_creation/src/main.cpp" "/home/rovi2/Jesper/aruco_creation/build/CMakeFiles/aruco.dir/src/main.cpp.o"
+  "/home/jepod13/Jesper/aruco_creation/src/main.cpp" "/home/jepod13/Jesper/aruco_creation/build/CMakeFiles/aruco.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/opt/ros/kinetic/include/opencv-3.2.0-dev"
-  "/opt/ros/kinetic/include/opencv-3.2.0-dev/opencv"
+  "/opt/ros/kinetic/include/opencv-3.3.1"
+  "/opt/ros/kinetic/include/opencv-3.3.1/opencv"
   )
 
 # Targets to which this target links.

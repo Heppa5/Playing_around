@@ -1,0 +1,3 @@
+/home/jepod13/Jesper/opencv_test_optimizing_function/build/CMakeFiles/edit_cache.dir
+/home/jepod13/Jesper/opencv_test_optimizing_function/build/CMakeFiles/rebuild_cache.dir
+/home/jepod13/Jesper/opencv_test_optimizing_function/build/CMakeFiles/test_opt_func.dir

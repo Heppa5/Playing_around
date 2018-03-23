@@ -7,7 +7,6 @@ file(REMOVE_RECURSE
   "devel/lib/python2.7/dist-packages/mp_mini_picker/srv/_moveToPoseMarker.py"
   "devel/lib/python2.7/dist-packages/mp_mini_picker/srv/_moveToQ.py"
   "devel/lib/python2.7/dist-packages/mp_mini_picker/srv/_changeTcpTMarker.py"
-  "devel/lib/python2.7/dist-packages/mp_mini_picker/msg/__init__.py"
   "devel/lib/python2.7/dist-packages/mp_mini_picker/srv/__init__.py"
 )
 

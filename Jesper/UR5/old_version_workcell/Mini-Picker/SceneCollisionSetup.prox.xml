@@ -1,0 +1,16 @@
+<CollisionSetup>
+    <Exclude>
+	<!--<FramePair first="tool" second="UR5.Joint5" />
+	<FramePair first="tool" second="UR5.Joint4" />
+	<FramePair first="tool" second="UR5.Joint3" />
+	<FramePair first="tool" second="UR5.Joint2" />
+	<FramePair first="tool" second="SuctionCup" />-->
+<!-- 	<FramePair first="PickBox" second="KDEMap" /> -->
+        <FramePair first="big_box_f" second="HandlingStation" />
+        <FramePair first="big_box_f" second="cell" />
+        <FramePair first="big_box_f2" second="cell" />
+        <FramePair first="tool" second="marker_f" />
+        <FramePair first="tool" second="UR5.TCP" />
+        <FramePair first="marker_f" second="UR5.TCP" />
+   </Exclude>
+</CollisionSetup>

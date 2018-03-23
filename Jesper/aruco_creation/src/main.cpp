@@ -15,8 +15,8 @@ int main(int argc, char** argv )
     
     Ptr<aruco::Dictionary> mark_dict = aruco::getPredefinedDictionary(aruco::DICT_4X4_50);
 //     aruco::drawMarker(mark_dict, 2, 500, Marker, 1);
-    aruco::drawMarker(mark_dict, 3, 500, Marker, 1);
-    imwrite("Arucomarker.png",Marker);
+    aruco::drawMarker(mark_dict, 5, 1000, Marker, 1);
+    imwrite("Arucomarker5.png",Marker);
     
     return 0;
 }

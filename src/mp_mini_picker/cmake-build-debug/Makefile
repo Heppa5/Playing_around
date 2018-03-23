@@ -168,6 +168,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named mp_mini_picker_sim_node
+
+# Build rule for target.
+mp_mini_picker_sim_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mp_mini_picker_sim_node
+.PHONY : mp_mini_picker_sim_node
+
+# fast build rule for target.
+mp_mini_picker_sim_node/fast:
+	$(MAKE) -f CMakeFiles/mp_mini_picker_sim_node.dir/build.make CMakeFiles/mp_mini_picker_sim_node.dir/build
+.PHONY : mp_mini_picker_sim_node/fast
+
+#=============================================================================
 # Target rules for targets named mp_mini_picker_node
 
 # Build rule for target.
@@ -1052,6 +1065,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/mp_mini_picker_node.dir/build.make CMakeFiles/mp_mini_picker_node.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/mp_mini_picker_sim.o: src/mp_mini_picker_sim.cpp.o
+
+.PHONY : src/mp_mini_picker_sim.o
+
+# target to build an object file
+src/mp_mini_picker_sim.cpp.o:
+	$(MAKE) -f CMakeFiles/mp_mini_picker_sim_node.dir/build.make CMakeFiles/mp_mini_picker_sim_node.dir/src/mp_mini_picker_sim.cpp.o
+.PHONY : src/mp_mini_picker_sim.cpp.o
+
+src/mp_mini_picker_sim.i: src/mp_mini_picker_sim.cpp.i
+
+.PHONY : src/mp_mini_picker_sim.i
+
+# target to preprocess a source file
+src/mp_mini_picker_sim.cpp.i:
+	$(MAKE) -f CMakeFiles/mp_mini_picker_sim_node.dir/build.make CMakeFiles/mp_mini_picker_sim_node.dir/src/mp_mini_picker_sim.cpp.i
+.PHONY : src/mp_mini_picker_sim.cpp.i
+
+src/mp_mini_picker_sim.s: src/mp_mini_picker_sim.cpp.s
+
+.PHONY : src/mp_mini_picker_sim.s
+
+# target to generate assembly for a file
+src/mp_mini_picker_sim.cpp.s:
+	$(MAKE) -f CMakeFiles/mp_mini_picker_sim_node.dir/build.make CMakeFiles/mp_mini_picker_sim_node.dir/src/mp_mini_picker_sim.cpp.s
+.PHONY : src/mp_mini_picker_sim.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1060,6 +1100,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... mp_mini_picker_sim_node"
 	@echo "... mp_mini_picker_node"
 	@echo "... mp_mini_picker_generate_messages_py"
 	@echo "... mp_mini_picker_gennodejs"
@@ -1134,6 +1175,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/mp_mini_picker_sim.o"
+	@echo "... src/mp_mini_picker_sim.i"
+	@echo "... src/mp_mini_picker_sim.s"
 .PHONY : help
 
 

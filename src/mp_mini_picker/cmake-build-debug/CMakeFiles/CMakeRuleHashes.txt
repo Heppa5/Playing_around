@@ -19,7 +19,6 @@ a717c72ddae5b9072e2144f3fbcdd82a devel/include/mp_mini_picker/currentQ.h
 a1bf18f4afb0d55c3b6513397f2f45e3 devel/include/mp_mini_picker/moveToPoseMarker.h
 eb833a798cb3ccfdb1ab92a21a813efe devel/include/mp_mini_picker/moveToPoseTcp.h
 1112c2e37396b5b6556af309dd4d45f8 devel/include/mp_mini_picker/moveToQ.h
-4fbe43f5a8350076c55f03578d1f6ccb devel/lib/python2.7/dist-packages/mp_mini_picker/msg/__init__.py
 66ed70ab1a080ebfe8d9baba572900d8 devel/lib/python2.7/dist-packages/mp_mini_picker/srv/__init__.py
 37baa9183f5b872534741e77abd23b41 devel/lib/python2.7/dist-packages/mp_mini_picker/srv/_changeTcpTMarker.py
 76d835a69f96628f5ac45791117b682f devel/lib/python2.7/dist-packages/mp_mini_picker/srv/_currentQ.py

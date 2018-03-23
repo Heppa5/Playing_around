@@ -1,0 +1,3 @@
+/home/jepod13/Jesper/opencv_fitting_sphere/build/CMakeFiles/edit_cache.dir
+/home/jepod13/Jesper/opencv_fitting_sphere/build/CMakeFiles/rebuild_cache.dir
+/home/jepod13/Jesper/opencv_fitting_sphere/build/CMakeFiles/fit_sphere.dir

@@ -6,5 +6,5 @@ CXX_FLAGS =  -Wall -Wno-strict-aliasing -Wno-unused-function -Wno-pragmas -fPIC 
 
 CXX_DEFINES = -DBOOST_DISABLE_ASSERTS
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/home/jepod13/RobWork_root/RobWork/cmake/../ext/boostbindings -I/usr/include/eigen3 -I/home/jepod13/RobWork_root/RobWork/cmake/../src -I/home/jepod13/RobWork_root/RobWork/cmake/../ext/rwyaobi -I/home/jepod13/RobWork_root/RobWork/cmake/../ext/rwpqp -I/home/jepod13/RobWork_root/RobWork/cmake/../ext/lua/src -I/home/jepod13/RobWork_root/RobWork/cmake/../ext/qhull/src -I/home/jepod13/RobWork_root/RobWork/cmake/../ext/csgjs/src -I/usr/include/assimp 
 
