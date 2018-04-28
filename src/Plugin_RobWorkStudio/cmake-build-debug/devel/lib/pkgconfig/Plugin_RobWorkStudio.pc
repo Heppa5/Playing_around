@@ -1,0 +1,8 @@
+prefix=/home/jepod13/catkin_ws/src/Plugin_RobWorkStudio/cmake-build-debug/devel
+
+Name: Plugin_RobWorkStudio
+Description: Description of Plugin_RobWorkStudio
+Version: 0.0.0
+Cflags: -I/home/jepod13/catkin_ws/src/Plugin_RobWorkStudio/cmake-build-debug/devel/include
+Libs: -L/home/jepod13/catkin_ws/src/Plugin_RobWorkStudio/cmake-build-debug/devel/lib 
+Requires: message_runtime

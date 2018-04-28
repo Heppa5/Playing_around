@@ -1,8 +1,0 @@
-prefix=/home/jepod13/catkin_ws/src/RobWorkStudioPlugin/cmake-build-debug/devel
-
-Name: RobWorkStudioPlugin
-Description: Description of RobWorkStudioPlugin
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/jepod13/catkin_ws/src/RobWorkStudioPlugin/cmake-build-debug/devel/lib 
-Requires: 

@@ -147,11 +147,11 @@ class UrTest
 
         // Update the transform om "marker_f".
         rw::kinematics::FixedFrame* marker_frame=(rw::kinematics::FixedFrame*)workcell_->findFrame("marker_f");
-//         cout << "First: " << marker_frame->getTransform(currentState) << endl;
+         cout << "First: " << marker_frame->getTransform(currentState) << endl;
         rw::math::Vector3D<double> tcpPmarker(req.tcpPmarker[0],req.tcpPmarker[1],req.tcpPmarker[2]);
         rw::math::EAA<double> tcpRvecmarker(req.tcpRmarker[0],req.tcpRmarker[1],req.tcpRmarker[2]);
         marker_frame->setTransform(rw::math::Transform3D<double>(tcpPmarker,tcpRvecmarker.toRotation3D()));
-//         cout << "Second: " << marker_frame->getTransform(currentState) << endl;
+         cout << "Second: " << marker_frame->getTransform(currentState) << endl;
 //        rw::kinematics::Frame* tool_frame=(rw::kinematics::Frame*)marker_frame;
 
 
@@ -173,7 +173,18 @@ class UrTest
 
         rw::math::Transform3D<double> desired_transform(desired_position_base,desired_rotation_base);
 
+        cout << "\"Marker\" Location in base frame: " << desired_transform << endl;
+
+
         auto end_configuration = findQ.solve(desired_transform,currentState);
+        auto world = workcell_->findFrame("WORLD");
+        cout << "Marker1 in world now: " << world->fTf(marker_frame,currentState) << endl;
+        if(end_configuration.size()==1)
+        {
+            cout << "Current config is: " << getCurrentJointConfiguration() << endl;
+            cout << "New Q-config is: " << end_configuration[0] << endl;
+        }
+
         rw::trajectory::QPath path;
 
         if(end_configuration.size() > 0)
@@ -295,6 +306,7 @@ class UrTest
         bool move_to_pose_tcp(mp_mini_picker::moveToPoseTcp::Request  &req,
                    mp_mini_picker::moveToPoseTcp::Response &res)
         {
+            cout << "move_to_pose_tcp_start" << endl;
             rw::math::Q current_configuration = getCurrentJointConfiguration();
 
             device_->setQ(current_configuration,currentState);
@@ -322,7 +334,7 @@ class UrTest
             
             
             rw::trajectory::QPath path;
-            
+            cout << "Finding path" << endl;
             if(end_configuration.size() > 0)
             {
                 res.ok=end_configuration.size();
@@ -358,7 +370,8 @@ class UrTest
             {
                 ROS_INFO("No solution to JacobianIKSolver");
                 res.ok = 0;
-            }    
+            }
+            cout << "move_to_pose_tcp_end" << endl;
         }
         
         bool move_to_point_tcp(mp_mini_picker::moveToPointTcp::Request  &req,

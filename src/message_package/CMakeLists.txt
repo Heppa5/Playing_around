@@ -54,6 +54,7 @@ add_message_files(
   currentToolPosition.msg
   currentToolPosition2.msg
   matched_points.msg
+  Q.msg
 )
 
 ## Generate services in the 'srv' folder

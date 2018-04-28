@@ -52,6 +52,7 @@ class kalman_filter_class {
     int marker_id=0;
 public:
     kalman_filter_class(string useF) {
+//         ros::NodeHandle nh_;
         if(useF=="12")
         {
             ROS_INFO("Using filter");

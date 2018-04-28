@@ -1,0 +1,6 @@
+<launch>
+  
+  <node pkg="mp_mini_picker" type="mp_mini_picker_sim_node" name="mp_mini_picker" required="true" output="screen" >
+  </node>
+
+</launch>

@@ -2,73 +2,73 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="mp_mini_picker" targetName="mp_mini_picker_gencpp" />
-      <config projectName="mp_mini_picker" targetName="doxygen" />
-      <config projectName="mp_mini_picker" targetName="rosgraph_msgs_generate_messages_eus" />
-      <config projectName="mp_mini_picker" targetName="caros_control_msgs_generate_messages_cpp" />
-      <config projectName="mp_mini_picker" targetName="caros_common_robwork_msgs_generate_messages_cpp" />
-      <config projectName="mp_mini_picker" targetName="roscpp_generate_messages_nodejs" />
-      <config projectName="mp_mini_picker" targetName="download_extra_data" />
-      <config projectName="mp_mini_picker" targetName="std_msgs_generate_messages_py" />
-      <config projectName="mp_mini_picker" targetName="message_package_generate_messages_eus" />
-      <config projectName="mp_mini_picker" targetName="caros_common_msgs_generate_messages_py" />
       <config projectName="mp_mini_picker" targetName="message_package_generate_messages_nodejs" />
-      <config projectName="mp_mini_picker" targetName="std_msgs_generate_messages_lisp" />
-      <config projectName="mp_mini_picker" targetName="mp_mini_picker_generate_messages_py" />
-      <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_moveToPoseMarker" />
-      <config projectName="mp_mini_picker" targetName="geometry_msgs_generate_messages_nodejs" />
-      <config projectName="mp_mini_picker" targetName="caros_common_robwork_msgs_generate_messages_nodejs" />
-      <config projectName="mp_mini_picker" targetName="geometry_msgs_generate_messages_py" />
-      <config projectName="mp_mini_picker" targetName="geometry_msgs_generate_messages_eus" />
-      <config projectName="mp_mini_picker" targetName="rosgraph_msgs_generate_messages_cpp" />
-      <config projectName="mp_mini_picker" targetName="caros_common_robwork_msgs_generate_messages_eus" />
-      <config projectName="mp_mini_picker" targetName="mp_mini_picker_genpy" />
-      <config projectName="mp_mini_picker" targetName="mp_mini_picker_generate_messages_eus" />
-      <config projectName="mp_mini_picker" targetName="mp_mini_picker_generate_messages_nodejs" />
-      <config projectName="mp_mini_picker" targetName="caros_control_msgs_generate_messages_lisp" />
-      <config projectName="mp_mini_picker" targetName="mp_mini_picker_sim_node" />
-      <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_changeTcpTMarker" />
-      <config projectName="mp_mini_picker" targetName="rosgraph_msgs_generate_messages_lisp" />
-      <config projectName="mp_mini_picker" targetName="mp_mini_picker_generate_messages_lisp" />
-      <config projectName="mp_mini_picker" targetName="mp_mini_picker_generate_messages" />
-      <config projectName="mp_mini_picker" targetName="roscpp_generate_messages_cpp" />
-      <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_currentQ" />
-      <config projectName="mp_mini_picker" targetName="roscpp_generate_messages_lisp" />
-      <config projectName="mp_mini_picker" targetName="clean_test_results" />
-      <config projectName="mp_mini_picker" targetName="message_package_generate_messages_py" />
-      <config projectName="mp_mini_picker" targetName="std_msgs_generate_messages_cpp" />
-      <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_moveToQ" />
-      <config projectName="mp_mini_picker" targetName="geometry_msgs_generate_messages_cpp" />
-      <config projectName="mp_mini_picker" targetName="std_msgs_generate_messages_nodejs" />
-      <config projectName="mp_mini_picker" targetName="caros_common_msgs_generate_messages_cpp" />
-      <config projectName="mp_mini_picker" targetName="message_package_generate_messages_lisp" />
-      <config projectName="mp_mini_picker" targetName="mp_mini_picker_generate_messages_cpp" />
-      <config projectName="mp_mini_picker" targetName="caros_common_robwork_msgs_generate_messages_lisp" />
-      <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_moveToPointMarker" />
-      <config projectName="mp_mini_picker" targetName="tests" />
-      <config projectName="mp_mini_picker" targetName="gtest_main" />
-      <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_moveToPoseTcp" />
-      <config projectName="mp_mini_picker" targetName="caros_control_msgs_generate_messages_nodejs" />
-      <config projectName="mp_mini_picker" targetName="roscpp_generate_messages_eus" />
-      <config projectName="mp_mini_picker" targetName="geometry_msgs_generate_messages_lisp" />
-      <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_moveToPointTcp" />
       <config projectName="mp_mini_picker" targetName="mp_mini_picker_geneus" />
-      <config projectName="mp_mini_picker" targetName="std_msgs_generate_messages_eus" />
-      <config projectName="mp_mini_picker" targetName="rosgraph_msgs_generate_messages_nodejs" />
-      <config projectName="mp_mini_picker" targetName="mp_mini_picker_node" />
-      <config projectName="mp_mini_picker" targetName="caros_control_msgs_generate_messages_eus" />
-      <config projectName="mp_mini_picker" targetName="caros_control_msgs_generate_messages_py" />
-      <config projectName="mp_mini_picker" targetName="caros_common_msgs_generate_messages_eus" />
-      <config projectName="mp_mini_picker" targetName="run_tests" />
-      <config projectName="mp_mini_picker" targetName="roscpp_generate_messages_py" />
       <config projectName="mp_mini_picker" targetName="caros_common_msgs_generate_messages_lisp" />
-      <config projectName="mp_mini_picker" targetName="mp_mini_picker_genlisp" />
-      <config projectName="mp_mini_picker" targetName="mp_mini_picker_gennodejs" />
-      <config projectName="mp_mini_picker" targetName="caros_common_robwork_msgs_generate_messages_py" />
-      <config projectName="mp_mini_picker" targetName="rosgraph_msgs_generate_messages_py" />
-      <config projectName="mp_mini_picker" targetName="message_package_generate_messages_cpp" />
+      <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_moveToQ" />
+      <config projectName="mp_mini_picker" targetName="caros_common_robwork_msgs_generate_messages_cpp" />
       <config projectName="mp_mini_picker" targetName="caros_common_msgs_generate_messages_nodejs" />
+      <config projectName="mp_mini_picker" targetName="message_package_generate_messages_eus" />
+      <config projectName="mp_mini_picker" targetName="geometry_msgs_generate_messages_nodejs" />
+      <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_moveToPointMarker" />
+      <config projectName="mp_mini_picker" targetName="rosgraph_msgs_generate_messages_cpp" />
+      <config projectName="mp_mini_picker" targetName="std_msgs_generate_messages_eus" />
+      <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_currentQ" />
+      <config projectName="mp_mini_picker" targetName="mp_mini_picker_sim_node" />
+      <config projectName="mp_mini_picker" targetName="caros_common_msgs_generate_messages_cpp" />
+      <config projectName="mp_mini_picker" targetName="mp_mini_picker_node" />
+      <config projectName="mp_mini_picker" targetName="doxygen" />
+      <config projectName="mp_mini_picker" targetName="roscpp_generate_messages_nodejs" />
+      <config projectName="mp_mini_picker" targetName="caros_common_msgs_generate_messages_py" />
+      <config projectName="mp_mini_picker" targetName="rosgraph_msgs_generate_messages_nodejs" />
+      <config projectName="mp_mini_picker" targetName="caros_common_robwork_msgs_generate_messages_lisp" />
+      <config projectName="mp_mini_picker" targetName="std_msgs_generate_messages_py" />
+      <config projectName="mp_mini_picker" targetName="roscpp_generate_messages_py" />
+      <config projectName="mp_mini_picker" targetName="mp_mini_picker_generate_messages_lisp" />
+      <config projectName="mp_mini_picker" targetName="mp_mini_picker_gennodejs" />
+      <config projectName="mp_mini_picker" targetName="mp_mini_picker_generate_messages_eus" />
+      <config projectName="mp_mini_picker" targetName="std_msgs_generate_messages_lisp" />
+      <config projectName="mp_mini_picker" targetName="rosgraph_msgs_generate_messages_eus" />
+      <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_moveToPoseMarker" />
+      <config projectName="mp_mini_picker" targetName="rosgraph_msgs_generate_messages_lisp" />
+      <config projectName="mp_mini_picker" targetName="run_tests" />
+      <config projectName="mp_mini_picker" targetName="download_extra_data" />
+      <config projectName="mp_mini_picker" targetName="caros_control_msgs_generate_messages_cpp" />
+      <config projectName="mp_mini_picker" targetName="caros_common_robwork_msgs_generate_messages_py" />
+      <config projectName="mp_mini_picker" targetName="gtest_main" />
+      <config projectName="mp_mini_picker" targetName="message_package_generate_messages_lisp" />
+      <config projectName="mp_mini_picker" targetName="mp_mini_picker_generate_messages" />
+      <config projectName="mp_mini_picker" targetName="tests" />
+      <config projectName="mp_mini_picker" targetName="mp_mini_picker_generate_messages_py" />
+      <config projectName="mp_mini_picker" targetName="roscpp_generate_messages_lisp" />
+      <config projectName="mp_mini_picker" targetName="caros_common_robwork_msgs_generate_messages_eus" />
+      <config projectName="mp_mini_picker" targetName="caros_control_msgs_generate_messages_py" />
+      <config projectName="mp_mini_picker" targetName="rosgraph_msgs_generate_messages_py" />
+      <config projectName="mp_mini_picker" targetName="mp_mini_picker_generate_messages_cpp" />
+      <config projectName="mp_mini_picker" targetName="geometry_msgs_generate_messages_lisp" />
+      <config projectName="mp_mini_picker" targetName="mp_mini_picker_gencpp" />
+      <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_changeTcpTMarker" />
+      <config projectName="mp_mini_picker" targetName="clean_test_results" />
+      <config projectName="mp_mini_picker" targetName="caros_control_msgs_generate_messages_eus" />
+      <config projectName="mp_mini_picker" targetName="roscpp_generate_messages_cpp" />
+      <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_moveToPointTcp" />
+      <config projectName="mp_mini_picker" targetName="_mp_mini_picker_generate_messages_check_deps_moveToPoseTcp" />
+      <config projectName="mp_mini_picker" targetName="geometry_msgs_generate_messages_cpp" />
       <config projectName="mp_mini_picker" targetName="gtest" />
+      <config projectName="mp_mini_picker" targetName="mp_mini_picker_generate_messages_nodejs" />
+      <config projectName="mp_mini_picker" targetName="mp_mini_picker_genpy" />
+      <config projectName="mp_mini_picker" targetName="mp_mini_picker_genlisp" />
+      <config projectName="mp_mini_picker" targetName="message_package_generate_messages_py" />
+      <config projectName="mp_mini_picker" targetName="caros_control_msgs_generate_messages_lisp" />
+      <config projectName="mp_mini_picker" targetName="message_package_generate_messages_cpp" />
+      <config projectName="mp_mini_picker" targetName="caros_control_msgs_generate_messages_nodejs" />
+      <config projectName="mp_mini_picker" targetName="std_msgs_generate_messages_nodejs" />
+      <config projectName="mp_mini_picker" targetName="caros_common_robwork_msgs_generate_messages_nodejs" />
+      <config projectName="mp_mini_picker" targetName="std_msgs_generate_messages_cpp" />
+      <config projectName="mp_mini_picker" targetName="roscpp_generate_messages_eus" />
+      <config projectName="mp_mini_picker" targetName="geometry_msgs_generate_messages_py" />
+      <config projectName="mp_mini_picker" targetName="caros_common_msgs_generate_messages_eus" />
+      <config projectName="mp_mini_picker" targetName="geometry_msgs_generate_messages_eus" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -89,11 +89,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="48" column="43" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="43" />
+            <state relative-caret-position="412">
+              <caret line="196" column="28" lean-forward="true" selection-start-line="196" selection-start-column="28" selection-end-line="196" selection-end-column="28" />
               <folding>
                 <element signature="e#1#37#0" expanded="true" />
               </folding>
@@ -111,11 +111,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mp_mini_picker_sim.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mp_mini_picker_sim.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mp_mini_picker_sim.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="742" column="5" lean-forward="true" selection-start-line="742" selection-start-column="5" selection-end-line="742" selection-end-column="5" />
+            <state relative-caret-position="4032">
+              <caret line="224" column="0" lean-forward="false" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
               <folding>
                 <element signature="e#1#37#0" expanded="true" />
                 <element signature="e#377#425#0" expanded="true" />
@@ -137,8 +137,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main.cpp" />
         <option value="$PROJECT_DIR$/src/mp_mini_picker_sim.cpp" />
+        <option value="$PROJECT_DIR$/src/main.cpp" />
       </list>
     </option>
   </component>
@@ -194,7 +194,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../RobWorkStudioPlugin/CMakeLists.txt" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../testing_transformation_matrix/CMakeLists.txt" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RunDashboard">
@@ -210,97 +210,97 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.mp_mini_picker_node">
-    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node" EXPLICIT_BUILD_TARGET_NAME="all">
       <envs />
     </configuration>
-    <configuration name="_mp_mini_picker_generate_messages_check_deps_changeTcpTMarker" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="_mp_mini_picker_generate_messages_check_deps_changeTcpTMarker" CONFIG_NAME="Debug">
+    <configuration name="_mp_mini_picker_generate_messages_check_deps_changeTcpTMarker" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="_mp_mini_picker_generate_messages_check_deps_changeTcpTMarker" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="_mp_mini_picker_generate_messages_check_deps_currentQ" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="_mp_mini_picker_generate_messages_check_deps_currentQ" CONFIG_NAME="Debug">
+    <configuration name="_mp_mini_picker_generate_messages_check_deps_currentQ" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="_mp_mini_picker_generate_messages_check_deps_currentQ" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="_mp_mini_picker_generate_messages_check_deps_moveToPointMarker" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="_mp_mini_picker_generate_messages_check_deps_moveToPointMarker" CONFIG_NAME="Debug">
+    <configuration name="_mp_mini_picker_generate_messages_check_deps_moveToPointMarker" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="_mp_mini_picker_generate_messages_check_deps_moveToPointMarker" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="_mp_mini_picker_generate_messages_check_deps_moveToPointTcp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="_mp_mini_picker_generate_messages_check_deps_moveToPointTcp" CONFIG_NAME="Debug">
+    <configuration name="_mp_mini_picker_generate_messages_check_deps_moveToPointTcp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="_mp_mini_picker_generate_messages_check_deps_moveToPointTcp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="_mp_mini_picker_generate_messages_check_deps_moveToPoseMarker" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="_mp_mini_picker_generate_messages_check_deps_moveToPoseMarker" CONFIG_NAME="Debug">
+    <configuration name="_mp_mini_picker_generate_messages_check_deps_moveToPoseMarker" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="_mp_mini_picker_generate_messages_check_deps_moveToPoseMarker" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="_mp_mini_picker_generate_messages_check_deps_moveToPoseTcp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="_mp_mini_picker_generate_messages_check_deps_moveToPoseTcp" CONFIG_NAME="Debug">
+    <configuration name="_mp_mini_picker_generate_messages_check_deps_moveToPoseTcp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="_mp_mini_picker_generate_messages_check_deps_moveToPoseTcp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="_mp_mini_picker_generate_messages_check_deps_moveToQ" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="_mp_mini_picker_generate_messages_check_deps_moveToQ" CONFIG_NAME="Debug">
+    <configuration name="_mp_mini_picker_generate_messages_check_deps_moveToQ" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="_mp_mini_picker_generate_messages_check_deps_moveToQ" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="caros_common_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
+    <configuration name="caros_common_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_msgs_generate_messages_cpp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="caros_common_msgs_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_msgs_generate_messages_eus" CONFIG_NAME="Debug">
+    <configuration name="caros_common_msgs_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_msgs_generate_messages_eus" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="caros_common_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
+    <configuration name="caros_common_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_msgs_generate_messages_lisp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="caros_common_msgs_generate_messages_nodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_msgs_generate_messages_nodejs" CONFIG_NAME="Debug">
+    <configuration name="caros_common_msgs_generate_messages_nodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_msgs_generate_messages_nodejs" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="caros_common_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_msgs_generate_messages_py" CONFIG_NAME="Debug">
+    <configuration name="caros_common_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_msgs_generate_messages_py" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="caros_common_robwork_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_robwork_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
+    <configuration name="caros_common_robwork_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_robwork_msgs_generate_messages_cpp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="caros_common_robwork_msgs_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_robwork_msgs_generate_messages_eus" CONFIG_NAME="Debug">
+    <configuration name="caros_common_robwork_msgs_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_robwork_msgs_generate_messages_eus" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="caros_common_robwork_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_robwork_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
+    <configuration name="caros_common_robwork_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_robwork_msgs_generate_messages_lisp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="caros_common_robwork_msgs_generate_messages_nodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_robwork_msgs_generate_messages_nodejs" CONFIG_NAME="Debug">
+    <configuration name="caros_common_robwork_msgs_generate_messages_nodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_robwork_msgs_generate_messages_nodejs" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="caros_common_robwork_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_robwork_msgs_generate_messages_py" CONFIG_NAME="Debug">
+    <configuration name="caros_common_robwork_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_common_robwork_msgs_generate_messages_py" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="caros_control_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_control_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
+    <configuration name="caros_control_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_control_msgs_generate_messages_cpp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="caros_control_msgs_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_control_msgs_generate_messages_eus" CONFIG_NAME="Debug">
+    <configuration name="caros_control_msgs_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_control_msgs_generate_messages_eus" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="caros_control_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_control_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
+    <configuration name="caros_control_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_control_msgs_generate_messages_lisp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="caros_control_msgs_generate_messages_nodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_control_msgs_generate_messages_nodejs" CONFIG_NAME="Debug">
+    <configuration name="caros_control_msgs_generate_messages_nodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_control_msgs_generate_messages_nodejs" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="caros_control_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_control_msgs_generate_messages_py" CONFIG_NAME="Debug">
+    <configuration name="caros_control_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="caros_control_msgs_generate_messages_py" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="clean_test_results" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="clean_test_results" CONFIG_NAME="Debug">
+    <configuration name="clean_test_results" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="clean_test_results" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="download_extra_data" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="download_extra_data" CONFIG_NAME="Debug">
+    <configuration name="download_extra_data" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="download_extra_data" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="doxygen" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="doxygen" CONFIG_NAME="Debug">
+    <configuration name="doxygen" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="doxygen" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="geometry_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="geometry_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
+    <configuration name="geometry_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="geometry_msgs_generate_messages_cpp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="geometry_msgs_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="geometry_msgs_generate_messages_eus" CONFIG_NAME="Debug">
+    <configuration name="geometry_msgs_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="geometry_msgs_generate_messages_eus" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="geometry_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="geometry_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
+    <configuration name="geometry_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="geometry_msgs_generate_messages_lisp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="geometry_msgs_generate_messages_nodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="geometry_msgs_generate_messages_nodejs" CONFIG_NAME="Debug">
+    <configuration name="geometry_msgs_generate_messages_nodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="geometry_msgs_generate_messages_nodejs" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="geometry_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="geometry_msgs_generate_messages_py" CONFIG_NAME="Debug">
+    <configuration name="geometry_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="geometry_msgs_generate_messages_py" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
     <configuration name="gtest" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="gtest" CONFIG_NAME="Debug">
@@ -309,55 +309,55 @@
     <configuration name="gtest_main" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="gtest_main" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="message_package_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="message_package_generate_messages_cpp" CONFIG_NAME="Debug">
+    <configuration name="message_package_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="message_package_generate_messages_cpp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="message_package_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="message_package_generate_messages_eus" CONFIG_NAME="Debug">
+    <configuration name="message_package_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="message_package_generate_messages_eus" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="message_package_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="message_package_generate_messages_lisp" CONFIG_NAME="Debug">
+    <configuration name="message_package_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="message_package_generate_messages_lisp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="message_package_generate_messages_nodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="message_package_generate_messages_nodejs" CONFIG_NAME="Debug">
+    <configuration name="message_package_generate_messages_nodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="message_package_generate_messages_nodejs" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="message_package_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="message_package_generate_messages_py" CONFIG_NAME="Debug">
+    <configuration name="message_package_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="message_package_generate_messages_py" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="mp_mini_picker_gencpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_gencpp" CONFIG_NAME="Debug">
+    <configuration name="mp_mini_picker_gencpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_gencpp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="mp_mini_picker_generate_messages" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_generate_messages" CONFIG_NAME="Debug">
+    <configuration name="mp_mini_picker_generate_messages" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_generate_messages" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="mp_mini_picker_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_generate_messages_cpp" CONFIG_NAME="Debug">
+    <configuration name="mp_mini_picker_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_generate_messages_cpp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="mp_mini_picker_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_generate_messages_eus" CONFIG_NAME="Debug">
+    <configuration name="mp_mini_picker_generate_messages_eus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_generate_messages_eus" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="mp_mini_picker_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_generate_messages_lisp" CONFIG_NAME="Debug">
+    <configuration name="mp_mini_picker_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_generate_messages_lisp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="mp_mini_picker_generate_messages_nodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_generate_messages_nodejs" CONFIG_NAME="Debug">
+    <configuration name="mp_mini_picker_generate_messages_nodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_generate_messages_nodejs" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="mp_mini_picker_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_generate_messages_py" CONFIG_NAME="Debug">
+    <configuration name="mp_mini_picker_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_generate_messages_py" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="mp_mini_picker_geneus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_geneus" CONFIG_NAME="Debug">
+    <configuration name="mp_mini_picker_geneus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_geneus" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="mp_mini_picker_genlisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_genlisp" CONFIG_NAME="Debug">
+    <configuration name="mp_mini_picker_genlisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_genlisp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="mp_mini_picker_gennodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_gennodejs" CONFIG_NAME="Debug">
+    <configuration name="mp_mini_picker_gennodejs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_gennodejs" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="mp_mini_picker_genpy" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_genpy" CONFIG_NAME="Debug">
+    <configuration name="mp_mini_picker_genpy" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_genpy" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
-    <configuration name="mp_mini_picker_node" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_node" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_node">
+    <configuration name="mp_mini_picker_node" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_node" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
       <envs />
     </configuration>
     <configuration name="mp_mini_picker_sim_node" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_mini_picker" TARGET_NAME="mp_mini_picker_sim_node" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_mini_picker" RUN_TARGET_NAME="mp_mini_picker_sim_node">
@@ -513,20 +513,25 @@
       <workItem from="1521793942331" duration="132000" />
       <workItem from="1521794078393" duration="2082000" />
       <workItem from="1521799273914" duration="6019000" />
+      <workItem from="1522045830262" duration="39000" />
+      <workItem from="1522045881066" duration="5279000" />
+      <workItem from="1522061197766" duration="622000" />
+      <workItem from="1522484337835" duration="800000" />
+      <workItem from="1522486315736" duration="3456000" />
+      <workItem from="1522495522508" duration="21000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16396000" />
+    <option name="totallyTimeSpent" value="26613000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14824797" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21836735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21836735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -535,6 +540,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -554,6 +560,176 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#1#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mp_mini_picker_sim.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4032">
+          <caret line="224" column="0" lean-forward="false" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
+          <folding>
+            <element signature="e#1#37#0" expanded="true" />
+            <element signature="e#377#425#0" expanded="true" />
+            <element signature="e#1188#1229#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mp_mini_picker_sim.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4032">
+          <caret line="224" column="0" lean-forward="true" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
+          <folding>
+            <element signature="e#1#37#0" expanded="true" />
+            <element signature="e#377#425#0" expanded="true" />
+            <element signature="e#1188#1229#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="864">
+          <caret line="48" column="43" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="43" />
+          <folding>
+            <element signature="e#1#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mp_mini_picker_sim.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1710">
+          <caret line="95" column="9" lean-forward="false" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="9" />
+          <folding>
+            <element signature="e#1#37#0" expanded="true" />
+            <element signature="e#377#425#0" expanded="true" />
+            <element signature="e#1188#1229#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="864">
+          <caret line="48" column="43" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="43" />
+          <folding>
+            <element signature="e#1#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mp_mini_picker_sim.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1710">
+          <caret line="95" column="9" lean-forward="true" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="9" />
+          <folding>
+            <element signature="e#1#37#0" expanded="true" />
+            <element signature="e#377#425#0" expanded="true" />
+            <element signature="e#1188#1229#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="864">
+          <caret line="48" column="43" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="43" />
+          <folding>
+            <element signature="e#1#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mp_mini_picker_sim.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13356">
+          <caret line="742" column="5" lean-forward="true" selection-start-line="742" selection-start-column="5" selection-end-line="742" selection-end-column="5" />
+          <folding>
+            <element signature="e#1#37#0" expanded="true" />
+            <element signature="e#377#425#0" expanded="true" />
+            <element signature="e#1188#1229#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="864">
+          <caret line="48" column="43" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="43" />
+          <folding>
+            <element signature="e#1#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mp_mini_picker_sim.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13356">
+          <caret line="742" column="5" lean-forward="true" selection-start-line="742" selection-start-column="5" selection-end-line="742" selection-end-column="5" />
+          <folding>
+            <element signature="e#1#37#0" expanded="true" />
+            <element signature="e#377#425#0" expanded="true" />
+            <element signature="e#1188#1229#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="864">
@@ -712,12 +888,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+    <entry file="file://$PROJECT_DIR$/../RobWorkStudioPlugin/package.xml" />
+    <entry file="file://$PROJECT_DIR$/src/mp_mini_picker_sim.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="48" column="43" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="43" />
+        <state relative-caret-position="4032">
+          <caret line="224" column="0" lean-forward="false" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
           <folding>
             <element signature="e#1#37#0" expanded="true" />
+            <element signature="e#377#425#0" expanded="true" />
+            <element signature="e#1188#1229#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -730,22 +909,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../RobWorkStudioPlugin/package.xml">
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mp_mini_picker_sim.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="742" column="5" lean-forward="true" selection-start-line="742" selection-start-column="5" selection-end-line="742" selection-end-column="5" />
+        <state relative-caret-position="412">
+          <caret line="196" column="28" lean-forward="true" selection-start-line="196" selection-start-column="28" selection-end-line="196" selection-end-column="28" />
           <folding>
             <element signature="e#1#37#0" expanded="true" />
-            <element signature="e#377#425#0" expanded="true" />
-            <element signature="e#1188#1229#0" expanded="true" />
           </folding>
         </state>
       </provider>

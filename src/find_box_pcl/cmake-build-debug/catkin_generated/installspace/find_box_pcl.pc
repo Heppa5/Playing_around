@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: find_box_pcl
+Description: Description of find_box_pcl
+Version: 0.0.0
+Cflags: 
+Libs: -L/usr/local/lib 
+Requires: roscpp pcl_ros

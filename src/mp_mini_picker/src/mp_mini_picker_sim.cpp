@@ -331,6 +331,7 @@ class UrTest
         bool move_to_pose_tcp(mp_mini_picker::moveToPoseTcp::Request  &req,
                    mp_mini_picker::moveToPoseTcp::Response &res)
         {
+            cout << "Move to pose TCP" << endl;
             rw::math::Q current_configuration = getCurrentJointConfiguration();
 
             device_->setQ(current_configuration,currentState);
@@ -361,6 +362,7 @@ class UrTest
             
             if(end_configuration.size() > 0)
             {
+                cout << "Found a solution " << endl;
                 res.ok=end_configuration.size();
 
                 bool valid_path = false;

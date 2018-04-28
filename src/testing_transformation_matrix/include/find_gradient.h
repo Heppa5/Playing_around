@@ -210,6 +210,7 @@ void find_gradient11_v2(const double wTc0[16], const double wTt[16], const
   cTm[16], const double tTm_vec[3], const double dcRw_vec[3], double
   gradient_error[12])
 {
+    
   double error[12];
   double dv0[144];
   int i0;
